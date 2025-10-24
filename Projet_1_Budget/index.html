@@ -1,73 +1,92 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Helvii – Budget et Impôts Suisse</title>
-  <link rel="stylesheet" href="assets/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helvii – Budget et Impôts Suisse</title>
+    <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  <header>
-    <div class="logo">Helvii<span>.</span></div>
-    <button id="themeToggle" aria-label="Changer de thème">🌓</button>
-  </header>
+    <header>
+        <div class="logo">Helvii<span>.</span></div>
+        <button id="themeToggle" aria-label="Changer de thème">🌓</button>
+    </header>
 
-  <section class="hero">
-    <h1>Gérez votre budget et vos impôts simplement 🇨🇭</h1>
-    <p>L'application qui estime vos impôts et suit vos dépenses, en toute simplicité.</p>
-    <button class="cta">Essayer la démo</button>
-  </section>
+    <section class="hero">
+        <h1>Gérez votre budget et vos impôts simplement 🇨🇭</h1>
+        <p>L'application qui estime vos impôts et suit vos dépenses, en toute simplicité.</p>
+        <button class="cta" id="demoBtn">Essayer la démo</button>
+    </section>
 
-  <section class="features">
-    <h2>Pourquoi choisir Helvii ?</h2>
-    <div class="feature-grid">
-      <div class="feature">
-        <h3>📊 Suivi de votre budget</h3>
-        <p>Ajoutez vos revenus et dépenses, visualisez vos habitudes et trouvez votre équilibre.</p>
-      </div>
-      <div class="feature">
-        <h3>🧾 Estimation de vos impôts</h3>
-        <p>Entrez vos revenus et votre canton pour obtenir une estimation réaliste de vos impôts.</p>
-      </div>
-      <div class="feature">
-        <h3>☁️ Données sécurisées</h3>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores exercitationem sunt quae.</p>
-      </div>
-      <div class="feature">
-        <h3>📈 Visualisation claire</h3>
-        <p>Suivez vos dépenses et votre solde net via des graphiques simples et élégants.</p>
-      </div>
-    </div>
-  </section>
+    <section class="features">
+        <h2>Pourquoi choisir Helvii ?</h2>
+        <div class="feature-grid">
+            <div class="feature">
+                <h3>📊 Suivi de votre budget</h3>
+                <p>Ajoutez vos revenus et dépenses, visualisez vos habitudes et trouvez votre équilibre.</p>
+            </div>
+            <div class="feature">
+                <h3>🧾 Estimation de vos impôts</h3>
+                <p>Entrez vos revenus et votre canton pour obtenir une estimation réaliste de vos impôts.</p>
+            </div>
+            <div class="feature">
+                <h3>☁️ Données sécurisées</h3>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores exercitationem sunt quae.</p>
+            </div>
+            <div class="feature">
+                <h3>📈 Visualisation claire</h3>
+                <p>Suivez vos dépenses et votre solde net via des graphiques simples et élégants.</p>
+            </div>
+        </div>
+    </section>
 
-  <section class="simulator">
-    <h2>Simulateur d’impôt rapide</h2>
-    <div class="sim-box">
-      <label for="revenu">Revenu mensuel brut (CHF)</label>
-      <input type="number" id="revenu" placeholder="Ex: 5000">
-      <label for="canton">Canton</label>
-      <select id="canton">
-        <option value="Vaud">Vaud (14%)</option>
-        <option value="Genève">Genève (14%)</option>
-        <option value="Fribourg">Fribourg (13.87%)</option>
-      </select>
-      <button onclick="calculerImpots()">Calculer</button>
-      <p id="resultat"></p>
-    </div>
-  </section>
+    <section class="simulator">
+        <h2>Simulateur d’impôt rapide</h2>
+        <div class="sim-box">
+            <label for="revenu">Revenu mensuel brut (CHF)</label>
+            <input type="number" id="revenu" placeholder="Ex: 5000">
+            <label for="canton">Canton</label>
+            <select id="canton">
+                <option value="Vaud">Vaud (14%)</option>
+                <option value="Genève">Genève (14%)</option>
+                <option value="Fribourg">Fribourg (13.87%)</option>
+            </select>
+            <button onclick="calculerImpots()">Calculer</button>
+            <p id="resultat"></p>
+        </div>
+    </section>
 
-  <section class="newsletter">
-    <h2>Restez informé des dernières nouveautés</h2>
-    <form>
-      <input type="email" placeholder="Votre email" required>
-      <button>S’inscrire</button>
-    </form>
-  </section>
+    <section class="demo-budget" id="demoBudget" style="display:none;">
+        <h2>Démo de budget mensuel</h2>
+        <table id="tableauBudget">
+            <thead>
+                <tr>
+                <th>Catégorie</th>
+                <th>Montant (CHF)</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div class="ajout-depense">
+            <input type="text" id="nouvelleCategorie" placeholder="Nouvelle dépense (ex: Alimentation)">
+            <input type="number" id="nouveauMontant" placeholder="Montant (CHF)">
+            <button id="ajouterDepense">+ Ajouter dépense</button>
+        </div>
+        <p id="totalBudget"></p>
+    </section>
 
-  <footer>
-    <p>© 2025 Helvii — Gestion budgétaire</p>
-  </footer>
+    <section class="newsletter">
+        <h2>Restez informé des dernières nouveautés</h2>
+        <form>
+        <input type="email" placeholder="Votre email" required>
+        <button>S’inscrire</button>
+        </form>
+    </section>
 
-  <script src="assets/script.js"></script>
+    <footer>
+        <p>© 2025 Helvii — Gestion budgétaire</p>
+    </footer>
+
+    <script src="assets/script.js"></script>
 </body>
 </html>
