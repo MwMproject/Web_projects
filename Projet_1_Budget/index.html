@@ -57,23 +57,31 @@
     </section>
 
     <section class="demo-budget" id="demoBudget" style="display:none;">
-        <h2>Démo de budget mensuel</h2>
+    <h2>Démo de budget mensuel</h2>
+    <div class="budget-wrapper">
         <table id="tableauBudget">
-            <thead>
-                <tr>
-                <th>Catégorie</th>
-                <th>Montant (CHF)</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-        <div class="ajout-depense">
-            <input type="text" id="nouvelleCategorie" placeholder="Nouvelle dépense (ex: Alimentation)">
-            <input type="number" id="nouveauMontant" placeholder="Montant (CHF)">
-            <button id="ajouterDepense">+ Ajouter dépense</button>
-        </div>
-        <p id="totalBudget"></p>
-    </section>
+        <thead>
+            <tr>
+            <th>Catégorie</th>
+            <th>Montant (CHF)</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+            <tr>
+            <th>Total mensuel</th>
+            <th id="totalBudget">CHF 0.00</th>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="ajout-depense">
+      <input type="text" id="nouvelleCategorie" placeholder="Nouvelle dépense (ex: Alimentation)">
+      <input type="number" id="nouveauMontant" placeholder="Montant (CHF)">
+      <button id="ajouterDepense">+ Ajouter dépense</button>
+    </div>
+    </div>
+</section>
 
     <section class="newsletter">
         <h2>Restez informé des dernières nouveautés</h2>

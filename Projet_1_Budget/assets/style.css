@@ -121,24 +121,42 @@ header {
   text-align: center;
 }
 
-.demo-budget table {
-  margin: 2rem auto;
-  border-collapse: collapse;
-  width: 90%;
-  max-width: 600px;
+.budget-wrapper {
+  display: inline-block;
+  text-align: left;
   background: var(--gris);
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.demo-budget th, .demo-budget td {
   padding: 1rem;
-  border-bottom: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-.demo-budget th {
+#tableauBudget {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 320px;
+}
+
+#tableauBudget th,
+#tableauBudget td {
+  padding: 0.8rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+#tableauBudget thead th {
   background: var(--rouge);
   color: #fff;
+  text-align: left;
+}
+
+#tableauBudget tfoot th {
+  background: #e9e9e9;
+  font-weight: bold;
+  text-align: right;
+}
+
+#tableauBudget tfoot th:first-child {
+  text-align: left;
 }
 
 .ajout-depense {
@@ -164,10 +182,6 @@ header {
   cursor: pointer;
 }
 
-#totalBudget {
-  margin-top: 1rem;
-  font-weight: 600;
-}
 
 .newsletter {
   padding: 3rem 2rem;
