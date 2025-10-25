@@ -176,37 +176,70 @@ const downloadBtn = document.getElementById("downloadPDF");
 if (downloadBtn) {
   downloadBtn.addEventListener("click", () => {
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+    const doc = new jsPDF({ unit: "pt", format: "a4" });
 
-    doc.setFontSize(16);
-    doc.text("Rapport de budget Helvii", 20, 20);
+    // === Couleurs & Styles ===
+    const rougeHelvii = "#E03C31";
+    const grisClair = "#F5F5F5";
+    const texteNoir = "#333";
+
+    // === En-tête ===
+    doc.setFillColor(rougeHelvii);
+    doc.rect(0, 0, 600, 60, "F");
+    doc.setTextColor("#fff");
+    doc.setFontSize(20);
+    doc.text("Helvii", 40, 38);
     doc.setFontSize(12);
-    doc.text(
-      `Résumé des dépenses - ${moisSelect.value} ${anneeSelect.value}`,
-      20,
-      30
-    );
+    doc.text("Rapport de budget mensuel", 120, 38);
 
-    let y = 45;
-    doc.text("Catégorie", 20, y);
-    doc.text("Montant (CHF)", 120, y);
-    y += 8;
-    doc.line(20, y, 180, y);
-    y += 6;
+    // === Infos de période ===
+    doc.setTextColor(texteNoir);
+    doc.setFontSize(11);
+    const today = new Date().toLocaleDateString("fr-CH");
+    doc.text(`Mois : ${moisSelect.value} ${anneeSelect.value}`, 40, 90);
+    doc.text(`Date : ${today}`, 450, 90);
+
+    // === Ligne de séparation ===
+    doc.setDrawColor(rougeHelvii);
+    doc.setLineWidth(1);
+    doc.line(40, 100, 550, 100);
+
+    // === Tableau ===
+    let y = 130;
+    doc.setFont("helvetica", "bold");
+    doc.text("Catégorie", 60, y);
+    doc.text("Montant (CHF)", 430, y);
+    doc.setFont("helvetica", "normal");
+
+    y += 10;
+    doc.setDrawColor("#ccc");
+    doc.line(40, y, 550, y);
+    y += 20;
 
     depenses.forEach((dep) => {
-      doc.text(dep.categorie, 20, y);
-      doc.text(dep.montant.toFixed(2), 140, y, { align: "right" });
-      y += 8;
+      doc.text(dep.categorie, 60, y);
+      doc.text(dep.montant.toFixed(2), 500, y, { align: "right" });
+      y += 20;
     });
 
-    const total = depenses.reduce((a, b) => a + Number(b.montant), 0);
-    y += 6;
-    doc.line(20, y, 180, y);
+    // === Total ===
     y += 10;
-    doc.text("Total mensuel :", 20, y);
-    doc.text(`CHF ${total.toFixed(2)}`, 140, y, { align: "right" });
+    doc.setDrawColor(rougeHelvii);
+    doc.line(40, y, 550, y);
+    const total = depenses.reduce((a, b) => a + Number(b.montant), 0);
+    y += 25;
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(rougeHelvii);
+    doc.text("TOTAL", 60, y);
+    doc.text(`CHF ${total.toFixed(2)}`, 500, y, { align: "right" });
 
+    // === Pied de page ===
+    doc.setFont("helvetica", "italic");
+    doc.setTextColor("#777");
+    doc.setFontSize(10);
+    doc.text("Merci d’utiliser Helvii 🇨🇭 — www.helvii.ch", 180, 780);
+
+    // === Sauvegarde ===
     doc.save(`budget-${moisSelect.value}-${anneeSelect.value}.pdf`);
   });
 }
