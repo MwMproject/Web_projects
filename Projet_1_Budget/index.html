@@ -57,8 +57,34 @@
     </section>
 
     <section class="demo-budget" id="demoBudget" style="display:none;">
-    <h2>Démo de budget mensuel</h2>
-    <div class="budget-wrapper">
+        <h2>Démo de budget mensuel</h2>
+        <div class="budget-wrapper">
+    <div class="periode-selection">
+        <label for="moisSelect">Mois :</label>
+        <select id="moisSelect">
+            <option value="Janvier">Janvier</option>
+            <option value="Février">Février</option>
+            <option value="Mars">Mars</option>
+            <option value="Avril">Avril</option>
+            <option value="Mai">Mai</option>
+            <option value="Juin">Juin</option>
+            <option value="Juillet">Juillet</option>
+            <option value="Août">Août</option>
+            <option value="Septembre">Septembre</option>
+            <option value="Octobre">Octobre</option>
+            <option value="Novembre">Novembre</option>
+            <option value="Décembre">Décembre</option>
+        </select>
+
+        <label for="anneeSelect">Année :</label>
+        <select id="anneeSelect">
+            <option value="2025">2025</option>
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+        </select>
+    </div>
+
+<h3 id="titreBudget"></h3>
         <table id="tableauBudget">
         <thead>
             <tr>

@@ -130,6 +130,27 @@ header {
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
+.periode-selection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.periode-selection select {
+  padding: 0.4rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+#titreBudget {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: var(--rouge);
+}
+
 #tableauBudget {
   border-collapse: collapse;
   width: 100%;

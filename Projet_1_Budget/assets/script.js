@@ -1,10 +1,14 @@
-// --- Toggle clair/sombre ---
+/* ============================
+   🌗 Thème clair / sombre
+============================ */
 const themeToggle = document.getElementById("themeToggle");
 themeToggle.addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
 });
 
-// --- Simulateur d'impôts ---
+/* ============================
+   🧮 Simulateur d'impôts
+============================ */
 function calculerImpots() {
   const revenu = parseFloat(document.getElementById("revenu").value);
   const canton = document.getElementById("canton").value;
@@ -13,13 +17,16 @@ function calculerImpots() {
     Genève: 0.14,
     Fribourg: 0.1387,
   };
+
   if (!revenu) {
     document.getElementById("resultat").textContent =
       "Veuillez entrer un revenu.";
     return;
   }
+
   const impot = revenu * (taux[canton] || 0.12);
   const net = revenu - impot;
+
   document.getElementById(
     "resultat"
   ).textContent = `Impôt estimé : CHF ${impot.toFixed(
@@ -27,20 +34,79 @@ function calculerImpots() {
   )} • Revenu net : CHF ${net.toFixed(2)}`;
 }
 
-// --- Démo tableau vertical de budget ---
+/* ============================
+   💰 Démo : gestion de budget
+============================ */
+
+// Sélecteurs principaux
 const demoBtn = document.getElementById("demoBtn");
 const demoSection = document.getElementById("demoBudget");
 const tableau = document.getElementById("tableauBudget").querySelector("tbody");
 const totalBudget = document.getElementById("totalBudget");
 
+// Données en localStorage
 let depenses = JSON.parse(localStorage.getItem("helviiDepenses")) || [];
 
-// Initialisation de la démo
+// Sélecteurs de période
+const moisSelect = document.getElementById("moisSelect");
+const anneeSelect = document.getElementById("anneeSelect");
+const titreBudget = document.getElementById("titreBudget");
+
+/* --- Période : sauvegarde et chargement --- */
+function sauvegarderPeriode() {
+  const periode = { mois: moisSelect.value, annee: anneeSelect.value };
+  localStorage.setItem("helviiPeriode", JSON.stringify(periode));
+  majTitreBudget();
+}
+
+function majTitreBudget() {
+  titreBudget.textContent = `Budget de ${moisSelect.value} ${anneeSelect.value}`;
+}
+
+function chargerPeriode() {
+  const saved = JSON.parse(localStorage.getItem("helviiPeriode"));
+  if (saved) {
+    moisSelect.value = saved.mois;
+    anneeSelect.value = saved.annee;
+  } else {
+    const now = new Date();
+    const moisFrancais = [
+      "Janvier",
+      "Février",
+      "Mars",
+      "Avril",
+      "Mai",
+      "Juin",
+      "Juillet",
+      "Août",
+      "Septembre",
+      "Octobre",
+      "Novembre",
+      "Décembre",
+    ];
+    moisSelect.value = moisFrancais[now.getMonth()];
+    anneeSelect.value = now.getFullYear();
+  }
+  majTitreBudget();
+}
+
+// Événements pour la sélection de période
+if (moisSelect && anneeSelect) {
+  moisSelect.addEventListener("change", sauvegarderPeriode);
+  anneeSelect.addEventListener("change", sauvegarderPeriode);
+}
+
+/* --- Initialisation de la démo --- */
 function initDemo() {
   demoSection.style.display = "block";
-  setTimeout(() => {
-    demoSection.scrollIntoView({ behavior: "smooth" });
-  }, 100);
+
+  // Scroll fluide vers la section
+  setTimeout(() => demoSection.scrollIntoView({ behavior: "smooth" }), 100);
+
+  // Charge la période
+  chargerPeriode();
+
+  // Données par défaut
   if (depenses.length === 0) {
     depenses = [
       { categorie: "Loyer", montant: 1400 },
@@ -48,12 +114,15 @@ function initDemo() {
       { categorie: "Téléphone / Internet", montant: 120 },
     ];
   }
+
   renderTable();
   sauvegarderDepenses();
 }
-// Rendu du tableau
+
+/* --- Gestion du tableau --- */
 function renderTable() {
   tableau.innerHTML = "";
+
   depenses.forEach((dep, index) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
@@ -67,7 +136,29 @@ function renderTable() {
   const total = depenses.reduce((a, b) => a + Number(b.montant), 0);
   totalBudget.textContent = `CHF ${total.toFixed(2)}`;
 }
-// Supprimer une dépense
+
+function modifierMontant(index, value) {
+  depenses[index].montant = parseFloat(value) || 0;
+  sauvegarderDepenses();
+  renderTable();
+}
+
+function ajouterDepense() {
+  const cat = document.getElementById("nouvelleCategorie").value.trim();
+  const montant = parseFloat(document.getElementById("nouveauMontant").value);
+
+  if (!cat || isNaN(montant)) {
+    alert("Veuillez entrer un nom et un montant valide.");
+    return;
+  }
+
+  depenses.push({ categorie: cat, montant });
+  document.getElementById("nouvelleCategorie").value = "";
+  document.getElementById("nouveauMontant").value = "";
+  sauvegarderDepenses();
+  renderTable();
+}
+
 function supprimerDepense(index) {
   if (confirm(`Supprimer "${depenses[index].categorie}" ?`)) {
     depenses.splice(index, 1);
@@ -75,63 +166,54 @@ function supprimerDepense(index) {
     renderTable();
   }
 }
-function modifierMontant(index, value) {
-  depenses[index].montant = parseFloat(value) || 0;
-  sauvegarderDepenses();
-  renderTable();
-}
-// Ajouter une dépense
-function ajouterDepense() {
-  const cat = document.getElementById("nouvelleCategorie").value.trim();
-  const montant = parseFloat(document.getElementById("nouveauMontant").value);
-  if (!cat || isNaN(montant)) {
-    alert("Veuillez entrer un nom et un montant valide.");
-    return;
-  }
-  depenses.push({ categorie: cat, montant });
-  document.getElementById("nouvelleCategorie").value = "";
-  document.getElementById("nouveauMontant").value = "";
-  sauvegarderDepenses();
-  renderTable();
-}
+
 function sauvegarderDepenses() {
   localStorage.setItem("helviiDepenses", JSON.stringify(depenses));
 }
 
-// Télécharger le PDF
-document.getElementById("downloadPDF").addEventListener("click", () => {
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
+/* --- Génération du PDF --- */
+const downloadBtn = document.getElementById("downloadPDF");
+if (downloadBtn) {
+  downloadBtn.addEventListener("click", () => {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
 
-  doc.setFontSize(16);
-  doc.text("Rapport de budget Helvii", 20, 20);
-  doc.setFontSize(12);
-  doc.text("Résumé des dépenses mensuelles", 20, 30);
+    doc.setFontSize(16);
+    doc.text("Rapport de budget Helvii", 20, 20);
+    doc.setFontSize(12);
+    doc.text(
+      `Résumé des dépenses - ${moisSelect.value} ${anneeSelect.value}`,
+      20,
+      30
+    );
 
-  let y = 45;
-  doc.text("Catégorie", 20, y);
-  doc.text("Montant (CHF)", 120, y);
-  y += 8;
-  doc.line(20, y, 180, y); // ligne de séparation
-  y += 6;
-
-  depenses.forEach((dep) => {
-    doc.text(dep.categorie, 20, y);
-    doc.text(dep.montant.toFixed(2), 140, y, { align: "right" });
+    let y = 45;
+    doc.text("Catégorie", 20, y);
+    doc.text("Montant (CHF)", 120, y);
     y += 8;
+    doc.line(20, y, 180, y);
+    y += 6;
+
+    depenses.forEach((dep) => {
+      doc.text(dep.categorie, 20, y);
+      doc.text(dep.montant.toFixed(2), 140, y, { align: "right" });
+      y += 8;
+    });
+
+    const total = depenses.reduce((a, b) => a + Number(b.montant), 0);
+    y += 6;
+    doc.line(20, y, 180, y);
+    y += 10;
+    doc.text("Total mensuel :", 20, y);
+    doc.text(`CHF ${total.toFixed(2)}`, 140, y, { align: "right" });
+
+    doc.save(`budget-${moisSelect.value}-${anneeSelect.value}.pdf`);
   });
+}
 
-  const total = depenses.reduce((a, b) => a + Number(b.montant), 0);
-  y += 6;
-  doc.line(20, y, 180, y);
-  y += 10;
-  doc.text("Total mensuel :", 20, y);
-  doc.text(`CHF ${total.toFixed(2)}`, 140, y, { align: "right" });
-
-  doc.save("budget-helvii.pdf");
-});
-
-// Événements
+/* ============================
+   ⚡ Événements généraux
+============================ */
 demoBtn.addEventListener("click", initDemo);
 document
   .getElementById("ajouterDepense")
