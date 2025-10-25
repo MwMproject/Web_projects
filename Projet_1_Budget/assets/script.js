@@ -1,5 +1,5 @@
 /* ============================
-   🌗 Thème clair / sombre
+   Thème clair / sombre
 ============================ */
 const themeToggle = document.getElementById("themeToggle");
 themeToggle.addEventListener("click", () => {
@@ -7,7 +7,7 @@ themeToggle.addEventListener("click", () => {
 });
 
 /* ============================
-   🧮 Simulateur d'impôts
+   Simulateur d'impôts
 ============================ */
 function calculerImpots() {
   const revenu = parseFloat(document.getElementById("revenu").value);
@@ -35,7 +35,7 @@ function calculerImpots() {
 }
 
 /* ============================
-   💰 Démo : gestion de budget
+   Démo : gestion de budget
 ============================ */
 
 // Sélecteurs principaux
@@ -212,7 +212,7 @@ if (downloadBtn) {
 }
 
 /* ============================
-   ⚡ Événements généraux
+  Événements généraux
 ============================ */
 demoBtn.addEventListener("click", initDemo);
 document
