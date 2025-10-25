@@ -64,6 +64,7 @@
             <tr>
             <th>Catégorie</th>
             <th>Montant (CHF)</th>
+            <th>Actions</th>
             </tr>
         </thead>
         <tbody></tbody>
@@ -74,6 +75,7 @@
             </tr>
         </tfoot>
     </table>
+    <button id="downloadPDF" class="pdf-btn">📄 Télécharger en PDF</button>
 
     <div class="ajout-depense">
       <input type="text" id="nouvelleCategorie" placeholder="Nouvelle dépense (ex: Alimentation)">
@@ -96,5 +98,6 @@
     </footer>
 
     <script src="assets/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </body>
 </html>

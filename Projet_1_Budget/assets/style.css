@@ -182,6 +182,31 @@ header {
   cursor: pointer;
 }
 
+.delete-btn {
+  background: none;
+  border: none;
+  color: var(--rouge);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.delete-btn:hover {
+  transform: scale(1.2);
+}
+
+.pdf-btn {
+  margin-top: 1rem;
+  background: var(--rouge);
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.pdf-btn:hover {
+  opacity: 0.8;
+}
 
 .newsletter {
   padding: 3rem 2rem;
