@@ -29,9 +29,8 @@ function calculerImpots() {
 
   document.getElementById(
     "resultat"
-  ).textContent = `Impôt estimé : CHF ${impot.toFixed(
-    2
-  )} • Revenu net : CHF ${net.toFixed(2)}`;
+  ).textContent = `Impôt estimé par  mois : CHF
+  ${impot.toFixed(2)} Revenu net : CHF ${net.toFixed(2)}`;
 }
 
 /* ============================
