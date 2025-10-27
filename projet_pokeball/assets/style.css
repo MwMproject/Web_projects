@@ -1,8 +1,13 @@
 body {
+  margin: 0;
+  padding: 0;
   overflow: hidden;
   min-height: 100vh;
+  width: 100vw;
   cursor: crosshair;
-  background: rgb(128, 127, 127);
+  background-image: url("../assets/img/background2.webp");
+  background-position: center;   /* centrer l'image */
+  background-repeat: no-repeat;  /* ne pas répéter l'image */
 }
 .pokeball {
   position: absolute;

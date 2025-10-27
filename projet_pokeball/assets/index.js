@@ -14,6 +14,7 @@ const pokeballMaker = () => {
   pokeball.src = pokeballImages[randomIndex]; // Attribution de la source de l'image
 
   pokeball.classList.add("pokeball"); // Ajout de la classe "pokeball"
+  pokeball.draggable = false; // Désactivation du drag and drop
   document.body.appendChild(pokeball); // Ajout de l'élément au body
 
   const size = Math.random() * 200 + 100 + "px"; // Taille aléatoire des pokéballs entre 50px et 150px
