@@ -1,8 +1,10 @@
 // Sélection de l'élément h3 pour afficher le compteur
 const counterDisplay = document.querySelector("h3");
-let counter = 0;
+const lifeDisplay = document.querySelector("#life");
+let counter = 0; // compteur de points
+let lives = 5; // nombre de vies au départ
 
-// Tableau des Pokéballs avec leurs propriétés
+// --------------------- Tableau des Pokéballs avec leurs propriétés ---------------------
 const pokeballTypes = [
   // Pokéball : 70% des cas
   { name: "pokeball", src: "assets/img/pokeball.png", points: 1, size: 200 },
@@ -31,7 +33,7 @@ const pokeballTypes = [
   { name: "superball", src: "assets/img/superball.png", points: 5, size: 100 },
 ];
 
-// Fonction principale
+// --------------------- Fonction principale ---------------------
 const pokeballMaker = () => {
   // On choisit un type de Pokéball au hasard
   const pokeballData =
@@ -57,18 +59,54 @@ const pokeballMaker = () => {
   const plusMinus = Math.random() < 0.5 ? -1 : 1;
   pokeball.style.setProperty("--left", Math.random() * 100 + plusMinus + "%");
 
-  // === Gestion du clic ===
+  // Surveille la position du pokéball pour détecter le "top"
+  watchPokeball(pokeball);
+
+  // Gestion du clic
   pokeball.addEventListener("click", () => {
     counter += pokeballData.points; // ajoute les points selon le type
     counterDisplay.textContent = counter;
     pokeball.remove();
   });
-
-  // Suppression automatique après 8 secondes
-  setTimeout(() => {
-    pokeball.remove();
-  }, 8000);
 };
 
-// Génération d'une Pokéball toutes les 500 ms
-setInterval(pokeballMaker, 300);
+// --------------------- Détection quand une pokéball touche le haut ---------------------
+function watchPokeball(pokeball) {
+  const check = () => {
+    if (!document.body.contains(pokeball)) return;
+
+    const top = pokeball.getBoundingClientRect().top;
+
+    if (top <= 0) {
+      // Si elle a touché le haut de l’écran -1 vie
+      pokeball.remove();
+      lives--;
+      updateLives();
+
+      if (lives <= 0) {
+        endGame();
+      }
+
+      return;
+    }
+
+    requestAnimationFrame(check);
+  };
+
+  requestAnimationFrame(check);
+}
+
+// Gestion de la barre de vie
+function updateLives() {
+  lifeDisplay.textContent = "❤️".repeat(lives) + "🤍".repeat(5 - lives);
+}
+
+// Fin du jeu
+function endGame() {
+  clearInterval(gameLoop); // arrête le setInterval
+  alert("Game Over 💀");
+}
+
+// --------------------- Lancement du jeu ---------------------
+const gameLoop = setInterval(pokeballMaker, 500);
+updateLives();

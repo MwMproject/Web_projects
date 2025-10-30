@@ -9,6 +9,17 @@ body {
   background-position: center;   /* centrer l'image */
   background-repeat: no-repeat;  /* ne pas répéter l'image */
 }
+
+#life {
+  font-size: 2rem;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: red;
+  user-select: none;
+  z-index: 1000;
+}
+
 .pokeball {
   position: absolute;
   opacity: 1;
