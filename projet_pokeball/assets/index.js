@@ -1,40 +1,74 @@
+// Sélection de l'élément h3 pour afficher le compteur
 const counterDisplay = document.querySelector("h3");
 let counter = 0;
-// Tableau des images de Pokéballs
-const pokeballImages = [
-  "assets/img/pokeball.png",
-  "assets/img/masterball.png",
-  "assets/img/superball.png",
+
+// Tableau des Pokéballs avec leurs propriétés
+const pokeballTypes = [
+  // Pokéball : 70% des cas
+  { name: "pokeball", src: "assets/img/pokeball.png", points: 1, size: 200 },
+  { name: "pokeball", src: "assets/img/pokeball.png", points: 1, size: 200 },
+  { name: "pokeball", src: "assets/img/pokeball.png", points: 1, size: 200 },
+  { name: "pokeball", src: "assets/img/pokeball.png", points: 1, size: 200 },
+  { name: "pokeball", src: "assets/img/pokeball.png", points: 1, size: 200 },
+  { name: "pokeball", src: "assets/img/pokeball.png", points: 1, size: 200 },
+  { name: "pokeball", src: "assets/img/pokeball.png", points: 1, size: 200 },
+
+  // Masterball : 2 chances sur 10
+  {
+    name: "masterball",
+    src: "assets/img/masterball.png",
+    points: 3,
+    size: 150,
+  },
+  {
+    name: "masterball",
+    src: "assets/img/masterball.png",
+    points: 3,
+    size: 150,
+  },
+
+  // Superball : 1 chance sur 10
+  { name: "superball", src: "assets/img/superball.png", points: 5, size: 100 },
 ];
 
+// Fonction principale
 const pokeballMaker = () => {
-  const pokeball = document.createElement("img"); // Création d'un élément img
+  // On choisit un type de Pokéball au hasard
+  const pokeballData =
+    pokeballTypes[Math.floor(Math.random() * pokeballTypes.length)];
 
-  const randomIndex = Math.floor(Math.random() * pokeballImages.length); // Sélection aléatoire d'une image
-  pokeball.src = pokeballImages[randomIndex]; // Attribution de la source de l'image
+  // Création de l’image
+  const pokeball = document.createElement("img");
+  pokeball.src = pokeballData.src;
+  pokeball.classList.add("pokeball");
+  pokeball.draggable = false; // Empêche le clic + glisser
 
-  pokeball.classList.add("pokeball"); // Ajout de la classe "pokeball"
-  pokeball.draggable = false; // Désactivation du drag and drop
-  document.body.appendChild(pokeball); // Ajout de l'élément au body
+  document.body.appendChild(pokeball);
 
-  const size = Math.random() * 200 + 100 + "px"; // Taille aléatoire des pokéballs entre 50px et 150px
-  pokeball.style.width = size; // Application de la taille
-  pokeball.style.height = size; // Application de la taille
+  // Taille selon le type
+  const size = pokeballData.size + "px";
+  pokeball.style.width = size;
+  pokeball.style.height = size;
 
-  pokeball.style.left = Math.random() * 100 + "%"; // Position horizontale aléatoire
-  pokeball.style.top = Math.random() * 100 + 50 + "%"; // Position verticale aléatoire
+  // Position aléatoire
+  pokeball.style.left = Math.random() * 100 + "%";
+  pokeball.style.top = Math.random() * 100 + 50 + "%";
 
-  const plusMinus = Math.random() < 0.5 ? -1 : 1; // Choix aléatoire entre -1 et 1 pour la direction de l'animation
-  pokeball.style.setProperty("--left", Math.random() * 100 + plusMinus + "%"); // Définition de la variable CSS --left pour les animations
+  const plusMinus = Math.random() < 0.5 ? -1 : 1;
+  pokeball.style.setProperty("--left", Math.random() * 100 + plusMinus + "%");
 
+  // === Gestion du clic ===
   pokeball.addEventListener("click", () => {
-    counter++;
-    counterDisplay.textContent = counter; // Mise à jour du compteur affiché
-    pokeball.remove(); // Suppression de la pokéball au clic
+    counter += pokeballData.points; // ajoute les points selon le type
+    counterDisplay.textContent = counter;
+    pokeball.remove();
   });
 
+  // Suppression automatique après 8 secondes
   setTimeout(() => {
-    pokeball.remove(); // Suppression de l'élément après l'animation (gérée en CSS)
-  }, 8000); // Durée de vie de la pokéball avant suppression
+    pokeball.remove();
+  }, 8000);
 };
-setInterval(pokeballMaker, 500); // Appel de la fonction pokeballMaker toutes les 500 millisecondes
+
+// Génération d'une Pokéball toutes les 500 ms
+setInterval(pokeballMaker, 300);
