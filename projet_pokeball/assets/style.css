@@ -19,8 +19,8 @@ body {
   position: relative;
   background-color: white;
   overflow: hidden;
-  width: 1200px;
-  height: 800px;
+  width: 1250px;
+  height: 1100px;
   border: 10px solid #ff0000;
   border-radius: 20px;
   box-shadow: 0 0 40px rgba(255, 0, 0, 0.5); 
@@ -61,24 +61,15 @@ h3 {
 .pokeball {
   position: absolute;
   opacity: 1;
-  animation: anim 8s forwards;
   transition: transform 0.3s;
-}
-
-/* Animation de montée des pokéballs */
-@keyframes anim {
-  to {
-    top: -250px;
-    left: var(--left);
-    opacity: 1;
-  }
+  pointer-events: auto;
 }
 
 /*Écrans moyens (tablette) */
 @media (max-width: 1200px) {
   .gameZone {
-    width: 900px;
-    height: 600px;
+    width: 1000px;
+    height: 1100px;
     border-width: 8px;
   }
   h3{
@@ -86,14 +77,25 @@ h3 {
   }
 }
 
-/* === Petits écrans (smartphones) === */
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
   .gameZone {
-    width: 600px;
-    height: 400px;
+    width: 800px;
+    height: 900px;
     border-width: 6px;
   }
    h3{
     font-size: 3rem;
+  }
+}
+
+/*Écrans petits (mobile) */
+@media (max-width: 800px) {
+  .gameZone {
+    width: 600px;
+    height: 800px;
+    border-width: 4px;
+  }
+   h3{
+    font-size: 2rem;
   }
 }

@@ -1,12 +1,12 @@
-// Sélection de l'élément h3 pour afficher le compteur
+// Sélection des éléments
 const counterDisplay = document.querySelector("h3");
 const lifeDisplay = document.querySelector("#life");
-let counter = 0; // compteur de points
-let lives = 5; // nombre de vies au départ
+let counter = 0;
+let lives = 5;
 
-// --------------------- Tableau des Pokéballs avec leurs propriétés ---------------------
+// --------------------- Tableau des Pokéballs ---------------------
 const pokeballTypes = [
-  // Pokéball : 70% des cas
+  // Pokéball : communes (70%)
   { name: "pokeball", src: "assets/img/pokeball.png", points: 1, size: 200 },
   { name: "pokeball", src: "assets/img/pokeball.png", points: 1, size: 200 },
   { name: "pokeball", src: "assets/img/pokeball.png", points: 1, size: 200 },
@@ -35,78 +35,89 @@ const pokeballTypes = [
 
 // --------------------- Fonction principale ---------------------
 const pokeballMaker = () => {
-  // On choisit un type de Pokéball au hasard
   const pokeballData =
     pokeballTypes[Math.floor(Math.random() * pokeballTypes.length)];
 
-  // Création de l’image
+  // Création de la pokéball
   const pokeball = document.createElement("img");
   pokeball.src = pokeballData.src;
   pokeball.classList.add("pokeball");
-  pokeball.draggable = false; // Empêche le clic + glisser
+  pokeball.draggable = false;
 
-  document.body.appendChild(pokeball);
+  const gameZone = document.querySelector(".gameZone");
+  gameZone.appendChild(pokeball);
 
-  // Taille selon le type
-  const size = pokeballData.size + "px";
-  pokeball.style.width = size;
-  pokeball.style.height = size;
+  // Taille
+  const size = pokeballData.size;
+  pokeball.style.width = size + "px";
+  pokeball.style.height = size + "px";
 
-  // Position aléatoire
-  pokeball.style.left = Math.random() * 100 + "%";
-  pokeball.style.top = Math.random() * 100 + 50 + "%";
+  // Position de départ
+  const zoneWidth = gameZone.clientWidth;
+  const zoneHeight = gameZone.clientHeight;
+  const margin = 20;
 
-  const plusMinus = Math.random() < 0.5 ? -1 : 1;
-  pokeball.style.setProperty("--left", Math.random() * 100 + plusMinus + "%");
+  let x = Math.random() * (zoneWidth - size - margin * 2) + margin;
+  let y = zoneHeight - size - margin;
 
-  // Surveille la position du pokéball pour détecter le "top"
-  watchPokeball(pokeball);
+  // Vitesse initiale
+  let speedX = (Math.random() - 0.5) * 3; // vitesse horizontale aléatoire
+  let speedY = -1.5 - Math.random() * 1.5; // monte vers le haut
 
-  // Gestion du clic
+  // Applique la position
+  pokeball.style.left = x + "px";
+  pokeball.style.top = y + "px";
+
+  // Animation du mouvement
+  function move() {
+    if (!gameZone.contains(pokeball)) return;
+
+    x += speedX;
+    y += speedY;
+
+    // Rebonds sur les côtés
+    if (x <= 0 || x + size >= zoneWidth) {
+      speedX *= -1; // inverse la direction
+    }
+
+    // Touche le haut de la zone de jeu
+    if (y <= 0) {
+      pokeball.remove();
+      lives--;
+      updateLives();
+
+      if (lives <= 0) endGame();
+      return;
+    }
+
+    // Applique la position mise à jour
+    pokeball.style.left = x + "px";
+    pokeball.style.top = y + "px";
+
+    requestAnimationFrame(move);
+  }
+
+  requestAnimationFrame(move);
+
+  // Clic : gagne des points
   pokeball.addEventListener("click", () => {
-    counter += pokeballData.points; // ajoute les points selon le type
+    counter += pokeballData.points;
     counterDisplay.textContent = counter;
     pokeball.remove();
   });
 };
 
-// --------------------- Détection quand une pokéball touche le haut ---------------------
-function watchPokeball(pokeball) {
-  const check = () => {
-    if (!document.body.contains(pokeball)) return;
-
-    const top = pokeball.getBoundingClientRect().top;
-
-    if (top <= 0) {
-      // Si elle a touché le haut de l’écran -1 vie
-      pokeball.remove();
-      lives--;
-      updateLives();
-
-      if (lives <= 0) {
-        endGame();
-      }
-
-      return;
-    }
-
-    requestAnimationFrame(check);
-  };
-
-  requestAnimationFrame(check);
-}
-
-// Gestion de la barre de vie
+// --------------------- Gestion de la barre de vie ---------------------
 function updateLives() {
   lifeDisplay.textContent = "❤️".repeat(lives) + "🤍".repeat(5 - lives);
 }
 
-// Fin du jeu
+// --------------------- Fin du jeu ---------------------
 function endGame() {
-  clearInterval(gameLoop); // arrête le setInterval
+  clearInterval(gameLoop);
   alert("Game Over 💀");
 }
 
 // --------------------- Lancement du jeu ---------------------
-const gameLoop = setInterval(pokeballMaker, 500);
+const gameLoop = setInterval(pokeballMaker, 800); // un peu plus espacé
 updateLives();
