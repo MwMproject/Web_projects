@@ -1,17 +1,42 @@
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  overflow: hidden;
-  min-height: 100vh;
+}
+body {
+  height: 100vh;
   width: 100vw;
-  cursor: crosshair;
-  background-image: url("../assets/img/background2.webp");
-  background-position: center;   /* centrer l'image */
-  background-repeat: no-repeat;  /* ne pas répéter l'image */
+  background: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  font-family: "poppins", sans-serif;
 }
 
+/* Zone de jeu */
+.gameZone {
+  position: relative;
+  background-color: white;
+  overflow: hidden;
+  width: 1200px;
+  height: 800px;
+  border: 10px solid #ff0000;
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(255, 0, 0, 0.5); 
+  cursor: crosshair;
+  
+  /* Image de fond */
+  background-image: url("../assets/img/background2.webp");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: white;
+}
+
+/* Barre de vie */
 #life {
-  font-size: 2rem;
+  font-size: clamp(1rem, 2vw, 2rem);
   position: absolute;
   top: 20px;
   right: 20px;
@@ -20,6 +45,19 @@ body {
   z-index: 1000;
 }
 
+/* Compteur de points */
+h3 {
+  position: absolute;
+  top: 20px;
+  left: 10%;
+  transform: translateX(-50%);
+  font-size: 9rem;
+  color: rgba(0, 0, 0, 0.555);
+  user-select: none;
+  z-index: 1000;
+}
+
+/* Style des pokéballs */
 .pokeball {
   position: absolute;
   opacity: 1;
@@ -27,6 +65,7 @@ body {
   transition: transform 0.3s;
 }
 
+/* Animation de montée des pokéballs */
 @keyframes anim {
   to {
     top: -250px;
@@ -34,10 +73,27 @@ body {
     opacity: 1;
   }
 }
-h3 {
-  font-size: 10rem;
-  text-align: center;
-  margin-top: 20px;
-  color: rgba(0, 0, 0, 0.555);
-  user-select: none;
+
+/*Écrans moyens (tablette) */
+@media (max-width: 1200px) {
+  .gameZone {
+    width: 900px;
+    height: 600px;
+    border-width: 8px;
+  }
+  h3{
+    font-size: 5rem;
+  }
+}
+
+/* === Petits écrans (smartphones) === */
+@media (max-width: 900px) {
+  .gameZone {
+    width: 600px;
+    height: 400px;
+    border-width: 6px;
+  }
+   h3{
+    font-size: 3rem;
+  }
 }
