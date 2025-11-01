@@ -7,34 +7,38 @@
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-    <div class="gameZone">
+  <div class="gameZone">
     <h3>0</h3>
     
     <!-- Barre de vie -->
-  <div id="life">
-    ❤️❤️❤️❤️❤️
-  </div>
-
-  <!-- "Menu" du début -->
-  <div id="startMenu" class="popup">
-    <h1>PokéBall Challenge</h1>
-    <label>Pseudo :</label>
-    <input type="text" id="playerName" placeholder="Ton pseudo">
-    <label>Email :</label>
-    <input type="email" id="playerEmail" placeholder="tonmail@quelquechose.com">
-    <button id="startBtn">Jouer !</button>
-  </div>
-
-<!-- "Menu" de fin -->
-<div id="endMenu" class="popup hidden">
-  <h2>Partie terminée 💥</h2>
-  <p id="finalScore"></p>
-  <h3>Classement :</h3>
-  <ul id="scoreList"></ul>
-  <button id="restartBtn">Rejouer</button>
-</div>
-
-    <script src="assets/index.js"></script>
+    <div id="life">
+      ❤️❤️❤️❤️❤️
     </div>
+
+    <!-- "Menu" du début -->
+    <div id="startMenu" class="popup">
+      <h1>PokéBall Challenge</h1>
+      <div class="input-group">
+        <label>Pseudo :</label>
+        <input type="text" id="playerName" placeholder="Ton pseudo">
+      </div>
+      <div class="input-group">
+        <label>Email :</label>
+        <input type="email" id="playerEmail" placeholder="tonmail@quelquechose.com">
+      </div>
+  
+      <button id="startBtn">Jouer !</button>
+    </div>
+
+    <!-- "Menu" de fin -->
+    <div id="endMenu" class="popup hidden">
+      <h2>Partie terminée 💥</h2>
+      <p id="finalScore"></p>
+      <h3>Classement :</h3>
+      <ul id="scoreList"></ul>
+      <button id="restartBtn">Rejouer</button>
+    </div>
+  </div>
+  <script src="assets/index.js"></script>
 </body>
 </html>

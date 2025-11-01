@@ -3,6 +3,7 @@ const counterDisplay = document.querySelector("h3");
 const lifeDisplay = document.querySelector("#life");
 let counter = 0;
 let lives = 5;
+let gameLoop;
 
 // --------------------- Tableau des Pokéballs ---------------------
 const pokeballTypes = [
@@ -33,7 +34,7 @@ const pokeballTypes = [
   { name: "superball", src: "assets/img/superball.png", points: 5, size: 100 },
 ];
 
-// --------------------- Fonction principale ---------------------
+// --------------------- Création des Pokeballs ---------------------
 const pokeballMaker = () => {
   const pokeballData =
     pokeballTypes[Math.floor(Math.random() * pokeballTypes.length)];
@@ -115,9 +116,79 @@ function updateLives() {
 // --------------------- Fin du jeu ---------------------
 function endGame() {
   clearInterval(gameLoop);
-  alert("Game Over 💀");
+  saveScore();
+  showEndMenu();
 }
 
-// --------------------- Lancement du jeu ---------------------
-const gameLoop = setInterval(pokeballMaker, 800); // un peu plus espacé
+// --------------------- Menus et Scores ---------------------
+// Récupération des éléments du DOM
+const startMenu = document.getElementById("startMenu");
+const endMenu = document.getElementById("endMenu");
+const startBtn = document.getElementById("startBtn");
+const restartBtn = document.getElementById("restartBtn");
+const finalScore = document.getElementById("finalScore");
+const scoreList = document.getElementById("scoreList");
+
+// --- Démarrage du jeu ---
+startBtn.addEventListener("click", () => {
+  const name = document.getElementById("playerName").value.trim();
+  const email = document.getElementById("playerEmail").value.trim();
+
+  if (!name || !email) {
+    alert("Merci de renseigner ton pseudo et ton email !");
+    return;
+  }
+
+  localStorage.setItem("playerName", name);
+  localStorage.setItem("playerEmail", email);
+
+  startMenu.classList.add("hidden");
+  startGame();
+});
+
+// --- Lancement de la partie ---
+function startGame() {
+  document.querySelectorAll(".pokeball").forEach((p) => p.remove());
+  counter = 0;
+  lives = 5;
+  updateLives();
+  counterDisplay.textContent = "0";
+  endMenu.classList.add("hidden");
+  gameLoop = setInterval(pokeballMaker, 800);
+}
+
+// --- Rejouer ---
+restartBtn.addEventListener("click", () => {
+  endMenu.classList.add("hidden");
+  startGame();
+});
+
+// --- Sauvegarde du score ---
+function saveScore() {
+  const name = localStorage.getItem("playerName") || "Anonyme";
+  const email = localStorage.getItem("playerEmail") || "noemail@none.com";
+
+  const scores = JSON.parse(localStorage.getItem("scores") || "[]");
+  scores.push({ name, email, score: counter, date: new Date().toISOString() });
+
+  // Tri du plus grand au plus petit
+  scores.sort((a, b) => b.score - a.score);
+  localStorage.setItem("scores", JSON.stringify(scores));
+}
+
+// --- Affichage du classement ---
+function showEndMenu() {
+  endMenu.classList.remove("hidden");
+  finalScore.textContent = `Ton score : ${counter}`;
+
+  const scores = JSON.parse(localStorage.getItem("scores") || "[]");
+  scoreList.innerHTML = "";
+  scores.slice(0, 5).forEach((s, i) => {
+    const li = document.createElement("li");
+    li.textContent = `${i + 1}. ${s.name} - ${s.score} pts`;
+    scoreList.appendChild(li);
+  });
+}
+
+// --------------------- Initialisation ---------------------
 updateLives();

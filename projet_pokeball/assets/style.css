@@ -14,7 +14,7 @@ body {
   font-family: "poppins", sans-serif;
 }
 
-/* Zone de jeu */
+/* ----------Zone de jeu---------- */
 .gameZone {
   position: relative;
   background-color: white;
@@ -34,7 +34,7 @@ body {
   background-color: white;
 }
 
-/* Barre de vie */
+/* ----------Barre de vie---------- */
 #life {
   font-size: clamp(1rem, 2vw, 2rem);
   position: absolute;
@@ -57,7 +57,7 @@ h3 {
   z-index: 1000;
 }
 
-/* Style des pokéballs */
+/* ----------Style des pokéballs---------- */
 .pokeball {
   position: absolute;
   opacity: 1;
@@ -65,23 +65,12 @@ h3 {
   pointer-events: auto;
 }
 
-/*Écrans moyens (tablette) */
-@media (max-width: 1200px) {
-  .gameZone {
-    width: 1000px;
-    height: 1100px;
-    border-width: 8px;
-  }
-  h3{
-    font-size: 5rem;
-  }
-}
-
+/* ---------- Menus ---------- */
 .popup {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -60%);
   background: rgba(255, 255, 255, 0.95);
   border: 5px solid #ff0000;
   border-radius: 20px;
@@ -89,15 +78,25 @@ h3 {
   padding: 40px;
   text-align: center;
   z-index: 2000;
-  width: 300px;
+  width: 320px;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+/* Apparition fluide du menu */
+.popup:not(.hidden) {
+  opacity: 1;
+  transform: translate(-50%, -50%);
 }
 
 .popup.hidden {
   display: none;
 }
 
-.popup h1, .popup h2 {
+.popup h1,
+.popup h2 {
   margin-bottom: 20px;
+  color: #000;
 }
 
 .popup input {
@@ -116,12 +115,77 @@ h3 {
   border: none;
   border-radius: 10px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .popup button:hover {
   background-color: #ff3333;
 }
 
+/* Menu de démarrage */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 5px;
+  font-size: 1rem;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  font-size: 1rem;
+}
+
+/* Menu de fin + Classement     */
+#endMenu h3 {
+  font-size: 1.4rem;
+  color: #000;
+  text-align: center;
+  margin-bottom: 10px;
+  position: static;
+  transform: none;
+}
+
+#finalScore {
+  font-weight: bold;
+  color: #111;
+  margin-bottom: 10px;
+}
+
+#scoreList {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 20px 0;
+  text-align: left;
+  font-size: 1.1rem;
+  color: #222;
+}
+
+#scoreList li {
+  margin: 5px 0;
+}
+
+/* ----------Responsive Design---------- */
+/*Écrans moyens (tablette) */
+@media (max-width: 1200px) {
+  .gameZone {
+    width: 1000px;
+    height: 1100px;
+    border-width: 8px;
+  }
+  h3{
+    font-size: 5rem;
+  }
+}
 
 @media (max-width: 1000px) {
   .gameZone {
