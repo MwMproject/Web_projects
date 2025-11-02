@@ -119,6 +119,67 @@
         </form>
     </section>
 
+<!----------- Profil utilisateur ---------->
+    <section class="profil" id="profil">
+        <h2>Mon Profil Helvii</h2>
+        <form id="profilForm">
+        <div class="profil-grid">
+            <div>
+             <label for="salaire">Salaire brut mensuel (CHF)</label>
+            <input type="number" id="salaire" placeholder="Ex: 6000" required>
+        </div>
+
+        <div>
+            <label for="loyer">Loyer mensuel (CHF)</label>
+            <input type="number" id="loyer" placeholder="Ex: 1500" required>
+        </div>
+
+        <div>
+            <label for="assurance">Assurance maladie + RC (CHF)</label>
+            <input type="number" id="assurance" placeholder="Ex: 350" required>
+        </div>
+
+        <div>
+            <label for="domicile">Adresse domicile</label>
+            <input type="text" id="domicile" placeholder="Ex: Lausanne" required>
+        </div>
+
+        <div>
+            <label for="travail">Adresse travail</label>
+            <input type="text" id="travail" placeholder="Ex: Genève" required>
+        </div>
+
+        <div>
+            <label for="distance">Distance domicile ↔ travail (km)</label>
+            <input type="number" id="distance" placeholder="Ex: 25" required>
+        </div>
+
+        <div>
+            <label for="transport">Moyen de transport</label>
+            <select id="transport">
+            <option value="voiture">Voiture</option>
+            <option value="train">Train</option>
+            <option value="bus">Bus</option>
+            <option value="velo">Vélo</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="statut">Statut familial</label>
+            <select id="statut">
+            <option value="celibataire">Célibataire</option>
+            <option value="marie">Marié(e)</option>
+            <option value="enfants">Marié(e) avec enfants</option>
+            </select>
+        </div>
+        </div>
+
+        <button type="submit" class="profil-btn">💾 Enregistrer le profil</button>
+        </form>
+        <p id="profilMessage"></p>
+    </section>
+
+
     <footer>
         <p>© 2025 Helvii — Gestion budgétaire</p>
     </footer>

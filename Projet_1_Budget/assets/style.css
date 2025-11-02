@@ -254,6 +254,63 @@ header {
   cursor: pointer;
 }
 
+.profil {
+  padding: 4rem 2rem;
+  background: var(--gris);
+  border-top: 2px solid var(--rouge);
+}
+
+.profil h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.profil-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.profil-grid label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.profil-grid input,
+.profil-grid select {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.profil-btn {
+  display: block;
+  margin: 2rem auto 0;
+  padding: 0.8rem 2rem;
+  background: var(--rouge);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.profil-btn:hover {
+  opacity: 0.85;
+}
+
+#profilMessage {
+  text-align: center;
+  margin-top: 1rem;
+  font-weight: 600;
+  color: var(--rouge);
+}
+
+
 footer {
   text-align: center;
   padding: 2rem;
