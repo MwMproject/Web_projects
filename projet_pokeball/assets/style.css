@@ -19,8 +19,8 @@ body {
   position: relative;
   background-color: white;
   overflow: hidden;
-  width: 1250px;
-  height: 1100px;
+  width: 90%;
+  height: 90%;
   border: 10px solid #ff0000;
   border-radius: 20px;
   box-shadow: 0 0 40px rgba(255, 0, 0, 0.5); 
@@ -178,8 +178,8 @@ h3 {
 /*Écrans moyens (tablette) */
 @media (max-width: 1200px) {
   .gameZone {
-    width: 1000px;
-    height: 1100px;
+    width: 90%;
+    height: 90%;
     border-width: 8px;
   }
   h3{
@@ -189,8 +189,8 @@ h3 {
 
 @media (max-width: 1000px) {
   .gameZone {
-    width: 800px;
-    height: 900px;
+    width: 90%;
+    height: 90%;
     border-width: 6px;
   }
    h3{
@@ -201,8 +201,8 @@ h3 {
 /*Écrans petits (mobile) */
 @media (max-width: 800px) {
   .gameZone {
-    width: 600px;
-    height: 800px;
+    width: 90%;
+    height: 90%;
     border-width: 4px;
   }
    h3{
