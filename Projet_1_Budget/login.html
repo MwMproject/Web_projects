@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connexion | Helvii</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body class="page-login">
+
+  <header class="site-header">
+    <div class="logo">Helvii<span>.</span></div>
+    <nav class="header-links">
+      <a href="index.html" class="btn-small">← Retour</a>
+    </nav>
+  </header>
+
+  <section class="login-section">
+    <div class="login-card">
+      <h1>Connexion à Helvii</h1>
+
+      <form id="loginForm">
+        <label>Email</label>
+        <input type="email" id="loginEmail" placeholder="vous@example.com" required />
+        <label>Mot de passe</label>
+        <input type="password" id="loginPassword" placeholder="Votre mot de passe" required />
+        <button type="submit" class="btn-cta">Se connecter</button>
+      </form>
+
+      <div class="login-separator">ou</div>
+
+      <form id="signupForm">
+        <h2>Créer un compte</h2>
+        <label>Email</label>
+        <input type="email" id="signupEmail" placeholder="vous@example.com" required />
+        <label>Mot de passe</label>
+        <input type="password" id="signupPassword" placeholder="Créer un mot de passe" required />
+        <button type="submit" class="btn-cta">Créer un compte</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p>© 2025 Helvii</p>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

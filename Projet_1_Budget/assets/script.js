@@ -243,6 +243,50 @@ if (downloadBtn) {
   });
 }
 
+/*  Gestion du profil utilisateur */
+const profilForm = document.getElementById("profilForm");
+const profilMessage = document.getElementById("profilMessage");
+
+// Charger le profil existant
+function chargerProfil() {
+  const data = JSON.parse(localStorage.getItem("helviiProfil"));
+  if (data) {
+    document.getElementById("salaire").value = data.salaire || "";
+    document.getElementById("loyer").value = data.loyer || "";
+    document.getElementById("assurance").value = data.assurance || "";
+    document.getElementById("domicile").value = data.domicile || "";
+    document.getElementById("travail").value = data.travail || "";
+    document.getElementById("distance").value = data.distance || "";
+    document.getElementById("transport").value = data.transport || "voiture";
+    document.getElementById("statut").value = data.statut || "celibataire";
+  }
+}
+
+function sauvegarderProfil(e) {
+  e.preventDefault();
+  const profil = {
+    salaire: parseFloat(document.getElementById("salaire").value),
+    loyer: parseFloat(document.getElementById("loyer").value),
+    assurance: parseFloat(document.getElementById("assurance").value),
+    domicile: document.getElementById("domicile").value,
+    travail: document.getElementById("travail").value,
+    distance: parseFloat(document.getElementById("distance").value),
+    transport: document.getElementById("transport").value,
+    statut: document.getElementById("statut").value,
+  };
+
+  localStorage.setItem("helviiProfil", JSON.stringify(profil));
+  profilMessage.textContent = "✅ Profil enregistré avec succès !";
+
+  setTimeout(() => (profilMessage.textContent = ""), 3000);
+}
+
+// Initialisation
+if (profilForm) {
+  profilForm.addEventListener("submit", sauvegarderProfil);
+  chargerProfil();
+}
+
 /* ============================
   Événements généraux
 ============================ */

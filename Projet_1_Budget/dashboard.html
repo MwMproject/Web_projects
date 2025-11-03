@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mon espace | Helvii</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body class="page-dashboard">
+
+  <header class="site-header">
+    <div class="logo">Helvii<span>.</span></div>
+    <nav class="header-links">
+      <button id="logoutBtn" class="btn-small">Se déconnecter</button>
+    </nav>
+  </header>
+
+  <!-- Onglets -->
+  <nav class="dash-tabs">
+    <button class="tab-btn active" data-tab="budget">💰 Budget mensuel</button>
+    <button class="tab-btn" data-tab="resume">📈 Résumé annuel</button>
+    <button class="tab-btn" data-tab="profil">👤 Profil</button>
+  </nav>
+
+  <main class="dash-content">
+
+    <!-- Budget mensuel -->
+    <section id="budget" class="tab-panel active">
+      <h2>Budget de <span id="currentMonth">Novembre 2025</span></h2>
+      <div class="period-select">
+        <select id="moisSelect">
+          <option>Janvier</option><option>Février</option><option>Mars</option>
+          <option>Avril</option><option>Mai</option><option>Juin</option>
+          <option>Juillet</option><option>Août</option><option>Septembre</option>
+          <option>Octobre</option><option>Novembre</option><option>Décembre</option>
+        </select>
+        <select id="anneeSelect">
+          <option>2025</option><option>2026</option>
+        </select>
+        <button id="savePeriodBtn" class="btn-small">💾</button>
+      </div>
+
+      <table class="demo-table" id="userBudget">
+        <thead>
+          <tr><th>Catégorie</th><th>Montant (CHF)</th><th></th></tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+          <tr><th>Total</th><th id="userTotal">CHF 0.00</th><th></th></tr>
+        </tfoot>
+      </table>
+
+      <div class="add-expense-row">
+        <input type="text" id="newCat" placeholder="Nouvelle dépense" />
+        <input type="number" id="newAmt" placeholder="Montant" />
+        <button id="addExpenseBtn" class="btn-small">+ Ajouter</button>
+      </div>
+    </section>
+
+    <!-- Résumé annuel -->
+    <section id="resume" class="tab-panel">
+      <h2>Résumé annuel</h2>
+      <canvas id="resumeChart" width="400" height="200"></canvas>
+    </section>
+
+    <!-- Profil -->
+    <section id="profil" class="tab-panel">
+      <h2>Mon profil</h2>
+      <form id="profilForm">
+        <label>Salaire mensuel (CHF)</label>
+        <input type="number" id="salaire" placeholder="6000" />
+        <label>Loyer (CHF)</label>
+        <input type="number" id="loyer" placeholder="1500" />
+        <label>Assurance (CHF)</label>
+        <input type="number" id="assurance" placeholder="300" />
+        <button class="btn-cta" id="saveProfilBtn">💾 Enregistrer</button>
+        <p id="profilMessage"></p>
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2025 Helvii — Espace client</p>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
