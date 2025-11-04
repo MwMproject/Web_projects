@@ -13,11 +13,13 @@
     <nav class="header-links">
       <a href="index.html" class="btn-small">← Retour</a>
     </nav>
+    <button id="themeToggle" title="Changer de thème">🌙</button>
   </header>
 
   <section class="login-section">
     <div class="login-card">
-      <!-- Formulaire de connexion -->
+
+      <!-- Connexion -->
       <div id="loginBox">
         <h1>Connexion</h1>
         <form id="loginForm">
@@ -27,11 +29,13 @@
           <input type="password" id="loginPassword" placeholder="Votre mot de passe" required />
           <button type="submit" class="btn-cta">Se connecter</button>
         </form>
-        <p class="alt-link">Pas encore de compte ? <a href="#" id="showSignup">Créer un compte</a></p>
+        <p class="alt-link">
+          Pas encore de compte ? <a href="#" id="showSignup">Créer un compte</a>
+        </p>
       </div>
 
-      <!-- Formulaire de création de compte -->
-      <div id="signupBox" style="display: none;">
+      <!-- Création de compte -->
+      <div id="signupBox" style="display:none;">
         <h1>Créer un compte</h1>
         <form id="signupForm">
           <label>Email</label>
@@ -40,8 +44,11 @@
           <input type="password" id="signupPassword" placeholder="Créer un mot de passe" required />
           <button type="submit" class="btn-cta">Créer un compte</button>
         </form>
-        <p class="alt-link">Déjà un compte ? <a href="#" id="showLogin">Se connecter</a></p>
+        <p class="alt-link">
+          Déjà un compte ? <a href="#" id="showLogin">Se connecter</a>
+        </p>
       </div>
+
     </div>
   </section>
 
@@ -49,6 +56,6 @@
     <p>© 2025 Helvii</p>
   </footer>
 
-  <script src="assets/app.js"></script>
+  <script src="assets/script.js" defer></script>
 </body>
 </html>
