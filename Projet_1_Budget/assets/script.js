@@ -1,10 +1,5 @@
-/* =========================================================
-   Helvii v1 — app.js
-   JS global pour toutes les pages
-========================================================= */
-
 /* ===============================
-   🎨 Mode clair / sombre
+Mode clair / sombre
 =============================== */
 (function initThemeToggle() {
   const toggle = document.getElementById("themeToggle");
@@ -31,7 +26,7 @@
 })();
 
 /* ===============================
-   🏠 Page d’accueil : Démo budget
+Page d’accueil : Démo budget
 =============================== */
 (function initDemoBudget() {
   const demoTable = document.getElementById("demoTable");
@@ -103,7 +98,7 @@
 })();
 
 /* ===============================
-   🔐 Page de connexion / inscription
+Page de connexion / inscription
 =============================== */
 (function initLoginPage() {
   const loginBox = document.getElementById("loginBox");
