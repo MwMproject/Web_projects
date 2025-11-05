@@ -1,251 +1,289 @@
-/* ================================
-   Thèmes et variables
-================================ */
+/* =========================================================
+------------------------ Variables & Thèmes ----------------
+========================================================= */
 :root {
   --rouge: #E03C31;
   --fond: #ffffff;
-  --texte: #000000;
-  --gris: #e7e7e7;
+  --texte: #222;
+  --gris: #f3f3f3;
+  --accent: #00796b; /* vert-bleu de confiance */
+  --ombre: rgba(0, 0, 0, 0.05);
+  --ombre-forte: rgba(0, 0, 0, 0.15);
 }
 
 html.dark-mode {
-  --fond: #1b1b1b;
-  --texte: #ffffff;
-  --gris: #424242;
+  --fond: #121212;
+  --texte: #f5f5f5;
+  --gris: #1f1f1f;
+  --accent: #26a69a;
+  --ombre: rgba(0, 0, 0, 0.6);
 }
 
-/* ================================
-   Structure générale
-================================ */
+/* =========================================================
+--------- Structure générale & Composants communs ----------
+========================================================= */
+* {
+  box-sizing: border-box;
+  transition: all 0.25s ease-in-out;
+}
+
 body {
   margin: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins", "Inter", sans-serif;
   background: var(--fond);
   color: var(--texte);
-  transition: background 0.3s, color 0.3s;
+  line-height: 1.6;
 }
 
-/* ================================
-   Header / Navigation principale
-================================ */
+/* HEADER */
 .site-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
   background: var(--gris);
+  box-shadow: 0 2px 6px var(--ombre);
   position: sticky;
   top: 0;
+  z-index: 100;
 }
 
 .logo {
   font-size: 2rem;
   font-weight: 700;
+  letter-spacing: -0.5px;
 }
-
 .logo span {
   color: var(--rouge);
 }
 
+/* Liens du header */
 .header-links {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 
+.btn-small,
+.btn-cta {
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* Bouton secondaire */
 .btn-small {
   background: transparent;
-  border: 1px solid var(--rouge);
+  border: 1.5px solid var(--rouge);
   color: var(--rouge);
   padding: 0.5rem 1rem;
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: 600;
-  cursor: pointer;
 }
-
 .btn-small:hover {
   background: var(--rouge);
   color: #fff;
 }
 
+/* Bouton principal */
 .btn-cta {
   background: var(--rouge);
   color: #fff;
+  padding: 0.6rem 1.4rem;
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 12px;
-  font-size: 1rem;
-  font-weight: 600;
-  text-decoration: none;
-  cursor: pointer;
-  transition: opacity 0.3s;
+  box-shadow: 0 4px 10px rgba(224, 60, 49, 0.25);
 }
-
 .btn-cta:hover {
-  opacity: 0.4;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(224, 60, 49, 0.4);
 }
 
-/* ================================
-   HERO (page d'accueil)
-================================ */
+/* FOOTER */
+.site-footer {
+  text-align: center;
+  padding: 2rem;
+  background: var(--gris);
+  font-size: 0.9rem;
+  color: #555;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* =========================================================
+---------------------- PAGE D’ACCUEIL ----------------------
+========================================================= */
+
+/* HERO */
 .hero {
   text-align: center;
-  padding: 6rem 2rem;
-  margin-top: 25px;
+  padding: 8rem 2rem;
   background-image: url("./img/image-header.jpg");
   background-repeat: no-repeat;
-  background-size:cover;
+  background-size: cover;
   background-position: center;
+  color: #fff;
+  position: relative;
 }
-
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0.8));
+  z-index: 0;
+}
+.hero h1, .hero p, .hero a {
+  position: relative;
+  z-index: 1;
+}
 .hero h1 {
-  font-size: 2rem;
+  font-size: 2.6rem;
   margin-bottom: 1rem;
+  font-weight: 700;
 }
-
-.text-zone {
-   background-color: #f5f5f5ce;
-}
-
 .hero-sub {
-  font-size: 1rem;
-  color: #555;
+  font-size: 1.1rem;
+  color: #ddd;
   max-width: 600px;
   margin: 0 auto 2rem;
 }
-
 .hero-btn {
   display: inline-block;
 }
 
-/* ================================
-   Section "Pourquoi Helvii"
-================================ */
+/* FEATURES */
 .features {
-  padding: 4rem 2rem;
+  padding: 5rem 2rem;
   text-align: center;
+  background: var(--fond);
 }
-
 .features h2 {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
 }
-
 .feature-grid {
   display: grid;
   gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   margin-top: 2rem;
 }
-
 .feature-card {
   background: var(--gris);
-  border-radius: 12px;
-  padding: 1.5rem;
+  border-radius: 16px;
+  padding: 1.8rem;
   text-align: left;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 6px var(--ombre);
+  transition: transform 0.2s ease;
+}
+.feature-card:hover {
+  transform: translateY(-5px);
 }
 
-/* ================================
-   Démo budget (page d'accueil)
-================================ */
+/* DEMO */
 .demo {
-  padding: 4rem 2rem;
+  padding: 5rem 2rem;
   text-align: center;
-  background: var(--fond);
-}
-
-.demo-desc {
-  margin-bottom: 1rem;
-  color: #555;
-}
-
-.demo-box {
-  display: grid;
-  text-align: left;
   background: var(--gris);
-  padding: 1rem;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
+.demo-desc {
+  color: #555;
+  margin-bottom: 1rem;
+}
+.demo-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--fond);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px var(--ombre);
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
 .demo-table {
   border-collapse: collapse;
   width: 100%;
-  min-width: 320px;
 }
-
 .demo-table th,
 .demo-table td {
   padding: 0.8rem 1rem;
   text-align: left;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #ddd;
 }
-
 .demo-table thead th {
   background: var(--rouge);
   color: #fff;
 }
-
 .demo-table tfoot th {
-  background: #e9e9e9;
+  background: #fafafa;
   font-weight: bold;
   text-align: right;
 }
-
-.demo btn-cta {
-  margin: 15px;
+.ajout-demo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
 }
 
-/* ================================
-   LOGIN (login.html)
-================================ */
+/* =========================================================
+------------------------ PAGE LOGIN ------------------------
+========================================================= */
 .page-login .login-section {
-  padding: 3rem 1.5rem;
+  padding: 4rem 1.5rem;
   display: flex;
   justify-content: center;
 }
 
 .login-card {
   background: var(--gris);
-  padding: 2rem;
-  border-radius: 12px;
+  padding: 2.5rem;
+  border-radius: 16px;
   width: 100%;
-  max-width: 400px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  max-width: 420px;
+  box-shadow: 0 4px 12px var(--ombre-forte);
 }
-
 .login-card h1 {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  text-align: center;
+}
+.login-card p.subtitle {
+  text-align: center;
+  color: #666;
   margin-bottom: 1.5rem;
 }
-
 .login-card form {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
+  gap: 1rem;
 }
-
-.login-card label {
-  font-weight: 600;
-}
-
 .login-card input {
-  padding: 0.7rem;
+  padding: 0.8rem;
   border-radius: 8px;
   border: 1px solid #ccc;
+  font-size: 1rem;
 }
-
-.login-separator {
+.alt-link {
   text-align: center;
-  color: #777;
-  margin: 1rem 0;
+  margin-top: 1rem;
+  color: #555;
+}
+.alt-link a {
+  color: var(--rouge);
+  font-weight: 600;
+  text-decoration: none;
+}
+.alt-link a:hover {
+  text-decoration: underline;
 }
 
-/* ================================
-   DASHBOARD (dashboard.html)
-================================ */
+/* =========================================================
+------------------------ DASHBOARD -------------------------
+========================================================= */
+.page-dashboard {
+  background: var(--fond);
+}
 .page-dashboard .dash-tabs {
   display: flex;
   flex-wrap: wrap;
@@ -254,7 +292,6 @@ body {
   background: var(--gris);
   padding: 0.75rem 1rem;
 }
-
 .tab-btn {
   background: #fff;
   border: 1px solid #ccc;
@@ -262,60 +299,40 @@ body {
   padding: 0.5rem 0.8rem;
   cursor: pointer;
 }
-
 .tab-btn.active {
   background: var(--rouge);
   color: #fff;
   border-color: var(--rouge);
 }
-
 .dash-content {
-  padding: 1.5rem;
+  padding: 2rem;
 }
-
 .tab-panel {
   display: none;
   background: var(--gris);
-  border-radius: 12px;
+  border-radius: 16px;
   padding: 1.5rem;
   max-width: 900px;
   margin: 0 auto;
+  box-shadow: 0 2px 8px var(--ombre);
 }
-
 .tab-panel.active {
   display: block;
 }
 
-/* ================================
-   Tableau budget utilisateur
-================================ */
-.period-select {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-  flex-wrap: wrap;
-}
-
-.period-select select {
-  padding: 0.4rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
-
+/* Budget */
 .add-expense-row {
   margin-top: 1rem;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
-
 .add-expense-row input {
   padding: 0.6rem;
   border-radius: 8px;
   border: 1px solid #ccc;
   min-width: 150px;
 }
-
 .user-del-btn {
   background: none;
   border: none;
@@ -324,14 +341,11 @@ body {
   cursor: pointer;
   transition: transform 0.2s;
 }
-
 .user-del-btn:hover {
   transform: scale(1.2);
 }
 
-/* ================================
-   Profil utilisateur
-================================ */
+/* Profil */
 #profilForm {
   display: flex;
   flex-direction: column;
@@ -339,17 +353,14 @@ body {
   max-width: 400px;
   margin: 0 auto;
 }
-
 #profilForm label {
   font-weight: 600;
 }
-
 #profilForm input {
   padding: 0.6rem;
   border-radius: 8px;
   border: 1px solid #ccc;
 }
-
 #profilMessage {
   text-align: center;
   margin-top: 1rem;
@@ -357,32 +368,59 @@ body {
   font-weight: 600;
 }
 
-/*================================
-    liens
-    */
-.alt-link {
-  text-align: center;
-  margin-top: 1rem;
-  color: #555;
+/* =========================================================
+------------------------ MODE SOMBRE -----------------------
+========================================================= */
+html.dark-mode body {
+  background: var(--fond);
+  color: var(--texte);
 }
-
-.alt-link a {
-  color: var(--rouge);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.alt-link a:hover {
-  text-decoration: underline;
-}
-
-/* ================================
-   Footer
-================================ */
-.site-footer {
-  text-align: center;
-  padding: 2rem;
+html.dark-mode .site-header {
   background: var(--gris);
-  font-size: 0.9rem;
-  color: #555;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+}
+html.dark-mode .feature-card,
+html.dark-mode .demo-box,
+html.dark-mode .login-card,
+html.dark-mode .tab-panel {
+  background: #222;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.6);
+}
+html.dark-mode .btn-small {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+html.dark-mode .btn-small:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* =========================================================
+--------------------- RESPONSIVE DESIGN --------------------
+========================================================= */
+@media (max-width: 992px) {
+  .site-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .feature-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .hero {
+    padding: 6rem 1rem;
+  }
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+  .btn-cta {
+    width: 100%;
+  }
+  .demo-box {
+    padding: 1rem;
+  }
 }
