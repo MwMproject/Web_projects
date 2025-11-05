@@ -6,7 +6,7 @@
   --fond: #ffffff;
   --texte: #222;
   --gris: #f3f3f3;
-  --accent: #00796b; /* vert-bleu de confiance */
+  --accent: #00796b; 
   --ombre: rgba(0, 0, 0, 0.05);
   --ombre-forte: rgba(0, 0, 0, 0.15);
 }
