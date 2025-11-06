@@ -4,6 +4,8 @@ const lifeDisplay = document.querySelector("#life");
 let counter = 0;
 let lives = 5;
 let gameLoop;
+let speedMultiplier = 1;
+let lastSpeedIncrease = 0;
 
 // --------------------- Tableau des Pokéballs ---------------------
 const pokeballTypes = [
@@ -61,9 +63,9 @@ const pokeballMaker = () => {
   let x = Math.random() * (zoneWidth - size - margin * 2) + margin;
   let y = zoneHeight - size - margin;
 
-  // Vitesse initiale
-  let speedX = (Math.random() - 0.5) * 3; // vitesse horizontale aléatoire
-  let speedY = -1.5 - Math.random() * 1.5; // monte vers le haut
+  // Vitesse initiale * multiplicateur
+  let speedX = (Math.random() - 0.5) * 3 * speedMultiplier;
+  let speedY = (-1.5 - Math.random() * 1.5) * speedMultiplier;
 
   // Applique la position
   pokeball.style.left = x + "px";
@@ -81,7 +83,7 @@ const pokeballMaker = () => {
       speedX *= -1; // inverse la direction
     }
 
-    // Touche le haut de la zone de jeu
+    // Touche le haut de la zone de jeu -1 vie
     if (y <= 0) {
       pokeball.remove();
       lives--;
@@ -105,8 +107,41 @@ const pokeballMaker = () => {
     counter += pokeballData.points;
     counterDisplay.textContent = counter;
     pokeball.remove();
+
+    checkSpeedIncrease(); // Vérifie si on augmente la vitesse
   });
 };
+
+// --------------------- Vérifie si on augmente la vitesse ----------------
+function checkSpeedIncrease() {
+  // tout les 50 points
+  if (counter >= lastSpeedIncrease + 50) {
+    lastSpeedIncrease = Math.floor(counter / 50) * 50;
+    speedMultiplier += 0.2;
+    flashEffect();
+    console.log("⚡ Nouvelle vitesse :", speedMultiplier.toFixed(2));
+  }
+}
+
+// --------------------- Effet visuel du boost + message --------------------
+function flashEffect() {
+  const gameZone = document.querySelector(".gameZone");
+  const message = document.getElementById("speedMessage");
+
+  // Flash visuel
+  gameZone.classList.add("flash");
+
+  // Message animé
+  message.classList.add("show");
+
+  setTimeout(() => {
+    gameZone.classList.remove("flash");
+  }, 400);
+
+  setTimeout(() => {
+    message.classList.remove("show");
+  }, 1200);
+}
 
 // --------------------- Gestion de la barre de vie ---------------------
 function updateLives() {
