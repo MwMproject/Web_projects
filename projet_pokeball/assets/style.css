@@ -34,6 +34,23 @@ body {
   background-color: white;
 }
 
+/* --- RGPD checkbox --- */
+.rgpd {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 0.95rem;
+  margin: 15px 0;
+  color: #000;
+}
+
+.rgpd input {
+  margin-top: 3px;
+  width: 16px;
+  height: 16px;
+}
+
+
 /* ----------Barre de vie---------- */
 #life {
   font-size: clamp(1rem, 2vw, 2rem);

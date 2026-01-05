@@ -1,46 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0", maximum-sclale=1.0, user-scalable=no>
-    <title>Pokeball generator</title>
-    <link rel="stylesheet" href="assets/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>PokéBall Challenge</title>
+  <link rel="stylesheet" href="assets/style.css">
 </head>
+
 <body>
   <div class="gameZone">
-    <h3>0</h3>
-    
-    <!-- Barre de vie -->
-    <div id="life">
-      ❤️❤️❤️❤️❤️
-    </div>
+    <h3 id="scoreDisplay">0</h3>
 
-    <!-- "Menu" du début -->
+    <!-- Barre de vie -->
+    <div id="life">❤️❤️❤️❤️❤️</div>
+
+    <!-- Menu de démarrage -->
     <div id="startMenu" class="popup">
       <h1>PokéBall Challenge</h1>
+
       <div class="input-group">
         <label>Pseudo :</label>
         <input type="text" id="playerName" placeholder="Ton pseudo">
       </div>
+
       <div class="input-group">
         <label>Email :</label>
-        <input type="email" id="playerEmail" placeholder="tonmail@quelquechose.com">
+        <input type="email" id="playerEmail" placeholder="tonmail@exemple.com">
       </div>
-  
+
+      <label class="rgpd">
+        <input type="checkbox" id="consent">
+        <span>J’accepte que mes données soient utilisées pour ce concours.</span>
+      </label>
+
       <button id="startBtn">Jouer !</button>
     </div>
 
-    <!-- "Menu" de fin -->
+    <!-- Menu de fin -->
     <div id="endMenu" class="popup hidden">
-      <h2>Partie terminée 💥</h2>
+      <h2>Partie terminée</h2>
       <p id="finalScore"></p>
-      <h3>Classement :</h3>
+
+      <h3>Classement (Top 5)</h3>
       <ul id="scoreList"></ul>
+
       <button id="restartBtn">Rejouer</button>
     </div>
-    <!-- message tout les 50 pts -->
+
+    <!-- Message boost -->
     <div id="speedMessage">⚡ Vitesse augmentée !</div>
   </div>
+
   <script src="assets/index.js"></script>
 </body>
 </html>

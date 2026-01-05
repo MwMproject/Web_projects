@@ -1,162 +1,9 @@
+// =====================
 // Sélection des éléments
-const counterDisplay = document.querySelector("h3");
-const lifeDisplay = document.querySelector("#life");
-let counter = 0;
-let lives = 5;
-let gameLoop;
-let speedMultiplier = 1;
-let lastSpeedIncrease = 0;
+// =====================
+const counterDisplay = document.getElementById("scoreDisplay");
+const lifeDisplay = document.getElementById("life");
 
-// --------------------- Tableau des Pokéballs ---------------------
-const pokeballTypes = [
-  // Pokéball : communes (70%)
-  { name: "pokeball", src: "assets/img/pokeball.png", points: 1, size: 200 },
-  { name: "pokeball", src: "assets/img/pokeball.png", points: 1, size: 200 },
-  { name: "pokeball", src: "assets/img/pokeball.png", points: 1, size: 200 },
-  { name: "pokeball", src: "assets/img/pokeball.png", points: 1, size: 200 },
-  { name: "pokeball", src: "assets/img/pokeball.png", points: 1, size: 200 },
-  { name: "pokeball", src: "assets/img/pokeball.png", points: 1, size: 200 },
-  { name: "pokeball", src: "assets/img/pokeball.png", points: 1, size: 200 },
-
-  // Masterball : 2 chances sur 10
-  {
-    name: "masterball",
-    src: "assets/img/masterball.png",
-    points: 3,
-    size: 150,
-  },
-  {
-    name: "masterball",
-    src: "assets/img/masterball.png",
-    points: 3,
-    size: 150,
-  },
-
-  // Superball : 1 chance sur 10
-  { name: "superball", src: "assets/img/superball.png", points: 5, size: 100 },
-];
-
-// --------------------- Création des Pokeballs ---------------------
-const pokeballMaker = () => {
-  const pokeballData =
-    pokeballTypes[Math.floor(Math.random() * pokeballTypes.length)];
-
-  // Création de la pokéball
-  const pokeball = document.createElement("img");
-  pokeball.src = pokeballData.src;
-  pokeball.classList.add("pokeball");
-  pokeball.draggable = false;
-
-  const gameZone = document.querySelector(".gameZone");
-  gameZone.appendChild(pokeball);
-
-  // Taille
-  const size = pokeballData.size;
-  pokeball.style.width = size + "px";
-  pokeball.style.height = size + "px";
-
-  // Position de départ
-  const zoneWidth = gameZone.clientWidth;
-  const zoneHeight = gameZone.clientHeight;
-  const margin = 20;
-
-  let x = Math.random() * (zoneWidth - size - margin * 2) + margin;
-  let y = zoneHeight - size - margin;
-
-  // Vitesse initiale * multiplicateur
-  let speedX = (Math.random() - 0.5) * 3 * speedMultiplier;
-  let speedY = (-1.5 - Math.random() * 1.5) * speedMultiplier;
-
-  // Applique la position
-  pokeball.style.left = x + "px";
-  pokeball.style.top = y + "px";
-
-  // Animation du mouvement
-  function move() {
-    if (!gameZone.contains(pokeball)) return;
-
-    x += speedX;
-    y += speedY;
-
-    // Rebonds sur les côtés
-    if (x <= 0 || x + size >= zoneWidth) {
-      speedX *= -1; // inverse la direction
-    }
-
-    // Touche le haut de la zone de jeu -1 vie
-    if (y <= 0) {
-      pokeball.remove();
-      lives--;
-      updateLives();
-
-      if (lives <= 0) endGame();
-      return;
-    }
-
-    // Applique la position mise à jour
-    pokeball.style.left = x + "px";
-    pokeball.style.top = y + "px";
-
-    requestAnimationFrame(move);
-  }
-
-  requestAnimationFrame(move);
-
-  // Clic : gagne des points
-  pokeball.addEventListener("click", () => {
-    counter += pokeballData.points;
-    counterDisplay.textContent = counter;
-    pokeball.remove();
-
-    checkSpeedIncrease(); // Vérifie si on augmente la vitesse
-  });
-};
-
-// --------------------- Vérifie si on augmente la vitesse ----------------
-function checkSpeedIncrease() {
-  // tout les 50 points
-  if (counter >= lastSpeedIncrease + 50) {
-    lastSpeedIncrease = Math.floor(counter / 50) * 50;
-    speedMultiplier += 0.2;
-    flashEffect();
-    console.log("⚡ Nouvelle vitesse :", speedMultiplier.toFixed(2));
-  }
-}
-
-// --------------------- Effet visuel du boost + message --------------------
-function flashEffect() {
-  const gameZone = document.querySelector(".gameZone");
-  const message = document.getElementById("speedMessage");
-
-  // Flash visuel
-  gameZone.classList.add("flash");
-
-  // Message animé
-  message.classList.add("show");
-
-  setTimeout(() => {
-    gameZone.classList.remove("flash");
-  }, 400);
-
-  setTimeout(() => {
-    message.classList.remove("show");
-  }, 1200);
-}
-
-// --------------------- Gestion de la barre de vie ---------------------
-function updateLives() {
-  lifeDisplay.textContent = "❤️".repeat(lives) + "🤍".repeat(5 - lives);
-}
-
-// --------------------- Fin du jeu ---------------------
-function endGame() {
-  clearInterval(gameLoop);
-  saveScore();
-  showEndMenu();
-}
-
-// --------------------- Menus et Scores ---------------------
-// Récupération des éléments du DOM
 const startMenu = document.getElementById("startMenu");
 const endMenu = document.getElementById("endMenu");
 const startBtn = document.getElementById("startBtn");
@@ -164,66 +11,220 @@ const restartBtn = document.getElementById("restartBtn");
 const finalScore = document.getElementById("finalScore");
 const scoreList = document.getElementById("scoreList");
 
-// --- Démarrage du jeu ---
+const speedMessage = document.getElementById("speedMessage");
+
+// =====================
+// Variables de jeu
+// =====================
+let counter = 0;
+let lives = 5;
+let gameLoop = null;
+let speedMultiplier = 1;
+let lastSpeedIncrease = 0;
+
+// Données joueur (envoyées à Google Sheets)
+let playerData = {
+  name: "",
+  email: "",
+  consent: false,
+};
+
+// Classement top 5 (session)
+let scores = [];
+
+// =====================
+// Google Sheets Webhook
+// =====================
+const GOOGLE_SHEETS_URL =
+  "https://script.google.com/macros/s/AKfycbxMmPVYNxyhh3SLpqfsg9pFcwuHEtQKUNHhu-QD-1yQZ4v1vkUT_rdYR2nBcaXs62SW/exec";
+
+function sendToGoogleSheets(data) {
+  fetch(GOOGLE_SHEETS_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+}
+
+// =====================
+// Pokéballs
+// =====================
+const pokeballTypes = [
+  { src: "assets/img/pokeball.png", points: 1, size: 200 },
+  { src: "assets/img/pokeball.png", points: 1, size: 200 },
+  { src: "assets/img/pokeball.png", points: 1, size: 200 },
+  { src: "assets/img/pokeball.png", points: 1, size: 200 },
+  { src: "assets/img/masterball.png", points: 3, size: 150 },
+  { src: "assets/img/masterball.png", points: 3, size: 150 },
+  { src: "assets/img/superball.png", points: 5, size: 100 },
+];
+
+// =====================
+// Création des Pokéballs
+// =====================
+function pokeballMaker() {
+  const data = pokeballTypes[Math.floor(Math.random() * pokeballTypes.length)];
+  const gameZone = document.querySelector(".gameZone");
+
+  const ball = document.createElement("img");
+  ball.src = data.src;
+  ball.className = "pokeball";
+  ball.draggable = false;
+
+  const size = data.size;
+  ball.style.width = size + "px";
+  ball.style.height = size + "px";
+
+  const margin = 20;
+  let x = Math.random() * (gameZone.clientWidth - size - margin * 2) + margin;
+  let y = gameZone.clientHeight - size - margin;
+
+  let speedX = (Math.random() - 0.5) * 3 * speedMultiplier;
+  let speedY = (-1.5 - Math.random() * 1.5) * speedMultiplier;
+
+  ball.style.left = x + "px";
+  ball.style.top = y + "px";
+
+  gameZone.appendChild(ball);
+
+  function move() {
+    if (!gameZone.contains(ball)) return;
+
+    x += speedX;
+    y += speedY;
+
+    if (x <= 0 || x + size >= gameZone.clientWidth) {
+      speedX *= -1;
+    }
+
+    if (y <= 0) {
+      ball.remove();
+      lives--;
+      updateLives();
+      if (lives <= 0) endGame();
+      return;
+    }
+
+    ball.style.left = x + "px";
+    ball.style.top = y + "px";
+
+    requestAnimationFrame(move);
+  }
+
+  requestAnimationFrame(move);
+
+  ball.addEventListener("click", () => {
+    counter += data.points;
+    counterDisplay.textContent = counter;
+    ball.remove();
+    checkSpeedIncrease();
+  });
+}
+
+// =====================
+// Vitesse & effets
+// =====================
+function checkSpeedIncrease() {
+  if (counter >= lastSpeedIncrease + 50) {
+    lastSpeedIncrease += 50;
+    speedMultiplier += 0.2;
+    flashEffect();
+  }
+}
+
+function flashEffect() {
+  const zone = document.querySelector(".gameZone");
+  zone.classList.add("flash");
+  speedMessage.classList.add("show");
+
+  setTimeout(() => zone.classList.remove("flash"), 400);
+  setTimeout(() => speedMessage.classList.remove("show"), 1200);
+}
+
+// =====================
+// Vies
+// =====================
+function updateLives() {
+  lifeDisplay.textContent = "❤️".repeat(lives) + "🤍".repeat(5 - lives);
+}
+
+// =====================
+// Démarrage / Fin
+// =====================
 startBtn.addEventListener("click", () => {
   const name = document.getElementById("playerName").value.trim();
   const email = document.getElementById("playerEmail").value.trim();
+  const consent = document.getElementById("consent").checked;
 
-  if (!name || !email) {
-    alert("Merci de renseigner ton pseudo et ton email !");
+  if (!name || !email || !consent) {
+    alert(
+      "Merci de renseigner ton pseudo, ton email et d’accepter les conditions."
+    );
     return;
   }
 
-  localStorage.setItem("playerName", name);
-  localStorage.setItem("playerEmail", email);
+  playerData = { name, email, consent };
 
   startMenu.classList.add("hidden");
   startGame();
 });
 
-// --- Lancement de la partie ---
 function startGame() {
-  document.querySelectorAll(".pokeball").forEach((p) => p.remove());
+  document.querySelectorAll(".pokeball").forEach((b) => b.remove());
+
   counter = 0;
   lives = 5;
-  updateLives();
+  speedMultiplier = 1;
+  lastSpeedIncrease = 0;
+
   counterDisplay.textContent = "0";
+  updateLives();
   endMenu.classList.add("hidden");
+
   gameLoop = setInterval(pokeballMaker, 800);
 }
 
-// --- Rejouer ---
-restartBtn.addEventListener("click", () => {
-  endMenu.classList.add("hidden");
-  startGame();
-});
+function endGame() {
+  clearInterval(gameLoop);
 
-// --- Sauvegarde du score ---
-function saveScore() {
-  const name = localStorage.getItem("playerName") || "Anonyme";
-  const email = localStorage.getItem("playerEmail") || "noemail@none.com";
+  // Envoi Google Sheets
+  sendToGoogleSheets({
+    name: playerData.name,
+    email: playerData.email,
+    score: counter,
+    consent: playerData.consent,
+  });
 
-  const scores = JSON.parse(localStorage.getItem("scores") || "[]");
-  scores.push({ name, email, score: counter, date: new Date().toISOString() });
-
-  // Tri du plus grand au plus petit
+  // Classement local (top 5)
+  scores.push({ name: playerData.name, score: counter });
   scores.sort((a, b) => b.score - a.score);
-  localStorage.setItem("scores", JSON.stringify(scores));
+  scores = scores.slice(0, 5);
+
+  showEndMenu();
 }
 
-// --- Affichage du classement ---
+// =====================
+// Fin de partie UI
+// =====================
 function showEndMenu() {
-  endMenu.classList.remove("hidden");
   finalScore.textContent = `Ton score : ${counter}`;
-
-  const scores = JSON.parse(localStorage.getItem("scores") || "[]");
   scoreList.innerHTML = "";
-  scores.slice(0, 5).forEach((s, i) => {
+
+  scores.forEach((s, i) => {
     const li = document.createElement("li");
     li.textContent = `${i + 1}. ${s.name} - ${s.score} pts`;
     scoreList.appendChild(li);
   });
+
+  endMenu.classList.remove("hidden");
 }
 
-// --------------------- Initialisation ---------------------
+restartBtn.addEventListener("click", startGame);
+
+// =====================
+// Init
+// =====================
 updateLives();
