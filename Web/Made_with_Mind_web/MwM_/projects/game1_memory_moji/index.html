@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Memory Moji</title>
+  <meta name="description"
+    content="Memory Moji est un mini-jeu de mémoire fullscreen réalisé en HTML, CSS et JavaScript"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="game-fullscreen">
+    <div class="top-ui">
+      <div class="ui-item">
+        <span class="ui-label">Temps</span>
+        <span id="time" class="ui-value">0s</span>
+      </div>
+      <button id="reset-btn" class="btn-restart">↻</button>
+      <div class="ui-item">
+        <span class="ui-label">Coups</span>
+        <span id="moves" class="ui-value">0</span>
+      </div>
+    </div>
+    <!-- Plateau -->
+    <div
+      id="game-board"
+      class="game-board fs-board"
+      role="grid"
+      aria-live="polite"
+      aria-label="Plateau Memory Moji"
+    ></div>
+    <p id="game-message" class="game-message"></p>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>

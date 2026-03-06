@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Retro Snake</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Librairie du joystick -->
+  <script src="https://cdn.jsdelivr.net/npm/nipplejs@0.9.0/dist/nipplejs.min.js"></script>
+</head>
+<body>
+
+  <!-- Overlay de démarrage -->
+  <div id="start-overlay">
+    <h1>Retro Snake</h1>
+    <button id="start-btn">Démarrer</button>
+    <p id="hint-text">
+      Sur ordinateur : utilisez les flèches ou wasd<br />
+      Sur mobile : utilisez le joystick
+    </p>
+  </div>
+
+  <!-- Conteneur du jeu -->
+  <div id="game-container">
+    <canvas id="game" width="400" height="400"></canvas>
+    <div id="ui">
+      Niveau : <span id="level">1</span> | Score : <span id="score">0</span>
+    </div>
+  </div>
+
+  <!-- Zone du joystick (mobile uniquement, affichée via JS) -->
+  <div id="joystick"></div>
+
+  <script src="game.js"></script>
+</body>
+</html>
