@@ -1,65 +1,218 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NP Auto-École</title>
-    <link rel="stylesheet" href="assets/style/style.css" />
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NP Auto-école</title>
+
+<link rel="stylesheet" href="assets/style/style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
 </head>
+
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="nav-container">
-                <a href="#home" class="nav-logo">NP Auto-École</a>
-                <ul class="nav-menu">
-                    <li><a href="#home">Accueil</a></li>
-                    <li><a href="#about">À propos</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
 
-    <div class="scroll-dots">
-        <button class="dot active" data-target="#home" aria-label="Aller à Accueil"></button>
-        <button class="dot" data-target="#about" aria-label="Aller à À propos"></button>
-        <button class="dot" data-target="#contact" aria-label="Aller à Contact"></button>
-    </div>
+<header>
 
-    <section id="home" class="section-home">
-      <div class="hero-content">
-            <h1>Bienvenue chez NP Auto-École</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sit amet Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cupiditate, inventore ipsam explicabo consectetur voluptate nihil. Asperiores architecto unde eveniet doloribus!</p>
-        </div>
-    </section>
+<nav class="navbar">
+<img src="assets/img/logo-np autoécole vaud.png" alt="Logo NP Auto-école sur Vaud" class="logo-img">
+<div class="logo">NP Auto-école</div>
 
-    <section id="about" class="section-about">
-        <div class="about-inner">
-            <div class="about-image">
-                <!-- image de fond via CSS -->
-            </div>
-            <div class="about-text">
-                <h2>Votre formateur</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pulvinar porta odio. Aliquam erat volutpat. Fusce sit amet justo in neque.</p>
-            </div>
-        </div>
-    </section>
+<ul class="nav-links">
+<li><a href="#accueil">Accueil</a></li>
+<li><a href="#apropos">À propos</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#reussites">Réussites</a></li>
+<li><a href="#procedure">Procédure</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
 
-    <section id="contact" class="section-contact">
-        <div class="contact-inner">
-            <h2>Contactez-nous</h2>
-            <form id="contactForm" action="#" method="post">
-                <label for="name">Nom :</label>
-                <input type="text" id="name" name="name" required />
-                <label for="email">E-mail :</label>
-                <input type="email" id="email" name="email" required />
-                <label for="message">Message :</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-                <button type="submit">Envoyer</button>
-            </form>
-        </div>
-    </section>
+<div class="burger">
+<span></span>
+<span></span>
+<span></span>
+</div>
 
-    <script src="assets/script/script.js"></script>
+</nav>
+
+</header>
+
+
+<!-- HERO -->
+
+<section id="accueil" class="section hero">
+
+<div class="hero-content">
+
+<h1>Votre permis commence ici</h1>
+
+<p>Formation personnalisée • Réussite rapide • Moniteur compréhensif</p>
+
+<button class="btn">Commencer</button>
+
+</div>
+
+</section>
+
+
+<!-- A PROPOS -->
+
+<section id="apropos" class="section about">
+
+<div class="container about-grid">
+
+<div class="about-img"></div>
+
+<div class="about-text">
+
+<h2>À propos</h2>
+
+<p>
+Moniteur indépendant proposant une formation de qualité
+adaptée à chaque élève.
+</p>
+
+<p>
+Objectif : vous amener à l'examen avec confiance et efficacité.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SERVICES -->
+
+<section id="services" class="section services">
+
+<h2>Services</h2>
+
+<div class="services-grid">
+
+<div class="card">
+<h3>Auto-école</h3>
+<p>Leçons de conduite personnalisées.</p>
+<button class="btn-outline">Découvrir</button>
+</div>
+
+<div class="card">
+<h3>Premiers secours</h3>
+<p>Formation gestes qui sauvent.</p>
+<button class="btn-outline">Découvrir</button>
+</div>
+
+<div class="card">
+<h3>Aide théorique</h3>
+<p>Préparation au code de la route.</p>
+<button class="btn-outline">Découvrir</button>
+</div>
+
+</div>
+
+<div class="reservation">
+<button class="btn">Réserver une leçon</button>
+</div>
+
+</section>
+
+
+<!-- REUSSITES -->
+
+<section id="reussites" class="section reussites">
+
+<h2>Réussites</h2>
+
+<div class="carousel">
+
+<div class="carousel-track">
+
+<div class="slide">🎉 Élève 1</div>
+<div class="slide">🎉 Élève 2</div>
+<div class="slide">🎉 Élève 3</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PROCEDURE -->
+
+<section id="procedure" class="section procedure">
+
+<h2>Comment obtenir votre permis</h2>
+
+<ol>
+
+<li>Inscription</li>
+<li>Évaluation</li>
+<li>Formation code</li>
+<li>Leçons conduite</li>
+<li>Examen blanc</li>
+<li>Inscription examen</li>
+<li>Passage examen</li>
+<li>Résultat</li>
+<li>Permis obtenu 🎉</li>
+
+</ol>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section id="contact" class="section contact">
+
+<h2>Contact</h2>
+
+<form class="contact-form">
+
+<input placeholder="Nom">
+<input placeholder="Prénom">
+
+<input placeholder="Email">
+<input placeholder="Téléphone">
+
+<textarea placeholder="Message"></textarea>
+
+<button class="btn">Envoyer</button>
+
+</form>
+
+</section>
+
+
+<footer>
+
+<div class="footer-grid">
+
+<div>
+<p>Téléphone</p>
+<p>Email</p>
+</div>
+
+<div class="footer-logo">
+NP
+</div>
+
+<div>
+<button class="btn-outline">Instagram</button>
+<button class="btn-outline">WhatsApp</button>
+</div>
+
+</div>
+
+</footer>
+
+
+<script src="assets/script/script.js"></script>
+
 </body>
 </html>
