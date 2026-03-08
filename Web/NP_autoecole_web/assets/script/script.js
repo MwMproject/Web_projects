@@ -7,22 +7,6 @@ burger.addEventListener("click", () => {
   nav.classList.toggle("nav-active");
 });
 
-// CAROUSEL AUTO
-
-const track = document.querySelector(".carousel-track");
-
-let position = 0;
-
-setInterval(() => {
-  position -= 320;
-
-  if (position < -640) {
-    position = 0;
-  }
-
-  track.style.transform = `translateX(${position}px)`;
-}, 3000);
-
 // TOGGLE CARD
 const buttons = document.querySelectorAll(".toggle-card");
 
@@ -46,3 +30,39 @@ buttons.forEach((button) => {
       : "Découvrir";
   });
 });
+
+// CAROUSEL
+const slides = document.querySelectorAll(".slide");
+
+let index = 0;
+
+function updateCarousel() {
+  slides.forEach((slide) => {
+    slide.classList.remove("left", "center", "right", "hidden");
+  });
+
+  const prev = (index - 1 + slides.length) % slides.length;
+  const next = (index + 1) % slides.length;
+
+  slides[index].classList.add("center");
+  slides[prev].classList.add("left");
+  slides[next].classList.add("right");
+
+  slides.forEach((slide, i) => {
+    if (i !== index && i !== prev && i !== next) {
+      slide.classList.add("hidden");
+    }
+  });
+}
+
+updateCarousel();
+
+setInterval(() => {
+  index++;
+
+  if (index >= slides.length) {
+    index = 0;
+  }
+
+  updateCarousel();
+}, 3000);
