@@ -66,3 +66,15 @@ setInterval(() => {
 
   updateCarousel();
 }, 3000);
+
+// FORM SUBMISSION
+const form = document.querySelector(".contact-form");
+const success = document.querySelector(".form-success");
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  success.style.display = "block";
+
+  form.reset();
+});

@@ -8,6 +8,8 @@
 
     <link rel="stylesheet" href="assets/style/style.css" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Inter:wght@300;400;500&display=swap"
       rel="stylesheet"
@@ -313,20 +315,56 @@
     <!-- CONTACT -->
 
     <section id="contact" class="section contact">
-      <h2>Contact</h2>
 
-      <form class="contact-form">
-        <input placeholder="Nom" />
-        <input placeholder="Prénom" />
+  <h2>Contact</h2>
 
-        <input placeholder="Email" />
-        <input placeholder="Téléphone" />
+  <div class="contact-wrapper">
 
-        <textarea placeholder="Message"></textarea>
+    <!-- INFOS -->
 
-        <button class="btn">Envoyer</button>
-      </form>
-    </section>
+    <div class="contact-info">
+
+      <h3>Une question ?</h3>
+
+      <p>N'hésitez pas à me contacter pour toute information ou pour réserver une leçon.</p>
+
+      <div class="info-item">
+        <i class="fa-solid fa-phone"></i>
+        <span>+41 XX XXX XX XX</span>
+      </div>
+
+      <div class="info-item">
+        <i class="fa-solid fa-envelope"></i>
+        <span>contact@np-autoecole.ch</span>
+      </div>
+
+      <a href="https://wa.me/41XXXXXXXXX" class="btn-whatsapp" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+        Contacter sur WhatsApp
+      </a>
+
+    </div>
+
+
+    <!-- FORMULAIRE -->
+
+    <form class="contact-form">
+
+      <input type="text" placeholder="Nom" required>
+      <input type="text" placeholder="Prénom" required>
+
+      <input type="email" placeholder="Email" required>
+      <input type="tel" placeholder="Téléphone">
+
+      <textarea placeholder="Message" required></textarea>
+
+      <button type="submit" class="btn">Envoyer</button>
+
+    </form>
+
+  </div>
+
+</section>
 
     <footer>
       <div class="footer-grid">
