@@ -8,7 +8,10 @@
 
     <link rel="stylesheet" href="assets/style/style.css" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Inter:wght@300;400;500&display=swap"
@@ -315,70 +318,79 @@
     <!-- CONTACT -->
 
     <section id="contact" class="section contact">
+      <h2>Contact</h2>
 
-  <h2>Contact</h2>
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <h3>Une question ?</h3>
 
-  <div class="contact-wrapper">
+          <p>
+            N'hésitez pas à me contacter pour toute information ou pour réserver
+            une leçon.
+          </p>
 
-    <!-- INFOS -->
+          <div class="info-item">
+            <i class="fa-solid fa-phone"></i>
+            <span>+41 XX XXX XX XX</span>
+          </div>
 
-    <div class="contact-info">
+          <div class="info-item">
+            <i class="fa-solid fa-envelope"></i>
+            <span>contact@np-autoecole.ch</span>
+          </div>
 
-      <h3>Une question ?</h3>
+          <a
+            href="https://wa.me/41XXXXXXXXX"
+            class="btn-whatsapp"
+            target="_blank"
+          >
+            <i class="fa-brands fa-whatsapp"></i>
+            Contacter sur WhatsApp
+          </a>
+        </div>
 
-      <p>N'hésitez pas à me contacter pour toute information ou pour réserver une leçon.</p>
+        <form class="contact-form">
+          <input type="text" placeholder="Nom" required />
+          <input type="text" placeholder="Prénom" required />
 
-      <div class="info-item">
-        <i class="fa-solid fa-phone"></i>
-        <span>+41 XX XXX XX XX</span>
+          <input type="email" placeholder="Email" required />
+          <input type="tel" placeholder="Téléphone" />
+
+          <textarea placeholder="Message" required></textarea>
+
+          <button type="submit" class="btn">Envoyer</button>
+        </form>
       </div>
+    </section>
 
-      <div class="info-item">
-        <i class="fa-solid fa-envelope"></i>
-        <span>contact@np-autoecole.ch</span>
-      </div>
-
-      <a href="https://wa.me/41XXXXXXXXX" class="btn-whatsapp" target="_blank">
-        <i class="fa-brands fa-whatsapp"></i>
-        Contacter sur WhatsApp
-      </a>
-
-    </div>
-
-
-    <!-- FORMULAIRE -->
-
-    <form class="contact-form">
-
-      <input type="text" placeholder="Nom" required>
-      <input type="text" placeholder="Prénom" required>
-
-      <input type="email" placeholder="Email" required>
-      <input type="tel" placeholder="Téléphone">
-
-      <textarea placeholder="Message" required></textarea>
-
-      <button type="submit" class="btn">Envoyer</button>
-
-    </form>
-
-  </div>
-
-</section>
-
-    <footer>
+    <footer class="footer">
       <div class="footer-grid">
-        <div>
-          <p>Téléphone</p>
-          <p>Email</p>
+        <div class="footer-contact">
+          <p><i class="fa-solid fa-phone"></i> +41 XX XXX XX XX</p>
+          <p><i class="fa-solid fa-envelope"></i> contact@np-autoecole.ch</p>
         </div>
 
-        <div class="footer-logo">NP</div>
-
-        <div>
-          <button class="btn-outline">Instagram</button>
-          <button class="btn-outline">WhatsApp</button>
+        <div class="footer-logo">
+          <img
+            src="assets/img/logo-np autoécole vaud.png"
+            alt="logo NP Auto-école"
+          />
+          <p>Auto-école</p>
         </div>
+
+        <div class="footer-social">
+          <a href="#" class="btn-outline">
+            <i class="fa-brands fa-instagram"></i> Instagram
+          </a>
+
+          <a href="https://wa.me/41XXXXXXXXX" class="btn-outline">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 NP Auto-école — Tous droits réservés</p>
       </div>
     </footer>
 
