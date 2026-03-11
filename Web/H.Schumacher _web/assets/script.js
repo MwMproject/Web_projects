@@ -76,3 +76,29 @@ const observer = new IntersectionObserver(
 revealElements.forEach((element) => {
   observer.observe(element);
 });
+
+/* carousel de compétences */
+const track = document.getElementById("partnersTrack");
+
+let speed = 0.4; // vitesse scroll
+let position = 0;
+
+// duplication pour boucle infinie
+track.innerHTML += track.innerHTML;
+
+function animatePartners() {
+  position -= speed;
+
+  if (position <= -track.scrollWidth / 2) {
+    position = 0;
+  }
+  if (window.innerWidth < 768) {
+    speed = 0.2;
+  }
+
+  track.style.transform = `translateX(${position}px)`;
+
+  requestAnimationFrame(animatePartners);
+}
+
+animatePartners();
