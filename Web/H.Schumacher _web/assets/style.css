@@ -133,12 +133,12 @@ a {
   background:
     radial-gradient(
       circle at 30% 40%,
-      rgba(73, 136, 196, 0.15),
+      rgba(73, 137, 196, 0.575),
       transparent 60%
     ),
     radial-gradient(
       circle at 70% 60%,
-      rgba(189, 232, 245, 0.12),
+      rgba(189, 232, 245, 0.432),
       transparent 60%
     ),
     var(--primary-dark);
@@ -241,6 +241,9 @@ a {
 }
 
 .section-heading {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
   max-width: 760px;
   margin-bottom: 80px;
 }
@@ -253,6 +256,8 @@ a {
 
 .section-heading p {
   color: var(--muted);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* =========================================================
