@@ -312,6 +312,7 @@ h3 {
 
 .card-details li {
   margin-bottom: 6px;
+  list-style-type: none;
 }
 
 .service-book {
