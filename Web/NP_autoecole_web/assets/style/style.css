@@ -89,29 +89,37 @@ h3 {
 ================================================== */
 
 .hero {
-  height: 100vh;
+  min-height: 100vh;
+  padding: 120px 10%;
   display: flex;
   align-items: center;
   justify-content: center;
+
   text-align: center;
   color: white;
+
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
     url("../img/Voiture de conduite NP Auto-École.png");
+
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
-padding-top: 250px;
 }
 
 .hero-content {
   max-width: 1000px;
-  padding: 20px;
-  background-color: #11111193;
+  padding: 40px 50px;
+
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+
   border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(255, 255, 255, 0.3);
+
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
 }
+
+/* TITRES */
 
 .hero h1 {
   font-size: 60px;
@@ -121,16 +129,28 @@ padding-top: 250px;
 .hero h2 {
   font-size: 28px;
   margin-bottom: 30px;
+  font-weight: 500;
 }
+
+/* TEXTE */
 
 .hero p {
   font-size: 18px;
-  margin-bottom: 35px;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  color: rgba(255,255,255,0.9);
 }
 
+/* LIEN DANS TEXTE */
+
 .hero a {
-  color: white;
+  color: #ffffff;
   text-decoration: none;
+  font-weight: 500;
+}
+
+.hero a:hover {
+  text-decoration: underline;
 }
 
 /* ==================================================
