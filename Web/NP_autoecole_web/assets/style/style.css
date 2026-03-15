@@ -138,7 +138,7 @@ h3 {
   font-size: 18px;
   line-height: 1.6;
   margin-bottom: 25px;
-  color: rgba(255,255,255,0.9);
+  color: rgba(255, 255, 255, 0.9);
 }
 
 /* LIEN DANS TEXTE */
@@ -193,7 +193,7 @@ h3 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 60px;
-  align-items: center;
+  align-items: stretch;
   max-width: 1200px;
   margin: auto;
   padding: 60px;
@@ -212,8 +212,29 @@ h3 {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
+.about-highlight {
+  font-style: italic;
+  padding: 26px;
+  border-left: 4px solid #9d702d;
+  background: linear-gradient(180deg, #ffffff, #f9f9f9);
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+  line-height: 1.7;
+  font-size: 17px;
+  margin-top: 20px;
+}
+
+.about-left {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
 .about-text {
-  max-width: 500px;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .about-text h2 {
@@ -688,6 +709,19 @@ h3 {
 @media (max-width: 900px) {
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-container {
+    grid-template-columns: 1fr;
+    padding: 40px;
+  }
+
+  .about-text {
+    max-width: 100%;
+  }
+
+  .about-img {
+    height: 300px;
   }
 }
 
