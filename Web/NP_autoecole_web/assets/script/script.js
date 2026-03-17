@@ -41,10 +41,7 @@ let index = 0;
 let interval = null;
 const delay = 3500;
 
-// ================================
 // UPDATE
-// ================================
-
 function updateCarousel() {
   slides.forEach((slide) => {
     slide.classList.remove("left", "center", "right", "hidden");
@@ -64,10 +61,7 @@ function updateCarousel() {
   });
 }
 
-// ================================
 // AUTOPLAY
-// ================================
-
 function startCarousel() {
   if (interval) return; // évite double interval
 
@@ -82,10 +76,7 @@ function stopCarousel() {
   interval = null;
 }
 
-// ================================
 // NAVIGATION
-// ================================
-
 nextBtn?.addEventListener("click", () => {
   stopCarousel();
   index = (index + 1) % slides.length;
@@ -100,17 +91,11 @@ prevBtn?.addEventListener("click", () => {
   startCarousel();
 });
 
-// ================================
 // HOVER PAUSE
-// ================================
-
 carousel?.addEventListener("mouseenter", stopCarousel);
 carousel?.addEventListener("mouseleave", startCarousel);
 
-// ================================
 // SWIPE MOBILE
-// ================================
-
 let touchStartX = 0;
 let touchEndX = 0;
 
@@ -135,10 +120,7 @@ function handleSwipe() {
   updateCarousel();
 }
 
-// ================================
 // INIT
-// ================================
-
 updateCarousel();
 startCarousel();
 
