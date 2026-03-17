@@ -33,8 +33,17 @@ buttons.forEach((button) => {
 
 // CAROUSEL
 const slides = document.querySelectorAll(".slide");
+const carousel = document.querySelector(".carousel");
+const prevBtn = document.querySelector(".prev");
+const nextBtn = document.querySelector(".next");
 
 let index = 0;
+let interval = null;
+const delay = 3500;
+
+// ================================
+// UPDATE
+// ================================
 
 function updateCarousel() {
   slides.forEach((slide) => {
@@ -55,17 +64,83 @@ function updateCarousel() {
   });
 }
 
-updateCarousel();
+// ================================
+// AUTOPLAY
+// ================================
 
-setInterval(() => {
-  index++;
+function startCarousel() {
+  if (interval) return; // évite double interval
 
-  if (index >= slides.length) {
-    index = 0;
+  interval = setInterval(() => {
+    index = (index + 1) % slides.length;
+    updateCarousel();
+  }, delay);
+}
+
+function stopCarousel() {
+  clearInterval(interval);
+  interval = null;
+}
+
+// ================================
+// NAVIGATION
+// ================================
+
+nextBtn?.addEventListener("click", () => {
+  stopCarousel();
+  index = (index + 1) % slides.length;
+  updateCarousel();
+  startCarousel();
+});
+
+prevBtn?.addEventListener("click", () => {
+  stopCarousel();
+  index = (index - 1 + slides.length) % slides.length;
+  updateCarousel();
+  startCarousel();
+});
+
+// ================================
+// HOVER PAUSE
+// ================================
+
+carousel?.addEventListener("mouseenter", stopCarousel);
+carousel?.addEventListener("mouseleave", startCarousel);
+
+// ================================
+// SWIPE MOBILE
+// ================================
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+carousel?.addEventListener("touchstart", (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+});
+
+carousel?.addEventListener("touchend", (e) => {
+  touchEndX = e.changedTouches[0].screenX;
+  handleSwipe();
+});
+
+function handleSwipe() {
+  if (touchEndX < touchStartX - 50) {
+    index = (index + 1) % slides.length;
+  }
+
+  if (touchEndX > touchStartX + 50) {
+    index = (index - 1 + slides.length) % slides.length;
   }
 
   updateCarousel();
-}, 3000);
+}
+
+// ================================
+// INIT
+// ================================
+
+updateCarousel();
+startCarousel();
 
 // FORM SUBMISSION
 const form = document.querySelector(".contact-form");
