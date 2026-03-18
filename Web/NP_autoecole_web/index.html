@@ -546,85 +546,115 @@
       </div>
     </section>
 
-    <footer class="footer">
-      <section id="contact" class="section contact">
-      <h2>Contact</h2>
+    <!-- CONTACT -->
+    <section id="contact" class="section contact">
+      <div class="contact-top">
+        <h2>Contact</h2>
 
-      <div class="contact-wrapper">
-        <div class="contact-info">
-          <h3>Une question ?</h3>
+        <div class="contact-wrapper">
+          <!-- INFOS -->
+          <div class="contact-info">
+            <h3>Une question ?</h3>
 
-          <p>
-            N'hésitez pas à me contacter pour toute information ou pour réserver
-            une leçon.
-          </p>
+            <p>
+              N'hésitez pas à me contacter pour toute information ou pour
+              réserver une leçon.
+            </p>
 
-          <div class="info-item">
-            <i class="fa-solid fa-phone"></i>
-            <span>079 766 09 94</span>
+            <div class="info-item">
+              <i class="fa-solid fa-phone"></i>
+              <a href="tel:+41797660994">079 766 09 94</a>
+            </div>
+
+            <div class="info-item">
+              <i class="fa-solid fa-envelope"></i>
+              <a href="mailto:contact@np-autoecole.ch"
+                >contact@np-autoecole.ch</a
+              >
+            </div>
+
+            <a href="https://wa.me/41797660994" class="btn-whatsapp">
+              <i class="fa-brands fa-whatsapp"></i>
+              Contacter sur WhatsApp
+            </a>
           </div>
 
-          <div class="info-item">
-            <i class="fa-solid fa-envelope"></i>
-            <span>contact/info@np-autoecole.ch</span>
+          <!-- FORM -->
+          <form class="contact-form">
+            <div class="form-row">
+              <div class="form-field">
+                <label>Nom</label>
+                <input type="text" placeholder="Nom" required />
+              </div>
+
+              <div class="form-field">
+                <label>Prénom</label>
+                <input type="text" placeholder="Prénom" required />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label>Email</label>
+                <input type="email" placeholder="Email" required />
+              </div>
+
+              <div class="form-field">
+                <label>Téléphone</label>
+                <input type="tel" placeholder="Téléphone" />
+              </div>
+            </div>
+
+            <div class="form-field full">
+              <label>Message</label>
+              <textarea placeholder="Message" required></textarea>
+            </div>
+
+            <button type="submit" class="btn">Envoyer</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <footer class="contact-footer">
+        <div class="footer-grid">
+          <div class="footer-contact">
+            <p>
+              <i class="fa-solid fa-phone"></i>
+              <a href="tel:+41797660994">079 766 09 94</a>
+            </p>
+            <p>
+              <i class="fa-solid fa-envelope"></i>
+              <a href="mailto:contact@np-autoecole.ch"
+                >contact@np-autoecole.ch</a
+              >
+            </p>
           </div>
 
-          <a
-            href="https://wa.me/41797660994"
-            class="btn-whatsapp"
-            target="_blank"
-          >
-            <i class="fa-brands fa-whatsapp"></i>
-            Contacter sur WhatsApp
-          </a>
+          <div class="footer-logo">
+            <img
+              src="assets/img/logo-np autoécole vaud.png"
+              alt="Logo NP Auto-école"
+            />
+            <p>Auto-école</p>
+          </div>
+
+          <div class="footer-social">
+            <a href="#" class="btn-outline">
+              <i class="fa-brands fa-instagram"></i> Instagram
+            </a>
+
+            <a href="https://wa.me/41797660994" class="btn-outline">
+              <i class="fa-brands fa-whatsapp"></i> WhatsApp
+            </a>
+          </div>
         </div>
 
-        <form class="contact-form">
-          <input type="text" placeholder="Nom" required />
-          <input type="text" placeholder="Prénom" required />
-
-          <input type="email" placeholder="Email" required />
-          <input type="tel" placeholder="Téléphone" />
-
-          <textarea placeholder="Message" required></textarea>
-
-          <button type="submit" class="btn">Envoyer</button>
-        </form>
-      </div>
-      <div class="footer-grid">
-        <div class="footer-contact">
-          <p><i class="fa-solid fa-phone"></i> 079 766 09 94</p>
-          <p>
-            <i class="fa-solid fa-envelope"></i> contact/info@np-autoecole.ch
-          </p>
+        <div class="footer-bottom">
+          © 2025 NP Auto-école — Tous droits réservés
         </div>
-
-        <div class="footer-logo">
-          <img
-            src="assets/img/logo-np autoécole vaud.png"
-            alt="logo NP Auto-école"
-          />
-          <p>Auto-école</p>
-        </div>
-
-        <div class="footer-social">
-          <a
-            href="https://www.instagram.com/npautoecole?igsh=andibWJqYnQ2a2oy"
-            class="btn-outline"
-          >
-            <i class="fa-brands fa-instagram"></i> Instagram
-          </a>
-
-          <a href="https://wa.me/41797660994" class="btn-outline">
-            <i class="fa-brands fa-whatsapp"></i> WhatsApp
-          </a>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <p>© 2025 NP Auto-école — Tous droits réservés</p>
-      </div>
-    </footer>
+      </footer>
+    </section>
 
     <script src="assets/script/script.js"></script>
   </body>

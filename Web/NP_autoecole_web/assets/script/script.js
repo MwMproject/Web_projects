@@ -135,3 +135,64 @@ form.addEventListener("submit", function (e) {
 
   form.reset();
 });
+
+//scroll effect
+const sections = [...document.querySelectorAll(".section")];
+let isScrolling = false;
+
+// Détecte la section actuelle selon la vraie position du scroll
+function getCurrentSectionIndex() {
+  const scrollY = window.scrollY;
+
+  for (let i = sections.length - 1; i >= 0; i--) {
+    if (scrollY >= sections[i].offsetTop - 10) {
+      return i;
+    }
+  }
+
+  return 0;
+}
+
+// Scroll vers une section
+function scrollToSection(index) {
+  if (index < 0 || index >= sections.length) return;
+
+  isScrolling = true;
+
+  sections[index].scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+
+  setTimeout(() => {
+    isScrolling = false;
+  }, 800);
+}
+
+// Gestion du scroll souris
+window.addEventListener(
+  "wheel",
+  (e) => {
+    if (isScrolling) {
+      e.preventDefault();
+      return;
+    }
+
+    const current = getCurrentSectionIndex();
+
+    if (e.deltaY > 0) {
+      // scroll vers le bas
+      if (current < sections.length - 1) {
+        e.preventDefault();
+        scrollToSection(current + 1);
+      }
+    } else {
+      // scroll vers le haut
+      if (current > 0) {
+        e.preventDefault();
+        scrollToSection(current - 1);
+      }
+    }
+  },
+  { passive: false },
+);
