@@ -7,30 +7,34 @@ burger.addEventListener("click", () => {
   nav.classList.toggle("nav-active");
 });
 
-// TOGGLE CARD
-const buttons = document.querySelectorAll(".toggle-card");
+// MODAL SERVICES
+const modal = document.querySelector(".service-modal");
+const modalBody = document.querySelector(".modal-body");
+const closeBtn = document.querySelector(".modal-close");
 
-buttons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const card = button.closest(".card");
+document.querySelectorAll(".toggle-card").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const card = btn.closest(".card");
+    const details = card.querySelector(".card-details").innerHTML;
 
-    document.querySelectorAll(".card").forEach((c) => {
-      if (c !== card) {
-        c.classList.remove("open");
+    modalBody.innerHTML = details;
+    modal.classList.add("active");
 
-        const otherButton = c.querySelector(".toggle-card");
-        if (otherButton) otherButton.textContent = "Découvrir";
-      }
-    });
-
-    card.classList.toggle("open");
-
-    button.textContent = card.classList.contains("open")
-      ? "Réduire"
-      : "Découvrir";
+    document.body.style.overflow = "hidden";
   });
 });
 
+closeBtn.addEventListener("click", () => {
+  modal.classList.remove("active");
+  document.body.style.overflow = "";
+});
+
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+});
 // CAROUSEL
 const slides = document.querySelectorAll(".slide");
 const carousel = document.querySelector(".carousel");
@@ -136,7 +140,7 @@ form.addEventListener("submit", function (e) {
   form.reset();
 });
 
-//scroll effect
+//SCROLL EFFECT
 const sections = [...document.querySelectorAll("section")];
 let currentSection = 0;
 let isScrolling = false;

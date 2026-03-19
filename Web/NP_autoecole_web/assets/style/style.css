@@ -393,6 +393,50 @@ h3 {
   align-self: flex-start;
 }
 
+.service-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: .35s;
+  z-index: 9999;
+}
+
+.service-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.service-modal-content {
+  background: white;
+  width: 90%;
+  max-width: 700px;
+  border-radius: 18px;
+  padding: 50px;
+  max-height: 80vh;
+  overflow-y: auto;
+  transform: scale(.92);
+  transition: .35s;
+}
+
+.service-modal.active .service-modal-content {
+  transform: scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  border: none;
+  background: none;
+  font-size: 22px;
+  cursor: pointer;
+}
 /* ==================================================
    RÉUSSITES
 ================================================== */
