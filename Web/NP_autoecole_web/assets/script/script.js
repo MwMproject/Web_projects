@@ -137,23 +137,27 @@ form.addEventListener("submit", function (e) {
 });
 
 //scroll effect
-const sections = [...document.querySelectorAll(".section")];
+const sections = [...document.querySelectorAll("section")];
+let currentSection = 0;
 let isScrolling = false;
 
-// Détecte la section actuelle selon la vraie position du scroll
-function getCurrentSectionIndex() {
-  const scrollY = window.scrollY;
+// observer pour savoir quelle section est visible
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        currentSection = sections.indexOf(entry.target);
+      }
+    });
+  },
+  {
+    threshold: 0.6,
+  },
+);
 
-  for (let i = sections.length - 1; i >= 0; i--) {
-    if (scrollY >= sections[i].offsetTop - 10) {
-      return i;
-    }
-  }
+sections.forEach((section) => observer.observe(section));
 
-  return 0;
-}
-
-// Scroll vers une section
+// scroll vers la section suivante ou précédente
 function scrollToSection(index) {
   if (index < 0 || index >= sections.length) return;
 
@@ -161,15 +165,13 @@ function scrollToSection(index) {
 
   sections[index].scrollIntoView({
     behavior: "smooth",
-    block: "start",
   });
 
   setTimeout(() => {
     isScrolling = false;
-  }, 800);
+  }, 700);
 }
 
-// Gestion du scroll souris
 window.addEventListener(
   "wheel",
   (e) => {
@@ -178,19 +180,15 @@ window.addEventListener(
       return;
     }
 
-    const current = getCurrentSectionIndex();
-
     if (e.deltaY > 0) {
-      // scroll vers le bas
-      if (current < sections.length - 1) {
+      if (currentSection < sections.length - 1) {
         e.preventDefault();
-        scrollToSection(current + 1);
+        scrollToSection(currentSection + 1);
       }
     } else {
-      // scroll vers le haut
-      if (current > 0) {
+      if (currentSection > 0) {
         e.preventDefault();
-        scrollToSection(current - 1);
+        scrollToSection(currentSection - 1);
       }
     }
   },
