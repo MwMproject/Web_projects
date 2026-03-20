@@ -522,6 +522,83 @@ a {
 }
 
 /* =========================================================
+   CONTACT
+========================================================= */
+
+.contact-layout{
+display:grid;
+grid-template-columns: 1fr 1fr;
+gap:100px;
+}
+
+.contact-info h1{
+font-size:3rem;
+margin-bottom:20px;
+}
+
+.contact-info p{
+color:var(--muted);
+margin-bottom:30px;
+}
+
+.contact-block{
+margin-bottom:30px;
+}
+
+.contact-form form{
+background:var(--white);
+padding:50px;
+border-radius:var(--radius);
+box-shadow:var(--shadow-soft);
+display:flex;
+flex-direction:column;
+gap:20px;
+}
+
+.form-row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+.contact-form input,
+.contact-form textarea{
+padding:16px;
+border:1px solid #e6edf5;
+border-radius:10px;
+font-family:inherit;
+}
+
+.contact-form textarea{
+min-height:160px;
+resize:vertical;
+}
+
+.form-checkbox{
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.form-checkbox label{
+font-weight:600;
+color:var(--muted);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+.contact-layout{
+grid-template-columns:1fr;
+gap:60px;
+}
+
+.form-row{
+grid-template-columns:1fr;
+}
+}
+
+/* =========================================================
    RESPONSIVE
 ========================================================= */
 
