@@ -55,76 +55,93 @@
         </div>
       </header>
 
-      <main>   
+      <main>
         <main class="contact-page">
+          <section class="section">
+            <div class="container contact-layout">
+              <!-- LEFT INFO -->
+              <div class="contact-info">
+                <h1>Contact</h1>
+                <p>
+                  Vous avez un projet ou une question technique ? Notre équipe
+                  vous répond dans les meilleurs délais.
+                </p>
 
-<section class="section">
-<div class="container contact-layout">
+                <div class="contact-block">
+                  <h3>H. Schumacher ingénieurs conseils SA</h3>
+                  <p>Chemin du Publoz 11<br />1073 Savigny</p>
+                  <p>+41 21 644 37 77</p>
+                  <p>h2o@hschumacher.ch</p>
+                </div>
 
-<!-- LEFT INFO -->
-<div class="contact-info">
+                <div class="contact-block">
+                  <h3>Vernier</h3>
+                  <p>Avenue du Lignon 41<br />1219 Le Lignon</p>
+                  <p>+41 22 300 13 13</p>
+                </div>
 
-<h1>Contact</h1>
-<p>
-Vous avez un projet ou une question technique ?
-Notre équipe vous répond dans les meilleurs délais.
-</p>
+                <div class="contact-block">
+                  <h3>Fribourg</h3>
+                  <p>Rte de la Fonderie 16<br />1700 Fribourg</p>
+                  <p>+41 26 422 43 44</p>
+                </div>
+              </div>
 
-<div class="contact-block">
-<h3>H. Schumacher ingénieurs conseils SA</h3>
-<p>Chemin du Publoz 11<br>1073 Savigny</p>
-<p>+41 21 644 37 77</p>
-<p>h2o@hschumacher.ch</p>
-</div>
+              <!-- FORM -->
+              <div class="contact-form">
+                <form
+                  action="mailto:h2o@hschumacher.ch"
+                  method="post"
+                  enctype="text/plain"
+                >
+                  <div class="form-row">
+                    <input type="text" name="nom" placeholder="Nom" required />
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Email"
+                      required
+                    />
+                  </div>
 
-<div class="contact-block">
-<h3>Vernier</h3>
-<p>Avenue du Lignon 41<br>1219 Le Lignon</p>
-<p>+41 22 300 13 13</p>
-</div>
+                  <input type="text" name="societe" placeholder="Société" />
 
-<div class="contact-block">
-<h3>Fribourg</h3>
-<p>Rte de la Fonderie 16<br>1700 Fribourg</p>
-<p>+41 26 422 43 44</p>
-</div>
+                  <div class="form-checkbox">
+                    <label
+                      ><input
+                        type="checkbox"
+                        name="technique"
+                        value="sanitaire"
+                      />
+                      Technique sanitaire</label
+                    >
+                    <label
+                      ><input type="checkbox" name="technique" value="gaz" />
+                      Gaz médicaux</label
+                    >
+                    <label
+                      ><input
+                        type="checkbox"
+                        name="technique"
+                        value="piscine"
+                      />
+                      Technique piscine</label
+                    >
+                  </div>
 
-</div>
+                  <textarea
+                    name="message"
+                    placeholder="Votre message"
+                    required
+                  ></textarea>
 
-<!-- FORM -->
-<div class="contact-form">
-
-<form action="mailto:h2o@hschumacher.ch" method="post" enctype="text/plain">
-
-<div class="form-row">
-<input type="text" name="nom" placeholder="Nom" required>
-<input type="email" name="email" placeholder="Email" required>
-</div>
-
-<input type="text" name="societe" placeholder="Société">
-
-<div class="form-checkbox">
-
-<label><input type="checkbox" name="technique" value="sanitaire"> Technique sanitaire</label>
-<label><input type="checkbox" name="technique" value="gaz"> Gaz médicaux</label>
-<label><input type="checkbox" name="technique" value="piscine"> Technique piscine</label>
-
-</div>
-
-<textarea name="message" placeholder="Votre message" required></textarea>
-
-<button type="submit" class="btn btn-primary">Envoyer</button>
-
-</form>
-
-</div>
-
-</div>
-</section>
-
-</main>
+                  <button type="submit" class="btn btn-primary">Envoyer</button>
+                </form>
+              </div>
+            </div>
+          </section>
+        </main>
       </main>
-    
 
       <!-- FOOTER -->
       <footer class="footer">

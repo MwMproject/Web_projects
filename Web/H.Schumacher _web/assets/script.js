@@ -102,3 +102,21 @@ function animatePartners() {
 }
 
 animatePartners();
+
+/* filtre de projets */
+const filters = document.querySelectorAll(".filter");
+const cards = document.querySelectorAll(".ref-card");
+
+filters.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const type = btn.dataset.filter;
+
+    cards.forEach((card) => {
+      if (type === "all" || card.dataset.type === type) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  });
+});

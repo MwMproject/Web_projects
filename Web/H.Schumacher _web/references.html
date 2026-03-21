@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>H. Schumacher ingénieurs conseils SA</title>
+    <meta
+      name="description"
+      content="Bureau d’ingénierie spécialisé en technique sanitaire, gaz médicaux, planification d’ouvrages spécifiques et piscines publiques."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+  <body>
+    <div class="site-wrapper">
+      <!-- HEADER -->
+      <header class="header" id="header">
+        <div class="container header-inner">
+          <a href="index.html" class="brand" aria-label="Accueil H. Schumacher">
+            <img
+              src="assets/img/Logo_HS.png"
+              alt="Logo H. Schumacher"
+              class="brand-logo"
+            />
+            <span class="brand-text">H. Schumacher</span>
+          </a>
+
+          <nav class="nav" id="nav">
+            <ul class="nav-list">
+              <li><a href="index.html" class="active">Accueil</a></li>
+              <li><a href="presentation.html">Présentation</a></li>
+              <li><a href="references.html">Références</a></li>
+              <li><a href="apropos.html">À propos</a></li>
+              <li><a href="actualites.html">Actualités</a></li>
+              <li><a href="recrutement.html">Recrutement</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </nav>
+
+          <button
+            class="burger"
+            id="burger"
+            aria-label="Ouvrir le menu"
+            aria-expanded="false"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </header>
+
+      <main class="references-page">
+        <section class="page-hero">
+          <div class="container">
+            <h1>Références</h1>
+            <p>
+              Découvrez une sélection de projets réalisés par H. Schumacher
+              ingénieurs conseils SA.
+            </p>
+          </div>
+        </section>
+
+        <section class="filters">
+          <div class="container">
+            <button class="filter active" data-filter="all">Tous</button>
+            <button class="filter" data-filter="logement">Logements</button>
+            <button class="filter" data-filter="administratif">
+              Administratif
+            </button>
+            <button class="filter" data-filter="hospitalier">
+              Hospitalier
+            </button>
+            <button class="filter" data-filter="piscine">Piscine</button>
+            <button class="filter" data-filter="centre">
+              Centre professionnel
+            </button>
+          </div>
+        </section>
+
+        <section class="references-grid container">
+          <article class="ref-card" data-type="piscine">
+            <img src="assets/img/AQUATIS.jpg" />
+            <h3>Aquatis</h3>
+            <span>Piscine / Aquarium</span>
+          </article>
+
+          <article class="ref-card" data-type="hospitalier">
+            <img src="assets/img/CHUV_BOPC.jpg" />
+            <h3>CHUV BOPC</h3>
+            <span>Hospitalier</span>
+          </article>
+        </section>
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div class="container footer-grid">
+          <div class="footer-column">
+            <h3>H. Schumacher ingénieurs conseils SA</h3>
+            <p>Chemin du Publoz 11<br />1073 Savigny</p>
+            <p>
+              <a href="tel:+41216443777">+41 21 644 37 77</a><br />
+              <a href="mailto:h2o@hschumacher.ch">h2o@hschumacher.ch</a>
+            </p>
+          </div>
+
+          <div class="footer-column">
+            <h3>H. Schumacher Vernier Sàrl</h3>
+            <p>Avenue du Lignon 41<br />1219 Le Lignon</p>
+            <p>
+              <a href="tel:+41223001313">+41 22 300 13 13</a><br />
+              <a href="mailto:h2o@hschumacher.ch">h2o@hschumacher.ch</a>
+            </p>
+          </div>
+
+          <div class="footer-column">
+            <h3>H. Schumacher Fribourg Sàrl</h3>
+            <p>Rte de la Fonderie 16<br />1700 Fribourg</p>
+            <p>
+              <a href="tel:+41264224344">+41 26 422 43 44</a><br />
+              <a href="mailto:fribourg@hschumacher.ch"
+                >fribourg@hschumacher.ch</a
+              >
+            </p>
+          </div>
+
+          <div class="footer-column">
+            <h3>Navigation</h3>
+            <ul class="footer-links">
+              <li><a href="presentation.html">Présentation</a></li>
+              <li><a href="references.html">Références</a></li>
+              <li><a href="actualites.html">Actualités</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="container footer-bottom">
+          <p>© 2026 H. Schumacher — Tous droits réservés</p>
+        </div>
+      </footer>
+
+      <button id="toTop" class="to-top" aria-label="Remonter en haut">↑</button>
+    </div>
+
+    <script src="assets/script.js"></script>
+  </body>
+</html>
