@@ -706,11 +706,46 @@ a {
   object-fit: cover;
 }
 
+.modal-info {
+  margin-top: 25px;
+}
+
+.project-meta {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 12px 25px;
+  margin-bottom: 30px;
+}
+
+.meta-row span {
+  font-weight: 600;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.meta-row p {
+  margin: 0;
+  font-weight: 500;
+}
+
+.project-description h4 {
+  margin-bottom: 10px;
+  color: var(--primary);
+}
+
+.project-description ul {
+  padding-left: 18px;
+}
+
+.project-description li {
+  margin-bottom: 6px;
+}
+
 .modal-thumbs {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
-
+  margin-top: 12px;
 }
 
 .modal-thumbs img {
@@ -740,7 +775,7 @@ a {
 }
 
 .ref-close:hover {
-  background: rgba(0,0,0,0.12);
+  background: rgba(0, 0, 0, 0.12);
 }
 
 .ref-close span {

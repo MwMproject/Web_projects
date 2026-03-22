@@ -132,7 +132,9 @@ const modalResult = document.getElementById("modalResult");
 const gallery = document.getElementById("modalGallery");
 const mainImage = document.getElementById("modalMainImage");
 
-/* ===== FILTERS ===== */
+/* =========================================================
+   FILTERS
+========================================================= */
 
 if (filters.length && cards.length) {
   filters.forEach((btn) => {
@@ -144,7 +146,7 @@ if (filters.length && cards.length) {
 
       cards.forEach((card) => {
         if (type === "all" || card.dataset.type === type) {
-          card.style.display = "";
+          card.style.display = "block"; // important pour grid
         } else {
           card.style.display = "none";
         }
@@ -153,16 +155,19 @@ if (filters.length && cards.length) {
   });
 }
 
-/* ===== MODAL ===== */
+/* =========================================================
+   MODAL
+========================================================= */
 
-if (cards.length && modal) {
+if (cards.length && modal && gallery && mainImage) {
   cards.forEach((card) => {
     card.addEventListener("click", () => {
-      modalTitle.textContent = card.dataset.title || "";
-      modalContext.textContent = card.dataset.context || "";
-      modalSolution.textContent = card.dataset.solution || "";
-      modalRole.textContent = card.dataset.role || "";
-      modalResult.textContent = card.dataset.result || "";
+      if (modalTitle) modalTitle.textContent = card.dataset.title || "";
+      if (modalContext) modalContext.textContent = card.dataset.context || "";
+      if (modalSolution)
+        modalSolution.textContent = card.dataset.solution || "";
+      if (modalRole) modalRole.textContent = card.dataset.role || "";
+      if (modalResult) modalResult.textContent = card.dataset.result || "";
 
       gallery.innerHTML = "";
 
@@ -173,24 +178,24 @@ if (cards.length && modal) {
         card.dataset.img4,
       ];
 
-      let firstImageSet = false;
+      let first = true;
 
       images.forEach((img) => {
-        if (img) {
-          const thumb = document.createElement("img");
-          thumb.src = img;
-          thumb.classList.add("thumb");
+        if (!img) return;
 
-          thumb.addEventListener("click", () => {
-            mainImage.src = img;
-          });
+        const thumb = document.createElement("img");
+        thumb.src = img;
+        thumb.classList.add("thumb");
 
-          gallery.appendChild(thumb);
+        thumb.addEventListener("click", () => {
+          mainImage.src = img;
+        });
 
-          if (!firstImageSet) {
-            mainImage.src = img;
-            firstImageSet = true;
-          }
+        gallery.appendChild(thumb);
+
+        if (first) {
+          mainImage.src = img;
+          first = false;
         }
       });
 
