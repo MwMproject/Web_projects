@@ -124,6 +124,14 @@ const closeBtn = document.getElementById("refClose");
 const cards = document.querySelectorAll(".ref-card");
 const filters = document.querySelectorAll(".filter");
 
+const modalTitle = document.getElementById("modalTitle");
+const modalContext = document.getElementById("modalContext");
+const modalSolution = document.getElementById("modalSolution");
+const modalRole = document.getElementById("modalRole");
+const modalResult = document.getElementById("modalResult");
+const gallery = document.getElementById("modalGallery");
+const mainImage = document.getElementById("modalMainImage");
+
 /* ===== FILTERS ===== */
 
 if (filters.length && cards.length) {
@@ -136,7 +144,7 @@ if (filters.length && cards.length) {
 
       cards.forEach((card) => {
         if (type === "all" || card.dataset.type === type) {
-          card.style.display = "block";
+          card.style.display = "";
         } else {
           card.style.display = "none";
         }
@@ -150,36 +158,40 @@ if (filters.length && cards.length) {
 if (cards.length && modal) {
   cards.forEach((card) => {
     card.addEventListener("click", () => {
-      document.getElementById("modalTitle").textContent = card.dataset.title;
-      document.getElementById("modalContext").textContent =
-        card.dataset.context;
-      document.getElementById("modalSolution").textContent =
-        card.dataset.solution;
-      document.getElementById("modalRole").textContent = card.dataset.role;
-      document.getElementById("modalResult").textContent = card.dataset.result;
-
-      const gallery = document.getElementById("modalGallery");
-      const mainImage = document.getElementById("modalMainImage");
+      modalTitle.textContent = card.dataset.title || "";
+      modalContext.textContent = card.dataset.context || "";
+      modalSolution.textContent = card.dataset.solution || "";
+      modalRole.textContent = card.dataset.role || "";
+      modalResult.textContent = card.dataset.result || "";
 
       gallery.innerHTML = "";
 
-      if (card.dataset.img1) {
-        mainImage.src = card.dataset.img1;
-        gallery.innerHTML += `<img src="${card.dataset.img1}" class="thumb">`;
-      }
+      const images = [
+        card.dataset.img1,
+        card.dataset.img2,
+        card.dataset.img3,
+        card.dataset.img4,
+      ];
 
-      if (card.dataset.img2) {
-        gallery.innerHTML += `<img src="${card.dataset.img2}" class="thumb">`;
-      }
+      let firstImageSet = false;
 
-      if (card.dataset.img3) {
-        gallery.innerHTML += `<img src="${card.dataset.img3}" class="thumb">`;
-      }
+      images.forEach((img) => {
+        if (img) {
+          const thumb = document.createElement("img");
+          thumb.src = img;
+          thumb.classList.add("thumb");
 
-      document.querySelectorAll(".thumb").forEach((img) => {
-        img.addEventListener("click", () => {
-          mainImage.src = img.src;
-        });
+          thumb.addEventListener("click", () => {
+            mainImage.src = img;
+          });
+
+          gallery.appendChild(thumb);
+
+          if (!firstImageSet) {
+            mainImage.src = img;
+            firstImageSet = true;
+          }
+        }
       });
 
       modal.classList.add("open");
@@ -188,16 +200,19 @@ if (cards.length && modal) {
   });
 
   if (closeBtn) {
-    closeBtn.addEventListener("click", () => {
-      modal.classList.remove("open");
-      document.body.style.overflow = "auto";
-    });
+    closeBtn.addEventListener("click", closeModal);
   }
 
   modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      modal.classList.remove("open");
-      document.body.style.overflow = "auto";
-    }
+    if (e.target === modal) closeModal();
   });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
+  });
+}
+
+function closeModal() {
+  modal.classList.remove("open");
+  document.body.style.overflow = "auto";
 }
