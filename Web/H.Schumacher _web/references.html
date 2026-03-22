@@ -60,43 +60,63 @@
           <div class="container">
             <h1>Références</h1>
             <p>
-              Découvrez une sélection de projets réalisés par H. Schumacher
-              ingénieurs conseils SA.
+              Une sélection de projets techniques réalisés par notre bureau.
             </p>
           </div>
         </section>
 
-        <section class="filters">
-          <div class="container">
-            <button class="filter active" data-filter="all">Tous</button>
-            <button class="filter" data-filter="logement">Logements</button>
-            <button class="filter" data-filter="administratif">
-              Administratif
-            </button>
-            <button class="filter" data-filter="hospitalier">
-              Hospitalier
-            </button>
-            <button class="filter" data-filter="piscine">Piscine</button>
-            <button class="filter" data-filter="centre">
-              Centre professionnel
-            </button>
+        <section class="filters container">
+          <button class="filter active" data-filter="all">Tous</button>
+          <button class="filter" data-filter="Piscine">Piscines</button>
+          <button class="filter" data-filter="Santé">Santé</button>
+          <button class="filter" data-filter="Aquarium">Aquarium</button>
+        </section>
+
+        <section class="container references-grid">
+          <!-- CARD -->
+          <div
+            class="ref-card"
+            data-type="Aquarium"
+            data-title="Aquatis"
+            data-context="Conception complète du parcours de visite et des aquariums."
+            data-solution="Planification hydraulique et technique des bassins."
+            data-role="Études techniques et suivi travaux."
+            data-result="Projet livré avec performance énergétique optimisée."
+            data-img1="assets/img/AQUATIS.jpg"
+            data-img2="assets/img/AQUATIS.jpg"
+            data-img3="assets/img/AQUATIS.jpg"
+          >
+            <div class="ref-img">
+              <img src="assets/img/AQUATIS.jpg" />
+              <span class="ref-tag">Aquarium</span>
+            </div>
+            <div class="ref-info">
+              <h3>Aquatis</h3>
+            </div>
           </div>
         </section>
-
-        <section class="references-grid container">
-          <article class="ref-card" data-type="piscine">
-            <img src="assets/img/AQUATIS.jpg" />
-            <h3>Aquatis</h3>
-            <span>Piscine / Aquarium</span>
-          </article>
-
-          <article class="ref-card" data-type="hospitalier">
-            <img src="assets/img/CHUV_BOPC.jpg" />
-            <h3>CHUV BOPC</h3>
-            <span>Hospitalier</span>
-          </article>
-        </section>
       </main>
+
+      <!-- MODAL -->
+      <div class="ref-modal" id="refModal">
+        <div class="ref-modal-content">
+          <button class="ref-close" id="refClose">✕</button>
+
+          <div class="modal-main-img">
+            <img id="modalMainImage" />
+          </div>
+
+          <div class="modal-info">
+            <h2 id="modalTitle"></h2>
+            <p id="modalContext"></p>
+            <p id="modalSolution"></p>
+            <p id="modalRole"></p>
+            <p id="modalResult"></p>
+          </div>
+
+          <div class="modal-thumbs" id="modalGallery"></div>
+        </div>
+      </div>
 
       <!-- FOOTER -->
       <footer class="footer">
