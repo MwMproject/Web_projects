@@ -1,5 +1,4 @@
 // MENU MOBILE
-
 const burger = document.querySelector(".burger");
 const nav = document.querySelector(".nav-links");
 
@@ -12,14 +11,13 @@ const modal = document.querySelector(".service-modal");
 const modalBody = document.querySelector(".modal-body");
 const closeBtn = document.querySelector(".modal-close");
 
-document.querySelectorAll(".toggle-card").forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const card = btn.closest(".card");
-    const details = card.querySelector(".card-details").innerHTML;
+document.querySelectorAll(".service-item").forEach((item) => {
+  item.addEventListener("click", () => {
+    const details = item.querySelector(".card-details");
+    if (!details) return;
 
-    modalBody.innerHTML = details;
+    modalBody.innerHTML = details.innerHTML;
     modal.classList.add("active");
-
     document.body.style.overflow = "hidden";
   });
 });
@@ -35,6 +33,7 @@ modal.addEventListener("click", (e) => {
     document.body.style.overflow = "";
   }
 });
+
 // CAROUSEL
 const slides = document.querySelectorAll(".slide");
 const carousel = document.querySelector(".carousel");
@@ -45,7 +44,6 @@ let index = 0;
 let interval = null;
 const delay = 3500;
 
-// UPDATE
 function updateCarousel() {
   slides.forEach((slide) => {
     slide.classList.remove("left", "center", "right", "hidden");
@@ -65,10 +63,8 @@ function updateCarousel() {
   });
 }
 
-// AUTOPLAY
 function startCarousel() {
-  if (interval) return; // évite double interval
-
+  if (interval) return;
   interval = setInterval(() => {
     index = (index + 1) % slides.length;
     updateCarousel();
@@ -80,7 +76,6 @@ function stopCarousel() {
   interval = null;
 }
 
-// NAVIGATION
 nextBtn?.addEventListener("click", () => {
   stopCarousel();
   index = (index + 1) % slides.length;
@@ -95,7 +90,6 @@ prevBtn?.addEventListener("click", () => {
   startCarousel();
 });
 
-// HOVER PAUSE
 carousel?.addEventListener("mouseenter", stopCarousel);
 carousel?.addEventListener("mouseleave", startCarousel);
 
@@ -116,36 +110,29 @@ function handleSwipe() {
   if (touchEndX < touchStartX - 50) {
     index = (index + 1) % slides.length;
   }
-
   if (touchEndX > touchStartX + 50) {
     index = (index - 1 + slides.length) % slides.length;
   }
-
   updateCarousel();
 }
 
-// INIT
+// INIT CAROUSEL
 updateCarousel();
 startCarousel();
 
 // FORM SUBMISSION
 const form = document.querySelector(".contact-form");
-const success = document.querySelector(".form-success");
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
-
-  success.style.display = "block";
-
   form.reset();
 });
 
-//SCROLL EFFECT
+// SCROLL EFFECT
 const sections = [...document.querySelectorAll("section")];
 let currentSection = 0;
 let isScrolling = false;
 
-// observer pour savoir quelle section est visible
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -154,23 +141,15 @@ const observer = new IntersectionObserver(
       }
     });
   },
-  {
-    threshold: 0.6,
-  },
+  { threshold: 0.6 },
 );
 
 sections.forEach((section) => observer.observe(section));
 
-// scroll vers la section suivante ou précédente
-function scrollToSection(index) {
-  if (index < 0 || index >= sections.length) return;
-
+function scrollToSection(idx) {
+  if (idx < 0 || idx >= sections.length) return;
   isScrolling = true;
-
-  sections[index].scrollIntoView({
-    behavior: "smooth",
-  });
-
+  sections[idx].scrollIntoView({ behavior: "smooth" });
   setTimeout(() => {
     isScrolling = false;
   }, 700);
@@ -183,7 +162,6 @@ window.addEventListener(
       e.preventDefault();
       return;
     }
-
     if (e.deltaY > 0) {
       if (currentSection < sections.length - 1) {
         e.preventDefault();
