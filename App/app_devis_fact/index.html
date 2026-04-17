@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FacturePro — Devis & Factures</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <span class="logo-icon">◈</span>
+    <span class="logo-text">FacturePro</span>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="#" class="nav-item active" data-page="dashboard">
+      <span class="nav-icon">⬡</span>
+      <span>Dashboard</span>
+    </a>
+    <a href="#" class="nav-item" data-page="prestations">
+      <span class="nav-icon">◫</span>
+      <span>Prestations</span>
+    </a>
+    <a href="#" class="nav-item" data-page="clients">
+      <span class="nav-icon">◉</span>
+      <span>Clients</span>
+    </a>
+    <a href="#" class="nav-item" data-page="devis">
+      <span class="nav-icon">◧</span>
+      <span>Devis</span>
+    </a>
+    <a href="#" class="nav-item" data-page="factures">
+      <span class="nav-icon">◨</span>
+      <span>Factures</span>
+    </a>
+  </nav>
+  <div class="sidebar-bottom">
+    <a href="#" class="nav-item" data-page="parametres">
+      <span class="nav-icon">◎</span>
+      <span>Paramètres</span>
+    </a>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main" id="main">
+
+  <!-- DASHBOARD -->
+  <section class="page active" id="page-dashboard">
+    <div class="page-header">
+      <div>
+        <h1>Dashboard</h1>
+        <p class="subtitle">Vue d'ensemble de votre activité</p>
+      </div>
+    </div>
+    <div class="stats-grid" id="stats-grid"></div>
+    <div class="dashboard-bottom">
+      <div class="card">
+        <div class="card-header">
+          <h3>Devis récents</h3>
+          <a href="#" class="link-btn" data-page="devis">Voir tout →</a>
+        </div>
+        <div id="recent-devis-list"></div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h3>Factures en attente</h3>
+          <a href="#" class="link-btn" data-page="factures">Voir tout →</a>
+        </div>
+        <div id="pending-factures-list"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRESTATIONS -->
+  <section class="page" id="page-prestations">
+    <div class="page-header">
+      <div>
+        <h1>Bibliothèque de prestations</h1>
+        <p class="subtitle">Vos postes, prix et fournisseurs</p>
+      </div>
+      <button class="btn-primary" onclick="openModal('modal-prestation')">+ Nouvelle prestation</button>
+    </div>
+    <div class="filter-bar">
+      <input type="text" class="search-input" placeholder="Rechercher une prestation..." id="search-prestations">
+      <select class="select-input" id="filter-categorie-prest">
+        <option value="">Toutes les catégories</option>
+      </select>
+    </div>
+    <div class="table-container">
+      <table class="table" id="table-prestations">
+        <thead>
+          <tr>
+            <th>Désignation</th>
+            <th>Catégorie</th>
+            <th>Unité</th>
+            <th>Prix unitaire HT</th>
+            <th>Fournisseur</th>
+            <th>Réf. produit</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="tbody-prestations"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- CLIENTS -->
+  <section class="page" id="page-clients">
+    <div class="page-header">
+      <div>
+        <h1>Clients</h1>
+        <p class="subtitle">Gérez votre carnet d'adresses</p>
+      </div>
+      <button class="btn-primary" onclick="openModal('modal-client')">+ Nouveau client</button>
+    </div>
+    <div class="filter-bar">
+      <input type="text" class="search-input" placeholder="Rechercher un client..." id="search-clients">
+    </div>
+    <div class="clients-grid" id="clients-grid"></div>
+  </section>
+
+  <!-- DEVIS -->
+  <section class="page" id="page-devis">
+    <div class="page-header">
+      <div>
+        <h1>Devis</h1>
+        <p class="subtitle">Créez et gérez vos devis</p>
+      </div>
+      <button class="btn-primary" onclick="openDevisForm()">+ Nouveau devis</button>
+    </div>
+    <div class="filter-bar">
+      <input type="text" class="search-input" placeholder="Rechercher..." id="search-devis">
+      <select class="select-input" id="filter-status-devis">
+        <option value="">Tous les statuts</option>
+        <option value="brouillon">Brouillon</option>
+        <option value="envoye">Envoyé</option>
+        <option value="accepte">Accepté</option>
+        <option value="refuse">Refusé</option>
+      </select>
+    </div>
+    <div class="table-container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>N° Devis</th>
+            <th>Client</th>
+            <th>Date</th>
+            <th>Montant HT</th>
+            <th>TVA</th>
+            <th>Montant TTC</th>
+            <th>Statut</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="tbody-devis"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- FACTURES -->
+  <section class="page" id="page-factures">
+    <div class="page-header">
+      <div>
+        <h1>Factures</h1>
+        <p class="subtitle">Suivez vos encaissements</p>
+      </div>
+    </div>
+    <div class="filter-bar">
+      <input type="text" class="search-input" placeholder="Rechercher..." id="search-factures">
+      <select class="select-input" id="filter-status-factures">
+        <option value="">Tous les statuts</option>
+        <option value="envoyee">Envoyée</option>
+        <option value="payee">Payée</option>
+        <option value="retard">En retard</option>
+      </select>
+    </div>
+    <div class="table-container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>N° Facture</th>
+            <th>Client</th>
+            <th>Date émission</th>
+            <th>Date échéance</th>
+            <th>Montant TTC</th>
+            <th>Statut</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="tbody-factures"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- PARAMETRES -->
+  <section class="page" id="page-parametres">
+    <div class="page-header">
+      <div>
+        <h1>Paramètres</h1>
+        <p class="subtitle">Vos informations professionnelles</p>
+      </div>
+      <button class="btn-primary" onclick="saveParametres()">Sauvegarder</button>
+    </div>
+    <div class="params-grid">
+      <div class="card">
+        <h3>Informations entreprise</h3>
+        <div class="form-group"><label>Nom de l'entreprise</label><input type="text" id="p-nom" class="form-input" placeholder="Mon Entreprise SARL"></div>
+        <div class="form-group"><label>Adresse</label><input type="text" id="p-adresse" class="form-input" placeholder="1 rue de la Paix"></div>
+        <div class="form-group"><label>Code postal & Ville</label><input type="text" id="p-ville" class="form-input" placeholder="75001 Paris"></div>
+        <div class="form-group"><label>Pays</label><input type="text" id="p-pays" class="form-input" placeholder="France"></div>
+        <div class="form-group"><label>Email</label><input type="email" id="p-email" class="form-input" placeholder="contact@monentreprise.fr"></div>
+        <div class="form-group"><label>Téléphone</label><input type="text" id="p-tel" class="form-input" placeholder="+33 1 23 45 67 89"></div>
+      </div>
+      <div class="card">
+        <h3>Informations légales & comptables</h3>
+        <div class="form-group"><label>SIRET / IDE</label><input type="text" id="p-siret" class="form-input" placeholder="123 456 789 00010"></div>
+        <div class="form-group"><label>N° TVA intracommunautaire</label><input type="text" id="p-tva-num" class="form-input" placeholder="FR 12 345678900"></div>
+        <div class="form-group"><label>Taux TVA par défaut (%)</label><input type="number" id="p-tva-taux" class="form-input" placeholder="20" value="20"></div>
+        <div class="form-group"><label>Délai de paiement (jours)</label><input type="number" id="p-delai" class="form-input" placeholder="30" value="30"></div>
+        <div class="form-group"><label>Mentions légales sur facture</label><textarea id="p-mentions" class="form-input" rows="3" placeholder="En cas de retard de paiement..."></textarea></div>
+        <div class="form-group"><label>IBAN</label><input type="text" id="p-iban" class="form-input" placeholder="FR76 3000 6000 0112 3456 7890 189"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- =================== MODALS =================== -->
+
+<!-- Modal Prestation -->
+<div class="modal-overlay" id="modal-prestation">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="modal-prestation-title">Nouvelle prestation</h2>
+      <button class="modal-close" onclick="closeModal('modal-prestation')">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="prest-id">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Désignation *</label>
+          <input type="text" id="prest-nom" class="form-input" placeholder="Ex: Peinture intérieure">
+        </div>
+        <div class="form-group">
+          <label>Catégorie</label>
+          <div class="input-combo">
+            <input type="text" id="prest-categorie" class="form-input" placeholder="Ex: Peinture" list="categories-list">
+            <datalist id="categories-list"></datalist>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Unité *</label>
+          <select id="prest-unite" class="form-input">
+            <option value="m²">m² (mètre carré)</option>
+            <option value="ml">ml (mètre linéaire)</option>
+            <option value="m³">m³ (mètre cube)</option>
+            <option value="h">h (heure)</option>
+            <option value="j">j (jour)</option>
+            <option value="u">u (unité)</option>
+            <option value="forfait">Forfait</option>
+            <option value="kg">kg</option>
+            <option value="t">t (tonne)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Prix unitaire HT *</label>
+          <div class="input-with-suffix">
+            <input type="number" id="prest-prix" class="form-input" placeholder="0.00" step="0.01" min="0">
+            <span class="input-suffix">CHF</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Fournisseur</label>
+          <input type="text" id="prest-fournisseur" class="form-input" placeholder="Ex: Leroy Merlin">
+        </div>
+        <div class="form-group">
+          <label>Référence produit</label>
+          <input type="text" id="prest-ref" class="form-input" placeholder="Ex: REF-12345">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Description / Notes</label>
+        <textarea id="prest-desc" class="form-input" rows="2" placeholder="Détails supplémentaires..."></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" onclick="closeModal('modal-prestation')">Annuler</button>
+      <button class="btn-primary" onclick="savePrestation()">Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Client -->
+<div class="modal-overlay" id="modal-client">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="modal-client-title">Nouveau client</h2>
+      <button class="modal-close" onclick="closeModal('modal-client')">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="client-id">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Type</label>
+          <select id="client-type" class="form-input">
+            <option value="particulier">Particulier</option>
+            <option value="entreprise">Entreprise</option>
+          </select>
+        </div>
+        <div class="form-group" id="client-entreprise-group">
+          <label>Nom de l'entreprise</label>
+          <input type="text" id="client-entreprise" class="form-input" placeholder="SARL Dupont">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Prénom *</label>
+          <input type="text" id="client-prenom" class="form-input" placeholder="Jean">
+        </div>
+        <div class="form-group">
+          <label>Nom *</label>
+          <input type="text" id="client-nom" class="form-input" placeholder="Dupont">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Adresse</label>
+        <input type="text" id="client-adresse" class="form-input" placeholder="1 rue de la Paix">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Code postal</label>
+          <input type="text" id="client-cp" class="form-input" placeholder="75001">
+        </div>
+        <div class="form-group">
+          <label>Ville</label>
+          <input type="text" id="client-ville" class="form-input" placeholder="Paris">
+        </div>
+        <div class="form-group">
+          <label>Pays</label>
+          <input type="text" id="client-pays" class="form-input" placeholder="France">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="client-email" class="form-input" placeholder="jean@email.com">
+        </div>
+        <div class="form-group">
+          <label>Téléphone</label>
+          <input type="text" id="client-tel" class="form-input" placeholder="+33 6 12 34 56 78">
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" onclick="closeModal('modal-client')">Annuler</button>
+      <button class="btn-primary" onclick="saveClient()">Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Devis / Facture (formulaire complet) -->
+<div class="modal-overlay modal-fullscreen" id="modal-devis-form">
+  <div class="modal modal-large">
+    <div class="modal-header">
+      <h2 id="modal-devis-title">Nouveau devis</h2>
+      <button class="modal-close" onclick="closeModal('modal-devis-form')">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="doc-id">
+      <input type="hidden" id="doc-type" value="devis">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Client *</label>
+          <select id="doc-client" class="form-input">
+            <option value="">Sélectionner un client...</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date" id="doc-date" class="form-input">
+        </div>
+        <div class="form-group">
+          <label>Validité / Échéance (jours)</label>
+          <input type="number" id="doc-validite" class="form-input" placeholder="30" value="30">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Objet / Titre du document</label>
+        <input type="text" id="doc-objet" class="form-input" placeholder="Ex: Rénovation salle de bain">
+      </div>
+
+      <!-- Lignes du document -->
+      <div class="lignes-header">
+        <h3>Lignes du document</h3>
+        <div class="lignes-actions">
+          <button class="btn-secondary btn-sm" onclick="addLigneFromBibliotheque()">+ Depuis bibliothèque</button>
+          <button class="btn-secondary btn-sm" onclick="addLigneManuelle()">+ Ligne manuelle</button>
+        </div>
+      </div>
+
+      <div class="lignes-container" id="lignes-container">
+        <div class="lignes-table-header">
+          <span>Désignation</span>
+          <span>Unité</span>
+          <span>Qté</span>
+          <span>Prix unit. HT</span>
+          <span>Total HT</span>
+          <span></span>
+        </div>
+        <div id="lignes-list"></div>
+      </div>
+
+      <!-- Totaux -->
+      <div class="totaux">
+        <div class="totaux-inner">
+          <div class="totaux-row"><span>Sous-total HT</span><span id="total-ht">0.00 CHF</span></div>
+          <div class="totaux-row">
+            <span>TVA <input type="number" id="doc-tva" class="tva-input" value="7.7" step="0.1" min="0" max="100">%</span>
+            <span id="total-tva">0.00 CHF</span>
+          </div>
+          <div class="totaux-row totaux-ttc"><span>Total TTC</span><span id="total-ttc">0.00 CHF</span></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Notes / Conditions</label>
+        <textarea id="doc-notes" class="form-input" rows="3" placeholder="Conditions de paiement, remarques..."></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" onclick="closeModal('modal-devis-form')">Annuler</button>
+      <button class="btn-primary" id="btn-save-doc" onclick="saveDocument()">Enregistrer le devis</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal sélection prestation depuis bibliothèque -->
+<div class="modal-overlay" id="modal-select-prestation">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Choisir une prestation</h2>
+      <button class="modal-close" onclick="closeModal('modal-select-prestation')">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="text" class="search-input" id="search-prest-modal" placeholder="Rechercher..." oninput="filterPrestationsModal()">
+      <div class="prest-select-list" id="prest-select-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal aperçu/impression -->
+<div class="modal-overlay modal-fullscreen" id="modal-preview">
+  <div class="modal modal-preview-container">
+    <div class="modal-header">
+      <h2 id="preview-title">Aperçu</h2>
+      <div style="display:flex;gap:10px;align-items:center">
+        <button class="btn-primary btn-sm" onclick="printDocument()">🖨 Imprimer / PDF</button>
+        <button class="modal-close" onclick="closeModal('modal-preview')">✕</button>
+      </div>
+    </div>
+    <div class="modal-body preview-body">
+      <div id="preview-content" class="document-preview"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast notification -->
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
