@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Capacitor Android
+android/
+
+# Build
+www/
+
+# OS
+.DS_Store
+Thumbs.db
+
+Json files
+*.json
