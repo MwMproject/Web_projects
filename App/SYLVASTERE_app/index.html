@@ -1,213 +1,300 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#3B6D11" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="Sylvastere" />
-  <link rel="manifest" href="manifest.json" />
-  <link rel="apple-touch-icon" href="assets/img/icon_app.png" />
-  <link rel="stylesheet" href="assets/style.css" />
-  <title>Sylvastere</title>
-</head>
-<body>
-
-  <!-- TOPBAR -->
-  <header class="topbar">
-    <div class="topbar-left">
-      <img src="assets/img/icon.png" alt="logo" class="topbar-logo" />
-      <div>
-        <div class="topbar-title">Sylvastere</div>
-        <div class="topbar-sub" id="chantier-display">Aucun chantier</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="theme-color" content="#3B6D11" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Sylvastere" />
+    <link rel="manifest" href="assets/manifest.json" />
+    <link rel="apple-touch-icon" href="assets/img/icon_app.png" />
+    <link rel="stylesheet" href="assets/style.css" />
+    <title>Sylvastere</title>
+  </head>
+  <body>
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <img src="assets/img/icon.png" alt="logo" class="topbar-logo" />
+        <div>
+          <div class="topbar-title">Sylvastere</div>
+          <div class="topbar-sub" id="chantier-display">Aucun chantier</div>
+        </div>
       </div>
-    </div>
-    <button class="btn-chantier" id="btn-nouveau-chantier">+ Chantier</button>
-  </header>
+      <button class="btn-chantier" id="btn-nouveau-chantier">+ Chantier</button>
+    </header>
 
-  <!-- NAVIGATION -->
-  <nav class="tabs">
-    <button class="tab active" data-tab="cubage">Cubage</button>
-    <button class="tab" data-tab="liste">Billes</button>
-    <button class="tab" data-tab="securite">Sécurité</button>
-    <button class="tab" data-tab="export">Export</button>
-  </nav>
+    <!-- NAVIGATION -->
+    <nav class="tabs">
+      <button class="tab active" data-tab="cubage">Cubage</button>
+      <button class="tab" data-tab="liste">Billes</button>
+      <button class="tab" data-tab="securite">Sécurité</button>
+      <button class="tab" data-tab="export">Export</button>
+    </nav>
 
-  <!-- CONTENU PRINCIPAL -->
-  <main class="main-content">
-
-    <!-- CUBAGE -->
-    <section class="section active" id="tab-cubage">
-      <div class="form-group">
-        <label class="form-label">Essence</label>
-        <select id="essence">
-          <option value="">Choisir une essence...</option>
-          <option>Épicéa</option>
-          <option>Sapin blanc</option>
-          <option>Mélèze</option>
-          <option>Pin sylvestre</option>
-          <option>Hêtre</option>
-          <option>Chêne</option>
-          <option>Frêne</option>
-          <option>Érable</option>
-          <option>Noyer</option>
-          <option>Aulne</option>
-          <option>Châtaignier</option>
-          <option>Autre</option>
-        </select>
-      </div>
-
-      <div class="form-row">
+    <!-- CONTENU PRINCIPAL -->
+    <main class="main-content">
+      <!-- CUBAGE -->
+      <section class="section active" id="tab-cubage">
         <div class="form-group">
-          <label class="form-label">Diamètre médian (cm)</label>
-          <input type="number" id="diametre" placeholder="ex. 34" min="1" max="200" inputmode="numeric" />
+          <label class="form-label">Essence</label>
+          <select id="essence">
+            <option value="">Choisir une essence...</option>
+            <option>Épicéa</option>
+            <option>Sapin blanc</option>
+            <option>Mélèze</option>
+            <option>Pin sylvestre</option>
+            <option>Hêtre</option>
+            <option>Chêne</option>
+            <option>Frêne</option>
+            <option>Érable</option>
+            <option>Noyer</option>
+            <option>Aulne</option>
+            <option>Châtaignier</option>
+            <option>Autre</option>
+          </select>
         </div>
-        <div class="form-group">
-          <label class="form-label">Longueur (m)</label>
-          <input type="number" id="longueur" placeholder="ex. 4.5" min="0.1" step="0.1" inputmode="decimal" />
-        </div>
-      </div>
 
-      <div class="form-group">
-        <label class="form-label">Qualité</label>
-        <div class="quality-grid">
-          <button class="q-btn" data-q="A">A</button>
-          <button class="q-btn" data-q="B">B</button>
-          <button class="q-btn" data-q="C">C</button>
-          <button class="q-btn" data-q="D">D</button>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Défauts observés</label>
-        <textarea id="defauts" placeholder="Ex: roulure, noeuds, fentes, pourriture..."></textarea>
-      </div>
-
-      <div class="result-box" id="result-box">
-        <div class="result-label">Volume Huber</div>
-        <div class="result-vol" id="result-vol">—</div>
-        <div class="result-label">m³</div>
-      </div>
-
-      <button class="btn-primary btn-block" id="btn-ajouter">Ajouter la bille</button>
-    </section>
-
-    <!-- LISTE BILLES -->
-    <section class="section" id="tab-liste">
-      <div id="liste-billes">
-        <div class="empty-state">
-          <div class="empty-ico">🪵</div>
-          <p>Aucune bille enregistrée.<br>Commencez par l'onglet Cubage.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECURITE -->
-    <section class="section" id="tab-securite">
-
-      <div class="card">
-        <div class="card-title">Localisation GPS</div>
-        <div class="gps-status" id="gps-status">Appuyez pour obtenir votre position</div>
-        <div class="gps-coords" id="gps-coords"></div>
-        <button class="btn-primary btn-block" id="btn-gps">Obtenir ma position</button>
-        <a class="map-link" id="map-link" href="#" style="display:none" target="_blank">
-          Ouvrir sur map.geo.admin.ch →
-        </a>
-      </div>
-
-      <div class="card">
-        <div class="card-title">Coordonnées manuelles (LV95)</div>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">E (est)</label>
-            <input type="number" id="coordE" placeholder="ex. 2608900" inputmode="numeric" />
+            <label class="form-label">Diamètre médian (cm)</label>
+            <input
+              type="number"
+              id="diametre"
+              placeholder="ex. 34"
+              min="1"
+              max="200"
+              inputmode="numeric"
+            />
           </div>
           <div class="form-group">
-            <label class="form-label">N (nord)</label>
-            <input type="number" id="coordN" placeholder="ex. 1133400" inputmode="numeric" />
+            <label class="form-label">Longueur (m)</label>
+            <input
+              type="number"
+              id="longueur"
+              placeholder="ex. 4.5"
+              min="0.1"
+              step="0.1"
+              inputmode="decimal"
+            />
           </div>
         </div>
-        <div class="form-row">
+
+        <div class="form-group">
+          <label class="form-label">Qualité</label>
+          <div class="quality-grid">
+            <button class="q-btn" data-q="A">A</button>
+            <button class="q-btn" data-q="B">B</button>
+            <button class="q-btn" data-q="C">C</button>
+            <button class="q-btn" data-q="D">D</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Défauts observés</label>
+          <textarea
+            id="defauts"
+            placeholder="Ex: roulure, noeuds, fentes, pourriture..."
+          ></textarea>
+        </div>
+
+        <div class="result-box" id="result-box">
+          <div class="result-label">Volume Huber</div>
+          <div class="result-vol" id="result-vol">—</div>
+          <div class="result-label">m³</div>
+        </div>
+
+        <button class="btn-primary btn-block" id="btn-ajouter">
+          Ajouter la bille
+        </button>
+      </section>
+
+      <!-- LISTE BILLES -->
+      <section class="section" id="tab-liste">
+        <div id="liste-billes">
+          <div class="empty-state">
+            <div class="empty-ico">🪵</div>
+            <p>Aucune bille enregistrée.<br />Commencez par l'onglet Cubage.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECURITE -->
+      <section class="section" id="tab-securite">
+        <div class="card">
+          <div class="card-title">Localisation GPS</div>
+          <div class="gps-status" id="gps-status">
+            Appuyez pour obtenir votre position
+          </div>
+          <div class="gps-coords" id="gps-coords"></div>
+          <button class="btn-primary btn-block" id="btn-gps">
+            Obtenir ma position
+          </button>
+          <a
+            class="map-link"
+            id="map-link"
+            href="#"
+            style="display: none"
+            target="_blank"
+          >
+            Ouvrir sur map.geo.admin.ch →
+          </a>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Coordonnées manuelles (LV95)</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">E (est)</label>
+              <input
+                type="number"
+                id="coordE"
+                placeholder="ex. 2608900"
+                inputmode="numeric"
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label">N (nord)</label>
+              <input
+                type="number"
+                id="coordN"
+                placeholder="ex. 1133400"
+                inputmode="numeric"
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Altitude (m)</label>
+              <input
+                type="number"
+                id="altitude"
+                placeholder="ex. 1420"
+                inputmode="numeric"
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Lieu-dit</label>
+              <input
+                type="text"
+                id="lieu-dit"
+                placeholder="ex. Forêt des Mayens"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Numéros d'urgence</div>
+          <div class="num-row">
+            <span>Urgences générales</span><span class="num-val">112</span>
+          </div>
+          <div class="num-row">
+            <span>Ambulance / SAMU</span><span class="num-val">144</span>
+          </div>
+          <div class="num-row">
+            <span>Police</span><span class="num-val">117</span>
+          </div>
+          <div class="num-row">
+            <span>Pompiers</span><span class="num-val">118</span>
+          </div>
+          <div class="num-row last">
+            <span>Rega (hélicoptère)</span><span class="num-val">1414</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Contacts chantier</div>
           <div class="form-group">
-            <label class="form-label">Altitude (m)</label>
-            <input type="number" id="altitude" placeholder="ex. 1420" inputmode="numeric" />
+            <label class="form-label">Responsable (nom + tél.)</label>
+            <input
+              type="text"
+              id="resp-chantier"
+              placeholder="ex. Martin Favre — 079 123 45 67"
+            />
           </div>
           <div class="form-group">
-            <label class="form-label">Lieu-dit</label>
-            <input type="text" id="lieu-dit" placeholder="ex. Forêt des Mayens" />
+            <label class="form-label">Hôpital / médecin</label>
+            <input
+              type="text"
+              id="hopital"
+              placeholder="ex. Hôpital de Sion — 027 603 40 00"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Notes de sécurité</label>
+            <textarea
+              id="notes-sec"
+              placeholder="ex. Zone avalanche, terrain pentu, ligne électrique..."
+            ></textarea>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="card">
-        <div class="card-title">Numéros d'urgence</div>
-        <div class="num-row"><span>Urgences générales</span><span class="num-val">112</span></div>
-        <div class="num-row"><span>Ambulance / SAMU</span><span class="num-val">144</span></div>
-        <div class="num-row"><span>Police</span><span class="num-val">117</span></div>
-        <div class="num-row"><span>Pompiers</span><span class="num-val">118</span></div>
-        <div class="num-row last"><span>Rega (hélicoptère)</span><span class="num-val">1414</span></div>
-      </div>
+      <!-- EXPORT -->
+      <section class="section" id="tab-export">
+        <div id="export-summary"></div>
 
-      <div class="card">
-        <div class="card-title">Contacts chantier</div>
+        <button class="btn-secondary btn-block" id="btn-export-securite">
+          Exporter fiche securite
+        </button>
+
+        <button class="btn-secondary btn-block" id="btn-export-billes">
+          Exporter fiche billes
+        </button>
+
+        <button class="btn-primary btn-block" id="btn-export">
+          Exporter PDF complet
+        </button>
+
+        <button class="btn-secondary btn-block" id="btn-reset">
+          Nouvelle journee
+        </button>
+      </section>
+    </main>
+
+    <!-- MODAL CHANTIER -->
+    <div class="modal-overlay" id="modal-overlay">
+      <div class="modal">
+        <div class="modal-title">Nouveau chantier</div>
         <div class="form-group">
-          <label class="form-label">Responsable (nom + tél.)</label>
-          <input type="text" id="resp-chantier" placeholder="ex. Martin Favre — 079 123 45 67" />
+          <label class="form-label">Nom du chantier</label>
+          <input
+            type="text"
+            id="nom-chantier"
+            placeholder="ex. Coupe Foret des Agettes 2025"
+          />
         </div>
         <div class="form-group">
-          <label class="form-label">Hôpital / médecin</label>
-          <input type="text" id="hopital" placeholder="ex. Hôpital de Sion — 027 603 40 00" />
+          <label class="form-label">Date</label>
+          <input type="date" id="date-chantier" />
         </div>
         <div class="form-group">
-          <label class="form-label">Notes de sécurité</label>
-          <textarea id="notes-sec" placeholder="ex. Zone avalanche, terrain pentu, ligne électrique..."></textarea>
+          <label class="form-label">Propriétaire / Mandant</label>
+          <input type="text" id="mandant" placeholder="ex. Commune de Vex" />
         </div>
-      </div>
-
-    </section>
-
-    <!-- EXPORT -->
-    <section class="section" id="tab-export">
-      <div id="export-summary"></div>
-      <button class="btn-primary btn-block" id="btn-export">Exporter PDF</button>
-      <button class="btn-secondary btn-block" id="btn-reset">Nouvelle journée</button>
-    </section>
-
-  </main>
-
-  <!-- MODAL CHANTIER -->
-  <div class="modal-overlay" id="modal-overlay">
-    <div class="modal">
-      <div class="modal-title">Nouveau chantier</div>
-      <div class="form-group">
-        <label class="form-label">Nom du chantier</label>
-        <input type="text" id="nom-chantier" placeholder="ex. Coupe Foret des Agettes 2025" />
-      </div>
-      <div class="form-group">
-        <label class="form-label">Date</label>
-        <input type="date" id="date-chantier" />
-      </div>
-      <div class="form-group">
-        <label class="form-label">Propriétaire / Mandant</label>
-        <input type="text" id="mandant" placeholder="ex. Commune de Vex" />
-      </div>
-      <div class="modal-actions">
-        <button class="btn-secondary" id="btn-modal-annuler">Annuler</button>
-        <button class="btn-primary" id="btn-modal-valider">Valider</button>
+        <div class="modal-actions">
+          <button class="btn-secondary" id="btn-modal-annuler">Annuler</button>
+          <button class="btn-primary" id="btn-modal-valider">Valider</button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- TOAST -->
-  <div class="toast" id="toast"></div>
+    <!-- TOAST -->
+    <div class="toast" id="toast"></div>
 
-  <!-- SCRIPTS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
-  <script src="assets/gps.js"></script>
-  <script src="assets/pdf.js"></script>
-  <script src="assets/app.js"></script>
-  <script src="assets/sw.js" type="module"></script>
-</body>
+    <!-- SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+    <script src="assets/gps.js"></script>
+    <script src="assets/pdf.js"></script>
+    <script src="assets/app.js"></script>
+  </body>
 </html>
