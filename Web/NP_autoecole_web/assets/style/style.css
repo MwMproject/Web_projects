@@ -321,13 +321,13 @@ h3 {
 }
 
 .service-icon {
-  width: 56px;
-  height: 56px;
+  width: 120px;
+  height: 120px;
   object-fit: contain;
   border-radius: 9px;
-  background: #f5f5f5;
-  padding: 6px;
+  background: #ffffff;
   flex-shrink: 0;
+  padding: 2px;
 }
 
 .service-info {
