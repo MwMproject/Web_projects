@@ -2,8 +2,19 @@
 const burger = document.querySelector(".burger");
 const nav = document.querySelector(".nav-links");
 
-burger.addEventListener("click", () => {
-  nav.classList.toggle("nav-active");
+burger?.addEventListener("click", () => {
+  const isOpen = nav.classList.toggle("active");
+
+  burger.classList.toggle("active", isOpen);
+  burger.setAttribute("aria-expanded", isOpen);
+});
+
+nav?.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", () => {
+    nav.classList.remove("active");
+    burger.classList.remove("active");
+    burger.setAttribute("aria-expanded", "false");
+  });
 });
 
 // MODAL SERVICES
@@ -11,26 +22,39 @@ const modal = document.querySelector(".service-modal");
 const modalBody = document.querySelector(".modal-body");
 const closeBtn = document.querySelector(".modal-close");
 
+function openModal(content) {
+  modalBody.innerHTML = content;
+  modal.classList.add("active");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
+
+function closeModal() {
+  modal.classList.remove("active");
+  modal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
+
 document.querySelectorAll(".service-item").forEach((item) => {
   item.addEventListener("click", () => {
     const details = item.querySelector(".card-details");
     if (!details) return;
 
-    modalBody.innerHTML = details.innerHTML;
-    modal.classList.add("active");
-    document.body.style.overflow = "hidden";
+    openModal(details.innerHTML);
   });
 });
 
-closeBtn.addEventListener("click", () => {
-  modal.classList.remove("active");
-  document.body.style.overflow = "";
+closeBtn?.addEventListener("click", closeModal);
+
+modal?.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    closeModal();
+  }
 });
 
-modal.addEventListener("click", (e) => {
-  if (e.target === modal) {
-    modal.classList.remove("active");
-    document.body.style.overflow = "";
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && modal?.classList.contains("active")) {
+    closeModal();
   }
 });
 
@@ -45,6 +69,8 @@ let interval = null;
 const delay = 3500;
 
 function updateCarousel() {
+  if (!slides.length) return;
+
   slides.forEach((slide) => {
     slide.classList.remove("left", "center", "right", "hidden");
   });
@@ -64,7 +90,8 @@ function updateCarousel() {
 }
 
 function startCarousel() {
-  if (interval) return;
+  if (interval || slides.length <= 1) return;
+
   interval = setInterval(() => {
     index = (index + 1) % slides.length;
     updateCarousel();
@@ -107,13 +134,20 @@ carousel?.addEventListener("touchend", (e) => {
 });
 
 function handleSwipe() {
+  if (!slides.length) return;
+
+  stopCarousel();
+
   if (touchEndX < touchStartX - 50) {
     index = (index + 1) % slides.length;
   }
+
   if (touchEndX > touchStartX + 50) {
     index = (index - 1 + slides.length) % slides.length;
   }
+
   updateCarousel();
+  startCarousel();
 }
 
 // INIT CAROUSEL
@@ -122,57 +156,18 @@ startCarousel();
 
 // FORM SUBMISSION
 const form = document.querySelector(".contact-form");
+const formSuccess = document.querySelector(".form-success");
 
-form.addEventListener("submit", function (e) {
+form?.addEventListener("submit", function (e) {
   e.preventDefault();
+
   form.reset();
+
+  if (formSuccess) {
+    formSuccess.hidden = false;
+
+    setTimeout(() => {
+      formSuccess.hidden = true;
+    }, 4000);
+  }
 });
-
-// SCROLL EFFECT
-const sections = [...document.querySelectorAll("section")];
-let currentSection = 0;
-let isScrolling = false;
-
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        currentSection = sections.indexOf(entry.target);
-      }
-    });
-  },
-  { threshold: 0.6 },
-);
-
-sections.forEach((section) => observer.observe(section));
-
-function scrollToSection(idx) {
-  if (idx < 0 || idx >= sections.length) return;
-  isScrolling = true;
-  sections[idx].scrollIntoView({ behavior: "smooth" });
-  setTimeout(() => {
-    isScrolling = false;
-  }, 700);
-}
-
-window.addEventListener(
-  "wheel",
-  (e) => {
-    if (isScrolling) {
-      e.preventDefault();
-      return;
-    }
-    if (e.deltaY > 0) {
-      if (currentSection < sections.length - 1) {
-        e.preventDefault();
-        scrollToSection(currentSection + 1);
-      }
-    } else {
-      if (currentSection > 0) {
-        e.preventDefault();
-        scrollToSection(currentSection - 1);
-      }
-    }
-  },
-  { passive: false },
-);

@@ -3,35 +3,57 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="NP Auto-école accompagne les élèves conducteurs dans le canton de Vaud avec une approche personnalisée, bienveillante et adaptée à chaque rythme."
+    />
 
     <title>NP Auto-école - Moniteur d'auto-école sur Vaud</title>
 
-    <link rel="stylesheet" href="assets/style/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
 
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Inter:wght@300;400;500&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="assets/style/style.css" />
   </head>
 
   <body>
-    <header>
-      <nav class="navbar">
-        <div class="logo-nav">
+    <header class="site-header">
+      <nav class="navbar container" aria-label="Navigation principale">
+        <a
+          href="#accueil"
+          class="logo-nav"
+          aria-label="Retour à l'accueil NP Auto-école"
+        >
           <img
             src="assets/img/logo-np autoécole vaud.png"
             alt="Logo NP Auto-école sur Vaud"
             class="logo-img"
           />
-          <div class="logo">NP Auto-école</div>
-        </div>
+          <span class="logo">NP Auto-école</span>
+        </a>
 
-        <ul class="nav-links">
+        <button
+          class="burger"
+          type="button"
+          aria-label="Ouvrir le menu"
+          aria-expanded="false"
+          aria-controls="site-menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <ul class="nav-links" id="site-menu">
           <li><a href="#accueil">Accueil</a></li>
           <li><a href="#apropos">À propos</a></li>
           <li><a href="#services">Services</a></li>
@@ -39,622 +61,703 @@
           <li><a href="#procedure">Procédure</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
-
-        <div class="burger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
       </nav>
     </header>
 
-    <!---------------------------------------- 
-    ------------------ HERO ------------------
-    ----------------------------------------->
-    <section id="accueil" class="hero">
-      <div class="hero-content">
-        <h1>Votre permis, à votre rythme.</h1>
-        <h2>Bienvenue chez NP auto-école.</h2>
-        <p>
-          Mon objectif n’est pas seulement de vous faire réussir l’examen, mais
-          surtout de vous aider à devenir un conducteur sûr, confiant et
-          responsable sur la route.
-        </p>
+    <main>
+      <!----------------------------------------
+      ------------------ HERO ------------------
+      ----------------------------------------->
+      <section id="accueil" class="hero">
+        <img
+          src="assets/img/Voiture de conduite NP Auto-École.png"
+          alt="Voiture de conduite NP Auto-école"
+          class="hero-bg"
+        />
+        <div class="hero-content">
+          <span class="eyebrow"
+            >Moniteur de conduite dans le canton de Vaud</span
+          >
+          <h1>Votre permis, à votre rythme.</h1>
+          <h2>Bienvenue chez NP auto-école.</h2>
+          <p>
+            Mon objectif n’est pas seulement de vous faire réussir l’examen,
+            mais surtout de vous aider à devenir un conducteur sûr, confiant et
+            responsable sur la route.
+          </p>
 
-        <a href="#services" class="btn">Commencer</a>
-      </div>
-    </section>
-
-    <!-- A PROPOS -->
-
-    <section id="apropos" class="section about">
-      <div class="container">
-        <div class="about-container">
-          <div class="about-left">
-            <div class="about-img"></div>
-
-            <p class="about-highlight">
-              Mon but n’est pas seulement de vous aider à réussir l’examen, mais
-              de vous donner les compétences et les bons réflexes pour conduire
-              en toute sécurité toute votre vie.
-            </p>
-          </div>
-
-          <div class="about-text">
-            <h2>À propos</h2>
-
-            <p>
-              Je suis Nicolas Peneveyre, moniteur de conduite avec brevet
-              fédéral et fondateur de NP auto-école. <br />Avant de devenir
-              moniteur, j’ai travaillé comme mécatronicien, un métier qui m’a
-              permis d’acquérir une solide expérience technique et une grande
-              connaissance des véhicules. Passionné par la conduite et la
-              transmission de connaissances, j’ai décidé de mettre cette
-              expérience au service de la formation des futurs conducteurs.
-              <br />Avec NP auto-école, je propose une formation personnalisée
-              pour vous accompagner tout au long de votre parcours jusqu'à la
-              réussite de votre permis de conduire. <br />Les cours se déroulent
-              avec une Seat Leon automatique moderne et confortable, idéale pour
-              apprendre dans de bonnes conditions. Je travaille principalement
-              dans la région entre Lausanne et Yverdon, en passant par le
-              Gros-de-Vaud et Chavornay, avec préparation aux examens pratiques
-              de Cossonay et Yverdon. Je dispose également d’une salle de
-              théorie à Chavornay pour les cours en groupe. <br />Ma manière
-              d’enseigner repose sur des valeurs simples : patience, pédagogie
-              et bonne humeur. Mon objectif est de vous permettre de progresser
-              à votre rythme, dans un climat détendu et motivant.
-            </p>
+          <div class="hero-actions">
+            <a href="#services" class="btn">Commencer</a>
+            <a href="#contact" class="btn btn-secondary">Me contacter</a>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!------------------------------------------
-     ---------------- SERVICES V2-----------------
-     ------------------------------------------>
-    <section id="services" class="section services">
-      <h2>Services</h2>
-
-      <!-- THÉORIE -->
-      <div class="services-category">
-        <h3 class="category-title">Théorie</h3>
-        <div class="services-row">
-          <div class="service-item toggle-card">
-            <img
-              src="assets/img/services_aide_théorie.png"
-              alt="aide théorique"
-              class="service-icon"
-            />
-            <div class="service-info">
-              <span class="service-name">Aide théorique</span>
-              <span class="service-desc">Préparation au code de la route</span>
-            </div>
-            <span class="service-price">70.- / 60 min</span>
-            <span class="service-arrow">›</span>
-            <div class="card-details" hidden>
-              <p class="tarif">70.- / 60 min</p>
-              <p>
-                L'aide à la théorie est idéale pour les personnes qui souhaitent
-                être accompagnées dans la préparation de l'examen théorique. Les
-                explications permettent de mieux comprendre les règles de
-                circulation, la signalisation et les situations de trafic.
-              </p>
-              <ul>
-                <li>✔ Révision des thèmes de l'examen</li>
-                <li>✔ Explication des questions difficiles</li>
-                <li>✔ Conseils pour réussir l'examen</li>
-              </ul>
-              <a href="https://wa.me/41797660994" class="btn service-book"
-                >Réserver</a
-              >
-            </div>
-          </div>
-
-          <div class="service-item toggle-card">
-            <img
-              src="assets/img/services_sensi.png"
-              alt="sensibilisation"
-              class="service-icon"
-            />
-            <div class="service-info">
-              <span class="service-name">Sensibilisation</span>
-              <span class="service-desc">Cours obligatoire pour le permis</span>
-            </div>
-            <span class="service-price">200.- le cours</span>
-            <span class="service-arrow">›</span>
-            <div class="card-details" hidden>
-              <p class="tarif">200.- le cours</p>
-              <p>
-                Le cours de sensibilisation est une étape obligatoire pour
-                l'obtention du permis de conduire. Il permet de mieux comprendre
-                les dangers de la circulation et de développer une conduite plus
-                responsable. Durant les différents modules, nous aborderons les
-                thèmes liés au comportement dans le trafic, à l'anticipation des
-                risques et à la sécurité routière.
-              </p>
-              <a href="https://wa.me/41797660994" class="btn service-book"
-                >Réserver</a
-              >
-            </div>
-          </div>
-
-          <div class="service-item toggle-card">
-            <img
-              src="assets/img/services_premiers_secours.png"
-              alt="premiers secours"
-              class="service-icon"
-            />
-            <div class="service-info">
-              <span class="service-name">Premiers secours</span>
-              <span class="service-desc">Formation gestes qui sauvent</span>
-            </div>
-            <span class="service-price">150.- le cours</span>
-            <span class="service-arrow">›</span>
-            <div class="card-details" hidden>
-              <p class="tarif">150.- le cours</p>
-              <p>
-                Le cours de premiers secours est obligatoire pour débuter la
-                procédure du permis de conduire. Il permet d'apprendre les
-                gestes essentiels pour réagir correctement en cas d'accident et
-                porter assistance rapidement.
-              </p>
-              <ul>
-                <li>✔ Comprendre les situations d'urgence</li>
-                <li>✔ Apprendre les gestes essentiels</li>
-                <li>✔ Réagir en cas d'accident</li>
-              </ul>
-              <a href="https://wa.me/41797660994" class="btn service-book"
-                >Réserver</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- PRATIQUE -->
-      <div class="services-category">
-        <h3 class="category-title">Pratique</h3>
-        <div class="services-row">
-          <div class="service-item toggle-card">
-            <img
-              src="assets/img/services_cat_B.png"
-              alt="cours cat.B"
-              class="service-icon"
-            />
-            <div class="service-info">
-              <span class="service-name">Cours de conduite cat. B</span>
-              <span class="service-desc"
-                >Leçons de conduite personnalisées</span
-              >
-            </div>
-            <span class="service-price">98.- / 50 min</span>
-            <span class="service-arrow">›</span>
-            <div class="card-details" hidden>
-              <p class="tarif">98.- / 50 min</p>
-              <p>
-                NP auto-école vous accompagne dans votre apprentissage de la
-                conduite jusqu'à la réussite de votre permis. Les cours ont lieu
-                dans la région entre Lausanne et Yverdon, avec préparation aux
-                examens de Cossonay et Yverdon.
-              </p>
-              <ul>
-                <li>✔ Évaluation du niveau</li>
-                <li>✔ Leçons adaptées</li>
-                <li>✔ Préparation examen pratique</li>
-              </ul>
-              <a href="https://wa.me/41797660994" class="btn service-book"
-                >Réserver</a
-              >
-            </div>
-          </div>
-
-          <div class="service-item toggle-card">
-            <img
-              src="assets/img/services_cat_BE.png"
-              alt="cours cat.BE"
-              class="service-icon"
-            />
-            <div class="service-info">
-              <span class="service-name">Cours remorque cat. BE</span>
-              <span class="service-desc">Conduite avec remorque</span>
-            </div>
-            <span class="service-price">dès 170.- / 120 min</span>
-            <span class="service-arrow">›</span>
-            <div class="card-details" hidden>
-              <p class="tarif">à partir de 170.- / 120 min</p>
-              <p>
-                NP auto-école propose des cours de conduite pour le permis
-                remorque. Cette formation vous permet d'apprendre à conduire en
-                toute sécurité avec une remorque et de maîtriser les manœuvres
-                spécifiques à ce type de véhicule.
-              </p>
-              <a href="https://wa.me/41797660994" class="btn service-book"
-                >Réserver</a
-              >
-            </div>
-          </div>
-
-          <div class="service-item toggle-card">
-            <img
-              src="assets/img/services_reprise_confiance.png"
-              alt="reprise de confiance"
-              class="service-icon"
-            />
-            <div class="service-info">
-              <span class="service-name">Reprise de confiance</span>
-              <span class="service-desc"
-                >Suivi personnalisé pour progresser</span
-              >
-            </div>
-            <span class="service-price">98.- / 50 min</span>
-            <span class="service-arrow">›</span>
-            <div class="card-details" hidden>
-              <p class="tarif">98.- / 50 min</p>
-              <p>
-                Vous avez votre permis mais vous n'osez plus conduire ? Que ce
-                soit après une longue pause, un manque de pratique ou une
-                mauvaise expérience, ces cours sont là pour vous aider à
-                retrouver confiance au volant. Les leçons se déroulent dans une
-                ambiance calme, bienveillante et sans stress.
-              </p>
-              <a href="https://wa.me/41797660994" class="btn service-book"
-                >Réserver</a
-              >
-            </div>
-          </div>
-
-          <div class="service-item toggle-card">
-            <img
-              src="assets/img/services_permis_étranger.png"
-              alt="permis étranger"
-              class="service-icon"
-            />
-            <div class="service-info">
-              <span class="service-name">Permis étranger</span>
-              <span class="service-desc"
-                >Préparation à la course de contrôle</span
-              >
-            </div>
-            <span class="service-price">98.- / 50 min</span>
-            <span class="service-arrow">›</span>
-            <div class="card-details" hidden>
-              <p class="tarif">98.- / 50 min</p>
-              <p>
-                Certaines personnes possédant un permis de conduire étranger
-                doivent effectuer une course de contrôle afin d'obtenir un
-                permis suisse. NP auto-école propose des cours de préparation
-                pour vous familiariser avec les règles de circulation suisses.
-              </p>
-              <ul>
-                <li>✔ Évaluation du niveau</li>
-                <li>✔ Préparation au contrôle</li>
-                <li>✔ Conseils personnalisés</li>
-              </ul>
-              <a href="https://wa.me/41797660994" class="btn service-book"
-                >Réserver</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!--------------------------------------------- 
-    ------------------ REUSSITES ------------------ 
-    ----------------------------------------------->
-    <section id="reussites" class="section reussites">
-      <div class="container">
-        <h2>Réussites</h2>
-
-        <div class="carousel">
-          <!-- bouton gauche -->
-          <button class="carousel-btn prev" aria-label="Photo précédente">
-            ‹
-          </button>
-
-          <!-- track -->
-          <div class="carousel-track">
-            <div class="slide">
-              <img
-                src="assets/img/réussite-1.jpg"
-                alt="Élève ayant réussi son permis"
-                loading="lazy"
-              />
-            </div>
-
-            <div class="slide">
-              <img
-                src="assets/img/réussite-2.png"
-                alt="Élève ayant réussi son permis"
-                loading="lazy"
-              />
-            </div>
-
-            <div class="slide">
-              <img
-                src="assets/img/réussite-3.jpg"
-                alt="Élève ayant réussi son permis"
-                loading="lazy"
-              />
-            </div>
-
-            <div class="slide">
-              <img
-                src="assets/img/réussite-4.jpg"
-                alt="Élève ayant réussi son permis"
-                loading="lazy"
-              />
-            </div>
-
-            <div class="slide">
-              <img
-                src="assets/img/réussite-5.jpg"
-                alt="Élève ayant réussi son permis"
-                loading="lazy"
-              />
-            </div>
-
-            <div class="slide">
-              <img
-                src="assets/img/réussite-6.jpg"
-                alt="Élève ayant réussi son permis"
-                loading="lazy"
-              />
-            </div>
-
-            <div class="slide">
-              <img
-                src="assets/img/réussite-7.jpg"
-                alt="Élève ayant réussi son permis"
-                loading="lazy"
-              />
-            </div>
-
-            <div class="slide">
-              <img
-                src="assets/img/réussite-8.jpg"
-                alt="Élève ayant réussi son permis"
-                loading="lazy"
-              />
-            </div>
-
-            <div class="slide">
-              <img
-                src="assets/img/réussite-9.jpg"
-                alt="Élève ayant réussi son permis"
-                loading="lazy"
-              />
-            </div>
-          </div>
-
-          <!-- bouton droite -->
-          <button class="carousel-btn next" aria-label="Photo suivante">
-            ›
-          </button>
-        </div>
-      </div>
-    </section>
-    <!--------------------------------------------- 
-    ------------------ PROCEDURE ------------------ 
-    ----------------------------------------------->
-
-    <section id="procedure" class="section procedure">
-      <h2>Obtenir votre permis</h2>
-
-      <div class="timeline">
-        <div class="step">
-          <div class="step-number">1</div>
-          <div class="step-content">
-            <h3>Premiers secours</h3>
-            <p>
-              Suivez le cours obligatoire de premiers secours afin d’apprendre
-              les gestes essentiels pour réagir correctement en cas d’accident..
-            </p>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="step-number">2</div>
-          <div class="step-content">
-            <h3>Demande de permis d'élève</h3>
-            <p>
-              Remplissez la demande de permis d’élève conducteur, faites
-              contrôler votre vue chez un opticien et transmettez le formulaire
-              au service des automobiles de votre canton
-            </p>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="step-number">3</div>
-          <div class="step-content">
-            <h3>Examen théorique</h3>
-            <p>
-              Préparez et réussissez l’examen théorique sur les règles de
-              circulation et la signalisation afin d’obtenir votre permis
-              d’élève conducteur.
-            </p>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="step-number">4</div>
-          <div class="step-content">
-            <h3>Cours de sensibilisation</h3>
-            <p>
-              Participez au cours de sensibilisation (8 heures) pour mieux
-              comprendre les dangers de la circulation et développer votre
-              capacité d’anticipation
-            </p>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="step-number">5</div>
-          <div class="step-content">
-            <h3>Leçons de conduite</h3>
-            <p>
-              Commencez les leçons de conduite afin d’apprendre à maîtriser le
-              véhicule, observer le trafic et conduire de manière sûre dans
-              différentes situations.
-            </p>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="step-number">6</div>
-          <div class="step-content">
-            <h3>Examen pratique</h3>
-            <p>
-              Une fois prêt et après avoir suivi le cours de sensibilisation,
-              vous pouvez vous inscrire à l’examen pratique et démontrer votre
-              capacité à conduire en toute sécurité
-            </p>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="step-number">7</div>
-          <div class="step-content">
-            <h3>Cours 2 phases</h3>
-            <p>
-              Après la réussite de l’examen pratique, vous recevez un permis à
-              l’essai valable 3 ans. Le cours 2 phases doit être effectué dans
-              l’année suivant la réussite de l’examen.
-            </p>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="step-number">8</div>
-          <div class="step-content">
-            <h3>Permis définitif</h3>
-            <p>
-              Une fois la période probatoire terminée et le cours 2 phases
-              effectué, vous recevez votre permis de conduire définitif.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!--------------------------------------------- 
-    ------------------ CONTACT --------------------
-    ---------------------------------------------->
-    <section id="contact" class="section contact">
-      <div class="contact-top">
-        <h2>Contact</h2>
-
-        <div class="contact-wrapper">
-          <!-- INFOS -->
-          <div class="contact-info">
-            <h3>Une question ?</h3>
-
-            <p>
-              N'hésitez pas à me contacter pour toute information ou pour
-              réserver une leçon.
-            </p>
-
-            <div class="info-item">
-              <i class="fa-solid fa-phone"></i>
-              <a href="tel:+41797660994">079 766 09 94</a>
-            </div>
-
-            <div class="info-item">
-              <i class="fa-solid fa-envelope"></i>
-              <a href="mailto:contact@np-autoecole.ch"
-                >contact@np-autoecole.ch</a
-              >
-            </div>
-
-            <a href="https://wa.me/41797660994" class="btn-whatsapp">
-              <i class="fa-brands fa-whatsapp"></i>
-              Contacter sur WhatsApp
-            </a>
-          </div>
-
-          <!-- FORM -->
-          <form class="contact-form">
-            <div class="form-row">
-              <div class="form-field">
-                <label></label>
-                <input type="text" placeholder="Nom" required />
+      <!----------------------------------------
+      ---------------- À PROPOS ----------------
+      ----------------------------------------->
+      <section id="apropos" class="section about">
+        <div class="container">
+          <div class="about-container">
+            <div class="about-left">
+              <div class="about-img">
+                <img
+                  src="assets/img/about-img.png"
+                  alt="Nicolas Peneveyre, moniteur NP Auto-école"
+                />
               </div>
 
-              <div class="form-field">
-                <label></label>
-                <input type="text" placeholder="Prénom" required />
+              <p class="about-highlight">
+                Mon but n’est pas seulement de vous aider à réussir l’examen,
+                mais de vous donner les compétences et les bons réflexes pour
+                conduire en toute sécurité toute votre vie.
+              </p>
+            </div>
+
+            <div class="about-text">
+              <h2>À propos</h2>
+
+              <p>
+                Je suis Nicolas Peneveyre, moniteur de conduite avec brevet
+                fédéral et fondateur de NP auto-école. <br />Avant de devenir
+                moniteur, j’ai travaillé comme mécatronicien, un métier qui m’a
+                permis d’acquérir une solide expérience technique et une grande
+                connaissance des véhicules. Passionné par la conduite et la
+                transmission de connaissances, j’ai décidé de mettre cette
+                expérience au service de la formation des futurs conducteurs.
+                <br />Avec NP auto-école, je propose une formation personnalisée
+                pour vous accompagner tout au long de votre parcours jusqu'à la
+                réussite de votre permis de conduire. <br />Les cours se
+                déroulent avec une Seat Leon automatique moderne et confortable,
+                idéale pour apprendre dans de bonnes conditions. Je travaille
+                principalement dans la région entre Lausanne et Yverdon, en
+                passant par le Gros-de-Vaud et Chavornay, avec préparation aux
+                examens pratiques de Cossonay et Yverdon. Je dispose également
+                d’une salle de théorie à Chavornay pour les cours en groupe.
+                <br />Ma manière d’enseigner repose sur des valeurs simples :
+                patience, pédagogie et bonne humeur. Mon objectif est de vous
+                permettre de progresser à votre rythme, dans un climat détendu
+                et motivant.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!------------------------------------------
+      ---------------- SERVICES -----------------
+      ------------------------------------------>
+      <section id="services" class="section services">
+        <div class="container">
+          <h2>Services</h2>
+
+          <!-- THÉORIE -->
+          <div class="services-category">
+            <h3 class="category-title">Théorie</h3>
+
+            <div class="services-row">
+              <div class="service-item toggle-card">
+                <img
+                  src="assets/img/services_aide_théorie.png"
+                  alt="Aide théorique"
+                  class="service-icon"
+                />
+
+                <div class="service-info">
+                  <span class="service-name">Aide théorique</span>
+                  <span class="service-desc"
+                    >Préparation au code de la route</span
+                  >
+                </div>
+
+                <span class="service-price">70.- / 60 min</span>
+                <span class="service-arrow" aria-hidden="true">›</span>
+
+                <div class="card-details" hidden>
+                  <p class="tarif">70.- / 60 min</p>
+                  <p>
+                    L'aide à la théorie est idéale pour les personnes qui
+                    souhaitent être accompagnées dans la préparation de l'examen
+                    théorique. Les explications permettent de mieux comprendre
+                    les règles de circulation, la signalisation et les
+                    situations de trafic.
+                  </p>
+                  <ul>
+                    <li>✔ Révision des thèmes de l'examen</li>
+                    <li>✔ Explication des questions difficiles</li>
+                    <li>✔ Conseils pour réussir l'examen</li>
+                  </ul>
+                  <a href="https://wa.me/41797660994" class="btn service-book"
+                    >Réserver</a
+                  >
+                </div>
+              </div>
+
+              <div class="service-item toggle-card">
+                <img
+                  src="assets/img/services_sensi.png"
+                  alt="Cours de sensibilisation"
+                  class="service-icon"
+                />
+
+                <div class="service-info">
+                  <span class="service-name">Sensibilisation</span>
+                  <span class="service-desc"
+                    >Cours obligatoire pour le permis</span
+                  >
+                </div>
+
+                <span class="service-price">200.- le cours</span>
+                <span class="service-arrow" aria-hidden="true">›</span>
+
+                <div class="card-details" hidden>
+                  <p class="tarif">200.- le cours</p>
+                  <p>
+                    Le cours de sensibilisation est une étape obligatoire pour
+                    l'obtention du permis de conduire. Il permet de mieux
+                    comprendre les dangers de la circulation et de développer
+                    une conduite plus responsable. Durant les différents
+                    modules, nous aborderons les thèmes liés au comportement
+                    dans le trafic, à l'anticipation des risques et à la
+                    sécurité routière.
+                  </p>
+                  <a href="https://wa.me/41797660994" class="btn service-book"
+                    >Réserver</a
+                  >
+                </div>
+              </div>
+
+              <div class="service-item toggle-card">
+                <img
+                  src="assets/img/services_premiers_secours.png"
+                  alt="Cours de premiers secours"
+                  class="service-icon"
+                />
+
+                <div class="service-info">
+                  <span class="service-name">Premiers secours</span>
+                  <span class="service-desc">Formation gestes qui sauvent</span>
+                </div>
+
+                <span class="service-price">150.- le cours</span>
+                <span class="service-arrow" aria-hidden="true">›</span>
+
+                <div class="card-details" hidden>
+                  <p class="tarif">150.- le cours</p>
+                  <p>
+                    Le cours de premiers secours est obligatoire pour débuter la
+                    procédure du permis de conduire. Il permet d'apprendre les
+                    gestes essentiels pour réagir correctement en cas d'accident
+                    et porter assistance rapidement.
+                  </p>
+                  <ul>
+                    <li>✔ Comprendre les situations d'urgence</li>
+                    <li>✔ Apprendre les gestes essentiels</li>
+                    <li>✔ Réagir en cas d'accident</li>
+                  </ul>
+                  <a href="https://wa.me/41797660994" class="btn service-book"
+                    >Réserver</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PRATIQUE -->
+          <div class="services-category">
+            <h3 class="category-title">Pratique</h3>
+
+            <div class="services-row">
+              <div class="service-item toggle-card">
+                <img
+                  src="assets/img/services_cat_B.png"
+                  alt="Cours de conduite catégorie B"
+                  class="service-icon"
+                />
+
+                <div class="service-info">
+                  <span class="service-name">Cours de conduite cat. B</span>
+                  <span class="service-desc"
+                    >Leçons de conduite personnalisées</span
+                  >
+                </div>
+
+                <span class="service-price">98.- / 50 min</span>
+                <span class="service-arrow" aria-hidden="true">›</span>
+
+                <div class="card-details" hidden>
+                  <p class="tarif">98.- / 50 min</p>
+                  <p>
+                    NP auto-école vous accompagne dans votre apprentissage de la
+                    conduite jusqu'à la réussite de votre permis. Les cours ont
+                    lieu dans la région entre Lausanne et Yverdon, avec
+                    préparation aux examens de Cossonay et Yverdon.
+                  </p>
+                  <ul>
+                    <li>✔ Évaluation du niveau</li>
+                    <li>✔ Leçons adaptées</li>
+                    <li>✔ Préparation examen pratique</li>
+                  </ul>
+                  <a href="https://wa.me/41797660994" class="btn service-book"
+                    >Réserver</a
+                  >
+                </div>
+              </div>
+
+              <div class="service-item toggle-card">
+                <img
+                  src="assets/img/services_cat_BE.png"
+                  alt="Cours remorque catégorie BE"
+                  class="service-icon"
+                />
+
+                <div class="service-info">
+                  <span class="service-name">Cours remorque cat. BE</span>
+                  <span class="service-desc">Conduite avec remorque</span>
+                </div>
+
+                <span class="service-price">dès 170.- / 120 min</span>
+                <span class="service-arrow" aria-hidden="true">›</span>
+
+                <div class="card-details" hidden>
+                  <p class="tarif">à partir de 170.- / 120 min</p>
+                  <p>
+                    NP auto-école propose des cours de conduite pour le permis
+                    remorque. Cette formation vous permet d'apprendre à conduire
+                    en toute sécurité avec une remorque et de maîtriser les
+                    manœuvres spécifiques à ce type de véhicule.
+                  </p>
+                  <a href="https://wa.me/41797660994" class="btn service-book"
+                    >Réserver</a
+                  >
+                </div>
+              </div>
+
+              <div class="service-item toggle-card">
+                <img
+                  src="assets/img/services_reprise_confiance.png"
+                  alt="Reprise de confiance au volant"
+                  class="service-icon"
+                />
+
+                <div class="service-info">
+                  <span class="service-name">Reprise de confiance</span>
+                  <span class="service-desc"
+                    >Suivi personnalisé pour progresser</span
+                  >
+                </div>
+
+                <span class="service-price">98.- / 50 min</span>
+                <span class="service-arrow" aria-hidden="true">›</span>
+
+                <div class="card-details" hidden>
+                  <p class="tarif">98.- / 50 min</p>
+                  <p>
+                    Vous avez votre permis mais vous n'osez plus conduire ? Que
+                    ce soit après une longue pause, un manque de pratique ou une
+                    mauvaise expérience, ces cours sont là pour vous aider à
+                    retrouver confiance au volant. Les leçons se déroulent dans
+                    une ambiance calme, bienveillante et sans stress.
+                  </p>
+                  <a href="https://wa.me/41797660994" class="btn service-book"
+                    >Réserver</a
+                  >
+                </div>
+              </div>
+
+              <div class="service-item toggle-card">
+                <img
+                  src="assets/img/services_permis_étranger.png"
+                  alt="Préparation pour permis étranger"
+                  class="service-icon"
+                />
+
+                <div class="service-info">
+                  <span class="service-name">Permis étranger</span>
+                  <span class="service-desc"
+                    >Préparation à la course de contrôle</span
+                  >
+                </div>
+
+                <span class="service-price">98.- / 50 min</span>
+                <span class="service-arrow" aria-hidden="true">›</span>
+
+                <div class="card-details" hidden>
+                  <p class="tarif">98.- / 50 min</p>
+                  <p>
+                    Certaines personnes possédant un permis de conduire étranger
+                    doivent effectuer une course de contrôle afin d'obtenir un
+                    permis suisse. NP auto-école propose des cours de
+                    préparation pour vous familiariser avec les règles de
+                    circulation suisses.
+                  </p>
+                  <ul>
+                    <li>✔ Évaluation du niveau</li>
+                    <li>✔ Préparation au contrôle</li>
+                    <li>✔ Conseils personnalisés</li>
+                  </ul>
+                  <a href="https://wa.me/41797660994" class="btn service-book"
+                    >Réserver</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!---------------------------------------------
+      ------------------ RÉUSSITES ------------------
+      ----------------------------------------------->
+      <section id="reussites" class="section reussites">
+        <div class="container">
+          <h2>Réussites</h2>
+
+          <div class="carousel" aria-label="Galerie des réussites">
+            <button
+              class="carousel-btn prev"
+              type="button"
+              aria-label="Photo précédente"
+            >
+              ‹
+            </button>
+
+            <div class="carousel-track">
+              <div class="slide">
+                <img
+                  src="assets/img/réussite-1.jpg"
+                  alt="Élève ayant réussi son permis"
+                  loading="lazy"
+                />
+              </div>
+
+              <div class="slide">
+                <img
+                  src="assets/img/réussite-2.png"
+                  alt="Élève ayant réussi son permis"
+                  loading="lazy"
+                />
+              </div>
+
+              <div class="slide">
+                <img
+                  src="assets/img/réussite-3.jpg"
+                  alt="Élève ayant réussi son permis"
+                  loading="lazy"
+                />
+              </div>
+
+              <div class="slide">
+                <img
+                  src="assets/img/réussite-4.jpg"
+                  alt="Élève ayant réussi son permis"
+                  loading="lazy"
+                />
+              </div>
+
+              <div class="slide">
+                <img
+                  src="assets/img/réussite-5.jpg"
+                  alt="Élève ayant réussi son permis"
+                  loading="lazy"
+                />
+              </div>
+
+              <div class="slide">
+                <img
+                  src="assets/img/réussite-6.jpg"
+                  alt="Élève ayant réussi son permis"
+                  loading="lazy"
+                />
+              </div>
+
+              <div class="slide">
+                <img
+                  src="assets/img/réussite-7.jpg"
+                  alt="Élève ayant réussi son permis"
+                  loading="lazy"
+                />
+              </div>
+
+              <div class="slide">
+                <img
+                  src="assets/img/réussite-8.jpg"
+                  alt="Élève ayant réussi son permis"
+                  loading="lazy"
+                />
+              </div>
+
+              <div class="slide">
+                <img
+                  src="assets/img/réussite-9.jpg"
+                  alt="Élève ayant réussi son permis"
+                  loading="lazy"
+                />
               </div>
             </div>
 
-            <div class="form-row">
-              <div class="form-field">
-                <label></label>
-                <input type="email" placeholder="Email" required />
-              </div>
-
-              <div class="form-field">
-                <label></label>
-                <input type="tel" placeholder="Téléphone" />
-              </div>
-            </div>
-
-            <div class="form-field full">
-              <label></label>
-              <textarea placeholder="Message" required></textarea>
-            </div>
-
-            <button type="submit" class="btn">Envoyer</button>
-          </form>
+            <button
+              class="carousel-btn next"
+              type="button"
+              aria-label="Photo suivante"
+            >
+              ›
+            </button>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <!--------------------------------------------- 
+      <!---------------------------------------------
+      ------------------ PROCÉDURE ------------------
+      ----------------------------------------------->
+      <section id="procedure" class="section procedure">
+        <div class="container">
+          <h2>Obtenir votre permis</h2>
+
+          <div class="timeline">
+            <div class="step">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h3>Premiers secours</h3>
+                <p>
+                  Suivez le cours obligatoire de premiers secours afin
+                  d’apprendre les gestes essentiels pour réagir correctement en
+                  cas d’accident.
+                </p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h3>Demande de permis d'élève</h3>
+                <p>
+                  Remplissez la demande de permis d’élève conducteur, faites
+                  contrôler votre vue chez un opticien et transmettez le
+                  formulaire au service des automobiles de votre canton.
+                </p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <h3>Examen théorique</h3>
+                <p>
+                  Préparez et réussissez l’examen théorique sur les règles de
+                  circulation et la signalisation afin d’obtenir votre permis
+                  d’élève conducteur.
+                </p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">4</div>
+              <div class="step-content">
+                <h3>Cours de sensibilisation</h3>
+                <p>
+                  Participez au cours de sensibilisation (8 heures) pour mieux
+                  comprendre les dangers de la circulation et développer votre
+                  capacité d’anticipation.
+                </p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">5</div>
+              <div class="step-content">
+                <h3>Leçons de conduite</h3>
+                <p>
+                  Commencez les leçons de conduite afin d’apprendre à maîtriser
+                  le véhicule, observer le trafic et conduire de manière sûre
+                  dans différentes situations.
+                </p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">6</div>
+              <div class="step-content">
+                <h3>Examen pratique</h3>
+                <p>
+                  Une fois prêt et après avoir suivi le cours de
+                  sensibilisation, vous pouvez vous inscrire à l’examen pratique
+                  et démontrer votre capacité à conduire en toute sécurité.
+                </p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">7</div>
+              <div class="step-content">
+                <h3>Cours 2 phases</h3>
+                <p>
+                  Après la réussite de l’examen pratique, vous recevez un permis
+                  à l’essai valable 3 ans. Le cours 2 phases doit être effectué
+                  dans l’année suivant la réussite de l’examen.
+                </p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">8</div>
+              <div class="step-content">
+                <h3>Permis définitif</h3>
+                <p>
+                  Une fois la période probatoire terminée et le cours 2 phases
+                  effectué, vous recevez votre permis de conduire définitif.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!---------------------------------------------
+      ------------------ CONTACT --------------------
+      ---------------------------------------------->
+      <section id="contact" class="section contact">
+        <div class="container contact-layout">
+          <div class="contact-top">
+            <h2>Contact</h2>
+
+            <div class="contact-wrapper">
+              <div class="contact-info">
+                <h3>Une question ?</h3>
+
+                <p>
+                  N'hésitez pas à me contacter pour toute information ou pour
+                  réserver une leçon.
+                </p>
+
+                <div class="info-list">
+                  <a class="info-item" href="tel:+41797660994">
+                    <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                    <span>079 766 09 94</span>
+                  </a>
+
+                  <a class="info-item" href="mailto:contact@np-autoecole.ch">
+                    <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                    <span>contact@np-autoecole.ch</span>
+                  </a>
+                </div>
+
+                <a href="https://wa.me/41797660994" class="btn-whatsapp">
+                  <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                  Contacter sur WhatsApp
+                </a>
+              </div>
+
+              <form class="contact-form">
+                <div class="form-row">
+                  <div class="form-field">
+                    <label for="nom"></label>
+                    <input id="nom" type="text" placeholder="Nom" required />
+                  </div>
+
+                  <div class="form-field">
+                    <label for="prenom"></label>
+                    <input
+                      id="prenom"
+                      type="text"
+                      placeholder="Prénom"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-field">
+                    <label for="email"></label>
+                    <input
+                      id="email"
+                      type="email"
+                      placeholder="Email"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-field">
+                    <label for="telephone"></label>
+                    <input id="telephone" type="tel" placeholder="Téléphone" />
+                  </div>
+                </div>
+
+                <div class="form-field full">
+                  <label for="message"></label>
+                  <textarea
+                    id="message"
+                    placeholder="Message"
+                    required
+                  ></textarea>
+                </div>
+
+                <button type="submit" class="btn">Envoyer</button>
+
+                <p class="form-success" aria-live="polite" hidden>
+                  Merci, votre message a bien été préparé.
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!---------------------------------------------
     ------------------ FOOTER --------------------
     ---------------------------------------------->
-      <footer class="contact-footer">
-        <div class="footer-grid">
-          <div class="footer-contact">
-            <p>
-              <i class="fa-solid fa-phone"></i>
-              <a href="tel:+41797660994">079 766 09 94</a>
-            </p>
-            <p>
-              <i class="fa-solid fa-envelope"></i>
-              <a href="mailto:contact@np-autoecole.ch"
-                >contact@np-autoecole.ch</a
-              >
-            </p>
-          </div>
-
-          <div class="footer-logo">
-            <img
-              src="assets/img/logo-np autoécole vaud.png"
-              alt="Logo NP Auto-école"
-            />
-            <p>Auto-école</p>
-          </div>
-
-          <div class="footer-social">
-            <a href="#" class="btn-outline">
-              <i class="fa-brands fa-instagram"></i> Instagram
-            </a>
-
-            <a href="https://wa.me/41797660994" class="btn-outline">
-              <i class="fa-brands fa-whatsapp"></i> WhatsApp
-            </a>
-          </div>
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <img
+            src="assets/img/logo-np autoécole vaud.png"
+            alt="Logo NP Auto-école"
+          />
+          <p>Auto-école</p>
         </div>
 
-        <div class="footer-bottom">
-          © 2025 NP Auto-école — Tous droits réservés
+        <div class="footer-contact">
+          <h3>Coordonnées</h3>
+
+          <a href="tel:+41797660994">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            079 766 09 94
+          </a>
+
+          <a href="mailto:contact@np-autoecole.ch">
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            contact@np-autoecole.ch
+          </a>
         </div>
-      </footer>
-    </section>
-    <!-- MODAL -->
-    <div class="service-modal">
-      <div class="service-modal-content">
-        <button class="modal-close">✕</button>
+
+        <div class="footer-actions">
+          <h3>Contact rapide</h3>
+
+          <a href="#contact" class="btn-outline footer-btn">Formulaire</a>
+
+          <a href="https://wa.me/41797660994" class="btn-outline footer-btn">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+            WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        © 2025 NP Auto-école — Tous droits réservés
+      </div>
+    </footer>
+
+    <!-- MODAL SERVICES -->
+    <div class="service-modal" aria-hidden="true">
+      <div class="service-modal-content" role="dialog" aria-modal="true">
+        <button
+          class="modal-close"
+          type="button"
+          aria-label="Fermer la fenêtre"
+        >
+          ✕
+        </button>
         <div class="modal-body"></div>
       </div>
     </div>
