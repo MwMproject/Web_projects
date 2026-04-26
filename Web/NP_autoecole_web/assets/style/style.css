@@ -1043,20 +1043,19 @@ img {
    MEDIA QUERIES
 ================================================== */
 
+/* ---------- DESKTOP SMALL / TABLET ---------- */
 @media (max-width: 1050px) {
   .services-row {
     grid-template-columns: 1fr;
   }
 
-  .carousel-btn.prev {
+  .carousel-btn {
     left: 8px;
-  }
-
-  .carousel-btn.next {
     right: 8px;
   }
 }
 
+/* ---------- TABLET ---------- */
 @media (max-width: 900px) {
   .section {
     padding: 100px 0;
@@ -1099,16 +1098,13 @@ img {
     padding: 40px 30px;
   }
 
-  .about-text {
-    max-width: 100%;
-  }
-
   .contact {
-    padding: 90px 0 90px;
+    padding: 90px 0;
   }
 
   .contact-wrapper {
     grid-template-columns: 1fr;
+    gap: 35px;
   }
 
   .contact-info,
@@ -1121,12 +1117,6 @@ img {
     text-align: center;
   }
 
-  .footer-brand img,
-  .footer-btn {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
   .footer-contact,
   .footer-actions {
     align-items: center;
@@ -1137,6 +1127,7 @@ img {
   }
 }
 
+/* ---------- MOBILE LARGE ---------- */
 @media (max-width: 700px) {
   .container {
     width: min(100% - 28px, 1200px);
@@ -1158,15 +1149,9 @@ img {
     padding: 90px 0 100px;
   }
 
-  .services-category {
-    margin-top: 45px;
-  }
-
   .service-item {
-    grid-template-columns: 82px minmax(0, 1fr) 18px;
-    gap: 14px;
+    grid-template-columns: 82px 1fr 18px;
     padding: 18px;
-    min-height: auto;
   }
 
   .service-icon {
@@ -1174,23 +1159,9 @@ img {
     height: 82px;
   }
 
-  .service-name {
-    font-size: 15px;
-  }
-
-  .service-desc {
-    font-size: 13px;
-  }
-
   .service-price {
     grid-column: 2 / 4;
     font-size: 14px;
-  }
-
-  .service-arrow {
-    grid-column: 3;
-    grid-row: 1;
-    justify-self: end;
   }
 
   .carousel {
@@ -1225,41 +1196,9 @@ img {
   .procedure {
     padding: 70px 20px 50px;
   }
-
-  .timeline {
-    margin-top: 35px;
-  }
 }
 
-@media (max-width: 600px) {
-  .about {
-    padding: 80px 0;
-  }
-
-  .about-container {
-    padding: 22px;
-    border-radius: 14px;
-  }
-
-  .about-left {
-    gap: 18px;
-  }
-
-  .about-highlight {
-    padding: 20px;
-    font-size: 15.5px;
-    line-height: 1.6;
-  }
-
-  .contact-wrapper {
-    gap: 28px;
-  }
-
-  .site-footer {
-    padding: 55px 0 28px;
-  }
-}
-
+/* ---------- MOBILE ---------- */
 @media (max-width: 480px) {
   .logo {
     font-size: 17px;
@@ -1290,8 +1229,7 @@ img {
   }
 
   .service-item {
-    grid-template-columns: 70px minmax(0, 1fr) 18px;
-    gap: 12px;
+    grid-template-columns: 70px 1fr 18px;
     padding: 16px;
   }
 
@@ -1323,10 +1261,6 @@ img {
     left: 24px;
   }
 
-  .step {
-    gap: 14px;
-  }
-
   .step-number {
     min-width: 48px;
     height: 48px;
@@ -1334,14 +1268,11 @@ img {
   }
 
   .contact {
-    padding: 75px 0 80px;
-  }
-
-  .contact h2 {
-    color: #111;
+    padding: 75px 0;
   }
 }
 
+/* ---------- SMALL MOBILE ---------- */
 @media (max-width: 420px) {
   .about-container {
     padding: 16px;
