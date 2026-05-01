@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>project_1</title>
+    <link rel="stylesheet" href="assets/style/style.css" />
+  </head>
+  <body>
+    <div class="bg-grid"></div>
+    <div id="particles"></div>
+
+    <!-- ════════════════════ AUTH ════════════════════ -->
+    <div class="screen active" id="s-auth">
+      <div style="text-align: center; z-index: 1">
+        <div class="game-logo">Project<br /><span>1</span></div>
+        <div class="game-sub">game_test</div>
+      </div>
+      <div class="auth-box">
+        <div class="auth-tabs">
+          <button class="auth-tab active" onclick="switchTab('login')">
+            CONNEXION
+          </button>
+          <button class="auth-tab" onclick="switchTab('register')">
+            S'INSCRIRE
+          </button>
+        </div>
+        <div class="auth-form active" id="form-login">
+          <div>
+            <div class="flabel">▸ EMAIL</div>
+            <input
+              class="finput"
+              id="login-email"
+              type="email"
+              placeholder="survivor@wasteland.net"
+            />
+          </div>
+          <div>
+            <div class="flabel">▸ MOT DE PASSE</div>
+            <input
+              class="finput"
+              id="login-pwd"
+              type="password"
+              placeholder="••••••••"
+            />
+          </div>
+          <div class="errmsg" id="login-err"></div>
+          <button class="btn-primary" onclick="doLogin()">
+            ► ENTRER DANS LA ZONE
+          </button>
+          <div style="font-size: 13px; color: var(--muted); text-align: center">
+            Démo → <span style="color: var(--teal)">demo@mwm_project.ch</span> /
+            <span style="color: var(--teal)">demo123</span>
+          </div>
+        </div>
+        <div class="auth-form" id="form-register">
+          <div>
+            <div class="flabel">▸ NOM DE SURVIVANT</div>
+            <input
+              class="finput"
+              id="reg-name"
+              type="text"
+              placeholder="Ton nom de guerre..."
+            />
+          </div>
+          <div>
+            <div class="flabel">▸ EMAIL</div>
+            <input
+              class="finput"
+              id="reg-email"
+              type="email"
+              placeholder="email@exemple.com"
+            />
+          </div>
+          <div>
+            <div class="flabel">▸ MOT DE PASSE</div>
+            <input
+              class="finput"
+              id="reg-pwd"
+              type="password"
+              placeholder="Min. 6 caractères"
+            />
+          </div>
+          <div class="errmsg" id="reg-err"></div>
+          <button class="btn-primary" onclick="doRegister()">
+            ► CRÉER MON SURVIVANT
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════ HUD GLOBAL ════════════════════ -->
+    <div id="hud">
+      <div class="hud-logo">P1</div>
+      <div class="hud-sep"></div>
+      <div class="hud-user" id="hud-user">—</div>
+      <div class="hud-sep"></div>
+      <div class="hud-coins">
+        <span id="hud-coins-icon"></span> <span id="hud-coins">0</span>
+      </div>
+      <div class="hud-right">
+        <button class="hud-btn" onclick="doLogout()">QUITTER</button>
+      </div>
+    </div>
+
+    <!-- ════════════════════ CLASS SELECT ════════════════════ -->
+    <div class="screen" id="s-class">
+      <div class="screen-title" style="z-index: 1">
+        CHOISIR TA CLASSE
+        <small>TON STYLE DE JEU — PAS TON NIVEAU DE PUISSANCE</small>
+      </div>
+      <div class="classes-grid">
+        <div class="cc warrior" onclick="pickClass('warrior')">
+          <div class="cc-badge">✓ PRÊT</div>
+          <div class="cc-banner">
+            <div class="cc-float" id="cc-icon-warrior"></div>
+          </div>
+          <div class="cc-body">
+            <div class="cc-name">RAVAGER</div>
+            <div class="cc-desc">
+              Bourrin de la zone. Fonce dans le tas, encaisse tout.
+            </div>
+            <div class="cc-stats">
+              <div class="srow">
+                <span class="slbl">FORCE</span>
+                <div class="sbar">
+                  <div class="sfill" style="width: 92%"></div>
+                </div>
+              </div>
+              <div class="srow">
+                <span class="slbl">VIE</span>
+                <div class="sbar">
+                  <div class="sfill" style="width: 88%"></div>
+                </div>
+              </div>
+              <div class="srow">
+                <span class="slbl">VITESSE</span>
+                <div class="sbar">
+                  <div class="sfill" style="width: 42%"></div>
+                </div>
+              </div>
+              <div class="srow">
+                <span class="slbl">MAGIE</span>
+                <div class="sbar">
+                  <div class="sfill" style="width: 10%"></div>
+                </div>
+              </div>
+            </div>
+            <div class="cc-skills">
+              <span class="sk-tag">CHARGE</span
+              ><span class="sk-tag">TOURBILLON</span
+              ><span class="sk-tag">RAGE</span>
+            </div>
+          </div>
+        </div>
+        <div class="cc mage" onclick="pickClass('mage')">
+          <div class="cc-badge">✓ PRÊT</div>
+          <div class="cc-banner">
+            <div class="cc-float" id="cc-icon-mage"></div>
+          </div>
+          <div class="cc-body">
+            <div class="cc-name">HEXOMANCER</div>
+            <div class="cc-desc">
+              AoE dévastateur. Fragile mais lethal à distance.
+            </div>
+            <div class="cc-stats">
+              <div class="srow">
+                <span class="slbl">FORCE</span>
+                <div class="sbar">
+                  <div class="sfill" style="width: 95%"></div>
+                </div>
+              </div>
+              <div class="srow">
+                <span class="slbl">VIE</span>
+                <div class="sbar">
+                  <div class="sfill" style="width: 35%"></div>
+                </div>
+              </div>
+              <div class="srow">
+                <span class="slbl">VITESSE</span>
+                <div class="sbar">
+                  <div class="sfill" style="width: 62%"></div>
+                </div>
+              </div>
+              <div class="srow">
+                <span class="slbl">MAGIE</span>
+                <div class="sbar">
+                  <div class="sfill" style="width: 98%"></div>
+                </div>
+              </div>
+            </div>
+            <div class="cc-skills">
+              <span class="sk-tag">NOVA</span
+              ><span class="sk-tag">TÉLÉPORT</span
+              ><span class="sk-tag">TEMPÊTE</span>
+            </div>
+          </div>
+        </div>
+        <div class="cc archer" onclick="pickClass('archer')">
+          <div class="cc-badge">✓ PRÊT</div>
+          <div class="cc-banner">
+            <div class="cc-float" id="cc-icon-archer"></div>
+          </div>
+          <div class="cc-body">
+            <div class="cc-name">DRIFTER</div>
+            <div class="cc-desc">
+              Fantôme de la zone. Kite, pièges, frappe et disparaît.
+            </div>
+            <div class="cc-stats">
+              <div class="srow">
+                <span class="slbl">FORCE</span>
+                <div class="sbar">
+                  <div class="sfill" style="width: 60%"></div>
+                </div>
+              </div>
+              <div class="srow">
+                <span class="slbl">VIE</span>
+                <div class="sbar">
+                  <div class="sfill" style="width: 55%"></div>
+                </div>
+              </div>
+              <div class="srow">
+                <span class="slbl">VITESSE</span>
+                <div class="sbar">
+                  <div class="sfill" style="width: 95%"></div>
+                </div>
+              </div>
+              <div class="srow">
+                <span class="slbl">MAGIE</span>
+                <div class="sbar">
+                  <div class="sfill" style="width: 30%"></div>
+                </div>
+              </div>
+            </div>
+            <div class="cc-skills">
+              <span class="sk-tag">RAFALE</span><span class="sk-tag">PIÈGE</span
+              ><span class="sk-tag">ESQUIVE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="btn-confirm" id="btn-confirm" onclick="confirmClass()">
+        ► CONFIRMER LA CLASSE
+      </button>
+    </div>
+
+    <!-- ════════════════════ HUB ════════════════════ -->
+    <div class="screen" id="s-hub">
+      <div class="player-card fadein">
+        <div class="pcard-avatar">
+          <canvas
+            id="hub-char"
+            width="32"
+            height="32"
+            style="width: 60px; height: 60px"
+          ></canvas>
+          <div class="pcard-class" id="pcard-cls"></div>
+        </div>
+        <div class="pcard-info">
+          <div class="pcard-name" id="pcard-name">—</div>
+          <div class="pcard-level" id="pcard-level">
+            <span id="level-star"></span> NIVEAU 1
+          </div>
+          <div class="xp-wrap">
+            <div class="xp-fill" id="xp-fill" style="width: 0%"></div>
+          </div>
+          <div class="xp-lbl" id="xp-lbl">0 / 1000 XP</div>
+        </div>
+      </div>
+      <div class="hub-grid fadein">
+        <div class="hub-tile" onclick="launchGame()">
+          <div class="hub-icon" id="hub-icon-play"></div>
+          <div class="hub-lbl">JOUER</div>
+          <div class="hub-desc">Lancer une partie en vagues</div>
+        </div>
+        <div class="hub-tile" onclick="showScreen('s-shop')">
+          <div class="hub-icon" id="hub-icon-shop"></div>
+          <div class="hub-lbl">BOUTIQUE</div>
+          <div class="hub-desc">Skins & cosmétiques</div>
+        </div>
+        <div class="hub-tile" onclick="showScreen('s-profile')">
+          <div class="hub-icon" id="hub-icon-profile"></div>
+          <div class="hub-lbl">PROFIL</div>
+          <div class="hub-desc">Stats & inventaire</div>
+        </div>
+        <div class="hub-tile" onclick="pickDifferentClass()">
+          <div class="hub-icon" id="hub-icon-class"></div>
+          <div class="hub-lbl">CLASSE</div>
+          <div class="hub-desc">Changer de personnage</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
