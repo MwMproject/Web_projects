@@ -3,70 +3,1242 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- SEO PRINCIPAL -->
   <title>MwM Project – Création de sites web, e-commerce & applications en Suisse romande</title>
-  <meta name="description" content="MwM Project est un studio digital basé dans le canton de Vaud, actif en Suisse romande. Création de sites web modernes, boutiques en ligne, applications web et solutions digitales sur mesure pour entreprises et indépendants.">
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://mwm-project.ch/" />
+  <meta name="description" content="MwM Project est un studio digital basé dans le canton de Vaud, actif en Suisse romande. Création de sites web modernes, boutiques en ligne, applications web et solutions digitales sur mesure.">
 
-  <!-- GEO SEO SUISSE -->
-  <meta name="geo.region" content="CH-VD">
-  <meta name="geo.region" content="CH-FR">
-  <meta name="geo.region" content="CH-NE">
-  <meta name="geo.placename" content="Vaud, Suisse romande">
-  <meta name="geo.country" content="CH">
-
-  <!-- OPEN GRAPH -->
-  <meta property="og:title" content="MwM Project – Studio digital suisse">
-  <meta property="og:description" content="Création de sites web, boutiques en ligne et applications modernes en Suisse romande. Studio basé dans le canton de Vaud, proche de Fribourg et Neuchâtel.">
-  <meta property="og:image" content="https://mwm-project.ch/assets/img/logo_mwm.png">
-  <meta property="og:url" content="https://mwm-project.ch/">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="fr_CH">
-
-  <!-- TWITTER -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="MwM Project – Studio digital suisse">
-  <meta name="twitter:description" content="Création de sites web, e-commerce et applications web en Suisse romande.">
-
-  <!-- PERFORMANCE -->
+  <!-- FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <!-- FONT -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    /* ==========================================================
+       CSS VARIABLES
+    ========================================================== */
+    :root {
+      --bg: #06080c;
+      --bg-alt: #0c0f16;
+      --bg-card: rgba(255,255,255,0.025);
+      --text: #eef0f4;
+      --text-muted: #7a8194;
+      --accent: #00e87b;
+      --accent-soft: rgba(0, 232, 123, 0.10);
+      --accent-glow: rgba(0, 232, 123, 0.25);
+      --border: rgba(255,255,255,0.06);
+      --border-hover: rgba(0, 232, 123, 0.3);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --radius-pill: 999px;
+      --font-display: 'Inter', system-ui, sans-serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --header-h: 64px;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
 
-  <!-- FAVICON -->
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="/icons/android-chrome-192x192.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="/icons/android-chrome-512x512.png">
+    .light-theme {
+      --bg: #f5f6f8;
+      --bg-alt: #ffffff;
+      --bg-card: rgba(0,0,0,0.03);
+      --text: #0e1117;
+      --text-muted: #5e6678;
+      --accent: #00c96a;
+      --accent-soft: rgba(0, 201, 106, 0.10);
+      --accent-glow: rgba(0, 201, 106, 0.18);
+      --border: rgba(0,0,0,0.08);
+      --border-hover: rgba(0, 201, 106, 0.35);
+    }
+
+    /* ==========================================================
+       RESET & BASE
+    ========================================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(1200px, 100% - 2rem);
+      margin-inline: auto;
+    }
+
+    /* ==========================================================
+       HEADER
+    ========================================================== */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: var(--header-h);
+      backdrop-filter: blur(20px) saturate(1.4);
+      -webkit-backdrop-filter: blur(20px) saturate(1.4);
+      background: color-mix(in srgb, var(--bg) 80%, transparent);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      filter: drop-shadow(0 0 8px var(--accent-glow));
+    }
+
+    .nav { display: flex; align-items: center; gap: 0.25rem; }
+
+    .nav-link {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      border-radius: var(--radius-sm);
+      transition: all 0.25s var(--ease-out);
+    }
+
+    .nav-link:hover {
+      color: var(--text);
+      background: var(--accent-soft);
+    }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #000 !important;
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      padding: 0.5rem 1.25rem;
+      margin-left: 0.5rem;
+    }
+
+    .nav-cta:hover {
+      box-shadow: 0 0 24px var(--accent-glow);
+      transform: translateY(-1px);
+    }
+
+    /* Theme toggle */
+    .theme-toggle {
+      width: 44px;
+      height: 24px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      position: relative;
+      transition: 0.3s;
+      margin-left: 0.75rem;
+    }
+
+    .toggle-circle {
+      width: 18px;
+      height: 18px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      left: 3px;
+      transition: 0.3s var(--ease-spring);
+      box-shadow: 0 0 8px var(--accent-glow);
+    }
+
+    .light-theme .toggle-circle { left: 21px; }
+
+    /* Burger */
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 110;
+      padding: 4px;
+    }
+
+    .burger span {
+      display: block;
+      width: 26px;
+      height: 2.5px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: 0.3s var(--ease-out);
+      transform-origin: center;
+    }
+
+    .burger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .burger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+    /* Mobile nav */
+    .mobile-nav {
+      position: fixed;
+      inset: 0;
+      background: color-mix(in srgb, var(--bg) 95%, transparent);
+      backdrop-filter: blur(30px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s var(--ease-out);
+    }
+
+    .mobile-nav.open { opacity: 1; pointer-events: auto; }
+
+    .mobile-nav a {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 600;
+      padding: 0.75rem 2rem;
+      border-radius: var(--radius-sm);
+      transition: 0.25s;
+    }
+
+    .mobile-nav a:hover {
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    /* ==========================================================
+       HERO
+    ========================================================== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding: calc(var(--header-h) + 2rem) 1rem 4rem;
+    }
+
+    /* Mesh gradient background */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 20% 30%, var(--accent-soft), transparent),
+        radial-gradient(ellipse 50% 40% at 80% 70%, rgba(0, 232, 123, 0.05), transparent),
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0, 232, 123, 0.08), transparent);
+      pointer-events: none;
+    }
+
+    /* Grain overlay */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 780px;
+    }
+
+    /* Logo centré avec glow */
+    .hero-logo-glow {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 1.5rem;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--accent-glow), transparent 70%);
+      display: grid;
+      place-items: center;
+      animation: pulseGlow 4s infinite ease-in-out, fadeInUp 0.8s var(--ease-out) both;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 30px var(--accent-glow); }
+      50% { transform: scale(1.04); box-shadow: 0 0 50px var(--accent-glow); }
+    }
+
+    .hero-logo {
+      width: 140px;
+      filter: drop-shadow(0 0 16px var(--accent-glow));
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      background: var(--accent-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      animation: fadeInUp 0.8s var(--ease-out) both;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.3); }
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+      animation: fadeInUp 0.8s 0.15s var(--ease-out) both;
+    }
+
+    .hero-title .accent {
+      background: linear-gradient(135deg, var(--accent), #00b8ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 540px;
+      margin: 0 auto 2.5rem;
+      animation: fadeInUp 0.8s 0.3s var(--ease-out) both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.8s 0.45s var(--ease-out) both;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Floating grid lines in hero */
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      opacity: 0.3;
+      z-index: 1;
+    }
+
+    .hero-grid::before {
+      content: '';
+      position: absolute;
+      inset: -20%;
+      background-image:
+        linear-gradient(rgba(0,232,123,0.4) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,232,123,0.4) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridFloat 20s linear infinite;
+    }
+
+    .light-theme .hero-grid { opacity: 0.12; }
+
+    @keyframes gridFloat {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      100% { transform: translate(60px, 60px) rotate(0deg); }
+    }
+
+    /* ==========================================================
+       BUTTONS
+    ========================================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.75rem;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: all 0.3s var(--ease-out);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 8px 32px var(--accent-glow);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--border);
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    /* ==========================================================
+       SECTIONS
+    ========================================================== */
+    .section {
+      padding: 6rem 0;
+      position: relative;
+    }
+
+    .section-alt { background: var(--bg-alt); }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* Reveal animation */
+    .reveal-el {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+    }
+
+    .reveal-el.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ==========================================================
+       SERVICES
+    ========================================================== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      padding: 2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: all 0.35s var(--ease-out);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.35s;
+    }
+
+    .service-card:hover::before { opacity: 1; }
+
+    .service-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--accent-soft);
+      border-radius: var(--radius-sm);
+      display: grid;
+      place-items: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.4rem;
+    }
+
+    .service-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+
+    .service-card p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    /* ==========================================================
+       OFFERS
+    ========================================================== */
+    .offers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .offer-card {
+      padding: 2.25rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      transition: all 0.35s var(--ease-out);
+      position: relative;
+    }
+
+    .offer-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
+
+    .offer-highlight {
+      border-color: var(--accent);
+      background: linear-gradient(180deg, var(--accent-soft), transparent 60%);
+    }
+
+    .offer-highlight .offer-badge {
+      display: inline-block;
+      position: absolute;
+      top: -1px;
+      right: 24px;
+      background: var(--accent);
+      color: #000;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.3rem 0.8rem;
+      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    }
+
+    .offer-name {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .offer-price {
+      display: flex;
+      align-items: baseline;
+      gap: 0.3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .offer-price .price {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.03em;
+    }
+
+    .offer-price .period {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .offer-features {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      margin-bottom: 2rem;
+      flex: 1;
+    }
+
+    .offer-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    .offer-features li::before {
+      content: '✓';
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .offer-card .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .offers-note {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-top: 2rem;
+      opacity: 0.7;
+    }
+
+    /* ==========================================================
+       PORTFOLIO
+    ========================================================== */
+    .portfolio-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.55rem 1.2rem;
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: all 0.25s var(--ease-out);
+    }
+
+    .tab-btn:hover {
+      border-color: var(--border-hover);
+      color: var(--text);
+    }
+
+    .tab-btn.active {
+      background: var(--accent);
+      color: #000;
+      border-color: var(--accent);
+      font-weight: 600;
+    }
+
+    .tab-btn .dot-online {
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse-dot 2s infinite;
+      box-shadow: 0 0 6px rgba(34,197,94,0.5);
+    }
+
+    .tab-btn.active .dot-online {
+      background: #000;
+      box-shadow: none;
+      animation: none;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: all 0.4s var(--ease-out);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .project-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-6px);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.4), 0 0 40px var(--accent-soft);
+    }
+
+    .project-card.hidden {
+      display: none;
+    }
+
+    .project-thumb {
+      height: 200px;
+      background-size: cover;
+      background-position: center top;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-thumb::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, var(--bg) 0%, transparent 50%);
+      opacity: 0.6;
+    }
+
+    .project-status {
+      position: absolute;
+      top: 12px; right: 12px;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.7rem;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+      border-radius: var(--radius-pill);
+      font-size: 0.72rem;
+      font-weight: 600;
+      z-index: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .project-status.online { color: #22c55e; }
+    .project-status.online::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse-dot 2s infinite;
+    }
+
+    .project-status.vitrine { color: #60a5fa; }
+    .project-status.game { color: #f59e0b; }
+    .project-status.app { color: #a78bfa; }
+
+    .project-body {
+      padding: 1.25rem 1.5rem 1.5rem;
+    }
+
+    .project-body h3 {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .project-body p {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-bottom: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      padding: 0.2rem 0.6rem;
+      background: var(--accent-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    /* ==========================================================
+       ABOUT
+    ========================================================== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .about-avatar {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-soft), rgba(0,184,255,0.08));
+      border: 2px solid var(--border);
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .about-avatar::before {
+      content: '🧑‍💻';
+      font-size: 6rem;
+    }
+
+    .about-avatar::after {
+      content: '';
+      position: absolute;
+      inset: -16px;
+      border: 1px dashed var(--border);
+      border-radius: 50%;
+      animation: rotate-slow 30s linear infinite;
+    }
+
+    @keyframes rotate-slow {
+      to { transform: rotate(360deg); }
+    }
+
+    .about-content h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
+    }
+
+    .about-content p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .about-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat-item .stat-num {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .stat-item .stat-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================
+       CONTACT
+    ========================================================== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+
+    .contact-info h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .contact-info p {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 1.25rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: all 0.25s var(--ease-out);
+    }
+
+    .contact-link:hover {
+      border-color: var(--border-hover);
+      background: var(--accent-soft);
+    }
+
+    .contact-link-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--accent-soft);
+      border-radius: var(--radius-sm);
+      display: grid;
+      place-items: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-link-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-link-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .contact-link-value {
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+
+    .form-group label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 0.85rem 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: all 0.25s var(--ease-out);
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    .contact-form .btn { width: 100%; justify-content: center; }
+
+    /* ==========================================================
+       FAQ
+    ========================================================== */
+    .faq-list {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+
+    .faq-item:hover { border-color: var(--border-hover); }
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      text-align: left;
+      gap: 1rem;
+    }
+
+    .faq-icon {
+      width: 28px;
+      height: 28px;
+      background: var(--accent-soft);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      transition: transform 0.3s var(--ease-spring);
+      font-size: 0.9rem;
+      color: var(--accent);
+    }
+
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s var(--ease-out);
+    }
+
+    .faq-answer-inner {
+      padding: 0 1.5rem 1.25rem;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+    }
+
+    /* ==========================================================
+       FOOTER
+    ========================================================== */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--accent); }
+
+    .footer-links svg {
+      width: 22px; height: 22px;
+      fill: currentColor;
+    }
+
+    /* ==========================================================
+       ZOOM OVERLAY
+    ========================================================== */
+    .zoom-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(20px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s var(--ease-out);
+    }
+
+    .zoom-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .zoom-content {
+      max-width: 640px;
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .zoom-content img {
+      width: 100%;
+      border-radius: var(--radius);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+      transform: scale(0.9);
+      transition: transform 0.4s var(--ease-spring);
+    }
+
+    .zoom-overlay.active img { transform: scale(1); }
+
+    .zoom-btn-link {
+      display: flex;
+      justify-content: center;
+    }
+
+    .zoom-btn-link a {
+      padding: 0.75rem 1.75rem;
+      background: var(--accent);
+      color: #000;
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      transition: all 0.25s var(--ease-out);
+    }
+
+    .zoom-btn-link a:hover {
+      box-shadow: 0 8px 24px var(--accent-glow);
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================
+       RESPONSIVE
+    ========================================================== */
+    @media (max-width: 900px) {
+      .nav, .theme-toggle { display: none; }
+      .burger { display: flex; }
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .about-visual { order: -1; }
+
+      .about-stats { gap: 1.5rem; }
+
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-actions { flex-direction: column; align-items: center; }
+      .hero-actions .btn { width: 100%; justify-content: center; }
+      .services-grid, .offers-grid { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+
+    /* ==========================================================
+       PARTICLE CANVAS
+    ========================================================== */
+    .hero,
+    #offers {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero canvas,
+    #offers canvas {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hero .hero-grid,
+    .hero .hero-inner,
+    #offers > .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ==========================================================
+       SCROLLBAR
+    ========================================================== */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+  </style>
 </head>
 <body>
 
+<!-- ============ HEADER ============ -->
 <header class="site-header">
   <div class="container header-inner">
     <a href="#top" class="brand">
-      <img src="assets/img/logo_mwm.png" class="brand-logo" alt="Logo MwM_" loading="lazy" />
-      <span class="brand-name">MwM Project</span>
+      <img src="assets/img/logo_mwm.png" class="brand-logo" alt="Logo MwM_" />
+      <span>MwM Project</span>
     </a>
     <nav class="nav">
       <a href="#services" class="nav-link">Services</a>
       <a href="#offers" class="nav-link">Offres</a>
       <a href="#portfolio" class="nav-link">Portfolio</a>
       <a href="#about" class="nav-link">À propos</a>
+      <a href="#faq" class="nav-link">FAQ</a>
       <a href="#contact" class="nav-link nav-cta">Contact</a>
     </nav>
     <div class="theme-toggle" id="themeToggle">
       <div class="toggle-circle"></div>
     </div>
-    <button id="burger-btn" class="burger" aria-label="Ouvrir le menu principal">
+    <button id="burger-btn" class="burger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -76,83 +1248,81 @@
     <a href="#offers">Offres</a>
     <a href="#portfolio">Portfolio</a>
     <a href="#about">À propos</a>
+    <a href="#faq">FAQ</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
 
 <main id="top">
 
-<!-- ================= HERO ================= -->
-<section class="hero will-animate" id="hero">
+<!-- ============ HERO ============ -->
+<section class="hero">
   <canvas id="hero-particles"></canvas>
+  <div class="hero-grid"></div>
   <div class="container hero-inner">
     <div class="hero-logo-glow">
       <img src="assets/img/logo_mwm.png" class="hero-logo" alt="Logo MwM_">
     </div>
-    <h1 class="hero-title">Vos solutions digitales adaptées à vos besoins.</h1>
-    <p class="hero-subtitle">Sites web, boutiques en ligne et applications modernes, développés en Suisse romande.</p>
+    <div class="hero-badge">
+      <span>Studio digital · Suisse romande</span>
+    </div>
+    <h1 class="hero-title">
+      Des solutions digitales<br>
+      <span class="accent">pensées pour vous.</span>
+    </h1>
+    <p class="hero-subtitle">
+      Sites web, boutiques en ligne et applications modernes — développés avec soin depuis le canton de Vaud.
+    </p>
     <div class="hero-actions">
-      <a href="#services" class="btn btn-primary">Mes services</a>
-      <a href="#contact" class="btn btn-outline">Démarrer un projet</a>
+      <a href="#services" class="btn btn-primary">Découvrir mes services</a>
+      <a href="#contact" class="btn btn-outline">Démarrer un projet →</a>
     </div>
   </div>
 </section>
 
-<!-- ================= SERVICES ================= -->
-<section id="services" class="section will-animate">
+<!-- ============ SERVICES ============ -->
+<section id="services" class="section section-alt">
   <div class="container">
-    <header class="section-header">
+    <header class="section-header reveal-el">
       <h2>Services</h2>
-      <p>Solutions digitales modernes, fiables et adaptées au marché suisse.</p>
+      <p>Solutions modernes, fiables et adaptées au marché suisse.</p>
     </header>
     <div class="services-grid">
-
-      <article class="card reveal">
-        <span class="service-index">01</span>
+      <article class="service-card reveal-el">
+        <div class="service-icon">🌐</div>
         <h3>Sites web</h3>
-        <p>Création de sites vitrines modernes, rapides et optimisés pour Google. Idéal pour entreprises et indépendants en Suisse romande.</p>
+        <p>Sites vitrines modernes, rapides et optimisés pour Google. Idéal pour entreprises et indépendants en Suisse romande.</p>
       </article>
-
-      <article class="card reveal">
-        <span class="service-index">02</span>
+      <article class="service-card reveal-el">
+        <div class="service-icon">🛒</div>
         <h3>Boutiques en ligne</h3>
-        <p>Boutiques en ligne performantes avec navigation intuitive, paiements sécurisés et gestion simplifiée. Adapté au marché suisse.</p>
+        <p>E-commerce performant avec navigation intuitive, paiements sécurisés et gestion simplifiée. Adapté au marché suisse.</p>
       </article>
-
-      <article class="card reveal">
-        <span class="service-index">03</span>
+      <article class="service-card reveal-el">
+        <div class="service-icon">⚡</div>
         <h3>Applications web</h3>
-        <p>Applications web modernes : dashboards, outils métiers et micro-SaaS développés sur mesure pour entreprises en Suisse romande.</p>
+        <p>Dashboards, outils métiers et micro-SaaS développés sur mesure pour répondre à vos besoins spécifiques.</p>
       </article>
-
     </div>
   </div>
 </section>
 
-<!-- ================= OFFRES ================= -->
-<section id="offers" class="section-alt section will-animate">
+<!-- ============ OFFRES ============ -->
+<section id="offers" class="section">
   <canvas id="offers-particles"></canvas>
-  <div class="container offers-inner">
-
-    <header class="section-header">
-      <h2>Nos offres web en abonnement</h2>
-      <p class="section-subtitle">
-        Des solutions claires, modernes et évolutives, adaptées à votre activité.
-      </p>
+  <div class="container">
+    <header class="section-header reveal-el">
+      <h2>Offres en abonnement</h2>
+      <p>Des solutions claires, modernes et évolutives.</p>
     </header>
-
     <div class="offers-grid">
 
-      <!-- OFFRE 1 -->
-      <article class="offer-card reveal">
-        <header class="offer-header">
-          <h3>One Page</h3>
-          <div class="offer-price">
-            <span class="price">89 CHF</span>
-            <span class="period">/ mois</span>
-          </div>
-        </header>
-
+      <article class="offer-card reveal-el">
+        <h3 class="offer-name">One Page</h3>
+        <div class="offer-price">
+          <span class="price">89 CHF</span>
+          <span class="period">/ mois</span>
+        </div>
         <ul class="offer-features">
           <li>Site one page personnalisée</li>
           <li>Design moderne & responsive</li>
@@ -160,46 +1330,33 @@
           <li>Maintenance & sécurité</li>
           <li>30 min de modifications / mois</li>
         </ul>
-
-        <footer class="offer-footer">
-          <a href="#contact" class="btn btn-primary">Choisir cette offre</a>
-        </footer>
+        <a href="#contact" class="btn btn-outline">Choisir cette offre</a>
       </article>
 
-      <!-- OFFRE 2 -->
-      <article class="offer-card offer-highlight reveal">
-        <header class="offer-header">
-          <h3>Site Vitrine</h3>
-          <div class="offer-price">
-            <span class="price">129 CHF</span>
-            <span class="period">/ mois</span>
-          </div>
-        </header>
-
+      <article class="offer-card offer-highlight reveal-el">
+        <span class="offer-badge">Populaire</span>
+        <h3 class="offer-name">Site Vitrine</h3>
+        <div class="offer-price">
+          <span class="price">129 CHF</span>
+          <span class="period">/ mois</span>
+        </div>
         <ul class="offer-features">
           <li>Site 5 pages sur mesure</li>
-          <li>Interface personnalisé</li>
+          <li>Interface personnalisée</li>
           <li>Optimisation du référencement Google</li>
           <li>Mises à jour mensuelles</li>
           <li>Support & conseils</li>
           <li>1h de modifications / mois</li>
         </ul>
-
-        <footer class="offer-footer">
-          <a href="#contact" class="btn btn-primary">Choisir cette offre</a>
-        </footer>
+        <a href="#contact" class="btn btn-primary">Choisir cette offre</a>
       </article>
 
-      <!-- OFFRE 3 -->
-      <article class="offer-card reveal">
-        <header class="offer-header">
-          <h3>Site Avancé</h3>
-          <div class="offer-price">
-            <span class="price">189 CHF</span>
-            <span class="period">/ mois</span>
-          </div>
-        </header>
-
+      <article class="offer-card reveal-el">
+        <h3 class="offer-name">Site Avancé</h3>
+        <div class="offer-price">
+          <span class="price">189 CHF</span>
+          <span class="period">/ mois</span>
+        </div>
         <ul class="offer-features">
           <li>Site complet 8 à 10 pages</li>
           <li>Référencement Google avancé</li>
@@ -207,81 +1364,134 @@
           <li>Suivi personnalisé</li>
           <li>1h30 de modifications / mois</li>
         </ul>
-
-        <footer class="offer-footer">
-          <a href="#contact" class="btn btn-primary">Choisir cette offre</a>
-        </footer>
+        <a href="#contact" class="btn btn-outline">Choisir cette offre</a>
       </article>
 
     </div>
-
-    <p class="offers-note">
-      Engagement 24 mois • Nom de domaine + Hébergement offert • Solutions e-commerce et sur mesure sur devis
-    </p>
-
+    <p class="offers-note">Engagement 24 mois · Nom de domaine + Hébergement offert · Solutions e-commerce et sur mesure sur devis</p>
   </div>
 </section>
 
-<!-- ================= PORTFOLIO ================= -->
-<section id="portfolio" class="section will-animate">
+<!-- ============ PORTFOLIO ============ -->
+<section id="portfolio" class="section section-alt">
   <div class="container">
-    <header class="section-header">
+    <header class="section-header reveal-el">
       <h2>Portfolio</h2>
       <p>Projets réalisés et démonstrations techniques.</p>
     </header>
-    <div class="portfolio-grid">
 
-      <article class="project-card reveal">
-        <div class="project-thumb project1" data-img="assets/img/game1_portefolio.png" data-link="projects/game1_memory_moji/index.html"></div>
+    <!-- TABS -->
+    <div class="portfolio-tabs reveal-el">
+      <button class="tab-btn active" data-filter="all">Tout</button>
+      <button class="tab-btn" data-filter="online">
+        <span class="dot-online"></span> En ligne
+      </button>
+      <button class="tab-btn" data-filter="vitrine">Sites fictifs / Vitrine</button>
+      <button class="tab-btn" data-filter="app">App</button>
+      <button class="tab-btn" data-filter="game">Game</button>
+    </div>
+
+    <!-- PROJECTS GRID -->
+    <div class="portfolio-grid" id="portfolio-grid">
+
+      <!-- === EN LIGNE === -->
+      <article class="project-card reveal-el" data-category="online">
+        <div class="project-thumb" style="background-image:url('assets/img/logo_mwm.png'); background-size: contain; background-repeat: no-repeat; background-position: center; background-color: var(--bg);" data-img="assets/img/logo_mwm.png" data-link="https://mwm-project.ch">
+          <span class="project-status online">En ligne</span>
+        </div>
         <div class="project-body">
-          <h3>Memory Moji — Mini-jeu JavaScript</h3>
-          <p>Mini-jeu de mémoire avec animations fluides et logique optimisée.</p>
-          <span class="tag">JavaScript</span>
+          <h3>MwM Project — Portfolio</h3>
+          <p>Ce site même ! Studio digital basé en Suisse romande, conçu et développé from scratch.</p>
+          <div class="project-tags">
+            <span class="tag">HTML / CSS / JS</span>
+            <span class="tag">SEO</span>
+          </div>
         </div>
       </article>
 
-      <article class="project-card reveal">
-        <div class="project-thumb project2" data-img="assets/img/projet1_la_montagne.png" data-link="projects/projet1_la_montagne/index.html"></div>
+      <!-- === SITES FICTIFS / VITRINE === -->
+      <article class="project-card reveal-el" data-category="vitrine">
+        <div class="project-thumb" style="background-image:url('assets/img/projet1_la_montagne.png')" data-img="assets/img/projet1_la_montagne.png" data-link="projects/projet1_la_montagne/index.html">
+          <span class="project-status vitrine">Vitrine</span>
+        </div>
         <div class="project-body">
           <h3>La Montagne — Site vitrine</h3>
           <p>Site fictif créé pour pratiquer l'intégration web et l'UI minimaliste.</p>
-          <span class="tag">Webdesign</span>
+          <div class="project-tags">
+            <span class="tag">Webdesign</span>
+            <span class="tag">UI</span>
+          </div>
         </div>
       </article>
 
-      <article class="project-card reveal">
-        <div class="project-thumb project3" data-img="assets/img/game4_tictactoe.png" data-link="projects/game4_tic_tac_toe/index.html"></div>
-        <div class="project-body">
-          <h3>Tic Tac Toe - Mini-jeu JavaScript</h3>
-          <p>Jeu du morpion moderne avec interface claire et IA intégrée.</p>
-          <span class="tag">JavaScript</span>
+      <article class="project-card reveal-el" data-category="vitrine">
+        <div class="project-thumb" style="background-image:url('assets/img/projet2_le_resto.png')" data-img="assets/img/projet2_le_resto.png" data-link="projects/projet2_le_resto/index.html">
+          <span class="project-status vitrine">Vitrine</span>
         </div>
-      </article>
-
-      <article class="project-card reveal">
-        <div class="project-thumb project4" data-img="assets/img/projet2_le_resto.png" data-link="projects/projet2_le_resto/index.html"></div>
         <div class="project-body">
           <h3>Le Resto — Site vitrine</h3>
-          <p>Site fictif créé pour pratiquer l'intégration web et l'UI minimaliste.</p>
-          <span class="tag">Webdesign</span>
+          <p>Site fictif pour un restaurant, avec une interface moderne et responsive.</p>
+          <div class="project-tags">
+            <span class="tag">Webdesign</span>
+            <span class="tag">SCSS</span>
+          </div>
         </div>
       </article>
 
-      <article class="project-card reveal">
-        <div class="project-thumb project5" data-img="assets/img/game3_snake.png" data-link="projects/game3_retro_snake/index.html"></div>
-        <div class="project-body">
-          <h3>Retro Snake - Mini-jeu JavaScript</h3>
-          <p>Jeu Snake rétro avec interface modernisée, niveaux progressifs et gameplay fluide.</p>
-          <span class="tag">JavaScript</span>
+      <article class="project-card reveal-el" data-category="vitrine">
+        <div class="project-thumb" style="background-image:url('assets/img/projet3_café.png')" data-img="assets/img/projet3_café.png" data-link="projects/projet3_café/index.html">
+          <span class="project-status vitrine">Vitrine</span>
         </div>
-      </article>
-
-      <article class="project-card reveal">
-        <div class="project-thumb project6" data-img="assets/img/projet3_café.png" data-link="projects/projet3_café/index.html"></div>
         <div class="project-body">
-          <h3>Luma Café – Landing page moderne</h3>
+          <h3>Luma Café — Landing page</h3>
           <p>Page vitrine minimaliste avec galerie, animations et design inspiré du style suisse.</p>
-          <span class="tag">Webdesign</span>
+          <div class="project-tags">
+            <span class="tag">Webdesign</span>
+            <span class="tag">Landing</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- === GAMES === -->
+      <article class="project-card reveal-el" data-category="game">
+        <div class="project-thumb" style="background-image:url('assets/img/game1_portefolio.png')" data-img="assets/img/game1_portefolio.png" data-link="projects/game1_memory_moji/index.html">
+          <span class="project-status game">Game</span>
+        </div>
+        <div class="project-body">
+          <h3>Memory Moji — Mini-jeu</h3>
+          <p>Mini-jeu de mémoire avec animations fluides et logique optimisée.</p>
+          <div class="project-tags">
+            <span class="tag">JavaScript</span>
+            <span class="tag">Canvas</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card reveal-el" data-category="game">
+        <div class="project-thumb" style="background-image:url('assets/img/game4_tictactoe.png')" data-img="assets/img/game4_tictactoe.png" data-link="projects/game4_tic_tac_toe/index.html">
+          <span class="project-status game">Game</span>
+        </div>
+        <div class="project-body">
+          <h3>Tic Tac Toe — Mini-jeu</h3>
+          <p>Jeu du morpion moderne avec interface claire et IA intégrée.</p>
+          <div class="project-tags">
+            <span class="tag">JavaScript</span>
+            <span class="tag">AI</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card reveal-el" data-category="game">
+        <div class="project-thumb" style="background-image:url('assets/img/game3_snake.png')" data-img="assets/img/game3_snake.png" data-link="projects/game3_retro_snake/index.html">
+          <span class="project-status game">Game</span>
+        </div>
+        <div class="project-body">
+          <h3>Retro Snake — Mini-jeu</h3>
+          <p>Jeu Snake rétro avec niveaux progressifs et gameplay fluide.</p>
+          <div class="project-tags">
+            <span class="tag">JavaScript</span>
+            <span class="tag">Canvas</span>
+          </div>
         </div>
       </article>
 
@@ -289,111 +1499,189 @@
   </div>
 </section>
 
-<!-- ================= À PROPOS ================= -->
-<section id="about" class="section-alt will-animate">
-  <canvas class="section-particles"></canvas>
-  <div class="container about-inner">
-    <h2>À propos</h2>
-
-    <p>MwM Project est un studio digital indépendant basé dans le canton de Vaud, actif en Suisse romande, notamment à proximité de Fribourg et Neuchâtel.</p>
-
-    <p>Je conçois des sites web modernes, des boutiques en ligne performantes et des applications web sur mesure, pensés pour être rapides, intuitifs et optimisés pour le référencement.</p>
-
-    <p>J’accompagne entrepreneurs, PME et projets locaux avec une approche basée sur l’écoute, le design et la fiabilité, afin de créer des solutions digitales durables et adaptées aux besoins réels de chaque client.</p>
+<!-- ============ ABOUT ============ -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal-el">
+        <div class="about-avatar"></div>
+      </div>
+      <div class="about-content reveal-el">
+        <h2>À propos</h2>
+        <p>MwM Project est un studio digital indépendant basé dans le canton de Vaud, actif en Suisse romande, notamment à proximité de Fribourg et Neuchâtel.</p>
+        <p>Je conçois des sites web modernes, des boutiques en ligne performantes et des applications web sur mesure — pensés pour être rapides, intuitifs et optimisés pour le référencement.</p>
+        <p>J'accompagne entrepreneurs, PME et projets locaux avec une approche basée sur l'écoute, le design et la fiabilité.</p>
+        <div class="about-stats">
+          <div class="stat-item">
+            <div class="stat-num">6+</div>
+            <div class="stat-label">Projets réalisés</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">100%</div>
+            <div class="stat-label">Sur mesure</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">CH</div>
+            <div class="stat-label">Basé en Suisse</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ================= CONTACT ================= -->
-<section id="contact" class="section will-animate">
-  <div class="container contact-inner">
-    <header class="section-header">
-      <h2>Contact</h2>
-      <p>Réponse rapide, sans engagement.</p>
+<!-- ============ FAQ ============ -->
+<section id="faq" class="section section-alt">
+  <div class="container">
+    <header class="section-header reveal-el">
+      <h2>Questions fréquentes</h2>
+      <p>Tout ce que vous devez savoir avant de démarrer.</p>
     </header>
+    <div class="faq-list">
 
-    <form
-      id="contact-form"
-      class="contact-form"
-      action="contact.php"
-      method="POST">
-
-      <div class="form-row">
-        <label for="name">Nom</label>
-        <input type="text" id="name" name="name" required />
+      <div class="faq-item reveal-el">
+        <button class="faq-question">
+          <span>Proposez-vous des sites adaptés aux besoins réels du client ?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Oui. Chaque projet est conçu de manière personnalisée, selon l'objectif, le style souhaité et le budget du client.
+          </div>
+        </div>
       </div>
 
-      <div class="form-row">
-        <label for="email">E-mail</label>
-        <input type="email" id="email" name="email" required />
+      <div class="faq-item reveal-el">
+        <button class="faq-question">
+          <span>Les sites sont-ils optimisés pour Google ?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Oui. Je respecte les bonnes pratiques SEO : structure propre, performance, accessibilité et balises adaptées.
+          </div>
+        </div>
       </div>
 
-      <div class="form-row">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" required rows="4"></textarea>
+      <div class="faq-item reveal-el">
+        <button class="faq-question">
+          <span>Travaillez-vous avec des clients dans toute la Suisse romande ?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Oui. Je suis basé dans le canton de Vaud et je collabore également avec des clients de Fribourg, Neuchâtel et d'autres régions romandes.
+          </div>
+        </div>
       </div>
 
-      <button type="submit" class="btn btn-primary full-width">
-        Envoyer
-      </button>
+      <div class="faq-item reveal-el">
+        <button class="faq-question">
+          <span>Peut-on ajouter des fonctionnalités au site plus tard ?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Oui. Les projets sont pensés pour pouvoir évoluer : pages supplémentaires, e-commerce, outils sur mesure, etc.
+          </div>
+        </div>
+      </div>
 
-      <p class="form-note">
-        Ou écrivez-nous à :
-        <a href="mailto:info@mwm-project.ch">info@mwm-project.ch</a>
-      </p>
-    </form>
+      <div class="faq-item reveal-el">
+        <button class="faq-question">
+          <span>Quel type de projets réalisez-vous ?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Des sites vitrines, boutiques en ligne, mini-applications web et interfaces modernes orientées expérience utilisateur.
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
-
-<!-- ================= FAQ SEO ================= -->
-<section id="faq" class="section-alt will-animate">
-  <canvas class="section-particles"></canvas>
-  <div class="container about-inner">
-    <h2>FAQ – Questions fréquentes</h2>
-
-    <h3>Proposez-vous des sites adaptés aux besoins réels du client ?</h3>
-    <p>Oui. Chaque projet est conçu de manière personnalisée, selon l’objectif, le style souhaité et le budget du client.</p>
-
-    <h3>Les sites sont-ils optimisés pour Google ?</h3>
-    <p>Oui. Je respecte les bonnes pratiques SEO : structure propre, performance, accessibilité et balises adaptées.</p>
-
-    <h3>Travaillez-vous avec des clients dans toute la Suisse romande ?</h3>
-    <p>Oui. Je suis basé dans le canton de Vaud et je collabore également avec des clients de Fribourg, Neuchâtel et d'autres régions romandes.</p>
-
-    <h3>Peut-on ajouter des fonctionnalités au site plus tard ?</h3>
-    <p>Oui. Les projets sont pensés pour pouvoir évoluer : pages supplémentaires, e-commerce, outils sur mesure, etc.</p>
-
-    <h3>Quel type de projets réalisez-vous ?</h3>
-    <p>Des sites vitrines, boutiques en ligne, mini-applications web et interfaces modernes orientées expérience utilisateur.</p>
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info reveal-el">
+        <h2>Démarrons votre projet</h2>
+        <p>Réponse rapide, sans engagement. Discutons de vos besoins et trouvons la meilleure solution ensemble.</p>
+        <div class="contact-links">
+          <a href="mailto:info@mwm-project.ch" class="contact-link">
+            <div class="contact-link-icon">✉️</div>
+            <div class="contact-link-text">
+              <span class="contact-link-label">Email</span>
+              <span class="contact-link-value">info@mwm-project.ch</span>
+            </div>
+          </a>
+          <a href="https://github.com/MwMproject" target="_blank" class="contact-link">
+            <div class="contact-link-icon">💻</div>
+            <div class="contact-link-text">
+              <span class="contact-link-label">GitHub</span>
+              <span class="contact-link-value">MwMproject</span>
+            </div>
+          </a>
+          <a href="https://www.instagram.com/mwm_project/" target="_blank" class="contact-link">
+            <div class="contact-link-icon">📸</div>
+            <div class="contact-link-text">
+              <span class="contact-link-label">Instagram</span>
+              <span class="contact-link-value">@mwm_project</span>
+            </div>
+          </a>
+        </div>
+      </div>
+      <form class="contact-form reveal-el" id="contact-form" action="contact.php" method="POST">
+        <div class="form-group">
+          <label for="name">Nom</label>
+          <input type="text" id="name" name="name" required placeholder="Votre nom" />
+        </div>
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" required placeholder="votre@email.ch" />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required placeholder="Décrivez votre projet..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Envoyer le message →</button>
+      </form>
+    </div>
   </div>
 </section>
 
 </main>
 
-<!-- ================= FOOTER ================= -->
+<!-- ============ FOOTER ============ -->
 <footer class="site-footer">
   <div class="container footer-inner">
-    <span>© <span id="year"></span> MwM Project – Vos solutions digitales.</span>
-
-    <div class="footer-icons">
-      <a href="https://github.com/MwMproject" target="_blank" class="icon-link" aria-label="GitHub">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 .5A12 12 0 0 0 0 12.6c0 5.3 3.4 9.8 8.2 11.4.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.3-1.2-1.7-1.2-1.7-1-.7.1-.7.1-.7 1.1.1 1.6 1.2 1.6 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.4-5.3-6a4.6 4.6 0 0 1 1.2-3.2 4.2 4.2 0 0 1 .1-3.1s1-.3 3.3 1.2a11.3 11.3 0 0 1 6 0c2.2-1.5 3.2-1.2 3.2-1.2.4 1 .4 2 .1 3a4.6 4.6 0 0 1 1.2 3.2c0 4.6-2.7 5.6-5.3 6a3 3 0 0 1 .8 2.3v3.4c0 .3.2.7.8.6A12.1 12.1 0 0 0 24 12.6 12 12 0 0 0 12 .5Z"/>
-        </svg>
+    <span>© <span id="year"></span> MwM Project — Vos solutions digitales.</span>
+    <div class="footer-links">
+      <a href="https://github.com/MwMproject" target="_blank" aria-label="GitHub">
+        <svg viewBox="0 0 24 24"><path d="M12 .5A12 12 0 0 0 0 12.6c0 5.3 3.4 9.8 8.2 11.4.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.3-1.2-1.7-1.2-1.7-1-.7.1-.7.1-.7 1.1.1 1.6 1.2 1.6 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.4-5.3-6a4.6 4.6 0 0 1 1.2-3.2 4.2 4.2 0 0 1 .1-3.1s1-.3 3.3 1.2a11.3 11.3 0 0 1 6 0c2.2-1.5 3.2-1.2 3.2-1.2.4 1 .4 2 .1 3a4.6 4.6 0 0 1 1.2 3.2c0 4.6-2.7 5.6-5.3 6a3 3 0 0 1 .8 2.3v3.4c0 .3.2.7.8.6A12.1 12.1 0 0 0 24 12.6 12 12 0 0 0 12 .5Z"/></svg>
       </a>
-
-      <a href="https://www.instagram.com/mwm_project/" target="_blank" class="icon-link" aria-label="Instagram">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3.3A4.7 4.7 0 1 0 16.7 12 4.7 4.7 0 0 0 12 7.3zm0 7.7A3 3 0 1 1 15 12a3 3 0 0 1-3 3zm4.8-8.9a1.1 1.1 0 1 0 1.1 1.1 1.1 1.1 0 0 0-1.1-1.1z"/>
-        </svg>
+      <a href="https://www.instagram.com/mwm_project/" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3.3A4.7 4.7 0 1 0 16.7 12 4.7 4.7 0 0 0 12 7.3zm0 7.7A3 3 0 1 1 15 12a3 3 0 0 1-3 3zm4.8-8.9a1.1 1.1 0 1 0 1.1 1.1 1.1 1.1 0 0 0-1.1-1.1z"/></svg>
       </a>
+      <a href="#top">↑ Haut</a>
     </div>
-
-    <a href="#top" class="back-to-top">Retour en haut</a>
   </div>
 </footer>
 
-<!-- ================= JSON-LD ================= -->
+<!-- ============ ZOOM OVERLAY ============ -->
+<div id="zoomOverlay" class="zoom-overlay">
+  <div class="zoom-content">
+    <img id="zoomImage" src="" alt="Aperçu du projet">
+    <div class="zoom-btn-link">
+      <a id="zoomLink" href="#" target="_blank">Voir le projet →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ JSON-LD ============ -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -407,12 +1695,7 @@
     "addressCountry": "CH",
     "addressRegion": "Vaud"
   },
-  "areaServed": [
-    "Vaud",
-    "Fribourg",
-    "Neuchâtel",
-    "Suisse romande"
-  ],
+  "areaServed": ["Vaud", "Fribourg", "Neuchâtel", "Suisse romande"],
   "priceRange": "$$",
   "sameAs": [
     "https://github.com/MwMproject",
@@ -421,15 +1704,188 @@
 }
 </script>
 
-<!-- ================= ZOOM OVERLAY ================= -->
-<div id="zoomOverlay" class="zoom-overlay">
-  <div class="zoom-content">
-    <img id="zoomImage" src="" alt="Aperçu du projet">
-    <a id="zoomLink" href="#" target="_blank" class="zoom-btn">Voir le projet</a>
-  </div>
-</div>
+<script>
+/* ==========================================================
+   MwM 2.0 — main.js
+========================================================== */
 
-<script src="assets/main.js"></script>
+// Footer year
+const yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    const id = link.getAttribute('href').slice(1);
+    if (!id) return;
+    const target = document.getElementById(id);
+    if (!target) return;
+    e.preventDefault();
+    const y = target.getBoundingClientRect().top + window.scrollY - 80;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+    // Close mobile nav if open
+    burger?.classList.remove('open');
+    mobileNav?.classList.remove('open');
+  });
+});
+
+// Reveal on scroll
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal-el').forEach(el => revealObserver.observe(el));
+
+// Burger menu
+const burger = document.getElementById('burger-btn');
+const mobileNav = document.getElementById('mobile-nav');
+
+if (burger && mobileNav) {
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+  });
+}
+
+// Theme toggle
+const themeToggle = document.getElementById('themeToggle');
+if (localStorage.getItem('theme') === 'light') document.documentElement.classList.add('light-theme');
+
+themeToggle?.addEventListener('click', () => {
+  document.documentElement.classList.toggle('light-theme');
+  localStorage.setItem('theme', document.documentElement.classList.contains('light-theme') ? 'light' : 'dark');
+});
+
+// Portfolio filtering
+const tabBtns = document.querySelectorAll('.tab-btn');
+const projectCards = document.querySelectorAll('.project-card');
+
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    tabBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const filter = btn.dataset.filter;
+
+    projectCards.forEach(card => {
+      if (filter === 'all' || card.dataset.category === filter) {
+        card.classList.remove('hidden');
+        card.style.animation = 'fadeInUp 0.5s var(--ease-out) both';
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  });
+});
+
+// Zoom overlay
+const overlay = document.getElementById('zoomOverlay');
+const zoomImg = document.getElementById('zoomImage');
+const zoomLink = document.getElementById('zoomLink');
+
+if (overlay && zoomImg && zoomLink) {
+  document.querySelectorAll('.project-thumb').forEach(thumb => {
+    thumb.addEventListener('click', () => {
+      const imgSrc = thumb.dataset.img;
+      const link = thumb.dataset.link;
+      if (imgSrc) zoomImg.src = imgSrc;
+      zoomLink.href = link || '#';
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  overlay.addEventListener('click', e => {
+    if (!e.target.closest('.zoom-content')) {
+      overlay.classList.remove('active');
+      zoomImg.src = '';
+      zoomLink.href = '#';
+      document.body.style.overflow = '';
+    }
+  });
+}
+
+// FAQ accordion
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const wasOpen = item.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    // Toggle clicked
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+
+/* =========================
+   PARTICLES
+========================= */
+function startParticles(canvas, cfg) {
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+  const parent = canvas.parentElement;
+  if (!parent) return;
+
+  let particles = [];
+
+  const resize = () => {
+    canvas.width = parent.offsetWidth;
+    canvas.height = parent.offsetHeight;
+  };
+  resize();
+  window.addEventListener('resize', resize);
+
+  class Particle {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.radius = Math.random() * (cfg.radiusMax - cfg.radiusMin) + cfg.radiusMin;
+      this.speedY = Math.random() * (cfg.speedMax - cfg.speedMin) + cfg.speedMin;
+      this.alpha = Math.random() * (cfg.alphaMax - cfg.alphaMin) + cfg.alphaMin;
+    }
+    update() {
+      this.y -= this.speedY;
+      if (this.y < -10) this.reset();
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(0,232,123,${this.alpha})`;
+      ctx.fill();
+    }
+  }
+
+  particles = Array.from({ length: cfg.count }, () => new Particle());
+
+  const animate = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (const p of particles) { p.update(); p.draw(); }
+    requestAnimationFrame(animate);
+  };
+  animate();
+}
+
+// Hero particles
+startParticles(document.getElementById('hero-particles'), {
+  count: 60, radiusMin: 1, radiusMax: 3,
+  alphaMin: 0.1, alphaMax: 0.45,
+  speedMin: 0.1, speedMax: 0.4,
+});
+
+// Offers particles
+startParticles(document.getElementById('offers-particles'), {
+  count: 40, radiusMin: 1, radiusMax: 3,
+  alphaMin: 0.1, alphaMax: 0.5,
+  speedMin: 0.1, speedMax: 0.4,
+});
+</script>
 
 </body>
 </html>
