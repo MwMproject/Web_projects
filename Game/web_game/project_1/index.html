@@ -290,5 +290,248 @@
         </div>
       </div>
     </div>
+
+    <!-- ════════════════════ SHOP ════════════════════ -->
+    <div class="screen scrollable" id="s-shop">
+      <div class="screen-title" style="z-index: 1">
+        BOUTIQUE COSMÉTIQUE<small
+          >APPARENCE UNIQUEMENT — AUCUN AVANTAGE EN JEU</small
+        >
+      </div>
+      <div class="shop-nav">
+        <button class="shop-tab active" onclick="filterShop('all', this)">
+          TOUT
+        </button>
+        <button class="shop-tab" onclick="filterShop('skin', this)">
+          SKINS
+        </button>
+        <button class="shop-tab" onclick="filterShop('effect', this)">
+          EFFETS
+        </button>
+        <button class="shop-tab" onclick="filterShop('emote', this)">
+          EMOTES
+        </button>
+      </div>
+      <div class="shop-grid" id="shop-grid"></div>
+    </div>
+
+    <!-- ════════════════════ PROFILE ════════════════════ -->
+    <div class="screen scrollable" id="s-profile">
+      <div class="screen-title" style="z-index: 1">MON PROFIL</div>
+      <div class="profile-card">
+        <div class="psec-title">▸ STATISTIQUES</div>
+        <div class="stat-grid">
+          <div class="stat-box">
+            <span class="stat-val" id="st-games">0</span
+            ><span class="stat-lbl">PARTIES JOUÉES</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-val" id="st-kills">0</span
+            ><span class="stat-lbl">ENNEMIS ÉLIMINÉS</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-val" id="st-waves">0</span
+            ><span class="stat-lbl">VAGUES SURVÉCUES</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-val" id="st-best">0</span
+            ><span class="stat-lbl">MEILLEUR SCORE</span>
+          </div>
+        </div>
+      </div>
+      <div class="profile-card">
+        <div class="psec-title">▸ SOLDE DE CRÉDITS</div>
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          "
+        >
+          <span
+            style="
+              font-family: &quot;Press Start 2P&quot;, monospace;
+              font-size: 18px;
+              color: var(--yellow);
+              display: flex;
+              align-items: center;
+              gap: 8px;
+            "
+          >
+            <span id="profile-coin-icon"></span>
+            <span id="profile-coins">0</span>
+          </span>
+          <button
+            class="btn-primary"
+            onclick="showNotif('Paiement réel — Phase 4 !')"
+          >
+            + ACHETER DES CRÉDITS
+          </button>
+        </div>
+      </div>
+      <div class="profile-card">
+        <div class="psec-title">▸ INVENTAIRE</div>
+        <div
+          id="inv-grid"
+          style="display: flex; flex-wrap: wrap; gap: 8px"
+        ></div>
+      </div>
+    </div>
+
+    <!-- ════════════════════ GAME ════════════════════ -->
+    <div class="screen" id="s-game">
+      <canvas id="gameCanvas"></canvas>
+    </div>
+
+    <!-- IN-GAME HUD -->
+    <div id="game-hud">
+      <div class="ghud-hp">
+        <span class="ghud-hp-lbl">HP</span>
+        <div class="hp-bar">
+          <div class="hp-fill" id="hp-fill" style="width: 100%"></div>
+        </div>
+        <span class="hp-txt" id="hp-txt">100/100</span>
+      </div>
+      <div class="ghud-sep"></div>
+      <div class="ghud-wave">VAGUE <span id="g-wave">1</span></div>
+      <div class="ghud-sep"></div>
+      <div class="ghud-score">SCORE <span id="g-score">0</span></div>
+      <div class="ghud-sep"></div>
+      <div
+        style="
+          font-family: &quot;Press Start 2P&quot;, monospace;
+          font-size: 7px;
+          color: var(--muted);
+        "
+      >
+        ENNEMIS <span id="g-enemies" style="color: var(--red)">0</span>
+      </div>
+      <div class="ghud-class" id="g-class">—</div>
+      <button class="ghud-pause" onclick="togglePause()">
+        <span id="pause-icon"></span> ESC
+      </button>
+    </div>
+
+    <!-- SKILLS BAR -->
+    <div id="skills-bar">
+      <div class="sk-slot" id="sk0">
+        <div class="sk-icon" id="sk0-i">?</div>
+        <div class="sk-key-lbl">1</div>
+        <div class="sk-cd-overlay" id="sk0-cd"></div>
+        <div class="sk-cd-txt" id="sk0-t"></div>
+      </div>
+      <div class="sk-slot" id="sk1">
+        <div class="sk-icon" id="sk1-i">?</div>
+        <div class="sk-key-lbl">2</div>
+        <div class="sk-cd-overlay" id="sk1-cd"></div>
+        <div class="sk-cd-txt" id="sk1-t"></div>
+      </div>
+      <div class="sk-slot" id="sk2">
+        <div class="sk-icon" id="sk2-i">?</div>
+        <div class="sk-key-lbl">3</div>
+        <div class="sk-cd-overlay" id="sk2-cd"></div>
+        <div class="sk-cd-txt" id="sk2-t"></div>
+      </div>
+    </div>
+    <div id="wave-announce"></div>
+
+    <!-- ════════════════════ PAUSE ════════════════════ -->
+    <div class="screen" id="s-pause">
+      <div class="pause-title">// PAUSE //</div>
+      <div style="font-size: 16px; color: var(--muted)">ESC pour reprendre</div>
+      <div class="over-btns">
+        <button class="btn-over" onclick="resumeGame()">
+          <span id="btn-resume-icon"></span> REPRENDRE
+        </button>
+        <button class="btn-over" onclick="quitToHub()">
+          <span id="btn-hub-icon"></span> HUB
+        </button>
+      </div>
+    </div>
+
+    <!-- ════════════════════ GAME OVER ════════════════════ -->
+    <div class="screen" id="s-over">
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          flex-wrap: wrap;
+          justify-content: center;
+        "
+      >
+        <span id="over-skull"></span>
+        <div class="over-title" id="over-title">GAME OVER</div>
+      </div>
+      <div class="over-stats">
+        <div class="ov-row">
+          <span class="ov-lbl">VAGUES SURVÉCUES</span
+          ><span class="ov-val" id="ov-waves">0</span>
+        </div>
+        <div class="ov-row">
+          <span class="ov-lbl">ENNEMIS ÉLIMINÉS</span
+          ><span class="ov-val" id="ov-kills">0</span>
+        </div>
+        <div class="ov-row">
+          <span class="ov-lbl">SCORE FINAL</span
+          ><span class="ov-val" id="ov-score">0</span>
+        </div>
+        <div class="ov-row">
+          <span class="ov-lbl">CRÉDITS GAGNÉS</span
+          ><span class="ov-val gold" id="ov-coins">+0</span>
+        </div>
+      </div>
+      <div class="over-btns">
+        <button class="btn-over main" onclick="restartGame()">
+          <span id="btn-retry-icon"></span> REJOUER
+        </button>
+        <button class="btn-over" onclick="quitToHub()">
+          <span id="btn-hub-icon2"></span> HUB
+        </button>
+      </div>
+    </div>
+
+    <!-- ════════════════════ BUY MODAL ════════════════════ -->
+    <div class="modal-bg" id="modal-buy">
+      <div class="modal">
+        <div class="modal-title">CONFIRMER L'ACHAT</div>
+        <div class="modal-body" id="modal-body">—</div>
+        <div class="modal-price" id="modal-price">0</div>
+        <div class="modal-actions">
+          <button class="btn-cancel" onclick="closeModal()">ANNULER</button>
+          <button class="btn-buy" onclick="confirmBuy()">ACHETER</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTIF -->
+    <div class="notif" id="notif"></div>
+
+    <!-- BOTTOM NAV -->
+    <div id="bottom-nav">
+      <button class="nav-btn active" onclick="showScreen('s-hub')" id="nav-hub">
+        <span class="nav-icon" id="nav-icon-hub"></span>HUB
+      </button>
+      <button class="nav-btn" onclick="showScreen('s-shop')" id="nav-shop">
+        <span class="nav-icon" id="nav-icon-shop"></span>BOUTIQUE
+      </button>
+      <button
+        class="nav-btn"
+        onclick="showScreen('s-profile')"
+        id="nav-profile"
+      >
+        <span class="nav-icon" id="nav-icon-profile"></span>PROFIL
+      </button>
+    </div>
+
+    <!-- ════════════════════ SCRIPTS ════════════════════ -->
+    <script src="assets/script/icons.js"></script>
+    <script src="assets/script/utils.js"></script>
+    <script src="assets/script/db.js"></script>
+    <script src="assets/script/auth.js"></script>
+    <script src="assets/script/ui.js"></script>
+    <script src="assets/script/player.js"></script>
+    <script src="assets/script/enemies.js"></script>
+    <script src="assets/script/engine.js"></script>
   </body>
 </html>

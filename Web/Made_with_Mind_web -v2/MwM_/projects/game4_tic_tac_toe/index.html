@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tic Tac Toe – MwM_ mini-jeu</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main class="app">
+    <header class="app-header">
+      <h1>Tic Tac Toe</h1>
+      <p>Mini-jeu JavaScript – un joueur contre l’IA</p>
+    </header>
+
+    <!-- Choix difficulté -->
+    <section class="panel">
+      <h2 class="panel-title">Difficulté</h2>
+      <div class="levels">
+        <button class="level-btn active" data-level="easy">Facile</button>
+        <button class="level-btn" data-level="normal">Normal</button>
+        <button class="level-btn" data-level="impossible">Impossible</button>
+      </div>
+    </section>
+
+    <!-- Plateau -->
+    <section class="board-wrapper">
+      <div id="board" class="board">
+        <button class="cell" data-index="0"></button>
+        <button class="cell" data-index="1"></button>
+        <button class="cell" data-index="2"></button>
+        <button class="cell" data-index="3"></button>
+        <button class="cell" data-index="4"></button>
+        <button class="cell" data-index="5"></button>
+        <button class="cell" data-index="6"></button>
+        <button class="cell" data-index="7"></button>
+        <button class="cell" data-index="8"></button>
+      </div>
+    </section>
+
+    <!-- Panneau d'info -->
+    <section class="info-panel">
+      <div id="status" class="status">À vous de jouer (vous êtes X).</div>
+
+      <div class="score">
+        <span>Vous : <strong id="score-player">0</strong></span>
+        <span>IA : <strong id="score-ai">0</strong></span>
+        <span>Nuls : <strong id="score-draw">0</strong></span>
+      </div>
+
+      <button id="reset-btn" class="btn-primary">Nouvelle manche</button>
+    </section>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
