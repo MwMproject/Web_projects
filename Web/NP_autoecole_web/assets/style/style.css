@@ -104,7 +104,7 @@ img {
 }
 
 .nav-links a:hover {
-  color: #cd7f32;
+  color: #7f4a00;
 }
 
 .burger {
@@ -147,21 +147,26 @@ img {
 .hero {
   position: relative;
   min-height: 100vh;
-  padding: 140px 10% 100px;
+  padding: 180px 10% 90px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   color: white;
   overflow: hidden;
-  background: none;
+  background: #000;
 }
 
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.82) 0%,
+    rgba(0, 0, 0, 0.52) 45%,
+    rgba(0, 0, 0, 0.72) 100%
+  );
   z-index: 1;
 }
 
@@ -175,23 +180,37 @@ img {
   z-index: 0;
 }
 
+.hero-logo {
+  position: absolute;
+  top: clamp(26%, 28%, 30%);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(520px, 30vw, 760px);
+  height: auto;
+  z-index: 2;
+  filter: drop-shadow(0 15px 40px rgba(0, 0, 0, 0.5));
+}
+
 .hero-content {
   position: relative;
-  z-index: 2;
-  max-width: 1000px;
+  z-index: 3;
+  max-width: 900px;
+  width: min(900px, 100%);
+  margin: 300px auto 0;
   padding: 42px 52px;
   background: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(6px);
-  border-radius: 20px;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(7px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 22px;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.42);
 }
 
 .eyebrow {
   display: inline-block;
   margin-bottom: 16px;
-  color: #e2b06d;
+  color: #7f4a00;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -209,9 +228,10 @@ img {
 }
 
 .hero p {
+  max-width: 760px;
+  margin: 0 auto 28px;
   font-size: 18px;
   line-height: 1.6;
-  margin-bottom: 28px;
   color: rgba(255, 255, 255, 0.9);
 }
 
@@ -232,7 +252,7 @@ img {
   justify-content: center;
   align-items: center;
   gap: 8px;
-  background: #9d702d;
+  background: #7f4a00;
   border: 1px solid #9d702d;
   padding: 14px 28px;
   color: white;
@@ -275,7 +295,7 @@ img {
   border: 1px solid #9d702d;
   background: transparent;
   padding: 10px 18px;
-  color: #9d702d;
+  color: #7f4a00;
   border-radius: 8px;
   text-decoration: none;
   cursor: pointer;
@@ -338,7 +358,7 @@ img {
   font-style: italic;
   text-align: left;
   padding: 26px;
-  border-left: 4px solid #9d702d;
+  border-left: 4px solid #7f4a00;
   background: linear-gradient(180deg, #ffffff, #f9f9f9);
   border-radius: 12px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
@@ -372,7 +392,7 @@ img {
   display: block;
   width: 60px;
   height: 4px;
-  background: #9d702d;
+  background: #7f4a00;
   margin: 12px auto 0;
   border-radius: 2px;
 }
@@ -407,7 +427,7 @@ img {
   color: #111;
   margin-bottom: 16px;
   padding-bottom: 10px;
-  border-bottom: 2px solid #9d702d;
+  border-bottom: 2px solid #7f4a00;
 }
 
 .services-row {
@@ -436,7 +456,7 @@ img {
 
 .service-item:hover {
   transform: translateY(-3px);
-  border-color: #9d702d;
+  border-color: #7f4a00;
   box-shadow: 0 10px 24px rgba(157, 112, 45, 0.12);
 }
 
@@ -474,7 +494,7 @@ img {
 .service-price {
   font-size: 15px;
   font-weight: 700;
-  color: #9d702d;
+  color: #7f4a00;
   white-space: nowrap;
 }
 
@@ -484,7 +504,7 @@ img {
   transition: color 0.2s;
 }
 .service-item:hover .service-arrow {
-  color: #9d702d;
+  color: #7f4a00;
 }
 
 .card-details {
@@ -494,7 +514,7 @@ img {
 .tarif {
   font-size: 26px;
   font-weight: 700;
-  color: #9d702d;
+  color: #7f4a00;
   margin: 10px 0 20px;
 }
 
@@ -660,7 +680,7 @@ img {
 }
 
 .carousel-btn:hover {
-  background: #9d702d;
+  background: #7f4a00;
 }
 
 .carousel-btn.prev {
@@ -694,11 +714,11 @@ img {
 .timeline::before {
   content: "";
   position: absolute;
-  left: 30px;
+  left: 25px;
   top: 0;
   width: 4px;
   height: calc(100% - 90px);
-  background: #9d702d;
+  background: #7f4a00;
 }
 
 .step {
@@ -710,8 +730,8 @@ img {
 
 .step-number {
   min-width: 52px;
-  height: 52px;
-  background: #9d702d;
+  height: 52px; 
+  background: #7f4a00;
   color: white;
   font-weight: bold;
   font-size: 18px;
@@ -818,7 +838,7 @@ img {
 }
 
 .contact-info h3 {
-  color: #9d702d;
+  color: #7f4a00;
   margin-bottom: 14px;
 }
 
@@ -849,13 +869,13 @@ img {
 }
 
 .info-item:hover {
-  color: #9d702d;
+  color: #7f4a00;
   transform: translateX(4px);
 }
 
 .info-item i {
   width: 18px;
-  color: #9d702d;
+  color: #7f4a00;
 }
 
 .btn-whatsapp {
@@ -934,9 +954,9 @@ img {
 .contact-form input:focus,
 .contact-form textarea:focus {
   outline: none;
-  border-color: #9d702d;
+  border-color: #7f4a00;
   background: white;
-  box-shadow: 0 0 0 3px rgba(157, 112, 45, 0.12);
+  box-shadow: 0 0 0 3px rgba(127, 74, 0, 0.12);
   transform: translateY(-1px);
 }
 
@@ -1015,7 +1035,7 @@ img {
 .footer-contact i,
 .footer-actions i {
   width: 18px;
-  color: #9d702d;
+  color: #7f4a00;
 }
 
 .footer-btn {
@@ -1026,7 +1046,7 @@ img {
 }
 
 .footer-btn:hover {
-  border-color: #9d702d;
+  border-color: #7f4a00;
 }
 
 .footer-bottom {
@@ -1042,6 +1062,16 @@ img {
 /* ==================================================
    MEDIA QUERIES
 ================================================== */
+@media (min-width: 1600px) {
+  .hero-logo {
+    top: 28%; /* au lieu de 24-25% */
+    width: clamp(560px, 30vw, 760px);
+  }
+
+  .hero-content {
+    margin-top: 320px; /* un peu moins que 360 */
+  }
+}
 
 /* ---------- DESKTOP SMALL / TABLET ---------- */
 @media (max-width: 1050px) {
@@ -1049,9 +1079,14 @@ img {
     grid-template-columns: 1fr;
   }
 
-  .carousel-btn {
+  .carousel-btn.prev {
     left: 8px;
+    right: auto;
+  }
+
+  .carousel-btn.next {
     right: 8px;
+    left: auto;
   }
 }
 
@@ -1137,7 +1172,13 @@ img {
     padding: 130px 14px 70px;
   }
 
+  .hero-logo {
+    top: 30%;
+    width: clamp(280px, 80vw, 460px);
+  }
+
   .hero-content {
+    margin-top: 190px;
     padding: 32px 24px;
   }
 
@@ -1214,6 +1255,15 @@ img {
 
   .nav-links {
     top: 74px;
+  }
+
+  .hero-logo {
+    top: 28%;
+    width: clamp(240px, 86vw, 360px);
+  }
+
+  .hero-content {
+    margin-top: 160px;
   }
 
   .hero h1 {
