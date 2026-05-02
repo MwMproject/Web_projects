@@ -340,10 +340,10 @@ img {
 
 .about-img {
   width: 100%;
-  max-width: 520px;
+  max-width: 300px;
   overflow: hidden;
   border-radius: 12px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  box-shadow: 11px 13px 16px 0px rgba(0, 0, 0, 0.24);
 }
 
 .about-img img {
@@ -496,6 +496,9 @@ img {
   font-weight: 700;
   color: #7f4a00;
   white-space: nowrap;
+  background-color: #7f4a004f;
+  padding: 4px 10px;
+  border-radius: 8px;
 }
 
 .service-arrow {
