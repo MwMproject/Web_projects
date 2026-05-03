@@ -25,7 +25,7 @@
       <div class="container header-inner">
         <a href="#top" class="brand">
           <img
-            src="assets/img/logo_mwm.png"
+            src="assets/img/logo_mwm_hero.png"
             class="brand-logo"
             alt="Logo MwM_"
           />
@@ -65,7 +65,7 @@
         <div class="container hero-inner">
           <div class="hero-logo-glow">
             <img
-              src="assets/img/logo_mwm.png"
+              src="assets/img/logo_mwm_hero.png"
               class="hero-logo"
               alt="Logo MwM_"
             />
@@ -100,7 +100,12 @@
           <div class="services-grid">
             <article class="service-card reveal-el">
               <div class="service-icon">
-                <img src="assets/icons/web.svg" alt="web" width="48" height="48">
+                <img
+                  src="assets/icons/web.svg"
+                  alt="web"
+                  width="48"
+                  height="48"
+                />
               </div>
               <h3>Sites web</h3>
               <p>
@@ -110,7 +115,12 @@
             </article>
             <article class="service-card reveal-el">
               <div class="service-icon">
-                <img src="assets/icons/cart.svg" alt="cart" width="48" height="48">
+                <img
+                  src="assets/icons/cart.svg"
+                  alt="cart"
+                  width="48"
+                  height="48"
+                />
               </div>
               <h3>Boutiques en ligne</h3>
               <p>
@@ -120,7 +130,12 @@
             </article>
             <article class="service-card reveal-el">
               <div class="service-icon">
-                <img src="assets/icons/bolt.svg" alt="bolt" width="48" height="48">
+                <img
+                  src="assets/icons/bolt.svg"
+                  alt="bolt"
+                  width="48"
+                  height="48"
+                />
               </div>
               <h3>Applications web</h3>
               <p>
@@ -222,11 +237,12 @@
           <!-- PROJECTS GRID -->
           <div class="portfolio-grid" id="portfolio-grid">
             <!-- === EN LIGNE === -->
+             <!-- === MwM === -->
             <article class="project-card reveal-el" data-category="online">
               <div
                 class="project-thumb"
                 style="
-                  background-image: url(&quot;assets/img/logo_mwm.png&quot;);
+                  background-image: url(&quot;assets/img/logo_mwm_hero.png&quot;);
                   background-size: contain;
                   background-repeat: no-repeat;
                   background-position: center;
@@ -240,8 +256,34 @@
               <div class="project-body">
                 <h3>MwM Project — Portfolio</h3>
                 <p>
-                  Ce site même ! Studio digital basé en Suisse romande, conçu et
-                  développé from scratch.
+                  Ce site même ! Studio digital basé en Suisse romande, conçu et développé sur mesure pour présenter mes services, offres
+                </p>
+                <div class="project-tags">
+                  <span class="tag">HTML / CSS / JS</span>
+                  <span class="tag">SEO</span>
+                </div>
+              </div>
+            </article>
+            <!-- === Besson === -->
+            <article class="project-card reveal-el" data-category="online">
+              <div
+                class="project-thumb"
+                style="
+                  background-image: url(&quot;assets/img/projet4_bessonpaysage.png&quot;);
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                  background-position: center;
+                  background-color: var(--bg);
+                "
+                data-img="assets/img/projet4_bessonpaysage.png"
+                data-link="https://www.besson-paysage.ch/"
+              >
+                <span class="project-status online">En ligne</span>
+              </div>
+              <div class="project-body">
+                <h3>Besson Paysage — Site web</h3>
+                <p>
+                  Site web pour une entreprise de paysagisme du canton de Vaud, conçu et développé sur mesure avec un design moderne et une navigation intuitive.
                 </p>
                 <div class="project-tags">
                   <span class="tag">HTML / CSS / JS</span>
@@ -542,7 +584,12 @@
               <div class="contact-links">
                 <a href="mailto:info@mwm-project.ch" class="contact-link">
                   <div class="contact-link-icon">
-                    <img src="assets/icons/mail.svg" alt="mail" width="36" height="36">
+                    <img
+                      src="assets/icons/mail.svg"
+                      alt="mail"
+                      width="36"
+                      height="36"
+                    />
                   </div>
                   <div class="contact-link-text">
                     <span class="contact-link-label">Email</span>
@@ -555,7 +602,12 @@
                   class="contact-link"
                 >
                   <div class="contact-link-icon">
-                    <img src="assets/icons/code.svg" alt="code" width="36" height="36">
+                    <img
+                      src="assets/icons/code.svg"
+                      alt="code"
+                      width="36"
+                      height="36"
+                    />
                   </div>
                   <div class="contact-link-text">
                     <span class="contact-link-label">GitHub</span>
@@ -568,7 +620,12 @@
                   class="contact-link"
                 >
                   <div class="contact-link-icon">
-                    <img src="assets/icons/camera.svg" alt="camera" width="36" height="36">
+                    <img
+                      src="assets/icons/camera.svg"
+                      alt="camera"
+                      width="36"
+                      height="36"
+                    />
                   </div>
                   <div class="contact-link-text">
                     <span class="contact-link-label">Instagram</span>
@@ -584,7 +641,7 @@
               method="POST"
             >
               <div class="form-group">
-                <label for="name">Nom</label>
+                <label for="name"></label>
                 <input
                   type="text"
                   id="name"
@@ -594,7 +651,7 @@
                 />
               </div>
               <div class="form-group">
-                <label for="email">E-mail</label>
+                <label for="email"></label>
                 <input
                   type="email"
                   id="email"
@@ -604,7 +661,7 @@
                 />
               </div>
               <div class="form-group">
-                <label for="message">Message</label>
+                <label for="message"></label>
                 <textarea
                   id="message"
                   name="message"
@@ -624,22 +681,47 @@
     <!-- ============ FOOTER ============ -->
     <footer class="site-footer">
       <div class="container footer-inner">
-        <span
-          >© <span id="year"></span> MwM Project — Vos solutions
-          digitales.</span
-        >
+        <p class="footer-text">
+          © <span id="year"></span> MwM Project — Vos solutions digitales.
+        </p>
+
         <div class="footer-links">
           <a
             href="https://github.com/MwMproject"
             target="_blank"
+            rel="noopener noreferrer"
             aria-label="GitHub"
-            ><img src="assets/icons/github.svg" alt="GitHub" width="24" height="24"></a>
+          >
+            <img
+              src="assets/img/social_logo/github.svg"
+              alt=""
+              width="24"
+              height="24"
+            />
+          </a>
+
           <a
             href="https://www.instagram.com/mwm_project/"
             target="_blank"
+            rel="noopener noreferrer"
             aria-label="Instagram"
-            ><img src="assets/icons/insta.svg" alt="Instagram" width="24" height="24"></a>
-          <a href="#top">↑ Haut</a>
+          >
+            <img
+              src="assets/img/social_logo/insta.svg"
+              alt=""
+              width="24"
+              height="24"
+            />
+          </a>
+
+          <a href="#top" aria-label="Retour en haut">
+            <img
+              src="assets/img/social_logo/up.png"
+              alt=""
+              width="24"
+              height="24"
+            />
+          </a>
         </div>
       </div>
     </footer>

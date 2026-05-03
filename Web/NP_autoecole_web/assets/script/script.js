@@ -58,67 +58,30 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-// CAROUSEL
-const slides = document.querySelectorAll(".slide");
-const carousel = document.querySelector(".carousel");
-const prevBtn = document.querySelector(".prev");
-const nextBtn = document.querySelector(".next");
+// AVIS GOOGLE CAROUSEL
+const reviewCards = document.querySelectorAll(".review-card");
+const reviewPrev = document.querySelector(".review-prev");
+const reviewNext = document.querySelector(".review-next");
 
-let index = 0;
-let interval = null;
-const delay = 3500;
+let reviewIndex = 0;
 
-function updateCarousel() {
-  if (!slides.length) return;
-
-  slides.forEach((slide) => {
-    slide.classList.remove("left", "center", "right", "hidden");
-  });
-
-  const prev = (index - 1 + slides.length) % slides.length;
-  const next = (index + 1) % slides.length;
-
-  slides[index].classList.add("center");
-  slides[prev].classList.add("left");
-  slides[next].classList.add("right");
-
-  slides.forEach((slide, i) => {
-    if (i !== index && i !== prev && i !== next) {
-      slide.classList.add("hidden");
-    }
+function updateReviews() {
+  reviewCards.forEach((card, i) => {
+    card.classList.toggle("active", i === reviewIndex);
   });
 }
 
-function startCarousel() {
-  if (interval || slides.length <= 1) return;
-
-  interval = setInterval(() => {
-    index = (index + 1) % slides.length;
-    updateCarousel();
-  }, delay);
-}
-
-function stopCarousel() {
-  clearInterval(interval);
-  interval = null;
-}
-
-nextBtn?.addEventListener("click", () => {
-  stopCarousel();
-  index = (index + 1) % slides.length;
-  updateCarousel();
-  startCarousel();
+reviewNext?.addEventListener("click", () => {
+  reviewIndex = (reviewIndex + 1) % reviewCards.length;
+  updateReviews();
 });
 
-prevBtn?.addEventListener("click", () => {
-  stopCarousel();
-  index = (index - 1 + slides.length) % slides.length;
-  updateCarousel();
-  startCarousel();
+reviewPrev?.addEventListener("click", () => {
+  reviewIndex = (reviewIndex - 1 + reviewCards.length) % reviewCards.length;
+  updateReviews();
 });
 
-carousel?.addEventListener("mouseenter", stopCarousel);
-carousel?.addEventListener("mouseleave", startCarousel);
+updateReviews();
 
 // SWIPE MOBILE
 let touchStartX = 0;
