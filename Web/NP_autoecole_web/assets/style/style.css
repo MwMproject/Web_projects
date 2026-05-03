@@ -85,7 +85,7 @@ img {
 .logo-img {
   height: 72px;
   width: auto;
-  filter: invert(1);
+  margin: 5px;
 }
 
 .nav-links {
@@ -188,7 +188,7 @@ img {
   width: clamp(520px, 30vw, 760px);
   height: auto;
   z-index: 2;
-  filter: drop-shadow(0 15px 40px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0 15px 40px rgb(83, 83, 83));
 }
 
 .hero-content {
@@ -492,11 +492,12 @@ img {
 }
 
 .service-price {
+  max-width: fit-content;
   font-size: 15px;
   font-weight: 700;
   color: #7f4a00;
   white-space: nowrap;
-  background-color: #7f4a004f;
+  background-color: #695f5534;
   padding: 4px 10px;
   border-radius: 8px;
 }
