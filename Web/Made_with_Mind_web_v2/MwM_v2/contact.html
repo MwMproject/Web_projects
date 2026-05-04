@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact – Demandez un devis gratuit pour votre site web | MwM Project</title>
+    <meta name="description" content="Contactez MwM Project pour discuter de votre projet web. Devis gratuit, réponse rapide, sans engagement. Studio digital basé en Suisse romande." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://mwm-project.ch/contact.html" />
+    <meta name="geo.region" content="CH-VD" />
+    <meta name="geo.placename" content="Vaud, Suisse romande" />
+    <meta name="geo.country" content="CH" />
+    <meta property="og:title" content="Contact – MwM Project" />
+    <meta property="og:description" content="Discutons de votre projet web. Devis gratuit et réponse rapide. Studio digital en Suisse romande." />
+    <meta property="og:image" content="https://mwm-project.ch/assets/img/logo_mwm.png" />
+    <meta property="og:url" content="https://mwm-project.ch/contact.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_CH" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/style.css" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="index.html" class="brand">
+          <img src="assets/img/logo_mwm_hero.png" class="brand-logo" alt="Logo MwM_" />
+          <span>MwM Project</span>
+        </a>
+        <nav class="nav">
+          <a href="index.html" class="nav-link">Accueil</a>
+          <a href="services.html" class="nav-link">Services</a>
+          <a href="offres.html" class="nav-link">Offres</a>
+          <a href="portfolio.html" class="nav-link">Portfolio</a>
+          <a href="a-propos.html" class="nav-link">À propos</a>
+          <a href="faq.html" class="nav-link">FAQ</a>
+          <a href="contact.html" class="nav-link nav-cta active-page">Contact</a>
+        </nav>
+        <div class="theme-toggle" id="themeToggle"><div class="toggle-circle"></div></div>
+        <button id="burger-btn" class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+      <nav class="mobile-nav" id="mobile-nav">
+        <a href="index.html">Accueil</a>
+        <a href="services.html">Services</a>
+        <a href="offres.html">Offres</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="a-propos.html">À propos</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="page-hero">
+        <div class="container">
+          <h1 class="page-hero-title reveal-el">Démarrons <span class="accent">votre projet</span></h1>
+          <p class="page-hero-subtitle reveal-el">Réponse rapide, sans engagement. Discutons de vos besoins et trouvons la meilleure solution ensemble.</p>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <div class="container">
+          <div class="contact-grid">
+            <div class="contact-info reveal-el">
+              <h2>Contactez-moi</h2>
+              <p>N'hésitez pas à m'écrire pour toute question, demande de devis ou simplement pour discuter de votre projet.</p>
+              <div class="contact-links">
+                <a href="mailto:info@mwm-project.ch" class="contact-link">
+                  <div class="contact-link-icon"><img src="assets/icons/mail.svg" alt="mail" width="36" height="36" /></div>
+                  <div class="contact-link-text">
+                    <span class="contact-link-label">Email</span>
+                    <span class="contact-link-value">info@mwm-project.ch</span>
+                  </div>
+                </a>
+                <a href="https://github.com/MwMproject" target="_blank" class="contact-link">
+                  <div class="contact-link-icon"><img src="assets/icons/code.svg" alt="code" width="36" height="36" /></div>
+                  <div class="contact-link-text">
+                    <span class="contact-link-label">GitHub</span>
+                    <span class="contact-link-value">MwMproject</span>
+                  </div>
+                </a>
+                <a href="https://www.instagram.com/mwm_project/" target="_blank" class="contact-link">
+                  <div class="contact-link-icon"><img src="assets/icons/camera.svg" alt="camera" width="36" height="36" /></div>
+                  <div class="contact-link-text">
+                    <span class="contact-link-label">Instagram</span>
+                    <span class="contact-link-value">@mwm_project</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <form class="contact-form reveal-el" id="contact-form" action="contact.php" method="POST">
+              <div class="form-group">
+                <label for="name"></label>
+                <input type="text" id="name" name="name" required placeholder="Votre nom" />
+              </div>
+              <div class="form-group">
+                <label for="email"></label>
+                <input type="email" id="email" name="email" required placeholder="votre@email.ch" />
+              </div>
+              <div class="form-group">
+                <label for="message"></label>
+                <textarea id="message" name="message" required placeholder="Décrivez votre projet..."></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Envoyer le message →</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p class="footer-text">© <span id="year"></span> MwM Project — Vos solutions digitales.</p>
+        <div class="footer-links">
+          <a href="https://github.com/MwMproject" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><img src="assets/img/social_logo/github.svg" alt="" width="24" height="24" /></a>
+          <a href="https://www.instagram.com/mwm_project/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="assets/img/social_logo/insta.svg" alt="" width="24" height="24" /></a>
+          <a href="#top" aria-label="Retour en haut"><img src="assets/img/social_logo/up.png" alt="" width="24" height="24" /></a>
+        </div>
+        <div class="footer-page-links">
+          <a href="services.html">Services</a>
+          <a href="offres.html">Offres</a>
+          <a href="portfolio.html">Portfolio</a>
+          <a href="a-propos.html">À propos</a>
+          <a href="faq.html">FAQ</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "mainEntity": {
+          "@type": "LocalBusiness",
+          "name": "MwM Project",
+          "url": "https://mwm-project.ch",
+          "email": "info@mwm-project.ch",
+          "address": { "@type": "PostalAddress", "addressCountry": "CH", "addressRegion": "Vaud" }
+        }
+      }
+    </script>
+    <script src="assets/main.js"></script>
+  </body>
+</html>

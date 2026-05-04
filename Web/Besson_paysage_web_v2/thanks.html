@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Message envoyé – Besson Paysage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    :root {
+        --green: #6E7C2A;
+        --green-dark: #3A520B;
+        --grey-light: #eeeeee;
+        --grey: #d9d9d9;
+        --text: #333;
+        --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .thanks-card {
+      background: var(--white);
+      max-width: 520px;
+      width: 100%;
+      padding: 45px 40px;
+      border-radius: 18px;
+      text-align: center;
+      box-shadow:
+        0 12px 30px rgba(0,0,0,0.12),
+        0 30px 80px rgba(0,0,0,0.08);
+    }
+
+    .thanks-icon {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 25px;
+      border-radius: 50%;
+      background: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 42px;
+    }
+
+    h1 {
+      margin: 0 0 15px;
+      color: var(--green-dark);
+      font-size: 1.9rem;
+    }
+
+    p {
+      margin: 0 0 12px;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    .hint {
+      font-size: 0.95rem;
+      color: #666;
+      margin-top: 10px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 26px;
+      background: var(--green);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: background 0.25s ease, transform 0.25s ease;
+    }
+
+    .back-link:hover {
+      background: var(--green-dark);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="thanks-card">
+    <div class="thanks-icon">✓</div>
+
+    <h1>Merci pour votre message</h1>
+
+    <p>
+      Votre demande a bien été envoyée.<br>
+      Nous vous répondrons dans les plus brefs délais.
+    </p>
+
+    <p class="hint">
+      En général, nous répondons sous 24 à 48 heures ouvrables.
+    </p>
+
+    <a href="/" class="back-link">Retour au site</a>
+  </div>
+</body>
+</html>
