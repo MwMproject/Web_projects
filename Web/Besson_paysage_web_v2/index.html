@@ -78,11 +78,11 @@
             harmonieux.
           </p>
           <div class="hero-actions">
-            <a href="#contact" class="btn btn-primary">Demander un devis</a>
+            <a href="#contact" class="btn btn-primary">Nous contacter</a>
             <a href="#services" class="btn btn-light">Découvrir les services</a>
           </div>
           <div class="hero-proof" aria-label="Points forts">
-            <span>Devis gratuit</span>
+            <span>À votre écoute</span>
             <span>Entreprise locale</span>
             <span>Travail soigné</span>
           </div>
@@ -101,23 +101,24 @@
         />
       </section>
 
-      <div class="leaf-divider" aria-hidden="true">
-        <img src="assets/img/leaf-separator.svg" alt="" />
-      </div>
-
       <section id="expertise" class="section intro-section">
         <div class="container intro-grid">
           <div class="section-heading reveal">
             <p class="eyebrow">Entreprise locale</p>
-            <h2>Une approche précise, humaine et professionnelle.</h2>
+            <h2>
+              <i>"Votre jardin mérite une attention experte. En prendre soin est notre priorité."</i>
+            </h2>
           </div>
           <div class="intro-card reveal">
             <p>
               Fondée en 2018 par Adrien Besson, Besson Paysage est une
               entreprise à taille humaine spécialisée dans l’entretien et
-              l’aménagement d’espaces verts. Nous mettons notre expertise et
-              notre rigueur au service de jardins soignés, durables et
-              harmonieux.
+              l’aménagement d’espaces verts dans le canton de Vaud. Nous mettons
+              notre expertise et notre rigueur au service de jardins soignés,
+              durables et harmonieux. Nous accompagnons particuliers,
+              entreprises et collectivités dans la création, la transformation
+              et l’entretien de leurs extérieurs, en proposant des solutions
+              adaptées à chaque environnement et à chaque besoin.
             </p>
             <div class="stats">
               <div><strong>2018</strong><span>Fondation</span></div>
@@ -128,15 +129,17 @@
         </div>
       </section>
 
-      <div class="leaf-divider leaf-divider-light" aria-hidden="true">
-        <img src="assets/img/leaf-separator.svg" alt="" />
-      </div>
-
       <section
         id="entretien"
         class="section split-section v1-story-section"
         aria-labelledby="titre-entretien"
       >
+        <div
+          class="section-bg"
+          style="
+            background-image: url(&quot;assets/img/realisations/tonte-jardin.jpg&quot;);
+          "
+        ></div>
         <div class="container split-grid story-grid">
           <div class="split-copy story-copy reveal">
             <p class="eyebrow">Entretien</p>
@@ -183,33 +186,67 @@
               en toute sérénité.
             </p>
           </div>
-          <figure class="image-card story-image reveal">
-            <img
-              src="assets/img/realisations/tonte-jardin.jpg"
-              alt="Entretien de jardin par Besson Paysage"
-              loading="lazy"
-            />
-          </figure>
+          <div class="story-gallery reveal">
+            <figure class="image-card">
+              <img
+                src="assets/img/realisations/tonte-jardin.jpg"
+                alt="Entretien de jardin par Besson Paysage"
+                loading="lazy"
+              />
+            </figure>
+            <figure class="image-card">
+              <img
+                src="assets/img/realisations/taille3.jpg"
+                alt="Taille de haies par Besson Paysage"
+                loading="lazy"
+              />
+            </figure>
+            <figure class="image-card">
+              <img
+                src="assets/img/realisations/tonte-pre.jpg"
+                alt="Tonte de pré par Besson Paysage"
+                loading="lazy"
+              />
+            </figure>
+          </div>
         </div>
       </section>
-
-      <div class="leaf-divider leaf-divider-white" aria-hidden="true">
-        <img src="assets/img/leaf-separator.svg" alt="" />
-      </div>
 
       <section
         id="amenagements"
         class="section split-section split-alt v1-story-section"
         aria-labelledby="titre-amenagements"
       >
+        <div
+          class="section-bg"
+          style="
+            background-image: url(&quot;assets/img/realisations/amenagement-fond.jpg&quot;);
+          "
+        ></div>
         <div class="container split-grid story-grid">
-          <figure class="image-card story-image reveal">
-            <img
-              src="assets/img/realisations/amenagement-fond.jpg"
-              alt="Aménagement extérieur réalisé par Besson Paysage"
-              loading="lazy"
-            />
-          </figure>
+          <div class="story-gallery reveal">
+            <figure class="image-card">
+              <img
+                src="assets/img/realisations/palissade-bois2.jpg"
+                alt="Aménagement extérieur réalisé par Besson Paysage"
+                loading="lazy"
+              />
+            </figure>
+            <figure class="image-card">
+              <img
+                src="assets/img/realisations/gres-2.1.jpg"
+                alt="Dallage en grès par Besson Paysage"
+                loading="lazy"
+              />
+            </figure>
+            <figure class="image-card">
+              <img
+                src="assets/img/realisations/pave1.jpg"
+                alt="Pavage extérieur par Besson Paysage"
+                loading="lazy"
+              />
+            </figure>
+          </div>
           <div class="split-copy story-copy reveal">
             <p class="eyebrow">Aménagements extérieurs</p>
             <h2 id="titre-amenagements">
@@ -266,10 +303,6 @@
           </div>
         </div>
       </section>
-
-      <div class="leaf-divider" aria-hidden="true">
-        <img src="assets/img/leaf-separator.svg" alt="" />
-      </div>
 
       <section
         id="services"
@@ -480,10 +513,6 @@
         </div>
       </section>
 
-      <div class="leaf-divider leaf-divider-light" aria-hidden="true">
-        <img src="assets/img/leaf-separator.svg" alt="" />
-      </div>
-
       <section
         id="realisations"
         class="section realisations"
@@ -498,7 +527,7 @@
               d’extérieurs.
             </p>
           </div>
-          <div class="project-grid reveal">
+          <div class="project-slide project-grid reveal active" data-slide="0">
             <img
               src="assets/img/realisations/amenagement.jpg"
               alt="Aménagement extérieur"
@@ -524,11 +553,61 @@
               alt="Pose de gazon en rouleau"
               loading="lazy"
             />
+          </div>
+          <div class="project-slide project-grid" data-slide="1">
             <img
               src="assets/img/realisations/gres-4.jpg"
               alt="Dallage en grès"
               loading="lazy"
             />
+            <img
+              src="assets/img/realisations/enrochement.jpg"
+              alt="Enrochement"
+              loading="lazy"
+            />
+            <img
+              src="assets/img/realisations/dalle.jpg"
+              alt="Dalle béton"
+              loading="lazy"
+            />
+            <img
+              src="assets/img/realisations/herbe1.jpg"
+              alt="Aménagement gazon"
+              loading="lazy"
+            />
+            <img
+              src="assets/img/realisations/taille.jpg"
+              alt="Taille de haies"
+              loading="lazy"
+            />
+          </div>
+          <div class="project-pager">
+            <button
+              class="project-pager-btn"
+              data-dir="-1"
+              aria-label="Page précédente"
+            >
+              ‹
+            </button>
+            <div class="project-dots">
+              <button
+                class="project-dot active"
+                data-page="0"
+                aria-label="Page 1"
+              ></button>
+              <button
+                class="project-dot"
+                data-page="1"
+                aria-label="Page 2"
+              ></button>
+            </div>
+            <button
+              class="project-pager-btn"
+              data-dir="1"
+              aria-label="Page suivante"
+            >
+              ›
+            </button>
           </div>
           <div
             class="carousel reveal"
@@ -642,10 +721,6 @@
         </div>
       </section>
 
-      <div class="leaf-divider leaf-divider-white" aria-hidden="true">
-        <img src="assets/img/leaf-separator.svg" alt="" />
-      </div>
-
       <section class="cta-band" aria-labelledby="titre-cta">
         <div class="container cta-inner reveal">
           <div>
@@ -658,10 +733,6 @@
         </div>
       </section>
 
-      <div class="leaf-divider leaf-divider-dark" aria-hidden="true">
-        <img src="assets/img/leaf-separator.svg" alt="" />
-      </div>
-
       <section
         id="contact"
         class="section contact"
@@ -670,7 +741,7 @@
         <div class="container contact-grid">
           <div class="contact-copy reveal">
             <p class="eyebrow">Contact</p>
-            <h2 id="titre-contact">Demandez votre devis gratuit.</h2>
+            <h2 id="titre-contact">Parlons de votre projet.</h2>
             <p>
               Décrivez votre besoin et nous revenons vers vous pour échanger sur
               votre extérieur.
@@ -763,6 +834,11 @@
         </p>
       </div>
     </footer>
+
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+      <button class="lightbox-close" aria-label="Fermer">×</button>
+      <img src="" alt="" />
+    </div>
 
     <script src="assets/script.js"></script>
   </body>

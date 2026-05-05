@@ -33,7 +33,7 @@ $mail = new PHPMailer(true);
 
 try {
   // ==================================================
-  // SMTP LOCAL INFOMANIAK (RECOMMANDÉ)
+  // SMTP LOCAL INFOMANIAK
   // ==================================================
   $mail->isSMTP();
   $mail->Host       = 'localhost';
