@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /PHPMailer/
+Disallow: /contact.php
+Disallow: /thanks.html
+
+Sitemap: https://www.np-autoecole.ch/sitemap.xml
