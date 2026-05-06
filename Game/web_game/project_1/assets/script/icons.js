@@ -1,17 +1,19 @@
 // ═══════════════════════════════════════════════════
-//  NEXUS ZERO — icons.js
+//  icons.js
 //  Pixel art SVG icons — post-apo style
 //  Usage: ICON.sword, ICON.skull, etc. — returns SVG string
 //  Sizes: s=16, m=24, l=34, xl=48
 // ═══════════════════════════════════════════════════
-'use strict';
+"use strict";
 
 const ICON = {
-
   // ── HUB TILES ──
 
   // Crossed swords — JOUER
-  swords: (size=34, color='currentColor') => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+  swords: (
+    size = 34,
+    color = "currentColor",
+  ) => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
     <rect x="2" y="2" width="2" height="2" fill="${color}"/>
     <rect x="4" y="4" width="2" height="2" fill="${color}"/>
     <rect x="6" y="6" width="2" height="2" fill="${color}"/>
@@ -30,7 +32,10 @@ const ICON = {
   </svg>`,
 
   // Cart/crate — BOUTIQUE
-  crate: (size=34, color='currentColor') => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+  crate: (
+    size = 34,
+    color = "currentColor",
+  ) => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
     <rect x="2" y="4" width="12" height="10" fill="${color}" opacity=".3"/>
     <rect x="2" y="4" width="12" height="2" fill="${color}"/>
     <rect x="2" y="4" width="2" height="10" fill="${color}"/>
@@ -42,7 +47,10 @@ const ICON = {
   </svg>`,
 
   // Helmet/skull — PROFIL
-  helmet: (size=34, color='currentColor') => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+  helmet: (
+    size = 34,
+    color = "currentColor",
+  ) => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
     <rect x="4" y="2" width="8" height="2" fill="${color}"/>
     <rect x="2" y="4" width="2" height="6" fill="${color}"/>
     <rect x="12" y="4" width="2" height="6" fill="${color}"/>
@@ -58,7 +66,10 @@ const ICON = {
   </svg>`,
 
   // Arrows cycle — CLASSE
-  cycle: (size=34, color='currentColor') => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+  cycle: (
+    size = 34,
+    color = "currentColor",
+  ) => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
     <rect x="6" y="2" width="6" height="2" fill="${color}"/>
     <rect x="12" y="4" width="2" height="2" fill="${color}"/>
     <rect x="10" y="2" width="2" height="2" fill="${color}"/>
@@ -74,7 +85,10 @@ const ICON = {
   // ── BOTTOM NAV ──
 
   // House/bunker — HUB
-  bunker: (size=18, color='currentColor') => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+  bunker: (
+    size = 18,
+    color = "currentColor",
+  ) => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
     <rect x="7" y="2" width="2" height="2" fill="${color}"/>
     <rect x="5" y="4" width="6" height="2" fill="${color}"/>
     <rect x="3" y="6" width="10" height="2" fill="${color}"/>
@@ -86,7 +100,10 @@ const ICON = {
   </svg>`,
 
   // Small cart — nav boutique
-  cart: (size=18, color='currentColor') => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+  cart: (
+    size = 18,
+    color = "currentColor",
+  ) => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
     <rect x="2" y="4" width="2" height="2" fill="${color}"/>
     <rect x="4" y="4" width="10" height="2" fill="${color}" opacity=".7"/>
     <rect x="4" y="6" width="8" height="4" fill="${color}" opacity=".4"/>
@@ -98,7 +115,10 @@ const ICON = {
   </svg>`,
 
   // Small profile
-  survivor: (size=18, color='currentColor') => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+  survivor: (
+    size = 18,
+    color = "currentColor",
+  ) => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
     <rect x="6" y="2" width="4" height="4" fill="${color}"/>
     <rect x="7" y="4" width="1" height="1" fill="${color}" opacity=".3"/>
     <rect x="9" y="4" width="0" height="1" fill="${color}" opacity=".3"/>
@@ -113,7 +133,10 @@ const ICON = {
   // ── CLASS BANNERS ──
 
   // War axe — WARRIOR
-  axe: (size=52, color='#ff6b35') => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+  axe: (
+    size = 52,
+    color = "#ff6b35",
+  ) => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
     <rect x="7" y="1" width="2" height="14" fill="${color}" opacity=".6"/>
     <rect x="3" y="2" width="4" height="2" fill="${color}"/>
     <rect x="2" y="4" width="4" height="2" fill="${color}"/>
@@ -127,7 +150,10 @@ const ICON = {
   </svg>`,
 
   // Crystal orb — MAGE
-  orb: (size=52, color='#9b59b6') => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+  orb: (
+    size = 52,
+    color = "#9b59b6",
+  ) => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
     <rect x="5" y="2" width="6" height="2" fill="${color}"/>
     <rect x="3" y="4" width="2" height="2" fill="${color}"/>
     <rect x="11" y="4" width="2" height="2" fill="${color}"/>
@@ -142,7 +168,10 @@ const ICON = {
   </svg>`,
 
   // Crosshair/scope — ARCHER
-  scope: (size=52, color='#00d4aa') => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+  scope: (
+    size = 52,
+    color = "#00d4aa",
+  ) => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
     <rect x="7" y="1" width="2" height="4" fill="${color}"/>
     <rect x="7" y="11" width="2" height="4" fill="${color}"/>
     <rect x="1" y="7" width="4" height="2" fill="${color}"/>
@@ -157,7 +186,10 @@ const ICON = {
   // ── MISC ──
 
   // Star — LEVEL
-  star: (size=14, color='#ffd700') => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+  star: (
+    size = 14,
+    color = "#ffd700",
+  ) => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
     <rect x="7" y="1" width="2" height="2" fill="${color}"/>
     <rect x="6" y="3" width="4" height="2" fill="${color}"/>
     <rect x="2" y="5" width="12" height="2" fill="${color}"/>
@@ -169,7 +201,10 @@ const ICON = {
   </svg>`,
 
   // Skull — GAME OVER
-  skull: (size=34, color='#e74c3c') => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+  skull: (
+    size = 34,
+    color = "#e74c3c",
+  ) => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
     <rect x="4" y="2" width="8" height="2" fill="${color}"/>
     <rect x="2" y="4" width="2" height="6" fill="${color}"/>
     <rect x="12" y="4" width="2" height="6" fill="${color}"/>
@@ -185,13 +220,19 @@ const ICON = {
   </svg>`,
 
   // Pause bars
-  pause: (size=14, color='currentColor') => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+  pause: (
+    size = 14,
+    color = "currentColor",
+  ) => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
     <rect x="3" y="2" width="4" height="12" fill="${color}"/>
     <rect x="9" y="2" width="4" height="12" fill="${color}"/>
   </svg>`,
 
   // Play arrow
-  play: (size=14, color='currentColor') => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+  play: (
+    size = 14,
+    color = "currentColor",
+  ) => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
     <rect x="4" y="2" width="2" height="12" fill="${color}"/>
     <rect x="6" y="3" width="2" height="10" fill="${color}"/>
     <rect x="8" y="4" width="2" height="8" fill="${color}"/>
@@ -200,7 +241,10 @@ const ICON = {
   </svg>`,
 
   // Coin/credit
-  coin: (size=14, color='#ffd700') => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+  coin: (
+    size = 14,
+    color = "#ffd700",
+  ) => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
     <rect x="5" y="2" width="6" height="2" fill="${color}"/>
     <rect x="3" y="4" width="2" height="2" fill="${color}"/>
     <rect x="11" y="4" width="2" height="2" fill="${color}"/>
@@ -213,7 +257,10 @@ const ICON = {
   </svg>`,
 
   // Retry / reload
-  retry: (size=14, color='currentColor') => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+  retry: (
+    size = 14,
+    color = "currentColor",
+  ) => `<svg width="${size}" height="${size}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
     <rect x="6" y="2" width="6" height="2" fill="${color}"/>
     <rect x="12" y="4" width="2" height="4" fill="${color}"/>
     <rect x="10" y="2" width="2" height="2" fill="${color}" opacity=".5"/>
@@ -224,5 +271,4 @@ const ICON = {
     <rect x="2" y="10" width="2" height="2" fill="${color}"/>
     <rect x="4" y="12" width="2" height="2" fill="${color}" opacity=".5"/>
   </svg>`,
-
 };
