@@ -693,6 +693,9 @@ img {
   background: var(--brand-soft);
 }
 
+.modal-body li {
+  list-style: none;
+}
 /* ==================================================
    RÉUSSITES / AVIS
 ================================================== */
