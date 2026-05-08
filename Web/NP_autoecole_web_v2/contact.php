@@ -1,10 +1,10 @@
 <?php
 /**
- * Envoie un email via PHPMailer (SMTP)
+ * NP Auto-école — Envoi du formulaire de contact
+ * SMTP local Infomaniak (pas besoin de mot de passe)
  */
 
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 require __DIR__ . '/PHPMailer/src/Exception.php';
@@ -12,18 +12,14 @@ require __DIR__ . '/PHPMailer/src/PHPMailer.php';
 require __DIR__ . '/PHPMailer/src/SMTP.php';
 
 // ── Configuration ──
-$SMTP_HOST   = 'smtp.office365.com';       // À adapter selon l'hébergeur
-$SMTP_PORT   = 587;
-$SMTP_USER   = 'contact@np-autoecole.ch';  // Adresse email SMTP
-$SMTP_PASS   = 'MOT_DE_PASSE_A_CHANGER';  // Mot de passe SMTP
-$MAIL_TO     = 'contact@np-autoecole.ch';  // Destinataire
-$MAIL_FROM   = 'contact@np-autoecole.ch';  // Expéditeur affiché
 $SITE_NAME   = 'NP Auto-école';
+$MAIL_TO     = 'contact@np-autoecole.ch';
+$MAIL_FROM   = 'contact@np-autoecole.ch';
 
-// ── Anti-spam basique ──
+// ── Sécurité ──
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: index.html');
-    exit;
+    http_response_code(403);
+    exit('Accès interdit');
 }
 
 // ── Récupération des champs ──
@@ -106,13 +102,11 @@ $body .= "
 $mail = new PHPMailer(true);
 
 try {
+    // SMTP local Infomaniak — pas besoin de mot de passe
     $mail->isSMTP();
-    $mail->Host       = $SMTP_HOST;
-    $mail->SMTPAuth   = true;
-    $mail->Username   = $SMTP_USER;
-    $mail->Password   = $SMTP_PASS;
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port       = $SMTP_PORT;
+    $mail->Host       = 'localhost';
+    $mail->Port       = 25;
+    $mail->SMTPAuth   = false;
     $mail->CharSet    = 'UTF-8';
 
     $mail->setFrom($MAIL_FROM, $SITE_NAME);
