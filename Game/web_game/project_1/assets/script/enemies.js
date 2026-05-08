@@ -1,6 +1,5 @@
 // ═══════════════════════════════════════════════════
-//  enemies.js
-//  Enemy types, Boss system, AI behavior, spawning
+//  WaveBorn — enemies.js
 // ═══════════════════════════════════════════════════
 "use strict";
 
@@ -74,8 +73,8 @@ const BOSS_TYPES = [
     specialCD: 6000,
   },
   {
-    name: "NEXUS CORE",
-    title: "⚠ BOSS: NEXUS CORE ⚠",
+    name: "VOID CORE",
+    title: "⚠ BOSS: VOID CORE ⚠",
     color: "#aa00ff",
     size: 28,
     baseHp: 600,
@@ -289,7 +288,7 @@ function updateBoss(e, dt, now) {
     }
   }
 
-  // ── NEXUS CORE: shoots rings ──
+  // ── VOID CORE: shoots rings ──
   else if (e.bossPattern === "shooter") {
     // Keep distance
     if (d < 250) {
@@ -386,9 +385,11 @@ function killEnemy(e) {
     G.kills++;
     G.score += e.score;
     spawnFX(e.x, e.y, e.bossColor, 40);
+    screenShake(14, 500);
     // Boss loot: heal player 50% + bonus coins
     G.player.hp = Math.min(G.player.maxHp, G.player.hp + G.player.maxHp * 0.5);
     G.score += 200;
+    dropLoot(e.x, e.y, true);
     announceWave("💀 " + e.bossName + " VAINCU !");
     return;
   }
@@ -397,6 +398,7 @@ function killEnemy(e) {
   G.kills++;
   G.score += t.score * G.wave;
   spawnFX(e.x, e.y, t.color, 10);
+  dropLoot(e.x, e.y, false);
 }
 
 function takeDamage(dmg) {
@@ -407,6 +409,7 @@ function takeDamage(dmg) {
     p.shieldHP -= absorbed;
     dmg -= absorbed;
     spawnFX(p.x, p.y, "#6c3fff", 5);
+    spawnDmgNumber(p.x, p.y, absorbed | 0, "#6c3fff", false);
     if (p.shieldHP <= 0) p.shieldActive = false;
     if (dmg <= 0) return;
   }
@@ -416,5 +419,7 @@ function takeDamage(dmg) {
   p.hp = Math.max(0, p.hp - dmg);
   p.invincible = 420;
   spawnFX(p.x, p.y, "#e74c3c", 7);
+  spawnDmgNumber(p.x, p.y, dmg | 0, "#e74c3c", dmg > 20);
+  screenShake(dmg > 25 ? 8 : 4, dmg > 25 ? 300 : 150);
   if (p.hp <= 0) endGame();
 }

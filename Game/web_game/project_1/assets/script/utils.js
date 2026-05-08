@@ -1,6 +1,5 @@
 // ═══════════════════════════════════════════════════
-//  utils.js
-//  Particles, math helpers, notifications
+//  WaveBorn — utils.js
 // ═══════════════════════════════════════════════════
 "use strict";
 
@@ -83,6 +82,94 @@ function spawnFX(x, y, color, n) {
       r: 1 + Math.random() * 3,
     });
   }
+}
+
+// ── DAMAGE NUMBERS ──
+function spawnDmgNumber(x, y, text, color, isCrit) {
+  if (!G) return;
+  G.dmgNumbers.push({
+    x: x + (Math.random() - 0.5) * 16,
+    y: y - 10,
+    text: String(text),
+    color,
+    life: 900,
+    maxLife: 900,
+    vy: -2.2 - Math.random() * 0.8,
+    vx: (Math.random() - 0.5) * 1.5,
+    size: isCrit ? 13 : 9,
+    isCrit,
+  });
+}
+
+function updateDmgNumbers(dt) {
+  if (!G) return;
+  G.dmgNumbers.forEach((d) => {
+    d.life -= dt;
+    d.x += d.vx;
+    d.y += d.vy;
+    d.vy += 0.04; // gravity
+    d.vx *= 0.98;
+  });
+  G.dmgNumbers = G.dmgNumbers.filter((d) => d.life > 0);
+}
+
+function drawDmgNumbers() {
+  if (!G) return;
+  G.dmgNumbers.forEach((d) => {
+    const alpha = Math.min(1, d.life / (d.maxLife * 0.3));
+    const scale = d.isCrit
+      ? 1 +
+        Math.max(
+          0,
+          d.maxLife - d.life < 150
+            ? ((150 - (d.maxLife - d.life)) / 150) * 0.4
+            : 0,
+        )
+      : 1;
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = d.color;
+    ctx.font =
+      "bold " + ((d.size * scale) | 0) + 'px "Press Start 2P", monospace';
+    ctx.textAlign = "center";
+    // Shadow for readability
+    ctx.fillStyle = "#000";
+    ctx.fillText(d.text, d.x + 1, d.y + 1);
+    ctx.fillStyle = d.color;
+    ctx.fillText(d.text, d.x, d.y);
+    // Crit glow
+    if (d.isCrit) {
+      ctx.fillStyle = d.color + "66";
+      ctx.fillText(d.text, d.x, d.y);
+    }
+  });
+  ctx.globalAlpha = 1;
+}
+
+// ── SCREEN SHAKE ──
+function screenShake(intensity, duration) {
+  if (!G) return;
+  // Only override if new shake is stronger
+  if (intensity > (G.shake?.intensity || 0)) {
+    G.shake = { intensity, duration, timer: duration };
+  }
+}
+
+function updateScreenShake(dt) {
+  if (!G || !G.shake) return;
+  G.shake.timer -= dt;
+  if (G.shake.timer <= 0) {
+    G.shake = null;
+  }
+}
+
+function getShakeOffset() {
+  if (!G || !G.shake) return { x: 0, y: 0 };
+  const progress = G.shake.timer / G.shake.duration;
+  const intensity = G.shake.intensity * progress;
+  return {
+    x: (Math.random() - 0.5) * intensity * 2,
+    y: (Math.random() - 0.5) * intensity * 2,
+  };
 }
 
 // ── PIXEL CHARACTER DRAWING ──

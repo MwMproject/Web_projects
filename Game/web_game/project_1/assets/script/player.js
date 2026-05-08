@@ -1,6 +1,5 @@
 // ═══════════════════════════════════════════════════
-//  player.js
-//  Class definitions, skills, auto-attack
+//  WaveBorn — player.js
 // ═══════════════════════════════════════════════════
 "use strict";
 
@@ -73,13 +72,15 @@ function autoAttack() {
       if (d < def.attackRange) {
         const ea = Math.atan2(e.y - p.y, e.x - p.x);
         if (Math.abs(normAngle(ea - angle)) < 1.5) {
-          const dmg = def.attackDmg * (p.rageActive ? 2.5 : 1);
+          const dmgMult = (p.rageActive ? 2.5 : 1) * (p.buffDamage ? 2 : 1);
+          const dmg = def.attackDmg * dmgMult;
           e.hp -= dmg;
           e.flashTimer = 150;
           const kbAngle = Math.atan2(e.y - p.y, e.x - p.x);
           e.x += Math.cos(kbAngle) * 6;
           e.y += Math.sin(kbAngle) * 6;
           spawnFX(e.x, e.y, def.color, 5);
+          spawnDmgNumber(e.x, e.y, dmg | 0, "#fff", dmgMult > 2);
           hitCount++;
           if (e.hp <= 0) killEnemy(e);
         }
@@ -91,7 +92,8 @@ function autoAttack() {
       spawnFX(p.x + Math.cos(sa) * 50, p.y + Math.sin(sa) * 50, "#ff6b35", 2);
     }
   } else {
-    const dmg = def.attackDmg * (p.rageActive ? 2 : 1);
+    const dmgMult = (p.rageActive ? 2 : 1) * (p.buffDamage ? 2 : 1);
+    const dmg = def.attackDmg * dmgMult;
     G.projectiles.push({
       x: p.x,
       y: p.y,
@@ -134,10 +136,12 @@ function skillCharge() {
       e.x += Math.cos(kb) * 30;
       e.y += Math.sin(kb) * 30;
       spawnFX(e.x, e.y, "#ff6b35", 13);
+      spawnDmgNumber(e.x, e.y, 60, "#ff6b35", true);
       if (e.hp <= 0) killEnemy(e);
     }
   });
   spawnFX(p.x, p.y, "#ff6b35", 18);
+  screenShake(6, 250);
 }
 
 function skillSpin() {
@@ -152,6 +156,7 @@ function skillRage() {
   p.rageTimer = 8000;
   p.hp = Math.min(p.maxHp, p.hp + p.maxHp * 0.3);
   spawnFX(p.x, p.y, "#ff3300", 35);
+  screenShake(5, 200);
   announceWave("🔥 RAGE !");
 }
 
@@ -174,6 +179,7 @@ function skillNova() {
     });
   }
   spawnFX(p.x, p.y, "#9b59b6", 28);
+  screenShake(5, 200);
 }
 
 function skillShield() {

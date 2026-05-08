@@ -1,6 +1,5 @@
 // ═══════════════════════════════════════════════════
-//  engine.js
-//  Game loop, update, render, wave system, controls
+//  WaveBorn — engine.js
 // ═══════════════════════════════════════════════════
 "use strict";
 
@@ -44,11 +43,22 @@ function startGame(cls) {
       shieldActive: false,
       shieldTimer: 0,
       shieldHP: 0,
+      buffSpeed: false,
+      buffSpeedTimer: 0,
+      buffDamage: false,
+      buffDamageTimer: 0,
+      buffMagnet: false,
+      buffMagnetTimer: 0,
     },
     enemies: [],
     projectiles: [],
     particles: [],
     traps: [],
+    loots: [],
+    lootTexts: [],
+    bonusCredits: 0,
+    dmgNumbers: [],
+    shake: null,
     kills: 0,
     score: 0,
     wave: 1,
@@ -144,7 +154,7 @@ function update(dt) {
     def = G.def;
 
   // Movement
-  let spd = p.speed * (p.rageActive ? 1.35 : 1);
+  let spd = p.speed * (p.rageActive ? 1.35 : 1) * (p.buffSpeed ? 1.5 : 1);
   p.dx = 0;
   p.dy = 0;
   if (k["ArrowLeft"] || k["a"] || k["A"]) p.dx -= spd;
@@ -220,6 +230,8 @@ function update(dt) {
         t.hp -= 48;
         t.flashTimer = 200;
         spawnFX(t.x, t.y, "#ffd700", 10);
+        spawnDmgNumber(t.x, t.y, 48, "#ffd700", true);
+        screenShake(3, 100);
         if (t.hp <= 0) killEnemy(t);
       }
     }
@@ -262,6 +274,7 @@ function update(dt) {
           e.hp -= pr.dmg;
           e.flashTimer = 120;
           spawnFX(e.x, e.y, pr.color, 4);
+          spawnDmgNumber(e.x, e.y, pr.dmg | 0, "#fff", pr.dmg > 30);
           if (e.hp <= 0) killEnemy(e);
           if (!pr.pierce) return false;
           break;
@@ -308,6 +321,15 @@ function update(dt) {
   });
   G.particles = G.particles.filter((p) => p.life > 0);
 
+  // Loots
+  updateLoots(dt);
+  updateBuffs(dt);
+  updateLootTexts(dt);
+
+  // Damage numbers + screen shake
+  updateDmgNumbers(dt);
+  updateScreenShake(dt);
+
   // Wave complete?
   if (!G.betweenWaves && G.waveSpawnLeft === 0 && G.enemies.length === 0) {
     G.betweenWaves = true;
@@ -326,7 +348,8 @@ function update(dt) {
 // ═══ END GAME ═══
 function endGame() {
   G.gameOver = true;
-  const coins = Math.floor(G.score / 10) + G.wave * 5;
+  const bonusCreds = G.bonusCredits || 0;
+  const coins = Math.floor(G.score / 10) + G.wave * 5 + bonusCreds;
   if (CU) {
     const u = DB.get(CU.email);
     DB.update(CU.email, {
@@ -390,15 +413,22 @@ function render() {
   const cw = canvas.width,
     ch = canvas.height;
   ctx.clearRect(0, 0, cw, ch);
+  // Screen shake offset
+  const shake = getShakeOffset();
   ctx.save();
-  ctx.translate(-G.camX | 0, -G.camY | 0);
+  ctx.translate((-G.camX + shake.x) | 0, (-G.camY + shake.y) | 0);
   drawMap();
   drawTraps();
+  drawLoots();
   drawProjs();
   drawEnemies();
   drawPlayer();
+  drawDmgNumbers();
+  drawLootTexts();
   drawFX();
   ctx.restore();
+  // Buff bar (screen space, after ctx.restore)
+  drawBuffBar();
   // Rage vignette
   if (G.player?.rageActive) {
     const gr = ctx.createRadialGradient(
