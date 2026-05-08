@@ -51,11 +51,7 @@ body {
       rgba(181, 116, 28, 0.16),
       transparent 28rem
     ),
-    radial-gradient(
-      circle at 90% 12%,
-      rgba(0, 0, 0, 0.08),
-      transparent 28rem
-    ),
+    radial-gradient(circle at 90% 12%, rgba(0, 0, 0, 0.08), transparent 28rem),
     var(--bg);
 }
 

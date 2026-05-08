@@ -86,7 +86,7 @@ if (reviewCards.length) {
 
 // ANIMATION LÉGÈRE AU SCROLL
 const revealItems = document.querySelectorAll(
-  ".about-container, .service-item, .instagram-card, .step, .contact-info-bar, .contact-form"
+  ".about-container, .service-item, .instagram-card, .step, .contact-info-bar, .contact-form",
 );
 
 if ("IntersectionObserver" in window) {
@@ -99,7 +99,7 @@ if ("IntersectionObserver" in window) {
         }
       });
     },
-    { threshold: 0.12 }
+    { threshold: 0.12 },
   );
 
   revealItems.forEach((item) => observer.observe(item));
