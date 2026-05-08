@@ -1152,6 +1152,11 @@ img {
   backdrop-filter: blur(16px);
 }
 
+.contact-form h3 {
+  font-size: 28px;
+  color: var(--brand-dark);
+}
+
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
