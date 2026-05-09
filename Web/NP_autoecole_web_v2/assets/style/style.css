@@ -1652,6 +1652,45 @@ img {
   }
 }
 
+/* FIX MOBILE HERO */
+@media (max-width: 700px) {
+  .hero {
+    min-height: auto;
+    padding-top: calc(var(--header-h) + 24px);
+    padding-bottom: 56px;
+    align-content: start;
+  }
+
+  .hero-logo {
+    width: min(300px, 78vw);
+    margin: 18px auto 22px;
+  }
+
+  .hero-content {
+    width: 100%;
+    padding: 26px 18px;
+  }
+
+  .hero h1 {
+    font-size: clamp(38px, 12vw, 54px);
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-img {
+    height: 48px;
+  }
+
+  .hero-logo {
+    width: min(270px, 76vw);
+    margin-bottom: 24px;
+  }
+
+  .hero-content {
+    border-radius: 24px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
