@@ -261,6 +261,7 @@ function pickUpgrade(index) {
   // FX
   spawnFX(G.player.x, G.player.y, choice.color, 30);
   screenShake(4, 200);
+  G.levelUpFlash = 800;
   announceWave("⬆ " + choice.name);
 
   // Close UI, resume

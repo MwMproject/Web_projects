@@ -76,6 +76,7 @@ function startGame(cls) {
     levelUpPending: false,
     levelUpChoices: [],
     appliedUpgrades: [],
+    levelUpFlash: 0,
     waveSpawnLeft: 0,
     waveSpawnTimer: 0,
     betweenWaves: false,
@@ -287,8 +288,20 @@ function update(dt) {
         if (vdist(pr, e) < hitSize + pr.r) {
           e.hp -= pr.dmg;
           e.flashTimer = 120;
-          spawnFX(e.x, e.y, pr.color, 4);
-          spawnDmgNumber(e.x, e.y, pr.dmg | 0, "#fff", pr.dmg > 30);
+          spawnFX(
+            e.x,
+            e.y,
+            pr.isCrit ? "#ffd700" : pr.color,
+            pr.isCrit ? 8 : 4,
+          );
+          spawnDmgNumber(
+            e.x,
+            e.y,
+            pr.dmg | 0,
+            pr.isCrit ? "#ffd700" : "#fff",
+            pr.isCrit,
+          );
+          if (pr.isCrit) screenShake(3, 80);
           if (e.hp <= 0) killEnemy(e);
           if (!pr.pierce) return false;
           break;
@@ -462,6 +475,57 @@ function render() {
     gr.addColorStop(1, "rgba(255,50,0,.16)");
     ctx.fillStyle = gr;
     ctx.fillRect(0, 0, cw, ch);
+  }
+  // Damage flash (red vignette when hit)
+  if (G.player?.invincible > 200) {
+    const flashAlpha = Math.min(0.3, (G.player.invincible - 200) / 600);
+    const gr2 = ctx.createRadialGradient(
+      cw / 2,
+      ch / 2,
+      ch * 0.2,
+      cw / 2,
+      ch / 2,
+      ch * 0.6,
+    );
+    gr2.addColorStop(0, "transparent");
+    gr2.addColorStop(1, "rgba(231,76,60," + flashAlpha + ")");
+    ctx.fillStyle = gr2;
+    ctx.fillRect(0, 0, cw, ch);
+  }
+  // Low HP warning vignette
+  if (G.player && G.player.hp / G.player.maxHp < 0.25) {
+    const pulseAlpha = 0.08 + Math.sin(Date.now() * 0.006) * 0.06;
+    const gr3 = ctx.createRadialGradient(
+      cw / 2,
+      ch / 2,
+      ch * 0.15,
+      cw / 2,
+      ch / 2,
+      ch * 0.55,
+    );
+    gr3.addColorStop(0, "transparent");
+    gr3.addColorStop(1, "rgba(200,20,20," + pulseAlpha + ")");
+    ctx.fillStyle = gr3;
+    ctx.fillRect(0, 0, cw, ch);
+  }
+  // Level-up flash (golden burst for 1s after leveling)
+  if (G.levelUpFlash > 0) {
+    G.levelUpFlash -= 16;
+    const flashA = Math.min(0.2, G.levelUpFlash / 1000);
+    ctx.fillStyle = "rgba(255,215,0," + flashA + ")";
+    ctx.fillRect(0, 0, cw, ch);
+  }
+  // Upgrade count badge
+  if (G.appliedUpgrades && G.appliedUpgrades.length > 0) {
+    ctx.fillStyle = "rgba(12,12,20,.75)";
+    ctx.fillRect(12, ch - 82, 56, 18);
+    ctx.strokeStyle = "#ffd70066";
+    ctx.lineWidth = 1;
+    ctx.strokeRect(12, ch - 82, 56, 18);
+    ctx.fillStyle = "#ffd700";
+    ctx.font = '7px "Press Start 2P", monospace';
+    ctx.textAlign = "center";
+    ctx.fillText("⬆" + G.appliedUpgrades.length, 40, ch - 70);
   }
 }
 
@@ -826,6 +890,9 @@ function drawEnemies() {
     const t = ETYPES[e.type],
       flash = e.flashTimer > 0,
       col = flash ? "#fff" : t.color;
+    // Low HP blink
+    const lowHP = e.hp / e.maxHp < 0.2;
+    const blinkOff = lowHP && Math.floor(Date.now() / 120) % 3 === 0;
     ctx.fillStyle = "rgba(0,0,0,.28)";
     ctx.beginPath();
     ctx.ellipse(
@@ -846,7 +913,7 @@ function drawEnemies() {
       ctx.fill();
       ctx.globalAlpha = 1;
     }
-    ctx.fillStyle = col;
+    ctx.fillStyle = blinkOff ? "#ff4444" : col;
     ctx.fillRect(e.x - t.size, e.y - t.size, t.size * 2, t.size * 2);
     ctx.fillStyle = "#fff";
     ctx.fillRect(e.x - t.size * 0.5 - 2, e.y - t.size * 0.3, 4, 4);

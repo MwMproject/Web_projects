@@ -1,6 +1,6 @@
 // ═══════════════════════════════════════════════════
 //  WaveBorn — player.js
-//  Player class definitions, auto-attack, skills
+//  Class definitions, skills, auto-attack
 // ═══════════════════════════════════════════════════
 "use strict";
 
@@ -73,15 +73,25 @@ function autoAttack() {
       if (d < def.attackRange) {
         const ea = Math.atan2(e.y - p.y, e.x - p.x);
         if (Math.abs(normAngle(ea - angle)) < 1.5) {
-          const dmgMult = (p.rageActive ? 2.5 : 1) * (p.buffDamage ? 2 : 1);
+          const isCrit = Math.random() < (p.critChance || 0.05);
+          const critMult = isCrit ? 2 : 1;
+          const dmgMult =
+            (p.rageActive ? 2.5 : 1) * (p.buffDamage ? 2 : 1) * critMult;
           const dmg = def.attackDmg * dmgMult;
           e.hp -= dmg;
           e.flashTimer = 150;
           const kbAngle = Math.atan2(e.y - p.y, e.x - p.x);
-          e.x += Math.cos(kbAngle) * 6;
-          e.y += Math.sin(kbAngle) * 6;
-          spawnFX(e.x, e.y, def.color, 5);
-          spawnDmgNumber(e.x, e.y, dmg | 0, "#fff", dmgMult > 2);
+          e.x += Math.cos(kbAngle) * (isCrit ? 12 : 6);
+          e.y += Math.sin(kbAngle) * (isCrit ? 12 : 6);
+          spawnFX(e.x, e.y, isCrit ? "#ffd700" : def.color, isCrit ? 10 : 5);
+          spawnDmgNumber(
+            e.x,
+            e.y,
+            dmg | 0,
+            isCrit ? "#ffd700" : "#fff",
+            isCrit,
+          );
+          if (isCrit) screenShake(3, 80);
           hitCount++;
           if (e.hp <= 0) killEnemy(e);
         }
@@ -93,7 +103,9 @@ function autoAttack() {
       spawnFX(p.x + Math.cos(sa) * 50, p.y + Math.sin(sa) * 50, "#ff6b35", 2);
     }
   } else {
-    const dmgMult = (p.rageActive ? 2 : 1) * (p.buffDamage ? 2 : 1);
+    const isCrit = Math.random() < (p.critChance || 0.05);
+    const critMult = isCrit ? 2 : 1;
+    const dmgMult = (p.rageActive ? 2 : 1) * (p.buffDamage ? 2 : 1) * critMult;
     const dmg = def.attackDmg * dmgMult;
     G.projectiles.push({
       x: p.x,
@@ -101,12 +113,13 @@ function autoAttack() {
       dx: Math.cos(angle),
       dy: Math.sin(angle),
       spd: def.projSpeed,
-      r: G.cls === "mage" ? 6 : 4,
+      r: G.cls === "mage" ? (isCrit ? 9 : 6) : isCrit ? 6 : 4,
       dmg,
-      color: def.color,
+      color: isCrit ? "#ffd700" : def.color,
       life: 2500,
       friendly: true,
       pierce: false,
+      isCrit,
     });
   }
 }
