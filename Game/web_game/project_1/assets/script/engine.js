@@ -1,5 +1,6 @@
 // ═══════════════════════════════════════════════════
 //  WaveBorn — engine.js
+//  Game loop, update, render, wave system, controls
 // ═══════════════════════════════════════════════════
 "use strict";
 
@@ -49,6 +50,14 @@ function startGame(cls) {
       buffDamageTimer: 0,
       buffMagnet: false,
       buffMagnetTimer: 0,
+      critChance: 0.05,
+      xpMult: 1,
+      lifesteal: 0,
+      thorns: 0,
+      magnetRange: 50,
+      explodeOnKill: false,
+      explodeRadius: 0,
+      explodeDmg: 0,
     },
     enemies: [],
     projectiles: [],
@@ -62,6 +71,11 @@ function startGame(cls) {
     kills: 0,
     score: 0,
     wave: 1,
+    inGameXP: 0,
+    inGameLevel: 1,
+    levelUpPending: false,
+    levelUpChoices: [],
+    appliedUpgrades: [],
     waveSpawnLeft: 0,
     waveSpawnTimer: 0,
     betweenWaves: false,
@@ -343,6 +357,7 @@ function update(dt) {
 
   updateGameHUD();
   updateSkillsBar();
+  updateXPBar();
 }
 
 // ═══ END GAME ═══
@@ -429,6 +444,10 @@ function render() {
   ctx.restore();
   // Buff bar (screen space, after ctx.restore)
   drawBuffBar();
+  // Off-screen enemy indicators
+  drawOffScreenIndicators();
+  // Minimap
+  drawMinimap();
   // Rage vignette
   if (G.player?.rageActive) {
     const gr = ctx.createRadialGradient(
@@ -444,6 +463,203 @@ function render() {
     ctx.fillStyle = gr;
     ctx.fillRect(0, 0, cw, ch);
   }
+}
+
+// ═══ OFF-SCREEN INDICATORS ═══
+function drawOffScreenIndicators() {
+  const cw = canvas.width,
+    ch = canvas.height;
+  const p = G.player;
+  const margin = 40; // distance from edge
+  const hudTop = 58; // don't overlap HUD
+
+  G.enemies.forEach((e) => {
+    // Convert enemy world pos to screen pos
+    const sx = e.x - G.camX;
+    const sy = e.y - G.camY;
+
+    // Only draw if off-screen
+    if (sx >= -10 && sx <= cw + 10 && sy >= hudTop - 10 && sy <= ch + 10)
+      return;
+
+    // Clamp to screen edges
+    const cx = cw / 2,
+      cy = ch / 2;
+    const angle = Math.atan2(sy - cy, sx - cx);
+
+    // Find edge intersection
+    let ix, iy;
+    const cos = Math.cos(angle),
+      sin = Math.sin(angle);
+    const halfW = cw / 2 - margin,
+      halfH = (ch - hudTop) / 2 - margin;
+
+    if (Math.abs(cos * halfH) > Math.abs(sin * halfW)) {
+      // Hit left or right edge
+      ix = cos > 0 ? cw - margin : margin;
+      iy = cy + sin * Math.abs((ix - cx) / cos);
+    } else {
+      // Hit top or bottom edge
+      iy = sin > 0 ? ch - margin : hudTop + margin;
+      ix = cx + cos * Math.abs((iy - cy) / sin);
+    }
+
+    // Clamp
+    ix = Math.max(margin, Math.min(cw - margin, ix));
+    iy = Math.max(hudTop + margin / 2, Math.min(ch - margin, iy));
+
+    // Distance for alpha (closer = more opaque)
+    const dist = vdist({ x: sx, y: sy }, { x: cx, y: cy });
+    const alpha = Math.min(1, Math.max(0.3, 1 - (dist - 500) / 1000));
+
+    // Color: boss = special, normal = red
+    const isBoss = e.isBoss;
+    const col = isBoss ? e.bossColor || "#ff1744" : "#e74c3c";
+    const size = isBoss ? 12 : 7;
+
+    ctx.globalAlpha = alpha;
+
+    // Arrow triangle pointing towards enemy
+    ctx.save();
+    ctx.translate(ix, iy);
+    ctx.rotate(angle);
+
+    ctx.fillStyle = col;
+    ctx.beginPath();
+    ctx.moveTo(size, 0);
+    ctx.lineTo(-size * 0.7, -size * 0.6);
+    ctx.lineTo(-size * 0.7, size * 0.6);
+    ctx.closePath();
+    ctx.fill();
+
+    // Glow for bosses
+    if (isBoss) {
+      ctx.fillStyle = col + "44";
+      ctx.beginPath();
+      ctx.arc(0, 0, size + 6, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Pulsing ring
+      ctx.strokeStyle = col;
+      ctx.lineWidth = 1.5;
+      ctx.globalAlpha = alpha * (0.4 + Math.sin(Date.now() * 0.006) * 0.3);
+      ctx.beginPath();
+      ctx.arc(
+        0,
+        0,
+        size + 10 + Math.sin(Date.now() * 0.008) * 3,
+        0,
+        Math.PI * 2,
+      );
+      ctx.stroke();
+    }
+
+    ctx.restore();
+    ctx.globalAlpha = 1;
+  });
+}
+
+// ═══ MINIMAP ═══
+function drawMinimap() {
+  const cw = canvas.width,
+    ch = canvas.height;
+  const p = G.player;
+
+  // Minimap config
+  const mw = 140,
+    mh = 105;
+  const mx = cw - mw - 12,
+    my = ch - mh - 74; // above bottom nav + skills bar
+  const scaleX = mw / MAP_W,
+    scaleY = mh / MAP_H;
+
+  // Background
+  ctx.fillStyle = "rgba(10,10,18,.82)";
+  ctx.fillRect(mx - 2, my - 2, mw + 4, mh + 4);
+  ctx.strokeStyle = "rgba(42,42,74,.8)";
+  ctx.lineWidth = 1;
+  ctx.strokeRect(mx - 2, my - 2, mw + 4, mh + 4);
+
+  // Map area
+  ctx.fillStyle = "#0d1117";
+  ctx.fillRect(mx, my, mw, mh);
+
+  // Grid lines (subtle)
+  ctx.strokeStyle = "rgba(0,212,170,.08)";
+  for (let x = 0; x < mw; x += mw / 6) {
+    ctx.beginPath();
+    ctx.moveTo(mx + x, my);
+    ctx.lineTo(mx + x, my + mh);
+    ctx.stroke();
+  }
+  for (let y = 0; y < mh; y += mh / 4.5) {
+    ctx.beginPath();
+    ctx.moveTo(mx, my + y);
+    ctx.lineTo(mx + mw, my + y);
+    ctx.stroke();
+  }
+
+  // Viewport rectangle
+  const vx = mx + G.camX * scaleX;
+  const vy = my + G.camY * scaleY;
+  const vw = cw * scaleX,
+    vh = ch * scaleY;
+  ctx.strokeStyle = "rgba(200,200,230,.25)";
+  ctx.lineWidth = 1;
+  ctx.strokeRect(vx, vy, vw, vh);
+
+  // Enemies (dots)
+  G.enemies.forEach((e) => {
+    const ex = mx + e.x * scaleX;
+    const ey = my + e.y * scaleY;
+    if (e.isBoss) {
+      // Boss: larger pulsing dot
+      ctx.fillStyle = e.bossColor || "#ff1744";
+      const bsize = 3 + Math.sin(Date.now() * 0.006) * 1;
+      ctx.fillRect(ex - bsize, ey - bsize, bsize * 2, bsize * 2);
+    } else {
+      ctx.fillStyle = "#e74c3c";
+      ctx.fillRect(ex - 1, ey - 1, 2, 2);
+    }
+  });
+
+  // Loots (tiny gold dots)
+  G.loots.forEach((l) => {
+    if (l.type === "xp") return; // don't clutter with xp orbs
+    const lx = mx + l.x * scaleX;
+    const ly = my + l.y * scaleY;
+    ctx.fillStyle = LOOT_TYPES[l.type]?.color || "#ffd700";
+    ctx.fillRect(lx, ly, 1.5, 1.5);
+  });
+
+  // Traps (teal dots)
+  G.traps.forEach((t) => {
+    if (t.triggered) return;
+    ctx.fillStyle = "#00d4aa";
+    ctx.fillRect(mx + t.x * scaleX - 1, my + t.y * scaleY - 1, 2, 2);
+  });
+
+  // Player (bright dot)
+  const px = mx + p.x * scaleX;
+  const py = my + p.y * scaleY;
+  const pcol = G.def.color;
+  // Glow
+  ctx.fillStyle = pcol + "55";
+  ctx.beginPath();
+  ctx.arc(px, py, 4, 0, Math.PI * 2);
+  ctx.fill();
+  // Dot
+  ctx.fillStyle = pcol;
+  ctx.fillRect(px - 2, py - 2, 4, 4);
+  // White center
+  ctx.fillStyle = "#fff";
+  ctx.fillRect(px - 1, py - 1, 2, 2);
+
+  // Label
+  ctx.fillStyle = "rgba(200,200,230,.4)";
+  ctx.font = '6px "Press Start 2P", monospace';
+  ctx.textAlign = "right";
+  ctx.fillText("MAP", mx + mw - 2, my - 5);
 }
 
 function drawMap() {

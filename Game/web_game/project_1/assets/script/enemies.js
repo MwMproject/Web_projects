@@ -1,5 +1,6 @@
 // ═══════════════════════════════════════════════════
 //  WaveBorn — enemies.js
+//  Enemy types, Boss system, AI behavior, spawning
 // ═══════════════════════════════════════════════════
 "use strict";
 
@@ -390,6 +391,7 @@ function killEnemy(e) {
     G.player.hp = Math.min(G.player.maxHp, G.player.hp + G.player.maxHp * 0.5);
     G.score += 200;
     dropLoot(e.x, e.y, true);
+    gainXP(e.score * 2);
     announceWave("💀 " + e.bossName + " VAINCU !");
     return;
   }
@@ -399,6 +401,27 @@ function killEnemy(e) {
   G.score += t.score * G.wave;
   spawnFX(e.x, e.y, t.color, 10);
   dropLoot(e.x, e.y, false);
+  gainXP(t.score);
+  // Explode on kill upgrade
+  if (G.player.explodeOnKill) {
+    const rad = G.player.explodeRadius || 50;
+    const dmg = G.player.explodeDmg || 15;
+    G.enemies.forEach((en) => {
+      if (en !== e && en.hp > 0 && vdist(e, en) < rad) {
+        en.hp -= dmg;
+        en.flashTimer = 150;
+        spawnFX(en.x, en.y, "#ff3366", 5);
+        spawnDmgNumber(en.x, en.y, dmg, "#ff3366", false);
+        if (en.hp <= 0) killEnemy(en);
+      }
+    });
+    spawnFX(e.x, e.y, "#ff3366", 12);
+  }
+  // Lifesteal upgrade
+  if (G.player.lifesteal && G.player.lifesteal > 0) {
+    const heal = t.score * G.player.lifesteal;
+    G.player.hp = Math.min(G.player.maxHp, G.player.hp + heal);
+  }
 }
 
 function takeDamage(dmg) {
@@ -421,5 +444,17 @@ function takeDamage(dmg) {
   spawnFX(p.x, p.y, "#e74c3c", 7);
   spawnDmgNumber(p.x, p.y, dmg | 0, "#e74c3c", dmg > 20);
   screenShake(dmg > 25 ? 8 : 4, dmg > 25 ? 300 : 150);
+  // Thorns: damage nearby enemies
+  if (p.thorns && p.thorns > 0) {
+    G.enemies.forEach((en) => {
+      if (vdist(p, en) < 60) {
+        en.hp -= p.thorns;
+        en.flashTimer = 100;
+        spawnFX(en.x, en.y, "#e67e22", 4);
+        spawnDmgNumber(en.x, en.y, p.thorns, "#e67e22", false);
+        if (en.hp <= 0) killEnemy(en);
+      }
+    });
+  }
   if (p.hp <= 0) endGame();
 }

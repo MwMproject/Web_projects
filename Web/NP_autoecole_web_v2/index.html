@@ -70,83 +70,77 @@
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "additionalType": "https://schema.org/DrivingSchool",
+  "name": "NP Auto-école",
+  "alternateName": "NP Auto-école — Nicolas Peneveyre",
+  "url": "https://www.np-autoecole.ch",
+  "telephone": "+41797660994",
+  "email": "contact@np-autoecole.ch",
+  "description": "Auto-école dans le canton de Vaud proposant des leçons de conduite personnalisées entre Lausanne et Yverdon. Moniteur diplômé avec brevet fédéral.",
+  "image": "https://www.np-autoecole.ch/assets/img/logo_np_autoecole_png.png",
+  "priceRange": "CHF 70 - 200",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Chavornay",
+    "addressRegion": "Vaud",
+    "addressCountry": "CH"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 46.7068,
+    "longitude": 6.5713
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Lausanne" },
+    { "@type": "City", "name": "Yverdon-les-Bains" },
+    { "@type": "City", "name": "Chavornay" },
+    { "@type": "City", "name": "Cossonay" }
+  ],
+  "founder": {
+    "@type": "Person",
+    "name": "Nicolas Peneveyre",
+    "jobTitle": "Moniteur de conduite avec brevet fédéral"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Services de formation à la conduite",
+    "itemListElement": [
       {
-        "@context": "https://schema.org",
-        "@type": "DrivingSchool",
-        "name": "NP Auto-école",
-        "alternateName": "NP Auto-école — Nicolas Peneveyre",
-        "url": "https://www.np-autoecole.ch",
-        "telephone": "+41797660994",
-        "email": "contact@np-autoecole.ch",
-        "description": "Auto-école dans le canton de Vaud proposant des leçons de conduite personnalisées entre Lausanne et Yverdon. Moniteur diplômé avec brevet fédéral.",
-        "image": "https://www.np-autoecole.ch/assets/img/logo_np_autoecole_png.png",
-        "priceRange": "CHF 70 - 200",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Chavornay",
-          "addressRegion": "Vaud",
-          "addressCountry": "CH"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 46.7068,
-          "longitude": 6.5713
-        },
-        "areaServed": [
-          { "@type": "City", "name": "Lausanne" },
-          { "@type": "City", "name": "Yverdon-les-Bains" },
-          { "@type": "City", "name": "Chavornay" },
-          { "@type": "City", "name": "Cossonay" }
-        ],
-        "founder": {
-          "@type": "Person",
-          "name": "Nicolas Peneveyre",
-          "jobTitle": "Moniteur de conduite avec brevet fédéral"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5.0",
-          "bestRating": "5",
-          "ratingCount": "7",
-          "reviewCount": "7"
-        },
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Services de formation à la conduite",
-          "itemListElement": [
-            {
-              "@type": "Offer",
-              "name": "Cours de conduite catégorie B",
-              "price": "98",
-              "priceCurrency": "CHF",
-              "description": "Leçon de conduite personnalisée de 50 minutes"
-            },
-            {
-              "@type": "Offer",
-              "name": "Cours de conduite catégorie BE",
-              "price": "170",
-              "priceCurrency": "CHF",
-              "description": "Cours de conduite avec remorque de 90 minutes"
-            },
-            {
-              "@type": "Offer",
-              "name": "Cours de sensibilisation",
-              "price": "200",
-              "priceCurrency": "CHF",
-              "description": "Cours obligatoire de sensibilisation au trafic"
-            },
-            {
-              "@type": "Offer",
-              "name": "Cours de premiers secours",
-              "price": "120",
-              "priceCurrency": "CHF",
-              "description": "Formation aux gestes de premiers secours"
-            }
-          ]
-        },
-        "sameAs": ["https://www.instagram.com/npautoecole/"]
+        "@type": "Offer",
+        "name": "Cours de conduite catégorie B",
+        "price": "98",
+        "priceCurrency": "CHF",
+        "description": "Leçon de conduite personnalisée de 50 minutes"
+      },
+      {
+        "@type": "Offer",
+        "name": "Cours de conduite catégorie BE",
+        "price": "170",
+        "priceCurrency": "CHF",
+        "description": "Cours de conduite avec remorque de 90 minutes"
+      },
+      {
+        "@type": "Offer",
+        "name": "Cours de sensibilisation",
+        "price": "200",
+        "priceCurrency": "CHF",
+        "description": "Cours obligatoire de sensibilisation au trafic"
+      },
+      {
+        "@type": "Offer",
+        "name": "Cours de premiers secours",
+        "price": "120",
+        "priceCurrency": "CHF",
+        "description": "Formation aux gestes de premiers secours"
       }
-    </script>
+    ]
+  },
+  "sameAs": ["https://www.instagram.com/npautoecole/"]
+}
+</script>
   </head>
 
   <body>

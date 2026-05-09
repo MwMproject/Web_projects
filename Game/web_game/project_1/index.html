@@ -406,10 +406,27 @@
       >
         ENNEMIS <span id="g-enemies" style="color: var(--red)">0</span>
       </div>
+      <div class="ghud-sep"></div>
+      <div class="ghud-xp">
+        <span class="ghud-xp-lbl" id="xp-game-txt">LV1</span>
+        <div class="xp-game-bar">
+          <div class="xp-game-fill" id="xp-game-fill" style="width: 0%"></div>
+        </div>
+      </div>
       <div class="ghud-class" id="g-class">—</div>
       <button class="ghud-pause" onclick="togglePause()">
         <span id="pause-icon"></span> ESC
       </button>
+    </div>
+
+    <!-- LEVEL UP OVERLAY -->
+    <div id="levelup-overlay">
+      <div class="lu-content">
+        <div class="lu-title">⬆ LEVEL UP !</div>
+        <div class="lu-subtitle" id="levelup-level">NIVEAU 2</div>
+        <div class="lu-hint">Choisis une amélioration (1, 2 ou 3)</div>
+        <div class="lu-grid" id="levelup-grid"></div>
+      </div>
     </div>
 
     <!-- SKILLS BAR -->
@@ -533,6 +550,7 @@
     <script src="assets/script/player.js"></script>
     <script src="assets/script/enemies.js"></script>
     <script src="assets/script/loot.js"></script>
+    <script src="assets/script/levelup.js"></script>
     <script src="assets/script/engine.js"></script>
     <script src="assets/script/boot.js"></script>
   </body>

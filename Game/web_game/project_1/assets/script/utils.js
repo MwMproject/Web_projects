@@ -1,5 +1,6 @@
 // ═══════════════════════════════════════════════════
 //  WaveBorn — utils.js
+//  Utility functions: distance, angles, level calc, particles
 // ═══════════════════════════════════════════════════
 "use strict";
 

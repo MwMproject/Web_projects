@@ -1,5 +1,6 @@
 // ═══════════════════════════════════════════════════
 //  WaveBorn — player.js
+//  Player class definitions, auto-attack, skills
 // ═══════════════════════════════════════════════════
 "use strict";
 

@@ -1320,3 +1320,131 @@ canvas {
   image-rendering: pixelated;
   display: block;
 }
+
+/* ── IN-GAME XP BAR ── */
+.ghud-xp {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.ghud-xp-lbl {
+  font-family: "Press Start 2P", monospace;
+  font-size: 7px;
+  color: var(--yellow);
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+}
+.xp-game-bar {
+  width: 80px;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #333;
+  overflow: hidden;
+}
+.xp-game-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ffd700, #ff6b35);
+  transition: width 0.3s;
+  width: 0%;
+}
+
+/* ── LEVEL UP OVERLAY ── */
+#levelup-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  z-index: 860;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#levelup-overlay.open {
+  display: flex;
+}
+.lu-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  animation: fadeIn 0.3s ease;
+}
+.lu-title {
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(16px, 3vw, 28px);
+  color: var(--yellow);
+  text-shadow: 0 0 30px #ffd70088;
+  letter-spacing: 4px;
+  animation: luPulse 1.5s ease infinite;
+}
+@keyframes luPulse {
+  0%,
+  100% {
+    text-shadow: 0 0 30px #ffd70088;
+  }
+  50% {
+    text-shadow:
+      0 0 50px #ffd700cc,
+      0 0 80px #ffd70044;
+  }
+}
+.lu-subtitle {
+  font-family: "Press Start 2P", monospace;
+  font-size: 11px;
+  color: var(--teal);
+  letter-spacing: 2px;
+}
+.lu-hint {
+  font-size: 14px;
+  color: var(--muted);
+}
+.lu-grid {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 700px;
+}
+.lu-card {
+  background: var(--panel);
+  border: 2px solid var(--border);
+  padding: 20px 18px;
+  width: 190px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  position: relative;
+}
+.lu-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+.lu-icon {
+  font-size: 32px;
+  animation: idleFloat 2s ease-in-out infinite;
+}
+.lu-name {
+  font-family: "Press Start 2P", monospace;
+  font-size: 8px;
+  letter-spacing: 1px;
+  line-height: 1.5;
+}
+.lu-cat {
+  font-family: "Press Start 2P", monospace;
+  font-size: 5px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  margin-top: 4px;
+}
+.lu-key {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  font-family: "Press Start 2P", monospace;
+  font-size: 7px;
+  color: var(--muted);
+  opacity: 0.5;
+}
