@@ -386,6 +386,7 @@ function killEnemy(e) {
     G.kills++;
     G.score += e.score;
     spawnFX(e.x, e.y, e.bossColor, 40);
+    spawnKillExplosion(e.x, e.y, e.bossColor, 60);
     screenShake(14, 500);
     // Boss loot: heal player 50% + bonus coins
     G.player.hp = Math.min(G.player.maxHp, G.player.hp + G.player.maxHp * 0.5);
@@ -400,6 +401,7 @@ function killEnemy(e) {
   G.kills++;
   G.score += t.score * G.wave;
   spawnFX(e.x, e.y, t.color, 10);
+  spawnKillExplosion(e.x, e.y, t.color, t.size * 2);
   dropLoot(e.x, e.y, false);
   gainXP(t.score);
   // Explode on kill upgrade

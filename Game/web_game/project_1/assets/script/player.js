@@ -98,6 +98,8 @@ function autoAttack() {
       }
     });
     if (hitCount > 0) p.hp = Math.min(p.maxHp, p.hp + hitCount * 3);
+    // Slash arc VFX
+    spawnSlashEffect(p.x, p.y, angle, "#ff6b35");
     for (let i = -2; i <= 2; i++) {
       const sa = angle + i * 0.3;
       spawnFX(p.x + Math.cos(sa) * 50, p.y + Math.sin(sa) * 50, "#ff6b35", 2);
@@ -155,6 +157,7 @@ function skillCharge() {
     }
   });
   spawnFX(p.x, p.y, "#ff6b35", 18);
+  spawnCastRing(p.x, p.y, "#ff6b35", 100);
   screenShake(6, 250);
 }
 
@@ -193,6 +196,7 @@ function skillNova() {
     });
   }
   spawnFX(p.x, p.y, "#9b59b6", 28);
+  spawnCastRing(p.x, p.y, "#9b59b6", 120);
   screenShake(5, 200);
 }
 

@@ -68,6 +68,10 @@ function startGame(cls) {
     bonusCredits: 0,
     dmgNumbers: [],
     shake: null,
+    explosions: [],
+    slashEffects: [],
+    castRings: [],
+    biome: ["ruins", "desert", "lab", "sewer"][Math.floor(Math.random() * 4)],
     kills: 0,
     score: 0,
     wave: 1,
@@ -357,6 +361,11 @@ function update(dt) {
   updateDmgNumbers(dt);
   updateScreenShake(dt);
 
+  // VFX
+  updateExplosions(dt);
+  updateSlashEffects(dt);
+  updateCastRings(dt);
+
   // Wave complete?
   if (!G.betweenWaves && G.waveSpawnLeft === 0 && G.enemies.length === 0) {
     G.betweenWaves = true;
@@ -445,12 +454,16 @@ function render() {
   const shake = getShakeOffset();
   ctx.save();
   ctx.translate((-G.camX + shake.x) | 0, (-G.camY + shake.y) | 0);
-  drawMap();
+  drawBiomeMap(G.biome);
+  drawBiomeAmbient(G.biome);
   drawTraps();
   drawLoots();
+  drawSlashEffects();
   drawProjs();
+  drawExplosions();
   drawEnemies();
   drawPlayer();
+  drawCastRings();
   drawDmgNumbers();
   drawLootTexts();
   drawFX();
@@ -855,21 +868,16 @@ function drawPlayer() {
     ctx.stroke();
   }
 
-  // Character pixels
-  const s = 3,
-    px = getCharPixels(G.cls),
-    col2 = getCharColors(G.cls);
-  const ox = p.x - (px[0].length * s) / 2,
-    oy = p.y - (px.length * s) / 2;
-  px.forEach((row, ry) =>
-    row.forEach((c, cx2) => {
-      if (c === 0 || col2[c] === "t") return;
-      ctx.fillStyle = col2[c];
-      ctx.fillRect(ox + cx2 * s, oy + ry * s, s, s);
-    }),
+  // Character — animated sprite
+  const spriteState = getSpriteState(p);
+  const facingAngle = Math.atan2(
+    G.mouse.y + G.camY - p.y,
+    G.mouse.x + G.camX - p.x,
   );
+  drawAnimatedSprite(p.x, p.y, G.cls, spriteState, facingAngle);
+
   // Aim line
-  const a = Math.atan2(G.mouse.y + G.camY - p.y, G.mouse.x + G.camX - p.x);
+  const a = facingAngle;
   ctx.strokeStyle = col;
   ctx.lineWidth = 2;
   ctx.globalAlpha = 0.5;
@@ -994,11 +1002,22 @@ function drawBoss(e) {
 
 function drawProjs() {
   G.projectiles.forEach((pr) => {
+    // Trail
+    drawProjectileTrail(pr);
+    // Main projectile
     ctx.fillStyle = pr.color;
     ctx.globalAlpha = Math.min(1, pr.life / 300);
     ctx.shadowColor = pr.color;
-    ctx.shadowBlur = 8;
+    ctx.shadowBlur = pr.isCrit ? 14 : 8;
     ctx.fillRect(pr.x - pr.r, pr.y - pr.r, pr.r * 2, pr.r * 2);
+    // Crit glow extra
+    if (pr.isCrit) {
+      ctx.fillStyle = "#ffd700";
+      ctx.globalAlpha = 0.3;
+      ctx.beginPath();
+      ctx.arc(pr.x, pr.y, pr.r + 3, 0, Math.PI * 2);
+      ctx.fill();
+    }
     ctx.shadowBlur = 0;
     ctx.globalAlpha = 1;
   });
