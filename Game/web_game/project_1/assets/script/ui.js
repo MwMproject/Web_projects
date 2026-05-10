@@ -132,7 +132,7 @@ function showRaw(id) {
 
 function showScreen(id) {
   showRaw(id);
-  const navScreens = ["s-hub", "s-shop", "s-profile"];
+  const navScreens = ["s-hub", "s-shop", "s-profile", "s-character"];
   const nav = document.getElementById("bottom-nav");
   if (navScreens.includes(id)) {
     nav.classList.add("visible");
@@ -143,6 +143,7 @@ function showScreen(id) {
       "s-hub": "nav-hub",
       "s-shop": "nav-shop",
       "s-profile": "nav-profile",
+      "s-character": "nav-character",
     };
     if (map[id]) document.getElementById(map[id]).classList.add("active");
   } else {
@@ -151,6 +152,7 @@ function showScreen(id) {
   if (id === "s-hub") refreshHub();
   if (id === "s-shop") renderShop();
   if (id === "s-profile") refreshProfile();
+  if (id === "s-character") renderCharacterScreen();
 }
 
 // ═══ CLASS SELECTION ═══

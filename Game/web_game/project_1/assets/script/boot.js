@@ -52,6 +52,10 @@ function injectIcons() {
     18,
     "currentColor",
   );
+  document.getElementById("nav-icon-character").innerHTML = ICON.helmet(
+    18,
+    "currentColor",
+  );
   document.getElementById("nav-icon-shop").innerHTML = ICON.cart(
     18,
     "currentColor",

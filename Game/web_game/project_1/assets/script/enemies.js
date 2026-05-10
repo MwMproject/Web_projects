@@ -393,6 +393,14 @@ function killEnemy(e) {
     G.score += 200;
     dropLoot(e.x, e.y, true);
     gainXP(e.score * 2);
+    // Boss always drops equipment
+    if (CU) {
+      const item = rollItemDrop(CU.class || G.cls, G.wave, true);
+      if (item) {
+        addToInventory(CU.email, item);
+        showNotif("🎁 " + RARITY[item.rarity].label + ": " + item.name + " !");
+      }
+    }
     announceWave("💀 " + e.bossName + " VAINCU !");
     return;
   }
@@ -404,6 +412,14 @@ function killEnemy(e) {
   spawnKillExplosion(e.x, e.y, t.color, t.size * 2);
   dropLoot(e.x, e.y, false);
   gainXP(t.score);
+  // Equipment drop (10% chance, higher on harder enemies)
+  if (CU && Math.random() < 0.1 + (e.type >= 3 ? 0.08 : 0)) {
+    const item = rollItemDrop(CU.class || G.cls, G.wave, false);
+    if (item) {
+      addToInventory(CU.email, item);
+      showNotif("🎁 " + item.name);
+    }
+  }
   // Explode on kill upgrade
   if (G.player.explodeOnKill) {
     const rad = G.player.explodeRadius || 50;

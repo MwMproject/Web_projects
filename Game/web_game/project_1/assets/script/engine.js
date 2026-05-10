@@ -112,6 +112,9 @@ function startGame(cls) {
   document.getElementById("hud").style.display = "none";
   document.getElementById("bottom-nav").classList.remove("visible");
 
+  // Apply equipment stats
+  if (CU) applyEquipStats(G.def, G.player, CU.email);
+
   showRaw("s-game");
   spawnWave(1);
   G.lastTime = performance.now();
