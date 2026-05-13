@@ -1,9 +1,4 @@
 <?php
-/**
- * NP Auto-école — Envoi du formulaire de contact
- * SMTP local Infomaniak (pas besoin de mot de passe)
- */
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -102,7 +97,7 @@ $body .= "
 $mail = new PHPMailer(true);
 
 try {
-    // SMTP local Infomaniak — pas besoin de mot de passe
+    // SMTP local Infomaniak
     $mail->isSMTP();
     $mail->Host       = 'localhost';
     $mail->Port       = 25;

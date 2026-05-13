@@ -1094,7 +1094,7 @@ img {
   color: white;
   background:
     linear-gradient(rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0.72)),
-    url("../img/seat-np-autoecole.png") center / cover;
+    url("../img/seat-np-autoecole.webp") center / cover;
   box-shadow: 0 28px 70px rgba(0, 0, 0, 0.28);
 }
 
