@@ -37,7 +37,7 @@
     <meta property="og:url" content="https://www.np-autoecole.ch/" />
     <meta
       property="og:image"
-      content="https://www.np-autoecole.ch/assets/img/logo_np_autoecole_png.png"
+      content="https://www.np-autoecole.ch/assets/img/seat-np-autoecole.webp"
     />
 
     <!-- Favicon -->
@@ -45,13 +45,13 @@
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="assets/img/favicon.jpg"
+      href="assets/img/favicon.png"
     />
 
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="assets/img/favicon.jpg"
+      href="assets/img/favicon.png"
     />
 
     <!-- Fonts -->
@@ -936,6 +936,10 @@
           </div>
 
           <form class="contact-form" action="contact.php" method="POST">
+            <div style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+              <label for="website">Site web</label>
+              <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+            </div>
             <h3>Demander un cours</h3>
             <div class="form-row">
               <div class="form-field">
@@ -1117,6 +1121,18 @@
         <div class="modal-body"></div>
       </div>
     </div>
+
+    <!-- WHATSAPP FLOTTANT -->
+    <a
+      href="https://wa.me/41797660994"
+      class="whatsapp-float"
+      target="_blank"
+      rel="noopener"
+      aria-label="Contacter NP Auto-école sur WhatsApp"
+    >
+      <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+      <span class="whatsapp-float-label">WhatsApp</span>
+    </a>
 
     <script src="assets/script/script.js"></script>
   </body>

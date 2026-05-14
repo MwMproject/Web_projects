@@ -168,3 +168,17 @@ form?.addEventListener("submit", function (e) {
   }
   // Let the form POST natively to contact.php
 });
+
+// WHATSAPP FLOTTANT — masquer sur section contact
+const waFloat = document.querySelector(".whatsapp-float");
+const contactSection = document.querySelector("#contact");
+
+if (waFloat && contactSection) {
+  const waObserver = new IntersectionObserver(
+    ([entry]) => {
+      waFloat.classList.toggle("hidden", entry.isIntersecting);
+    },
+    { threshold: 0.2 }
+  );
+  waObserver.observe(contactSection);
+}

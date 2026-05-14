@@ -32,6 +32,11 @@ $heureCours = clean($_POST['heure-cours'] ?? '');
 $message   = clean($_POST['message'] ?? '');
 
 // ── Validation ──
+if (mb_strlen($message) > 3000 || mb_strlen($nom) > 120 || mb_strlen($prenom) > 120) {
+    header('Location: index.html?erreur=champs');
+    exit;
+}
+
 if (!$nom || !$prenom || !$email || !$service || !$message) {
     header('Location: index.html?erreur=champs');
     exit;
