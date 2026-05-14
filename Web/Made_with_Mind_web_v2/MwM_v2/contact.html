@@ -177,6 +177,11 @@
               action="contact.php"
               method="POST"
             >
+              <!-- Honeypot anti-spam -->
+              <div style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+                <label for="website">Site web</label>
+                <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+              </div>
               <div class="form-group">
                 <label for="name"></label>
                 <input
