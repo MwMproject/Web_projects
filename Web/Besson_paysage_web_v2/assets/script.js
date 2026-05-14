@@ -167,79 +167,58 @@ document.addEventListener("DOMContentLoaded", () => {
   const nextBtn = document.querySelector(".carousel-btn.next");
   const prevBtn = document.querySelector(".carousel-btn.prev");
   const carousel = document.querySelector(".carousel");
+  const counter = document.querySelector(".carousel-counter");
 
   if (!track || !slides.length || !carousel) return;
 
-  let currentSlide = 0;
-  let innerTimer = null;
+  let current = 0;
   let startX = 0;
-  const INNER_DELAY = 2600;
-  const SINGLE_DELAY = 3600;
-  const SLIDE_DELAY = 600;
+  let autoTimer = null;
+  const TOTAL = slides.length;
+  const AUTO_DELAY = 4000;
 
-  document.querySelectorAll(".inner-slider img").forEach((img) => {
-    const preload = new Image();
-    preload.src = img.src;
+  // Précharger toutes les images
+  slides.forEach((slide) => {
+    const img = slide.querySelector("img");
+    if (img) { const p = new Image(); p.src = img.src; }
   });
 
-  function updateCarousel() {
-    track.style.transform = `translateX(-${currentSlide * 100}%)`;
-    startInnerSlider(slides[currentSlide]);
+  function goTo(index) {
+    current = (index + TOTAL) % TOTAL;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    if (counter) counter.textContent = `${current + 1} / ${TOTAL}`;
   }
 
-  function startInnerSlider(slide) {
-    clearInterval(innerTimer);
-    const images = slide.querySelectorAll(".inner-slider img");
-    if (!images.length) return;
-    let index = 0;
-    images.forEach((img) => img.classList.remove("active"));
-    images[0].classList.add("active");
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
 
-    if (images.length === 1) {
-      innerTimer = setTimeout(nextCarouselSlide, SINGLE_DELAY);
-      return;
-    }
-
-    innerTimer = setInterval(() => {
-      images[index].classList.remove("active");
-      index += 1;
-      if (index >= images.length) {
-        clearInterval(innerTimer);
-        setTimeout(nextCarouselSlide, SLIDE_DELAY);
-        return;
-      }
-      images[index].classList.add("active");
-    }, INNER_DELAY);
+  function startAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(next, AUTO_DELAY);
   }
 
-  function nextCarouselSlide() {
-    currentSlide = (currentSlide + 1) % slides.length;
-    updateCarousel();
+  function resetAuto() {
+    startAuto();
   }
 
-  function prevCarouselSlide() {
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    updateCarousel();
-  }
+  nextBtn?.addEventListener("click", () => { next(); resetAuto(); });
+  prevBtn?.addEventListener("click", () => { prev(); resetAuto(); });
 
-  nextBtn?.addEventListener("click", nextCarouselSlide);
-  prevBtn?.addEventListener("click", prevCarouselSlide);
-  carousel.addEventListener(
-    "touchstart",
-    (event) => {
-      startX = event.touches[0].clientX;
-    },
-    { passive: true },
-  );
-  carousel.addEventListener(
-    "touchend",
-    (event) => {
-      const endX = event.changedTouches[0].clientX;
-      if (startX - endX > 50) nextCarouselSlide();
-      if (endX - startX > 50) prevCarouselSlide();
-    },
-    { passive: true },
-  );
+  // Swipe mobile
+  carousel.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
 
-  updateCarousel();
+  carousel.addEventListener("touchend", (e) => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (diff > 50) { next(); resetAuto(); }
+    if (diff < -50) { prev(); resetAuto(); }
+  }, { passive: true });
+
+  // Pause au hover
+  carousel.addEventListener("mouseenter", () => clearInterval(autoTimer));
+  carousel.addEventListener("mouseleave", startAuto);
+
+  goTo(0);
+  startAuto();
 });

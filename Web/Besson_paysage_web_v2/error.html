@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Erreur d'envoi – Besson Paysage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <style>
+      :root {
+        --green: #6e7c2a;
+        --green-dark: #3a520b;
+        --red: #c0392b;
+        --red-dark: #922b21;
+        --text: #333;
+        --white: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Roboto, Arial, sans-serif;
+        color: var(--text);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .error-card {
+        background: var(--white);
+        max-width: 520px;
+        width: 100%;
+        padding: 45px 40px;
+        border-radius: 18px;
+        text-align: center;
+        box-shadow:
+          0 12px 30px rgba(0, 0, 0, 0.12),
+          0 30px 80px rgba(0, 0, 0, 0.08);
+      }
+
+      .error-icon {
+        width: 90px;
+        height: 90px;
+        margin: 0 auto 25px;
+        border-radius: 50%;
+        background: var(--red);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 42px;
+      }
+
+      h1 {
+        margin: 0 0 15px;
+        color: var(--red-dark);
+        font-size: 1.9rem;
+      }
+
+      p {
+        margin: 0 0 12px;
+        font-size: 1.05rem;
+        line-height: 1.6;
+      }
+
+      .hint {
+        font-size: 0.95rem;
+        color: #666;
+        margin-top: 10px;
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 12px 26px;
+        background: var(--green);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 30px;
+        font-weight: 600;
+        transition:
+          background 0.25s ease,
+          transform 0.25s ease;
+      }
+
+      .back-link:hover {
+        background: var(--green-dark);
+        transform: translateY(-2px);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="error-card">
+      <div class="error-icon">✕</div>
+
+      <h1>Une erreur est survenue</h1>
+
+      <p>
+        Votre message n'a pas pu être envoyé.<br />
+        Veuillez réessayer ou nous contacter directement.
+      </p>
+
+      <p class="hint">
+        Par téléphone : <a href="tel:+41799003626">079 900 36 26</a><br />
+        Par email : <a href="mailto:bessonpaysage@outlook.com">bessonpaysage@outlook.com</a>
+      </p>
+
+      <a href="/" class="back-link">Retour au site</a>
+    </div>
+  </body>
+</html>

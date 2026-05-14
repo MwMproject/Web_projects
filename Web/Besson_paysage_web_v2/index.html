@@ -616,107 +616,26 @@
             aria-roledescription="carousel"
           >
             <div class="carousel-track">
-              <div class="carousel-slide">
-                <div class="inner-slider">
-                  <img
-                    src="assets/img/realisations/amenagement-talu.jpg"
-                    class="active"
-                    alt="Aménagement de talus"
-                    loading="lazy"
-                  /><img
-                    src="assets/img/realisations/amenagement-talu2.jpg"
-                    alt="Aménagement de talus"
-                    loading="lazy"
-                  /><img
-                    src="assets/img/realisations/amenagement-talu3.jpg"
-                    alt="Aménagement de talus"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-              <div class="carousel-slide">
-                <div class="inner-slider">
-                  <img
-                    src="assets/img/realisations/bac-acier.jpg"
-                    class="active"
-                    alt="Bacs acier"
-                    loading="lazy"
-                  /><img
-                    src="assets/img/realisations/bac-acier1.1.jpg"
-                    alt="Bacs acier"
-                    loading="lazy"
-                  /><img
-                    src="assets/img/realisations/bordure-acier.jpg"
-                    alt="Bordure acier"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-              <div class="carousel-slide">
-                <div class="inner-slider">
-                  <img
-                    src="assets/img/realisations/mur-avant.jpg"
-                    class="active"
-                    alt="Mur avant travaux"
-                    loading="lazy"
-                  /><img
-                    src="assets/img/realisations/mur-apres.jpg"
-                    alt="Mur après travaux"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-              <div class="carousel-slide">
-                <div class="inner-slider">
-                  <img
-                    src="assets/img/realisations/palissade-bois2.jpg"
-                    class="active"
-                    alt="Palissade bois"
-                    loading="lazy"
-                  /><img
-                    src="assets/img/realisations/palissade2.jpg"
-                    alt="Palissade"
-                    loading="lazy"
-                  /><img
-                    src="assets/img/realisations/palissade-bois3.jpg"
-                    alt="Palissade bois"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-              <div class="carousel-slide">
-                <div class="inner-slider">
-                  <img
-                    src="assets/img/realisations/tonte-jardin.jpg"
-                    class="active"
-                    alt="Entretien de jardin"
-                    loading="lazy"
-                  /><img
-                    src="assets/img/realisations/tonte-pre.jpg"
-                    alt="Tonte de pré"
-                    loading="lazy"
-                  /><img
-                    src="assets/img/realisations/tonte-pre2.jpg"
-                    alt="Tonte de pré"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
+              <div class="carousel-slide"><img src="assets/img/realisations/amenagement-talu.jpg" alt="Aménagement de talus" loading="lazy" /></div>
+              <div class="carousel-slide"><img src="assets/img/realisations/amenagement-talu2.jpg" alt="Aménagement de talus" loading="lazy" /></div>
+              <div class="carousel-slide"><img src="assets/img/realisations/amenagement-talu3.jpg" alt="Aménagement de talus" loading="lazy" /></div>
+              <div class="carousel-slide"><img src="assets/img/realisations/bac-acier.jpg" alt="Bacs acier" loading="lazy" /></div>
+              <div class="carousel-slide"><img src="assets/img/realisations/bac-acier1.1.jpg" alt="Bacs acier" loading="lazy" /></div>
+              <div class="carousel-slide"><img src="assets/img/realisations/bordure-acier.jpg" alt="Bordure acier" loading="lazy" /></div>
+              <div class="carousel-slide"><img src="assets/img/realisations/mur-avant.jpg" alt="Mur avant travaux" loading="lazy" /></div>
+              <div class="carousel-slide"><img src="assets/img/realisations/mur-apres.jpg" alt="Mur après travaux" loading="lazy" /></div>
+              <div class="carousel-slide"><img src="assets/img/realisations/palissade-bois2.jpg" alt="Palissade bois" loading="lazy" /></div>
+              <div class="carousel-slide"><img src="assets/img/realisations/palissade2.jpg" alt="Palissade" loading="lazy" /></div>
+              <div class="carousel-slide"><img src="assets/img/realisations/palissade-bois3.jpg" alt="Palissade bois" loading="lazy" /></div>
+              <div class="carousel-slide"><img src="assets/img/realisations/tonte-jardin.jpg" alt="Entretien de jardin" loading="lazy" /></div>
+              <div class="carousel-slide"><img src="assets/img/realisations/tonte-pre.jpg" alt="Tonte de pré" loading="lazy" /></div>
+              <div class="carousel-slide"><img src="assets/img/realisations/tonte-pre2.jpg" alt="Tonte de pré" loading="lazy" /></div>
             </div>
             <div class="carousel-buttons">
-              <button
-                class="carousel-btn prev"
-                aria-label="Réalisation précédente"
-              >
-                ‹
-              </button>
-              <button
-                class="carousel-btn next"
-                aria-label="Réalisation suivante"
-              >
-                ›
-              </button>
+              <button class="carousel-btn prev" aria-label="Réalisation précédente">‹</button>
+              <button class="carousel-btn next" aria-label="Réalisation suivante">›</button>
             </div>
+            <div class="carousel-counter" aria-live="polite"></div>
           </div>
         </div>
       </section>
@@ -760,6 +679,11 @@
             </div>
           </div>
           <form class="contact-form reveal" action="/contact.php" method="POST">
+            <!-- Honeypot anti-spam -->
+            <div style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+              <label for="website">Site web</label>
+              <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+            </div>
             <div class="form-row">
               <label
                 ><span>Nom</span

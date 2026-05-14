@@ -13,9 +13,16 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
   exit('Accès interdit');
 }
 
+// ================= HONEYPOT ANTI-SPAM =================
+if (!empty($_POST['website'])) {
+  header('Location: /thanks.html');
+  exit;
+}
+
 // ================= DONNÉES FORMULAIRE =================
 $name    = trim($_POST['name'] ?? '');
 $email   = trim($_POST['email'] ?? '');
+$phone   = trim($_POST['phone'] ?? '');
 $message = trim($_POST['message'] ?? '');
 
 if (
@@ -51,8 +58,9 @@ try {
   $mail->Subject = 'Nouveau message — Besson Paysage';
   $mail->Body =
     "Nom : {$name}\n" .
-    "Email : {$email}\n\n" .
-    "Message :\n{$message}";
+    "Email : {$email}\n" .
+    (!empty($phone) ? "Téléphone : {$phone}\n" : '') .
+    "\nMessage :\n{$message}";
 
   // ==================================================
   // ENVOI
