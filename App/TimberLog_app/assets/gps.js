@@ -1,5 +1,4 @@
-// ── GPS & CONVERSION WGS84 → LV95 (formule officielle swisstopo) ──
-
+// GPS et conversion WGS84 vers LV95 selon la formule swisstopo.
 function wgs84ToLV95(lat, lon) {
   const latAux = (lat * 3600 - 169028.66) / 10000;
   const lonAux = (lon * 3600 - 26782.5) / 10000;
@@ -25,6 +24,10 @@ function wgs84ToLV95(lat, lon) {
   };
 }
 
+function initGPS() {
+  document.getElementById("btn-gps")?.addEventListener("click", getGPS);
+}
+
 function getGPS() {
   if (!navigator.geolocation) {
     showToast("GPS non disponible sur cet appareil");
@@ -45,33 +48,29 @@ function getGPS() {
       const lon = pos.coords.longitude;
       const acc = Math.round(pos.coords.accuracy);
       const alt = pos.coords.altitude ? Math.round(pos.coords.altitude) : null;
-
       const lv95 = wgs84ToLV95(lat, lon);
 
-      // Sauvegarde globale pour le PDF
       window.gpsData = { lat, lon, lv95, acc, alt };
+      if (typeof saveState === "function") saveState();
 
-      // Remplissage automatique des champs
       document.getElementById("coordE").value = lv95.E;
       document.getElementById("coordN").value = lv95.N;
       if (alt) document.getElementById("altitude").value = alt;
 
-      // Affichage précision
-      let accClass, accLabel;
+      let accClass;
+      let accLabel;
       if (acc < 15) {
         accClass = "acc-good";
-        accLabel = "Bonne precision";
+        accLabel = "Bonne précision";
       } else if (acc < 50) {
         accClass = "acc-med";
-        accLabel = "Precision moyenne";
+        accLabel = "Précision moyenne";
       } else {
         accClass = "acc-bad";
-        accLabel = "Faible precision";
+        accLabel = "Faible précision";
       }
 
       status.innerHTML = `<span class="acc-badge ${accClass}">${accLabel} — ±${acc} m</span>`;
-
-      // Affichage coordonnées
       coords.innerHTML =
         `E : ${lv95.E.toLocaleString("fr-CH")}\n` +
         `N : ${lv95.N.toLocaleString("fr-CH")}\n` +
@@ -79,25 +78,23 @@ function getGPS() {
         `WGS84 : ${lat.toFixed(6)}, ${lon.toFixed(6)}`;
       coords.classList.add("visible");
 
-      // Lien swisstopo
       const mapLink = document.getElementById("map-link");
       mapLink.href = `https://map.geo.admin.ch/?E=${lv95.E}&N=${lv95.N}&zoom=10`;
       mapLink.style.display = "inline-flex";
 
       btn.disabled = false;
       btn.textContent = "Actualiser la position";
-
       showToast(`Position obtenue — ±${acc} m`);
     },
     (err) => {
       const messages = {
-        1: "Acces GPS refuse — autorisez la localisation",
+        1: "Accès GPS refusé — autorisez la localisation",
         2: "Signal GPS indisponible",
-        3: "Delai depasse, reessayez",
+        3: "Délai dépassé, réessayez",
       };
       status.textContent = messages[err.code] || "Erreur GPS inconnue";
       btn.disabled = false;
-      btn.textContent = "Reessayer";
+      btn.textContent = "Réessayer";
       showToast(messages[err.code] || "Erreur GPS");
     },
     {

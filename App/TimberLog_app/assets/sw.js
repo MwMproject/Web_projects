@@ -1,5 +1,5 @@
-// ── SERVICE WORKER — Sylvastere ────────────────────────
-const CACHE_NAME = "sylvastere-v1";
+// SERVICE WORKER - TimberLog CH
+const CACHE_NAME = "timberlog-ch-v1";
 
 const ASSETS = [
   "/",
@@ -9,8 +9,8 @@ const ASSETS = [
   "/assets/gps.js",
   "/assets/pdf.js",
   "/assets/manifest.json",
-  "/assets/img/icon.png",
-  "/assets/img/icon_app.png",
+  "/assets/img/timberlog-ch-cutting-icon-192.png",
+  "/assets/img/timberlog-ch-cutting-icon-512.png",
   "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js",
   "https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js",
 ];

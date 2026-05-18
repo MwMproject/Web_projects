@@ -1,4 +1,6 @@
-// ── ETAT GLOBAL ────────────────────────────────────────
+// Etat global
+const STORAGE_KEY = "timberlog_ch_state_v2";
+
 window.chantier = { nom: "", date: "", mandant: "" };
 window.billes = [];
 window.gpsData = null;
@@ -7,15 +9,52 @@ let selectedQ = "";
 let volCourant = 0;
 let compteur = 1;
 
-// ── INIT ───────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", () => {
+  loadState();
   initTabs();
   initChantier();
   initCubage();
+  if (typeof initGPS === "function") initGPS();
   initExport();
   initServiceWorker();
+  renderListe();
+  document.getElementById("chantier-display").textContent =
+    window.chantier.nom || "Aucun chantier";
 });
-// ── TABS ───────────────────────────────────────────────
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const state = JSON.parse(raw);
+    window.chantier = state.chantier || window.chantier;
+    window.billes = Array.isArray(state.billes) ? state.billes : [];
+    window.gpsData = state.gpsData || null;
+    compteur =
+      window.billes.reduce((max, bille) => Math.max(max, bille.id || 0), 0) + 1;
+  } catch {
+    localStorage.removeItem(STORAGE_KEY);
+  }
+}
+
+function saveState() {
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify({
+      chantier: window.chantier,
+      billes: window.billes,
+      gpsData: window.gpsData,
+    }),
+  );
+}
+
+function showToast(msg) {
+  const toast = document.getElementById("toast");
+  toast.textContent = msg;
+  toast.classList.add("visible");
+  setTimeout(() => toast.classList.remove("visible"), 2500);
+}
+
 function initTabs() {
   document.querySelectorAll(".tab").forEach((tab) => {
     tab.addEventListener("click", () => {
@@ -23,10 +62,10 @@ function initTabs() {
 
       document
         .querySelectorAll(".tab")
-        .forEach((t) => t.classList.remove("active"));
+        .forEach((item) => item.classList.remove("active"));
       document
         .querySelectorAll(".section")
-        .forEach((s) => s.classList.remove("active"));
+        .forEach((section) => section.classList.remove("active"));
 
       tab.classList.add("active");
       document.getElementById("tab-" + target).classList.add("active");
@@ -36,7 +75,6 @@ function initTabs() {
   });
 }
 
-// ── CHANTIER ───────────────────────────────────────────
 function initChantier() {
   const overlay = document.getElementById("modal-overlay");
   const btnOpen = document.getElementById("btn-nouveau-chantier");
@@ -44,11 +82,10 @@ function initChantier() {
   const btnOk = document.getElementById("btn-modal-valider");
 
   btnOpen.addEventListener("click", () => {
-    if (!document.getElementById("date-chantier").value) {
-      document.getElementById("date-chantier").value = new Date()
-        .toISOString()
-        .split("T")[0];
-    }
+    document.getElementById("nom-chantier").value = window.chantier.nom || "";
+    document.getElementById("mandant").value = window.chantier.mandant || "";
+    document.getElementById("date-chantier").value =
+      window.chantier.date || new Date().toISOString().split("T")[0];
     overlay.classList.add("visible");
   });
 
@@ -56,8 +93,8 @@ function initChantier() {
     overlay.classList.remove("visible");
   });
 
-  overlay.addEventListener("click", (e) => {
-    if (e.target === overlay) overlay.classList.remove("visible");
+  overlay.addEventListener("click", (event) => {
+    if (event.target === overlay) overlay.classList.remove("visible");
   });
 
   btnOk.addEventListener("click", () => {
@@ -68,47 +105,44 @@ function initChantier() {
     }
 
     window.chantier = {
-      nom: nom,
+      nom,
       date: document.getElementById("date-chantier").value,
       mandant: document.getElementById("mandant").value.trim(),
     };
 
     document.getElementById("chantier-display").textContent = nom;
     overlay.classList.remove("visible");
-    showToast('Chantier "' + nom + '" cree');
+    saveState();
+    showToast('Chantier "' + nom + '" créé');
   });
 }
 
-// ── CUBAGE ─────────────────────────────────────────────
 function initCubage() {
-  // Calcul en temps reel
   document.getElementById("diametre").addEventListener("input", calcHuber);
   document.getElementById("longueur").addEventListener("input", calcHuber);
 
-  // Boutons qualite
   document.querySelectorAll(".q-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
       selectedQ = btn.dataset.q;
-      document.querySelectorAll(".q-btn").forEach((b) => {
-        b.className = "q-btn";
+      document.querySelectorAll(".q-btn").forEach((item) => {
+        item.className = "q-btn";
       });
       btn.classList.add("active-" + selectedQ);
     });
   });
 
-  // Ajouter bille
   document
     .getElementById("btn-ajouter")
     .addEventListener("click", ajouterBille);
 }
 
 function calcHuber() {
-  const d = parseFloat(document.getElementById("diametre").value);
-  const l = parseFloat(document.getElementById("longueur").value);
+  const diametre = parseFloat(document.getElementById("diametre").value);
+  const longueur = parseFloat(document.getElementById("longueur").value);
 
-  if (d > 0 && l > 0) {
-    const r = d / 100 / 2;
-    volCourant = Math.PI * r * r * l;
+  if (diametre > 0 && longueur > 0) {
+    const rayon = diametre / 100 / 2;
+    volCourant = Math.PI * rayon * rayon * longueur;
     document.getElementById("result-vol").textContent = volCourant.toFixed(4);
     document.getElementById("result-box").classList.add("visible");
   } else {
@@ -118,32 +152,32 @@ function calcHuber() {
 }
 
 function ajouterBille() {
-  const d = parseFloat(document.getElementById("diametre").value);
-  const l = parseFloat(document.getElementById("longueur").value);
-  const ess = document.getElementById("essence").value;
+  const diametre = parseFloat(document.getElementById("diametre").value);
+  const longueur = parseFloat(document.getElementById("longueur").value);
+  const essence = document.getElementById("essence").value;
 
-  if (!ess) {
+  if (!essence) {
     showToast("Choisissez une essence");
     return;
   }
-  if (!d || d <= 0) {
-    showToast("Entrez un diametre valide");
+  if (!diametre || diametre <= 0) {
+    showToast("Entrez un diamètre valide");
     return;
   }
-  if (!l || l <= 0) {
+  if (!longueur || longueur <= 0) {
     showToast("Entrez une longueur valide");
     return;
   }
   if (!selectedQ) {
-    showToast("Choisissez une qualite");
+    showToast("Choisissez une qualité");
     return;
   }
 
   const bille = {
     id: compteur++,
-    essence: ess,
-    diametre: d,
-    longueur: l,
+    essence,
+    diametre,
+    longueur,
     qualite: selectedQ,
     defauts: document.getElementById("defauts").value.trim() || "—",
     volume: volCourant,
@@ -152,8 +186,9 @@ function ajouterBille() {
   window.billes.push(bille);
   renderListe();
   resetCubageForm();
+  saveState();
   showToast(
-    "Bille #" + bille.id + " ajoutee — " + bille.volume.toFixed(4) + " m³",
+    "Bille #" + bille.id + " ajoutée — " + bille.volume.toFixed(4) + " m³",
   );
 }
 
@@ -163,25 +198,24 @@ function resetCubageForm() {
   document.getElementById("defauts").value = "";
   document.getElementById("essence").value = "";
   document.getElementById("result-box").classList.remove("visible");
-  document.querySelectorAll(".q-btn").forEach((b) => (b.className = "q-btn"));
+  document.querySelectorAll(".q-btn").forEach((btn) => (btn.className = "q-btn"));
   selectedQ = "";
   volCourant = 0;
 }
 
-// ── LISTE BILLES ───────────────────────────────────────
 function renderListe() {
   const container = document.getElementById("liste-billes");
 
   if (!window.billes.length) {
     container.innerHTML = `
       <div class="empty-state">
-        <div class="empty-ico">🪵</div>
-        <p>Aucune bille enregistree.<br>Commencez par l'onglet Cubage.</p>
+        <div class="empty-ico">◎</div>
+        <p>Aucune bille enregistrée.<br>Commencez par l'onglet Cubage.</p>
       </div>`;
     return;
   }
 
-  const total = window.billes.reduce((s, b) => s + b.volume, 0);
+  const total = window.billes.reduce((sum, bille) => sum + bille.volume, 0);
 
   const header = `
     <div class="liste-header">
@@ -191,26 +225,26 @@ function renderListe() {
 
   const cards = window.billes
     .map(
-      (b) => `
+      (bille) => `
     <div class="bille-card">
       <div>
-        <div class="bille-main">#${b.id} — ${b.essence}</div>
+        <div class="bille-main">#${bille.id} — ${bille.essence}</div>
         <div class="bille-sub">
-          ∅ ${b.diametre} cm &times; ${b.longueur} m
-          &nbsp;<span class="badge badge-${b.qualite}">${b.qualite}</span>
+          ø ${bille.diametre} cm &times; ${bille.longueur} m
+          &nbsp;<span class="badge badge-${bille.qualite}">${bille.qualite}</span>
         </div>
         ${
-          b.defauts !== "—"
-            ? `<div class="bille-defaut">⚠ ${b.defauts}</div>`
+          bille.defauts !== "—"
+            ? `<div class="bille-defaut">⚠ ${bille.defauts}</div>`
             : ""
         }
       </div>
       <div style="display:flex;align-items:center;gap:8px;">
         <div class="bille-vol">
-          ${b.volume.toFixed(4)}
+          ${bille.volume.toFixed(4)}
           <span>m³</span>
         </div>
-        <button class="del-btn" onclick="supprimerBille(${b.id})">✕</button>
+        <button class="del-btn" onclick="supprimerBille(${bille.id})">×</button>
       </div>
     </div>`,
     )
@@ -220,12 +254,12 @@ function renderListe() {
 }
 
 function supprimerBille(id) {
-  window.billes = window.billes.filter((b) => b.id !== id);
+  window.billes = window.billes.filter((bille) => bille.id !== id);
   renderListe();
-  showToast("Bille supprimee");
+  saveState();
+  showToast("Bille supprimée");
 }
 
-// ── EXPORT ─────────────────────────────────────────────
 function initExport() {
   document.getElementById("btn-export").addEventListener("click", exporterPDF);
   document
@@ -243,39 +277,39 @@ function buildExportSummary() {
   const container = document.getElementById("export-summary");
   const billes = window.billes;
   const chantier = window.chantier;
-  const total = billes.reduce((s, b) => s + b.volume, 0);
+  const total = billes.reduce((sum, bille) => sum + bille.volume, 0);
 
   const byEssence = {};
   const byQualite = { A: 0, B: 0, C: 0, D: 0 };
-  billes.forEach((b) => {
-    byEssence[b.essence] = (byEssence[b.essence] || 0) + b.volume;
-    byQualite[b.qualite] = (byQualite[b.qualite] || 0) + b.volume;
+  billes.forEach((bille) => {
+    byEssence[bille.essence] = (byEssence[bille.essence] || 0) + bille.volume;
+    byQualite[bille.qualite] = (byQualite[bille.qualite] || 0) + bille.volume;
   });
 
   const rowsEssence =
     Object.entries(byEssence)
       .map(
-        ([e, v]) => `
+        ([essence, volume]) => `
       <div class="summary-row">
-        <span>${e}</span>
-        <span>${v.toFixed(4)} m³</span>
+        <span>${essence}</span>
+        <span>${volume.toFixed(4)} m³</span>
       </div>`,
       )
       .join("") ||
-    '<div class="summary-row"><span style="color:var(--text-hint)">Aucune donnee</span></div>';
+    '<div class="summary-row"><span style="color:var(--text-hint)">Aucune donnée</span></div>';
 
   const rowsQualite =
     ["A", "B", "C", "D"]
-      .filter((q) => byQualite[q] > 0)
+      .filter((qualite) => byQualite[qualite] > 0)
       .map(
-        (q) => `
+        (qualite) => `
       <div class="summary-row">
-        <span><span class="badge badge-${q}">${q}</span></span>
-        <span>${byQualite[q].toFixed(4)} m³</span>
+        <span><span class="badge badge-${qualite}">${qualite}</span></span>
+        <span>${byQualite[qualite].toFixed(4)} m³</span>
       </div>`,
       )
       .join("") ||
-    '<div class="summary-row"><span style="color:var(--text-hint)">Aucune donnee</span></div>';
+    '<div class="summary-row"><span style="color:var(--text-hint)">Aucune donnée</span></div>';
 
   container.innerHTML = `
     <div class="summary-card">
@@ -291,13 +325,13 @@ function buildExportSummary() {
       ${rowsEssence}
     </div>
     <div class="summary-card">
-      <div class="summary-title">Par qualite</div>
+      <div class="summary-title">Par qualité</div>
       ${rowsQualite}
     </div>`;
 }
 
 function nouvelleJournee() {
-  if (!confirm("Nouvelle journee ? Toutes les billes seront effacees.")) return;
+  if (!confirm("Nouvelle journée ? Toutes les billes seront effacées.")) return;
   window.billes = [];
   window.chantier = { nom: "", date: "", mandant: "" };
   window.gpsData = null;
@@ -309,23 +343,15 @@ function nouvelleJournee() {
   document.getElementById("date-chantier").value = "";
   document.getElementById("mandant").value = "";
   renderListe();
-  showToast("Nouvelle journee prete");
+  saveState();
+  showToast("Nouvelle journée prête");
 }
 
-// ── TOAST ──────────────────────────────────────────────
-function showToast(msg) {
-  const toast = document.getElementById("toast");
-  toast.textContent = msg;
-  toast.classList.add("visible");
-  setTimeout(() => toast.classList.remove("visible"), 2500);
-}
-
-// ── SERVICE WORKER ─────────────────────────────────────
 function initServiceWorker() {
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker
       .register("assets/sw.js", { scope: "/" })
-      .then(() => console.log("Sylvastere — SW enregistre"))
+      .then(() => console.log("TimberLog CH - SW enregistré"))
       .catch((err) => console.warn("SW erreur :", err));
   }
 }
