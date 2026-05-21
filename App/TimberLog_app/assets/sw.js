@@ -1,5 +1,5 @@
 // SERVICE WORKER - TimberLog CH
-const CACHE_NAME = "timberlog-ch-v1";
+const CACHE_NAME = "timberlog-ch-v2";
 
 const ASSETS = [
   "/",
@@ -15,7 +15,6 @@ const ASSETS = [
   "https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js",
 ];
 
-// Installation — mise en cache de tous les assets
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches
@@ -25,7 +24,6 @@ self.addEventListener("install", (event) => {
   );
 });
 
-// Activation — nettoyage des vieux caches
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches
@@ -41,7 +39,6 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-// Fetch — cache first, network fallback
 self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches

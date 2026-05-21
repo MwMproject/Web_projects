@@ -1,4 +1,4 @@
-// GPS et conversion WGS84 vers LV95 selon la formule swisstopo.
+// GPS and WGS84 to LV95 conversion using the swisstopo formula.
 function wgs84ToLV95(lat, lon) {
   const latAux = (lat * 3600 - 169028.66) / 10000;
   const lonAux = (lon * 3600 - 26782.5) / 10000;
@@ -61,16 +61,16 @@ function getGPS() {
       let accLabel;
       if (acc < 15) {
         accClass = "acc-good";
-        accLabel = "Bonne précision";
+        accLabel = "Bonne precision";
       } else if (acc < 50) {
         accClass = "acc-med";
-        accLabel = "Précision moyenne";
+        accLabel = "Precision moyenne";
       } else {
         accClass = "acc-bad";
-        accLabel = "Faible précision";
+        accLabel = "Faible precision";
       }
 
-      status.innerHTML = `<span class="acc-badge ${accClass}">${accLabel} — ±${acc} m</span>`;
+      status.innerHTML = `<span class="acc-badge ${accClass}">${accLabel} - +/-${acc} m</span>`;
       coords.innerHTML =
         `E : ${lv95.E.toLocaleString("fr-CH")}\n` +
         `N : ${lv95.N.toLocaleString("fr-CH")}\n` +
@@ -84,17 +84,17 @@ function getGPS() {
 
       btn.disabled = false;
       btn.textContent = "Actualiser la position";
-      showToast(`Position obtenue — ±${acc} m`);
+      showToast(`Position obtenue - +/-${acc} m`);
     },
     (err) => {
       const messages = {
-        1: "Accès GPS refusé — autorisez la localisation",
+        1: "Acces GPS refuse - autorisez la localisation",
         2: "Signal GPS indisponible",
-        3: "Délai dépassé, réessayez",
+        3: "Delai depasse, reessayez",
       };
       status.textContent = messages[err.code] || "Erreur GPS inconnue";
       btn.disabled = false;
-      btn.textContent = "Réessayer";
+      btn.textContent = "Reessayer";
       showToast(messages[err.code] || "Erreur GPS");
     },
     {

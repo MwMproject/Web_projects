@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="CV de Manuel Weiss — profil polyvalent en reconversion web, avec une solide expérience terrain et commerciale."
+    />
+    <title>CV — Manuel Weiss</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="logo" href="#hero" aria-label="Retour en haut">MW</a>
+      <nav class="nav" aria-label="Navigation principale">
+        <a href="#profil">Profil</a>
+        <a href="#competences">Compétences</a>
+        <a href="#experiences">Expériences</a>
+        <a href="#formation">Formation</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="theme-toggle" type="button" aria-label="Changer le thème">
+        <svg
+          class="icon-moon"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+        <svg
+          class="icon-sun"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          style="display: none"
+        >
+          <circle cx="12" cy="12" r="5" />
+          <line x1="12" y1="1" x2="12" y2="3" />
+          <line x1="12" y1="21" x2="12" y2="23" />
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+          <line x1="1" y1="12" x2="3" y2="12" />
+          <line x1="21" y1="12" x2="23" y2="12" />
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+        </svg>
+      </button>
+    </header>
+
+    <main>
+      <section id="hero" class="hero section reveal">
+        <div class="hero-content">
+          <p class="eyebrow">CV en ligne</p>
+          <h1>Manuel<br />Weiss</h1>
+          <p class="subtitle">
+            Développeur web junior en reconversion, avec une solide expérience
+            terrain, commerciale et relation client.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="mailto:mweiss1377@gmail.com"
+              >Me contacter</a
+            >
+            <button
+              class="btn secondary"
+              type="button"
+              onclick="window.print()"
+            >
+              Imprimer le CV
+            </button>
+          </div>
+        </div>
+        <aside class="profile-card" aria-label="Informations personnelles">
+          <img
+            src="assets/Photo_de_profil.jpg"
+            alt="Photo de profil de Manuel Weiss"
+          />
+          <h2>Manuel Weiss</h2>
+          <p>1045 Ogens, Suisse</p>
+          <p><a href="mailto:mweiss1377@gmail.com">mweiss1377@gmail.com</a></p>
+          <p><a href="tel:+41789719313">+41 78 971 93 13</a></p>
+          <div class="profile-tags">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+            <span>Relation client</span>
+            <span>Bâtiment</span>
+          </div>
+        </aside>
+      </section>
+
+      <section id="profil" class="section reveal">
+        <div class="about-grid">
+          <div>
+            <p class="eyebrow">Profil</p>
+            <h2>À propos de moi</h2>
+          </div>
+          <p class="about-text">
+            Passionné par l'informatique et le développement web, je construis
+            aujourd'hui mes compétences techniques en HTML, CSS et JavaScript.
+            Mon parcours dans le bâtiment et la vente m'a apporté rigueur, sens
+            du service, autonomie et facilité de contact avec les clients.
+          </p>
+        </div>
+      </section>
+
+      <section id="competences" class="section reveal">
+        <p class="eyebrow">Compétences</p>
+        <h2>Ce que j'apporte</h2>
+        <div class="cards">
+          <article class="card">
+            <h3>Développement web</h3>
+            <ul>
+              <li>HTML sémantique</li>
+              <li>CSS responsive</li>
+              <li>JavaScript vanilla</li>
+              <li>Structure de pages web</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Relation client</h3>
+            <ul>
+              <li>Conseil et vente</li>
+              <li>Gestion des besoins clients</li>
+              <li>Communication claire</li>
+              <li>Travail en équipe</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Qualités</h3>
+            <ul>
+              <li>Curiosité</li>
+              <li>Organisation</li>
+              <li>Esprit pratique</li>
+              <li>Motivation à progresser</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="experiences" class="section reveal">
+        <p class="eyebrow">Parcours</p>
+        <h2>Expériences professionnelles</h2>
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="timeline-date">À ce jour</div>
+            <div class="timeline-content">
+              <h3>Maçon — Gaudard Yvan Sàrl</h3>
+              <p>
+                Travail de terrain, précision, sécurité et coordination
+                d'équipe.
+              </p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-date">Mai 2025 — <br />Juil. 2025</div>
+            <div class="timeline-content">
+              <h3>Vendeur, livreur et commercial — Agemo SA</h3>
+              <p>Relation client, conseil, livraison et suivi commercial.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-date">2022 — 2025</div>
+            <div class="timeline-content">
+              <h3>Maçon — Dutoit Frères Sàrl</h3>
+              <p>Travail de terrain, précision et coordination d'équipe.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-date">2020 — 2022</div>
+            <div class="timeline-content">
+              <h3>Représentant matériaux — Dubat SA</h3>
+              <p>Conseil technique, vente et gestion de la relation client.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-date">2019 — 2020</div>
+            <div class="timeline-content">
+              <h3>Vendeur quincaillerie — HG Commercial</h3>
+              <p>Accueil, conseil produit et suivi des demandes.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-date">2014 — 2019</div>
+            <div class="timeline-content">
+              <h3>Technico-commercial — Dubat SA</h3>
+              <p>
+                Vente technique, connaissances matériaux et accompagnement
+                client.
+              </p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-date">2011 — 2014</div>
+            <div class="timeline-content">
+              <h3>Maçon et désamiantage — P.-Y. &amp; fils Construction SA</h3>
+              <p>
+                Travaux de construction, respect des normes et sécurité
+                chantier.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="formation" class="section reveal">
+        <p class="eyebrow">Formation</p>
+        <h2>Diplômes et formations</h2>
+        <div class="chips">
+          <span>2024 · Sergent, Protection civile</span>
+          <span>2019 · Caporal, Protection civile</span>
+          <span>2014–2020 · Formations internes bâtiment</span>
+          <span>2011 · Désamiantage certifié SUVA</span>
+          <span>2008–2011 · CFC de maçon</span>
+          <span>2008 · Certificat d'études secondaires</span>
+        </div>
+      </section>
+
+      <section class="section two-columns reveal">
+        <div>
+          <p class="eyebrow">Langues</p>
+          <h2>Langues</h2>
+          <ul class="clean-list">
+            <li>Français — langue maternelle</li>
+            <li>Allemand — niveau scolaire</li>
+            <li>Anglais — niveau scolaire</li>
+          </ul>
+        </div>
+        <div>
+          <p class="eyebrow">Centres d'intérêt</p>
+          <h2>Hobbies</h2>
+          <ul class="clean-list">
+            <li>Informatique</li>
+            <li>Football</li>
+            <li>Sports automobiles</li>
+            <li>Musique</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="contact" class="section reveal">
+        <div class="contact-box">
+          <p class="eyebrow">Contact</p>
+          <h2>Disponible pour échanger</h2>
+          <p class="sub">
+            N'hésitez pas à me contacter par e-mail ou téléphone pour une
+            opportunité, un projet ou une candidature.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="mailto:mweiss1377@gmail.com"
+              >Envoyer un e-mail</a
+            >
+            <a class="btn secondary" href="tel:+41789719313">Appeler</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© <span id="year"></span> Manuel Weiss — CV HTML / CSS / JS</p>
+    </footer>
+
+    <script src="assets/script.js"></script>
+  </body>
+</html>

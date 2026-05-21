@@ -1,4 +1,4 @@
-// Etat global
+// TimberLog CH - core app logic
 const STORAGE_KEY = "timberlog_ch_state_v2";
 
 window.chantier = { nom: "", date: "", mandant: "" };
@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initExport();
   initServiceWorker();
   renderListe();
+  updateStats();
   document.getElementById("chantier-display").textContent =
     window.chantier.nom || "Aucun chantier";
 });
@@ -53,6 +54,16 @@ function showToast(msg) {
   toast.textContent = msg;
   toast.classList.add("visible");
   setTimeout(() => toast.classList.remove("visible"), 2500);
+}
+
+function updateStats() {
+  const total = window.billes.reduce((sum, bille) => sum + bille.volume, 0);
+  const last = window.billes[window.billes.length - 1];
+  document.getElementById("stat-billes").textContent = String(window.billes.length);
+  document.getElementById("stat-volume").textContent = total.toFixed(4);
+  document.getElementById("stat-last").textContent = last
+    ? last.volume.toFixed(4) + " m3"
+    : "-";
 }
 
 function initTabs() {
@@ -113,7 +124,7 @@ function initChantier() {
     document.getElementById("chantier-display").textContent = nom;
     overlay.classList.remove("visible");
     saveState();
-    showToast('Chantier "' + nom + '" créé');
+    showToast('Chantier "' + nom + '" cree');
   });
 }
 
@@ -161,7 +172,7 @@ function ajouterBille() {
     return;
   }
   if (!diametre || diametre <= 0) {
-    showToast("Entrez un diamètre valide");
+    showToast("Entrez un diametre valide");
     return;
   }
   if (!longueur || longueur <= 0) {
@@ -169,7 +180,7 @@ function ajouterBille() {
     return;
   }
   if (!selectedQ) {
-    showToast("Choisissez une qualité");
+    showToast("Choisissez une qualite");
     return;
   }
 
@@ -179,16 +190,17 @@ function ajouterBille() {
     diametre,
     longueur,
     qualite: selectedQ,
-    defauts: document.getElementById("defauts").value.trim() || "—",
+    defauts: document.getElementById("defauts").value.trim() || "-",
     volume: volCourant,
   };
 
   window.billes.push(bille);
   renderListe();
   resetCubageForm();
+  updateStats();
   saveState();
   showToast(
-    "Bille #" + bille.id + " ajoutée — " + bille.volume.toFixed(4) + " m³",
+    "Bille #" + bille.id + " ajoutee - " + bille.volume.toFixed(4) + " m3",
   );
 }
 
@@ -201,6 +213,7 @@ function resetCubageForm() {
   document.querySelectorAll(".q-btn").forEach((btn) => (btn.className = "q-btn"));
   selectedQ = "";
   volCourant = 0;
+  document.getElementById("diametre").focus();
 }
 
 function renderListe() {
@@ -209,8 +222,8 @@ function renderListe() {
   if (!window.billes.length) {
     container.innerHTML = `
       <div class="empty-state">
-        <div class="empty-ico">◎</div>
-        <p>Aucune bille enregistrée.<br>Commencez par l'onglet Cubage.</p>
+        <div class="empty-ico">TL</div>
+        <p>Aucune bille enregistree.<br>Commencez par l'onglet Cubage.</p>
       </div>`;
     return;
   }
@@ -220,7 +233,7 @@ function renderListe() {
   const header = `
     <div class="liste-header">
       <span class="liste-count">${window.billes.length} bille(s)</span>
-      <span class="liste-total">${total.toFixed(4)} m³</span>
+      <span class="liste-total">${total.toFixed(4)} m3</span>
     </div>`;
 
   const cards = window.billes
@@ -228,23 +241,23 @@ function renderListe() {
       (bille) => `
     <div class="bille-card">
       <div>
-        <div class="bille-main">#${bille.id} — ${bille.essence}</div>
+        <div class="bille-main">#${bille.id} - ${bille.essence}</div>
         <div class="bille-sub">
-          ø ${bille.diametre} cm &times; ${bille.longueur} m
+          diam. ${bille.diametre} cm &times; ${bille.longueur} m
           &nbsp;<span class="badge badge-${bille.qualite}">${bille.qualite}</span>
         </div>
         ${
-          bille.defauts !== "—"
-            ? `<div class="bille-defaut">⚠ ${bille.defauts}</div>`
+          bille.defauts !== "-"
+            ? `<div class="bille-defaut">! ${bille.defauts}</div>`
             : ""
         }
       </div>
       <div style="display:flex;align-items:center;gap:8px;">
         <div class="bille-vol">
           ${bille.volume.toFixed(4)}
-          <span>m³</span>
+          <span>m3</span>
         </div>
-        <button class="del-btn" onclick="supprimerBille(${bille.id})">×</button>
+        <button class="del-btn" onclick="supprimerBille(${bille.id})">x</button>
       </div>
     </div>`,
     )
@@ -256,8 +269,9 @@ function renderListe() {
 function supprimerBille(id) {
   window.billes = window.billes.filter((bille) => bille.id !== id);
   renderListe();
+  updateStats();
   saveState();
-  showToast("Bille supprimée");
+  showToast("Bille supprimee");
 }
 
 function initExport() {
@@ -268,6 +282,9 @@ function initExport() {
   document
     .getElementById("btn-export-billes")
     .addEventListener("click", exporterPDFBilles);
+  document
+    .getElementById("btn-export-csv")
+    .addEventListener("click", exporterCSV);
   document
     .getElementById("btn-reset")
     .addEventListener("click", nouvelleJournee);
@@ -292,11 +309,11 @@ function buildExportSummary() {
         ([essence, volume]) => `
       <div class="summary-row">
         <span>${essence}</span>
-        <span>${volume.toFixed(4)} m³</span>
+        <span>${volume.toFixed(4)} m3</span>
       </div>`,
       )
       .join("") ||
-    '<div class="summary-row"><span style="color:var(--text-hint)">Aucune donnée</span></div>';
+    '<div class="summary-row"><span style="color:var(--text-hint)">Aucune donnee</span></div>';
 
   const rowsQualite =
     ["A", "B", "C", "D"]
@@ -305,33 +322,70 @@ function buildExportSummary() {
         (qualite) => `
       <div class="summary-row">
         <span><span class="badge badge-${qualite}">${qualite}</span></span>
-        <span>${byQualite[qualite].toFixed(4)} m³</span>
+        <span>${byQualite[qualite].toFixed(4)} m3</span>
       </div>`,
       )
       .join("") ||
-    '<div class="summary-row"><span style="color:var(--text-hint)">Aucune donnée</span></div>';
+    '<div class="summary-row"><span style="color:var(--text-hint)">Aucune donnee</span></div>';
 
   container.innerHTML = `
     <div class="summary-card">
       <div class="summary-title">Chantier</div>
-      <div class="summary-row"><span>Nom</span><span>${chantier.nom || "—"}</span></div>
-      <div class="summary-row"><span>Date</span><span>${chantier.date || "—"}</span></div>
-      <div class="summary-row"><span>Mandant</span><span>${chantier.mandant || "—"}</span></div>
+      <div class="summary-row"><span>Nom</span><span>${chantier.nom || "-"}</span></div>
+      <div class="summary-row"><span>Date</span><span>${chantier.date || "-"}</span></div>
+      <div class="summary-row"><span>Mandant</span><span>${chantier.mandant || "-"}</span></div>
       <div class="summary-row"><span>Billes</span><span>${billes.length}</span></div>
-      <div class="summary-total"><span>Volume total</span><span>${total.toFixed(4)} m³</span></div>
+      <div class="summary-total"><span>Volume total</span><span>${total.toFixed(4)} m3</span></div>
     </div>
     <div class="summary-card">
       <div class="summary-title">Par essence</div>
       ${rowsEssence}
     </div>
     <div class="summary-card">
-      <div class="summary-title">Par qualité</div>
+      <div class="summary-title">Par qualite</div>
       ${rowsQualite}
     </div>`;
 }
 
+function exporterCSV() {
+  if (!window.billes.length) {
+    showToast("Aucune bille a exporter");
+    return;
+  }
+
+  const rows = [
+    ["id", "chantier", "date", "mandant", "essence", "diametre_cm", "longueur_m", "qualite", "defauts", "volume_m3"],
+    ...window.billes.map((bille) => [
+      bille.id,
+      window.chantier.nom || "",
+      window.chantier.date || "",
+      window.chantier.mandant || "",
+      bille.essence,
+      bille.diametre,
+      bille.longueur,
+      bille.qualite,
+      bille.defauts,
+      bille.volume.toFixed(4),
+    ]),
+  ];
+  const csv = rows.map((row) => row.map(csvCell).join(";")).join("\n");
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = nomFichier("billes").replace(".pdf", ".csv");
+  link.click();
+  URL.revokeObjectURL(url);
+  showToast("CSV exporte");
+}
+
+function csvCell(value) {
+  const text = String(value ?? "");
+  return '"' + text.replace(/"/g, '""') + '"';
+}
+
 function nouvelleJournee() {
-  if (!confirm("Nouvelle journée ? Toutes les billes seront effacées.")) return;
+  if (!confirm("Nouvelle journee ? Toutes les billes seront effacees.")) return;
   window.billes = [];
   window.chantier = { nom: "", date: "", mandant: "" };
   window.gpsData = null;
@@ -343,15 +397,16 @@ function nouvelleJournee() {
   document.getElementById("date-chantier").value = "";
   document.getElementById("mandant").value = "";
   renderListe();
+  updateStats();
   saveState();
-  showToast("Nouvelle journée prête");
+  showToast("Nouvelle journee prete");
 }
 
 function initServiceWorker() {
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker
       .register("assets/sw.js", { scope: "/" })
-      .then(() => console.log("TimberLog CH - SW enregistré"))
+      .then(() => console.log("TimberLog CH - SW enregistre"))
       .catch((err) => console.warn("SW erreur :", err));
   }
 }
