@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MWM Site Builder</title>
+    <link rel="stylesheet" href="assets/styles/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="brand-mark">M</span>
+          <div>
+            <strong>MWM Builder</strong>
+            <span>Prototype rapide client</span>
+          </div>
+        </div>
+
+        <section class="panel">
+          <h2>Blocs</h2>
+          <div class="block-grid">
+            <button class="block-button" data-add="navbar">Navbar</button>
+            <button class="block-button" data-add="hero">Hero</button>
+            <button class="block-button" data-add="text">Texte</button>
+            <button class="block-button" data-add="imageText">Image + texte</button>
+            <button class="block-button" data-add="features">Services</button>
+            <button class="block-button" data-add="gallery">Galerie</button>
+            <button class="block-button" data-add="contact">Contact</button>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>Style global</h2>
+          <label>
+            Nom du projet
+            <input type="text" id="projectName" value="Projet client" />
+          </label>
+          <label>
+            Couleur principale
+            <input type="color" id="primaryColor" value="#2563eb" />
+          </label>
+          <label>
+            Couleur secondaire
+            <input type="color" id="secondaryColor" value="#f97316" />
+          </label>
+          <label>
+            Fond
+            <input type="color" id="backgroundColor" value="#f8fafc" />
+          </label>
+          <label>
+            Police
+            <select id="fontFamily">
+              <option value="Inter, system-ui, sans-serif">Moderne</option>
+              <option value="Georgia, serif">Editorial</option>
+              <option value="'Trebuchet MS', sans-serif">Arrondie</option>
+              <option value="Arial, sans-serif">Simple</option>
+            </select>
+          </label>
+        </section>
+
+        <section class="panel">
+          <h2>Projets clients</h2>
+          <div class="project-actions">
+            <button class="primary-button" id="saveProject">Sauvegarder</button>
+            <button class="ghost-button" id="newProject">Nouveau</button>
+          </div>
+          <div class="project-list" id="projectList"></div>
+        </section>
+
+        <section class="panel cheat-sheet">
+          <h2>Cheat sheet</h2>
+          <details open>
+            <summary>Structure rapide</summary>
+            <p>Navbar → Hero → Preuves/services → Galerie/réalisations → Contact.</p>
+          </details>
+          <details>
+            <summary>Questions client</summary>
+            <p>Objectif du site, action principale, pages nécessaires, ton visuel, contenus disponibles.</p>
+          </details>
+          <details>
+            <summary>Responsive</summary>
+            <p>Vérifie titre hero, ordre image/texte, menu burger, CTA visible, sections trop longues.</p>
+          </details>
+          <details>
+            <summary>Export</summary>
+            <p>Remplace les blocs image, nettoie les textes, ajoute SEO, formulaire réel et performances.</p>
+          </details>
+        </section>
+
+        <section class="panel inspector" id="inspector">
+          <h2>Bloc sélectionné</h2>
+          <p class="muted">Sélectionne un bloc dans l’aperçu.</p>
+        </section>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <h1>Construire le site</h1>
+            <p>Ajoute des sections, ajuste le contenu, puis exporte le squelette.</p>
+          </div>
+          <div class="actions">
+            <div class="viewport-toggle" role="group" aria-label="Vue">
+              <button class="is-active" data-view="desktop">Desktop</button>
+              <button data-view="mobile">Mobile</button>
+            </div>
+            <button class="ghost-button" id="clearPage">Vider</button>
+            <button class="primary-button" id="exportSite">Exporter</button>
+          </div>
+        </header>
+
+        <div class="canvas-wrap">
+          <div class="canvas desktop" id="canvas">
+            <div class="empty-state" id="emptyState">
+              <strong>Page vierge</strong>
+              <span>Ajoute une navbar, un hero ou une section depuis la gauche.</span>
+            </div>
+            <div id="pagePreview"></div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <dialog id="exportDialog">
+      <div class="dialog-header">
+        <h2>Export du site</h2>
+        <button id="closeExport" aria-label="Fermer">×</button>
+      </div>
+      <p>Voici un fichier complet que tu peux utiliser comme base HTML.</p>
+      <textarea id="exportOutput" spellcheck="false"></textarea>
+      <div class="dialog-actions">
+        <button class="ghost-button" id="copyExport">Copier</button>
+      </div>
+    </dialog>
+
+    <script src="assets/script/scapp.js"></script>
+  </body>
+</html>
