@@ -283,6 +283,11 @@
           <div class="hub-lbl">PROFIL</div>
           <div class="hub-desc">Stats & inventaire</div>
         </div>
+        <div class="hub-tile" onclick="showScreen('s-character')">
+          <div class="hub-icon" id="hub-icon-character"></div>
+          <div class="hub-lbl">PERSONNAGE</div>
+          <div class="hub-desc">Equipement & puissance</div>
+        </div>
         <div class="hub-tile" onclick="pickDifferentClass()">
           <div class="hub-icon" id="hub-icon-class"></div>
           <div class="hub-lbl">CLASSE</div>
@@ -379,6 +384,44 @@
     </div>
 
     <!-- ════════════════════ GAME ════════════════════ -->
+    <!-- CHARACTER -->
+    <div class="screen scrollable" id="s-character">
+      <div class="screen-title" style="z-index: 1">
+        PERSONNAGE
+        <small>EQUIPE TES DROPS ET PREPARE LA PROCHAINE RUN</small>
+      </div>
+      <div class="char-layout">
+        <div class="char-equip-panel">
+          <div class="eq-col" id="eq-slots-left"></div>
+          <div class="char-preview">
+            <canvas
+              id="char-preview-canvas"
+              width="64"
+              height="64"
+              style="width: 128px; height: 128px"
+            ></canvas>
+            <div class="char-class-label" id="char-class-label">-</div>
+          </div>
+          <div class="eq-col" id="eq-slots-right"></div>
+        </div>
+      </div>
+      <div class="char-stats-panel">
+        <div class="cs-title">STATS DE COMBAT</div>
+        <div class="cs-stats-grid">
+          <div class="cs-stat-row" id="stat-health"></div>
+          <div class="cs-stat-row" id="stat-attack"></div>
+          <div class="cs-stat-row" id="stat-armor"></div>
+          <div class="cs-stat-row" id="stat-crit"></div>
+          <div class="cs-stat-row" id="stat-speed"></div>
+          <div class="cs-stat-row" id="stat-atkspd"></div>
+        </div>
+      </div>
+      <div class="char-inv-panel">
+        <div class="inv-title">OBJETS TROUVES</div>
+        <div id="inv-items-grid"></div>
+      </div>
+    </div>
+
     <div class="screen" id="s-game">
       <canvas id="gameCanvas"></canvas>
     </div>
@@ -523,6 +566,7 @@
 
     <!-- NOTIF -->
     <div class="notif" id="notif"></div>
+    <div id="item-tooltip"></div>
 
     <!-- BOTTOM NAV -->
     <div id="bottom-nav">
@@ -531,6 +575,13 @@
       </button>
       <button class="nav-btn" onclick="showScreen('s-shop')" id="nav-shop">
         <span class="nav-icon" id="nav-icon-shop"></span>BOUTIQUE
+      </button>
+      <button
+        class="nav-btn"
+        onclick="showScreen('s-character')"
+        id="nav-character"
+      >
+        <span class="nav-icon" id="nav-icon-character"></span>PERSO
       </button>
       <button
         class="nav-btn"
@@ -551,6 +602,8 @@
     <script src="assets/script/sprites.js"></script>
     <script src="assets/script/vfx.js"></script>
     <script src="assets/script/player.js"></script>
+    <script src="assets/script/inventory.js"></script>
+    <script src="assets/script/inventory ui.js"></script>
     <script src="assets/script/enemies.js"></script>
     <script src="assets/script/loot.js"></script>
     <script src="assets/script/levelup.js"></script>

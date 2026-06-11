@@ -29,6 +29,10 @@ function injectIcons() {
     38,
     "var(--teal)",
   );
+  document.getElementById("hub-icon-character").innerHTML = ICON.survivor(
+    38,
+    "var(--teal)",
+  );
   document.getElementById("hub-icon-class").innerHTML = ICON.cycle(
     38,
     "var(--muted)",

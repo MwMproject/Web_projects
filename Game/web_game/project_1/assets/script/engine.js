@@ -20,9 +20,17 @@ resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
 // ═══ GAME INIT ═══
+function createRunClassDef(cls) {
+  const base = CLASS_DEF[cls];
+  return {
+    ...base,
+    skills: base.skills.map((skill) => ({ ...skill })),
+  };
+}
+
 function startGame(cls) {
   stopGame();
-  const def = CLASS_DEF[cls];
+  const def = createRunClassDef(cls);
   G = {
     cls,
     def,

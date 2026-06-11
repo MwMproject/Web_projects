@@ -211,7 +211,7 @@ function showTooltipForItem(event, item, isEquipped) {
   tip.innerHTML = `
     <div class="tt-name" style="color:${rc}">${item.icon} ${item.name}</div>
     <div class="tt-rarity" style="color:${rc}">${RARITY[item.rarity]?.label}</div>
-    <div class="tt-slot">${SLOT_TYPES[item.slot]?.label || item.slot}</div>
+    <div class="tt-slot">${SLOT_TYPES[item.slot]?.label || (item.slot === "ring" ? "ANNEAU" : item.slot)}</div>
     <div class="tt-stats">${statsHtml}</div>
     <div class="tt-action">${isEquipped ? "Clic pour déséquiper" : "Clic pour équiper · Clic droit pour vendre"}</div>
   `;
