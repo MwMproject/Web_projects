@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#17221f" />
+    <title>Village Viking - Prototype</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="top-bar">
+        <div class="brand">
+          <span class="brand-mark"></span>
+          <div>
+            <h1>Village Viking</h1>
+            <p id="villageStatus">Campement naissant</p>
+          </div>
+        </div>
+        <div id="resourceBar" class="resource-bar" aria-label="Ressources du village"></div>
+      </header>
+
+      <main class="game-shell">
+        <section class="canvas-wrap" aria-label="Carte du village">
+          <canvas id="gameCanvas" width="960" height="640"></canvas>
+          <div id="placementHint" class="placement-hint is-hidden"></div>
+        </section>
+
+        <aside class="side-panel">
+          <nav class="panel-tabs" aria-label="Panneaux du village">
+            <button class="tab-button is-active" data-tab="build">Construire</button>
+            <button class="tab-button" data-tab="expedition">Expédition</button>
+            <button class="tab-button" data-tab="event">Présages</button>
+          </nav>
+
+          <section id="buildPanel" class="panel-section is-active">
+            <div class="panel-heading">
+              <h2>Bâtiments</h2>
+              <button id="cancelBuildButton" class="ghost-button" type="button">Annuler</button>
+            </div>
+            <div id="buildingList" class="building-list"></div>
+          </section>
+
+          <section id="expeditionPanel" class="panel-section">
+            <div class="panel-heading">
+              <h2>Expéditions</h2>
+            </div>
+            <p id="expeditionStatus" class="panel-copy">Le port est requis pour envoyer un équipage.</p>
+            <button id="expeditionButton" class="primary-button" type="button" disabled>
+              Lancer une expédition
+            </button>
+          </section>
+
+          <section id="eventPanel" class="panel-section">
+            <div class="panel-heading">
+              <h2>Présages</h2>
+            </div>
+            <div id="eventLog" class="event-log"></div>
+          </section>
+        </aside>
+      </main>
+
+      <footer class="help-bar">
+        <span>Déplacement : WASD ou flèches</span>
+        <span>Zoom : molette ou + / -</span>
+        <span>Souris/tactile : glisser la carte</span>
+      </footer>
+    </div>
+
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>

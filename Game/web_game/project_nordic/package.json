@@ -1,0 +1,10 @@
+{
+  "name": "viking-village-prototype",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "serve": "node scripts/serve.js",
+    "check": "node scripts/check-modules.js"
+  }
+}
