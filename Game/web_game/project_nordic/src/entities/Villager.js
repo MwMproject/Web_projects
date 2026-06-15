@@ -3,7 +3,10 @@ import { Entity } from "./Entity.js";
 export class Villager extends Entity {
   constructor(x, y, name) {
     super(x, y);
+    this.id = crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`;
     this.name = name;
+    this.role = "idle";
+    this.workTimer = 0;
     this.speed = 16 + Math.random() * 8;
     this.target = { x, y };
     this.wait = Math.random() * 2;
@@ -50,6 +53,8 @@ export class Villager extends Entity {
     ctx.fillRect(x + 4, y, 5, 5);
     ctx.fillStyle = this.tunic;
     ctx.fillRect(x + 3, y + 5, 7, 8);
+    ctx.fillStyle = "#d7d0b0";
+    ctx.fillRect(x + 9, y + 4, 2, 2);
     ctx.fillStyle = "#2c2119";
     ctx.fillRect(x + 2, y + 13, 3, 3);
     ctx.fillRect(x + 8, y + 13, 3, 3);

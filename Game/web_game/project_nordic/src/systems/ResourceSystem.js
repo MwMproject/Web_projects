@@ -24,6 +24,12 @@ export class ResourceSystem {
     });
   }
 
+  setStartingAmounts(amounts = {}) {
+    Object.keys(this.amounts).forEach((resource) => {
+      this.amounts[resource] = amounts[resource] ?? this.definitions[resource].start;
+    });
+  }
+
   get(resource) {
     return this.amounts[resource] ?? 0;
   }

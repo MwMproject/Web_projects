@@ -46,6 +46,12 @@ export class Camera {
     };
   }
 
+  centerOn(worldX, worldY) {
+    this.x = worldX - this.canvas.width / this.zoom / 2;
+    this.y = worldY - this.canvas.height / this.zoom / 2;
+    this.clamp();
+  }
+
   clamp() {
     const viewWidth = this.canvas.width / this.zoom;
     const viewHeight = this.canvas.height / this.zoom;

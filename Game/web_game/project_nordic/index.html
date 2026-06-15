@@ -9,6 +9,16 @@
   </head>
   <body>
     <div id="app">
+      <section id="spawnOverlay" class="spawn-overlay">
+        <div class="spawn-panel">
+          <div class="spawn-heading">
+            <h1>Choisir le lieu du clan</h1>
+            <p>Le terrain de départ change la carte, les ressources et les premières routes d'expédition.</p>
+          </div>
+          <div id="spawnList" class="spawn-list"></div>
+        </div>
+      </section>
+
       <header class="top-bar">
         <div class="brand">
           <span class="brand-mark"></span>
@@ -29,6 +39,7 @@
         <aside class="side-panel">
           <nav class="panel-tabs" aria-label="Panneaux du village">
             <button class="tab-button is-active" data-tab="build">Construire</button>
+            <button class="tab-button" data-tab="villagers">Villageois</button>
             <button class="tab-button" data-tab="expedition">Expédition</button>
             <button class="tab-button" data-tab="event">Présages</button>
           </nav>
@@ -41,14 +52,26 @@
             <div id="buildingList" class="building-list"></div>
           </section>
 
+          <section id="villagersPanel" class="panel-section">
+            <div class="panel-heading">
+              <h2>Métiers</h2>
+            </div>
+            <div id="roleSummary" class="role-summary"></div>
+            <div id="villagerList" class="villager-list"></div>
+          </section>
+
           <section id="expeditionPanel" class="panel-section">
             <div class="panel-heading">
               <h2>Expéditions</h2>
             </div>
+            <div id="worldMap" class="world-map" aria-label="Carte stratégique des expéditions"></div>
+            <div id="expeditionModes" class="mode-grid" aria-label="Type d'expédition"></div>
+            <div id="destinationDetails" class="destination-details"></div>
             <p id="expeditionStatus" class="panel-copy">Le port est requis pour envoyer un équipage.</p>
             <button id="expeditionButton" class="primary-button" type="button" disabled>
-              Lancer une expédition
+              Lancer l'expédition
             </button>
+            <div id="clanList" class="clan-list"></div>
           </section>
 
           <section id="eventPanel" class="panel-section">

@@ -6,20 +6,26 @@ import { Villager } from "../entities/Villager.js";
 import { ResourceSystem } from "../systems/ResourceSystem.js";
 import { BuildingSystem } from "../systems/BuildingSystem.js";
 import { ExpeditionSystem } from "../systems/ExpeditionSystem.js";
+import { WorldMapSystem } from "../systems/WorldMapSystem.js";
+import { VillagerJobSystem } from "../systems/VillagerJobSystem.js";
 import { resources } from "../data/resources.js";
 import { events } from "../data/events.js";
 
 export class Game {
-  constructor(canvas) {
+  constructor(canvas, spawnLocation) {
     this.canvas = canvas;
+    this.spawnLocation = spawnLocation;
     this.tileSize = 24;
-    this.map = new TileMap(44, 34);
+    this.map = new TileMap(128, 128, spawnLocation);
     this.camera = new Camera(canvas, this.map, this.tileSize);
     this.renderer = new Renderer(canvas, this);
     this.input = new Input(canvas);
     this.resources = new ResourceSystem(resources);
+    this.resources.setStartingAmounts(spawnLocation.startingResources);
     this.buildings = new BuildingSystem(this);
+    this.worldMap = new WorldMapSystem(spawnLocation);
     this.expeditions = new ExpeditionSystem(this);
+    this.jobs = new VillagerJobSystem(this);
     this.villagers = this.createVillagers();
     this.villagerNames = [
       "Astrid", "Eirik", "Sigrid", "Leif", "Ragna", "Bjorn", "Ingrid", "Harald",
@@ -35,9 +41,10 @@ export class Game {
     this.populationGrowthTimer = 0;
     this.isRunning = false;
 
-    this.addEvent("Le clan arrive au bord du fjord. Une longue saison commence.");
+    this.addEvent(`Le clan fonde son village : ${spawnLocation.name}.`);
     this.bindInput();
     this.resize();
+    this.centerCameraOnVillage();
     window.addEventListener("resize", () => this.resize());
   }
 
@@ -64,6 +71,7 @@ export class Game {
   update(delta) {
     this.camera.update(delta, this.input);
     this.buildings.update(delta * this.productionMultiplier);
+    this.jobs.update(delta * this.productionMultiplier);
     this.expeditions.update(delta);
     this.villagers.forEach((villager) => villager.update(delta, this.map));
     this.updatePopulationGrowth(delta);
@@ -77,6 +85,11 @@ export class Game {
     this.canvas.height = Math.max(260, Math.floor(bounds.height * scale));
     this.renderer.setScale(scale);
     this.camera.clamp();
+  }
+
+  centerCameraOnVillage() {
+    const center = this.map.getVillageCenter();
+    this.camera.centerOn(center.x * this.tileSize, center.y * this.tileSize);
   }
 
   bindInput() {
@@ -183,6 +196,10 @@ export class Game {
 
   hasBuilding(id) {
     return this.buildings.count(id) > 0;
+  }
+
+  getRoleCount(roleId) {
+    return this.jobs.count(roleId);
   }
 
   notify() {

@@ -40,10 +40,16 @@ export class BuildingSystem {
     if (!definition) return { ok: false, reason: "Bâtiment inconnu." };
     const tile = this.game.map.getTile(x, y);
     if (!tile) return { ok: false, reason: "Cette zone est hors de la carte." };
-    if (!tileTypes[tile.type].buildable) return { ok: false, reason: "Ce terrain n'est pas constructible." };
+    if (!this.canBuildOnTile(definition, tile.type)) return { ok: false, reason: "Ce terrain n'est pas constructible." };
     if (this.occupied.has(this.key(x, y))) return { ok: false, reason: "Une construction occupe déjà cette case." };
     if (!this.isUnlocked(definition)) return { ok: false, reason: "Ce bâtiment n'est pas encore débloqué." };
     return { ok: true };
+  }
+
+  canBuildOnTile(definition, tileType) {
+    if (!tileTypes[tileType]) return false;
+    if (definition.placeOn) return definition.placeOn.includes(tileType);
+    return tileType === "buildable" || tileType === "grass";
   }
 
   isUnlocked(definition) {

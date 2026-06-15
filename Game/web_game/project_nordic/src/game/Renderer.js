@@ -101,6 +101,34 @@ export class Renderer {
   drawBuilding(x, y, building) {
     const { ctx } = this;
     const size = this.game.tileSize;
+
+    if (building.id === "path") {
+      this.drawPathTile(x, y, building);
+      return;
+    }
+
+    if (building.id === "field") {
+      ctx.fillStyle = "#6f7d35";
+      ctx.fillRect(x + 2, y + 3, size - 4, size - 5);
+      ctx.fillStyle = "#9b9a4a";
+      for (let row = 0; row < 4; row += 1) {
+        ctx.fillRect(x + 4, y + 5 + row * 4, size - 8, 2);
+      }
+      return;
+    }
+
+    if (building.id === "palisade") {
+      ctx.fillStyle = "#4a2d1d";
+      for (let px = 3; px < size - 2; px += 5) {
+        ctx.fillRect(x + px, y + 4, 3, 18);
+        ctx.fillStyle = "#7a4c2a";
+        ctx.fillRect(x + px, y + 2, 3, 3);
+        ctx.fillStyle = "#4a2d1d";
+      }
+      ctx.fillRect(x + 2, y + 12, size - 4, 3);
+      return;
+    }
+
     ctx.fillStyle = building.color.base;
     ctx.fillRect(x + 3, y + 8, size - 6, size - 8);
     ctx.fillStyle = building.color.roof;
@@ -118,6 +146,26 @@ export class Renderer {
     if (building.id === "temple") {
       ctx.fillStyle = "#d5a44a";
       ctx.fillRect(x + 11, y + 2, 3, 7);
+    }
+  }
+
+  drawPathTile(x, y, building) {
+    const { ctx } = this;
+    const size = this.game.tileSize;
+    const variant = (building.x * 11 + building.y * 7) % 8;
+
+    ctx.fillStyle = "#65523c";
+    ctx.fillRect(x, y, size, size);
+    ctx.strokeStyle = "#846d4d";
+    ctx.strokeRect(x + 2, y + 2, size - 4, size - 4);
+
+    ctx.fillStyle = "#7a674d";
+    if (variant % 2 === 0) {
+      ctx.fillRect(x + 6, y + 7, 3, 3);
+      ctx.fillRect(x + 16, y + 15, 2, 2);
+    } else {
+      ctx.fillRect(x + 5, y + 15, 2, 2);
+      ctx.fillRect(x + 15, y + 7, 3, 3);
     }
   }
 
