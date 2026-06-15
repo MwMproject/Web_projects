@@ -1,0 +1,95 @@
+/* ══════════════════════════════════════
+   prestation.css — Page Prestation
+   ══════════════════════════════════════ */
+
+/* ── HERO ── */
+.prestation-hero {
+  padding: 100px 0 60px;
+  text-align: center;
+}
+.prestation-hero h1 {
+  font-size: 2.8rem;
+  margin: 8px 0 0;
+  color: var(--dark);
+}
+
+/* ── SECTIONS ── */
+.prestation-section {
+  padding: 72px 0;
+}
+.prestation-section:nth-child(even) {
+  background: rgba(255, 255, 255, 0.55);
+}
+.prestation-section-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.prestation-section-header h2 {
+  font-size: 2rem;
+  color: var(--dark);
+  margin: 8px 0 0;
+}
+
+/* ── GRILLE DE CARTES ── */
+.prestation-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+.prestation-card {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(180, 210, 240, 0.5);
+  border-radius: 14px;
+  padding: 28px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+  transition:
+    box-shadow 0.2s,
+    transform 0.2s;
+}
+.prestation-card:hover {
+  box-shadow: 0 6px 20px rgba(12, 84, 237, 0.1);
+  transform: translateY(-3px);
+}
+.prestation-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #e8f0fd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.prestation-card span {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #2c3d55;
+  line-height: 1.4;
+}
+
+/* ── CTA ── */
+.prestation-cta {
+  padding: 80px 0;
+  background: #c8ddf0;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1100px) {
+  .prestation-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .prestation-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .prestation-hero h1 {
+    font-size: 2rem;
+  }
+}

@@ -28,13 +28,12 @@
               alt="Logo H. Schumacher"
               class="brand-logo"
             />
-            <span class="brand-text">H. Schumacher</span>
           </a>
 
           <nav class="nav" id="nav">
             <ul class="nav-list">
               <li><a href="index.html" class="active">Accueil</a></li>
-              <li><a href="presentation.html">Présentation</a></li>
+              <li><a href="presentation.html">Prestation</a></li>
               <li><a href="references.html">Références</a></li>
               <li><a href="apropos.html">Bureau</a></li>
               <li><a href="actualites.html">Actualités</a></li>
@@ -57,91 +56,95 @@
       </header>
 
       <main class="contact-page">
-          <section class="section">
-            <div class="container">
-              <div class="contact-header">
-                <h1>Contact</h1>
+        <section class="section">
+          <div class="container">
+            <div class="contact-header">
+              <h1>Contact</h1>
+              <p>
+                Vous avez un projet ou une question technique ? Notre équipe
+                vous répond dans les meilleurs délais.
+              </p>
+            </div>
+          </div>
+          <div class="container contact-layout">
+            <!-- LEFT INFO -->
+            <div class="contact-info">
+              <div class="contact-block contact-card">
+                <h3>H. Schumacher ingénieurs conseils SA</h3>
+                <p>Chemin du Publoz 11<br />1073 Savigny</p>
+                <p><a href="tel:+41216443777">+41 21 644 37 77</a></p>
                 <p>
-                  Vous avez un projet ou une question technique ? Notre équipe
-                  vous répond dans les meilleurs délais.
+                  <a href="mailto:h2o@hschumacher.ch">h2o@hschumacher.ch</a>
                 </p>
               </div>
-            </div>
-            <div class="container contact-layout">
-              <!-- LEFT INFO -->
-              <div class="contact-info">
-                <div class="contact-block contact-card">
-                  <h3>H. Schumacher ingénieurs conseils SA</h3>
-                  <p>Chemin du Publoz 11<br />1073 Savigny</p>
-                  <p><a href="tel:+41216443777">+41 21 644 37 77</a></p>
-                  <p><a href="mailto:h2o@hschumacher.ch">h2o@hschumacher.ch</a></p>
-                </div>
 
-                <div class="contact-block contact-card">
-                  <h3>Vernier</h3>
-                  <p>Avenue du Lignon 41<br />1219 Le Lignon</p>
-                  <p><a href="tel:+41223001313">+41 22 300 13 13</a></p>
-                </div>
-
-                <div class="contact-block contact-card">
-                  <h3>Fribourg</h3>
-                  <p>Rte de la Fonderie 16<br />1700 Fribourg</p>
-                  <p><a href="tel:+41264224344">+41 26 422 43 44</a></p>
-                </div>
+              <div class="contact-block contact-card">
+                <h3>Vernier</h3>
+                <p>Avenue du Lignon 41<br />1219 Le Lignon</p>
+                <p><a href="tel:+41223001313">+41 22 300 13 13</a></p>
               </div>
 
-              <!-- FORM -->
-              <div class="contact-form">
-                <form action="contact.php" method="post">
-                  <!-- Honeypot anti-spam -->
-                  <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off" />
-                  <div class="form-row">
-                    <input type="text" name="nom" placeholder="Nom" required />
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="Email"
-                      required
-                    />
-                  </div>
+              <div class="contact-block contact-card">
+                <h3>Fribourg</h3>
+                <p>Rte de la Fonderie 16<br />1700 Fribourg</p>
+                <p><a href="tel:+41264224344">+41 26 422 43 44</a></p>
+              </div>
+            </div>
 
-                  <input type="text" name="societe" placeholder="Société" />
-
-                  <div class="form-checkbox">
-                    <label
-                      ><input
-                        type="checkbox"
-                        name="technique"
-                        value="sanitaire"
-                      />
-                      Technique sanitaire</label
-                    >
-                    <label
-                      ><input type="checkbox" name="technique" value="gaz" />
-                      Gaz médicaux</label
-                    >
-                    <label
-                      ><input
-                        type="checkbox"
-                        name="technique"
-                        value="piscine"
-                      />
-                      Technique piscine</label
-                    >
-                  </div>
-
-                  <textarea
-                    name="message"
-                    placeholder="Votre message"
+            <!-- FORM -->
+            <div class="contact-form">
+              <form action="contact.php" method="post">
+                <!-- Honeypot anti-spam -->
+                <input
+                  type="text"
+                  name="website"
+                  style="display: none"
+                  tabindex="-1"
+                  autocomplete="off"
+                />
+                <div class="form-row">
+                  <input type="text" name="nom" placeholder="Nom" required />
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
                     required
-                  ></textarea>
+                  />
+                </div>
 
-                  <button type="submit" class="btn btn-primary">Envoyer</button>
-                </form>
-              </div>
+                <input type="text" name="societe" placeholder="Société" />
+
+                <div class="form-checkbox">
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="technique"
+                      value="sanitaire"
+                    />
+                    Technique sanitaire</label
+                  >
+                  <label
+                    ><input type="checkbox" name="technique" value="gaz" /> Gaz
+                    médicaux</label
+                  >
+                  <label
+                    ><input type="checkbox" name="technique" value="piscine" />
+                    Technique piscine</label
+                  >
+                </div>
+
+                <textarea
+                  name="message"
+                  placeholder="Votre message"
+                  required
+                ></textarea>
+
+                <button type="submit" class="btn btn-primary">Envoyer</button>
+              </form>
             </div>
-          </section>
-        </main>
+          </div>
+        </section>
+      </main>
 
       <!-- FOOTER -->
       <footer class="footer">
@@ -169,14 +172,16 @@
             <p>Rte de la Fonderie 16<br />1700 Fribourg</p>
             <p>
               <a href="tel:+41264224344">+41 26 422 43 44</a><br />
-              <a href="mailto:fribourg@hschumacher.ch">fribourg@hschumacher.ch</a>
+              <a href="mailto:fribourg@hschumacher.ch"
+                >fribourg@hschumacher.ch</a
+              >
             </p>
           </div>
 
           <div class="footer-column">
             <h3>Navigation</h3>
             <ul class="footer-links">
-              <li><a href="presentation.html">Présentation</a></li>
+              <li><a href="presentation.html">Prestation</a></li>
               <li><a href="references.html">Références</a></li>
               <li><a href="actualites.html">Actualités</a></li>
               <li><a href="contact.html">Contact</a></li>

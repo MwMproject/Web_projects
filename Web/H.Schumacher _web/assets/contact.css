@@ -75,7 +75,7 @@ body.page-contact .section {
 }
 
 .contact-card {
-  background: rgba(255, 255, 255, 0.80);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(180, 210, 240, 0.5);
@@ -100,7 +100,7 @@ body.page-contact .section {
 }
 
 .contact-form form {
-  background: rgba(255, 255, 255, 0.80);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   padding: 50px;
@@ -126,13 +126,15 @@ body.page-contact .section {
   font-family: inherit;
   background: #fff;
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(12, 84, 237, 0.10);
+  box-shadow: 0 0 0 3px rgba(12, 84, 237, 0.1);
 }
 
 .contact-form textarea {
@@ -150,7 +152,9 @@ body.page-contact .section {
   font-weight: 600;
   font-family: inherit;
   cursor: pointer;
-  transition: background 0.2s, transform 0.15s;
+  transition:
+    background 0.2s,
+    transform 0.15s;
 }
 
 .contact-form button[type="submit"]:hover {

@@ -36,7 +36,8 @@
 body {
   font-family: "Inter", sans-serif;
   color: var(--text);
-  background: var(--white);
+  background: linear-gradient(160deg, #ddeeff 0%, #eef6ff 55%, #f5faff 100%)
+    fixed;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
@@ -90,10 +91,8 @@ a {
 }
 
 .brand-logo {
-  height: 60px;
-  background: var(--primary);
-  padding: 10px;
-  border-radius: 12px;
+  height: 80px;
+  padding: 5px;
 }
 
 .nav-list {
@@ -351,7 +350,7 @@ a {
 ========================================================= */
 
 .partnerships {
-  background: var(--white);
+  background: rgba(255, 255, 255, 0.55);
 }
 
 .partners-carousel {
@@ -410,7 +409,7 @@ a {
 ========================================================= */
 
 .competences {
-  background: white;
+  background: rgba(255, 255, 255, 0.55);
 }
 
 .competence-card {
@@ -519,7 +518,6 @@ a {
 .values-list li {
   margin-bottom: 10px;
 }
-
 
 /* =========================================================
    REFERENCES PAGE
@@ -792,7 +790,9 @@ a {
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
-  transition: background 0.2s, transform 0.2s;
+  transition:
+    background 0.2s,
+    transform 0.2s;
   z-index: 100;
 }
 
@@ -804,4 +804,3 @@ a {
   background: var(--primary-dark, #0a42c0);
   transform: translateY(-2px);
 }
-
