@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Actualités — H. Schumacher ingénieurs conseils SA</title>
+    <meta name="description" content="Actualités et dernières nouvelles de H. Schumacher ingénieurs conseils SA." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/style.css" />
+    <style>
+
+      /* ── PAGE HEADER ── */
+      .actu-page-header {
+        padding: 60px 0 40px;
+        margin-top: 48px;
+      }
+      .actu-page-header h1 {
+        font-size: 2.8rem;
+        margin: 0 0 8px;
+      }
+      .actu-page-header p {
+        color: var(--muted);
+        margin: 0;
+      }
+
+      /* ── CAROUSEL ── */
+      .carousel-section {
+        padding-bottom: 64px;
+      }
+      .carousel-wrapper {
+        position: relative;
+        overflow: hidden;
+        border-radius: 16px;
+      }
+      .carousel-track {
+        display: flex;
+        transition: transform 0.45s ease;
+      }
+      .carousel-slide {
+        min-width: 100%;
+        position: relative;
+        cursor: pointer;
+      }
+      .carousel-slide img {
+        width: 100%;
+        height: 460px;
+        object-fit: cover;
+        display: block;
+        border-radius: 16px;
+      }
+      .carousel-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 48px 40px 36px;
+        background: linear-gradient(to top, rgba(10,20,50,0.85) 0%, transparent 100%);
+        border-radius: 0 0 16px 16px;
+        color: #fff;
+      }
+      .carousel-caption .tag {
+        display: inline-block;
+        background: var(--primary);
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .06em;
+        padding: 4px 12px;
+        border-radius: 20px;
+        margin-bottom: 12px;
+      }
+      .carousel-caption h2 {
+        font-size: 1.7rem;
+        margin: 0 0 8px;
+        color: #fff;
+      }
+      .carousel-caption p {
+        color: rgba(255,255,255,0.80);
+        font-size: 0.95rem;
+        margin: 0;
+      }
+      .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255,255,255,0.90);
+        border: none;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        font-size: 18px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #172033;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        transition: background 0.2s;
+        z-index: 2;
+      }
+      .carousel-btn:hover { background: #fff; }
+      .carousel-btn.prev { left: 16px; }
+      .carousel-btn.next { right: 16px; }
+      .carousel-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 16px;
+      }
+      .carousel-dots span {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #c5d8ef;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .carousel-dots span.active { background: var(--primary); }
+
+      /* ── MODAL ── */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(10,20,50,0.55);
+        z-index: 100;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      }
+      .modal-overlay.open { display: flex; }
+      .modal-box {
+        background: #fff;
+        border-radius: 16px;
+        max-width: 680px;
+        width: 100%;
+        max-height: 85vh;
+        overflow-y: auto;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+      }
+      .modal-img {
+        width: 100%;
+        height: 260px;
+        object-fit: cover;
+        border-radius: 16px 16px 0 0;
+        display: block;
+      }
+      .modal-body {
+        padding: 32px 40px 40px;
+      }
+      .modal-body .tag {
+        display: inline-block;
+        background: #e8f0fd;
+        color: var(--primary);
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .06em;
+        padding: 4px 12px;
+        border-radius: 20px;
+        margin-bottom: 14px;
+      }
+      .modal-body h2 {
+        font-size: 1.5rem;
+        margin: 0 0 16px;
+      }
+      .modal-body p {
+        color: #475467;
+        line-height: 1.75;
+        margin: 0 0 12px;
+      }
+      .modal-close {
+        display: block;
+        margin-top: 28px;
+        padding: 12px 28px;
+        background: var(--primary);
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        font-family: inherit;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .modal-close:hover { background: #0a42c0; }
+
+      /* ── ANCIENNES ACTUS ── */
+      .old-actus-section {
+        padding-bottom: 80px;
+      }
+      .old-actus-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 28px;
+      }
+      .old-actu-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .old-actu-card {
+        display: grid;
+        grid-template-columns: 140px 1fr auto;
+        gap: 24px;
+        align-items: center;
+        background: #fff;
+        border: 1px solid #e5eef8;
+        border-radius: 12px;
+        padding: 20px 24px;
+        transition: box-shadow 0.2s;
+      }
+      .old-actu-card:hover { box-shadow: 0 4px 20px rgba(12,84,237,0.08); }
+      .old-actu-card img {
+        width: 140px;
+        height: 90px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+      .old-actu-info .tag {
+        display: inline-block;
+        background: #e8f0fd;
+        color: var(--primary);
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .06em;
+        padding: 3px 10px;
+        border-radius: 20px;
+        margin-bottom: 6px;
+      }
+      .old-actu-info h3 {
+        font-size: 1rem;
+        margin: 0 0 6px;
+        color: #172033;
+      }
+      .old-actu-info p {
+        font-size: 0.875rem;
+        color: #475467;
+        margin: 0;
+        line-height: 1.6;
+      }
+      .old-actu-date {
+        font-size: 0.8rem;
+        color: #9aa4b2;
+        white-space: nowrap;
+      }
+      .old-actu-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 10px;
+      }
+      .btn-lire-plus {
+        padding: 8px 18px;
+        background: transparent;
+        border: 1px solid var(--primary);
+        border-radius: 8px;
+        color: var(--primary);
+        font-size: 0.875rem;
+        font-weight: 600;
+        font-family: inherit;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s;
+        white-space: nowrap;
+      }
+      .btn-lire-plus:hover {
+        background: var(--primary);
+        color: #fff;
+      }
+
+      @media (max-width: 700px) {
+        .old-actu-card {
+          grid-template-columns: 1fr;
+        }
+        .old-actu-card img { width: 100%; height: 160px; }
+        .old-actu-actions { align-items: flex-start; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="site-wrapper">
+
+      <!-- HEADER -->
+      <header class="header" id="header">
+        <div class="container header-inner">
+          <a href="index.html" class="brand" aria-label="Accueil H. Schumacher">
+            <img src="assets/img/Logo_HS.png" alt="Logo H. Schumacher" class="brand-logo" />
+            <span class="brand-text">H. Schumacher</span>
+          </a>
+          <nav class="nav" id="nav">
+            <ul class="nav-list">
+              <li><a href="index.html">Accueil</a></li>
+              <li><a href="presentation.html">Présentation</a></li>
+              <li><a href="references.html">Références</a></li>
+              <li><a href="apropos.html">Bureau</a></li>
+              <li><a href="actualites.html" class="active">Actualités</a></li>
+              <li><a href="recrutement.html">Recrutement</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </nav>
+          <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </header>
+
+      <main>
+
+        <!-- PAGE HEADER -->
+        <div class="container actu-page-header">
+          <h1>Actualités</h1>
+          <p>Suivez les dernières nouvelles et chantiers du bureau.</p>
+        </div>
+
+        <!-- CAROUSEL -->
+        <section class="carousel-section">
+          <div class="container">
+            <div class="carousel-wrapper">
+              <div class="carousel-track" id="carouselTrack">
+
+                <!-- Actu 1 -->
+                <div class="carousel-slide" data-index="0">
+                  <img src="assets/img/CHUV_BOPC.jpg" alt="Chantier CHUV" />
+                  <div class="carousel-caption">
+                    <span class="tag">Santé</span>
+                    <h2>Extension du bloc opératoire — CHUV, Lausanne</h2>
+                    <p>Janvier 2026 — Démarrage des études d'exécution pour la modernisation de 18 salles chirurgicales.</p>
+                  </div>
+                </div>
+
+                <!-- Actu 2 -->
+                <div class="carousel-slide" data-index="1">
+                  <img src="assets/img/AQUATIS.jpg" alt="Chantier Aquatis" />
+                  <div class="carousel-caption">
+                    <span class="tag">Aquatique</span>
+                    <h2>Nouveau système de filtration — Aquatis, Lausanne</h2>
+                    <p>Décembre 2025 — Mise en service du nouveau traitement biologique pour les bassins tropicaux.</p>
+                  </div>
+                </div>
+
+                <!-- Actu 3 -->
+                <div class="carousel-slide" data-index="2">
+                  <img src="assets/img/PISC_MEL.jpg" alt="Piscine des Mélèzes" />
+                  <div class="carousel-caption">
+                    <span class="tag">Sport</span>
+                    <h2>Rénovation piscine des Mélèzes — Phase 2</h2>
+                    <p>Novembre 2025 — Réception des travaux d'assainissement du bassin olympique et de la fosse plongeoir.</p>
+                  </div>
+                </div>
+
+              </div>
+
+              <button class="carousel-btn prev" id="carouselPrev">&#8592;</button>
+              <button class="carousel-btn next" id="carouselNext">&#8594;</button>
+            </div>
+
+            <div class="carousel-dots" id="carouselDots">
+              <span class="active" data-dot="0"></span>
+              <span data-dot="1"></span>
+              <span data-dot="2"></span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ANCIENNES ACTUS -->
+        <section class="old-actus-section">
+          <div class="container">
+            <h2>Archives</h2>
+            <div class="old-actu-list">
+
+              <div class="old-actu-card">
+                <img src="assets/img/Hôp-ophtalmo-lausanne.jpg" alt="Hôpital ophtalmologique" />
+                <div class="old-actu-info">
+                  <span class="tag">Santé</span>
+                  <h3>Hôpital ophtalmologique de Lausanne — installation gaz médicaux</h3>
+                  <p>Planification complète des réseaux de fluides médicaux pour les nouvelles salles d'opération.</p>
+                </div>
+                <div class="old-actu-actions">
+                  <span class="old-actu-date">Juin 2025</span>
+                  <button class="btn-lire-plus" onclick="actuOpenModal('modal-1')">Lire plus</button>
+                </div>
+              </div>
+
+              <div class="old-actu-card">
+                <img src="assets/img/AQUATIS_2.jpg" alt="Aquatis extension" />
+                <div class="old-actu-info">
+                  <span class="tag">Aquatique</span>
+                  <h3>Aquatis — extension de la serre tropicale</h3>
+                  <p>Conception et suivi des installations hydrauliques et de traitement d'eau pour la nouvelle serre.</p>
+                </div>
+                <div class="old-actu-actions">
+                  <span class="old-actu-date">Mars 2025</span>
+                  <button class="btn-lire-plus" onclick="actuOpenModal('modal-2')">Lire plus</button>
+                </div>
+              </div>
+
+              <div class="old-actu-card">
+                <img src="assets/img/AQUATIS_3.jpg" alt="Traitement eau" />
+                <div class="old-actu-info">
+                  <span class="tag">Traitement des eaux</span>
+                  <h3>Réseau d'adduction d'eau potable — commune de Savigny</h3>
+                  <p>Études et planification du renouvellement du réseau principal de distribution pour 3 200 habitants.</p>
+                </div>
+                <div class="old-actu-actions">
+                  <span class="old-actu-date">Nov. 2024</span>
+                  <button class="btn-lire-plus" onclick="actuOpenModal('modal-3')">Lire plus</button>
+                </div>
+              </div>
+
+              <div class="old-actu-card">
+                <img src="assets/img/AQUATIS_4.jpg" alt="Fontaine décorative" />
+                <div class="old-actu-info">
+                  <span class="tag">Ouvrages spécifiques</span>
+                  <h3>Fontaine miroir d'eau — Place de la Riponne, Lausanne</h3>
+                  <p>Conception et réalisation d'une fontaine décorative extérieure avec système de filtration intégré.</p>
+                </div>
+                <div class="old-actu-actions">
+                  <span class="old-actu-date">Août 2024</span>
+                  <button class="btn-lire-plus" onclick="actuOpenModal('modal-4')">Lire plus</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- MODALS anciennes actus -->
+      <div class="modal-overlay" id="modal-1">
+        <div class="modal-box">
+          <img class="modal-img" src="assets/img/Hôp-ophtalmo-lausanne.jpg" alt="Hôpital ophtalmologique" />
+          <div class="modal-body">
+            <span class="tag">Santé</span>
+            <h2>Hôpital ophtalmologique de Lausanne — installation gaz médicaux</h2>
+            <p>Dans le cadre de la rénovation et de l'extension des salles d'opération de l'Hôpital ophtalmologique de Lausanne, H. Schumacher ingénieurs conseils SA a été mandaté pour la planification complète des réseaux de fluides médicaux.</p>
+            <p>Les travaux ont porté sur la conception des réseaux d'oxygène, de protoxyde d'azote, d'air médical et d'évacuation des gaz anesthésiants, en conformité avec les normes SN EN ISO 7396. Le bureau a assuré la coordination avec les équipes de génie civil et les fournisseurs d'équipements médicaux.</p>
+            <p>La mise en service a été réalisée avec succès en juin 2025, après une phase de tests et de validation par un organisme indépendant agréé.</p>
+            <button class="modal-close" onclick="actuCloseModal('modal-1')">Fermer</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-overlay" id="modal-2">
+        <div class="modal-box">
+          <img class="modal-img" src="assets/img/AQUATIS_2.jpg" alt="Aquatis extension" />
+          <div class="modal-body">
+            <span class="tag">Aquatique</span>
+            <h2>Aquatis — extension de la serre tropicale</h2>
+            <p>Suite au succès de l'ouverture d'Aquatis en 2017, le parc aquatique a lancé un projet d'extension de sa serre tropicale. H. Schumacher a assuré la maîtrise d'œuvre des installations hydrauliques et du traitement d'eau pour les nouveaux bassins.</p>
+            <p>Le projet a intégré un système de filtration mécanique et biologique innovant, permettant de maintenir une qualité d'eau optimale pour les espèces sensibles tout en réduisant la consommation d'eau de 30% par rapport à l'installation existante.</p>
+            <p>Les travaux se sont déroulés sans interruption du parc, grâce à une planification en phases minutieusement coordonnée avec la direction d'Aquatis.</p>
+            <button class="modal-close" onclick="actuCloseModal('modal-2')">Fermer</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-overlay" id="modal-3">
+        <div class="modal-box">
+          <img class="modal-img" src="assets/img/AQUATIS_3.jpg" alt="Traitement eau" />
+          <div class="modal-body">
+            <span class="tag">Traitement des eaux</span>
+            <h2>Réseau d'adduction d'eau potable — commune de Savigny</h2>
+            <p>La commune de Savigny a confié à H. Schumacher ingénieurs conseils SA les études et la planification du renouvellement de son réseau principal de distribution d'eau potable, vieillissant et source de pertes importantes.</p>
+            <p>Le projet a porté sur l'analyse du réseau existant, la modélisation hydraulique, la définition du tracé optimisé et l'élaboration des dossiers d'appel d'offres. Une attention particulière a été portée à la réduction des pertes en ligne et à la sécurisation de l'alimentation des zones à risque sismique.</p>
+            <p>Le chantier de renouvellement a débuté au printemps 2025, pour une livraison prévue en été 2026.</p>
+            <button class="modal-close" onclick="actuCloseModal('modal-3')">Fermer</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-overlay" id="modal-4">
+        <div class="modal-box">
+          <img class="modal-img" src="assets/img/AQUATIS_4.jpg" alt="Fontaine décorative" />
+          <div class="modal-body">
+            <span class="tag">Ouvrages spécifiques</span>
+            <h2>Fontaine miroir d'eau — Place de la Riponne, Lausanne</h2>
+            <p>Dans le cadre du réaménagement de la Place de la Riponne à Lausanne, H. Schumacher a été mandaté pour la conception et la réalisation d'une fontaine décorative de type miroir d'eau, intégrée dans le nouvel aménagement urbain.</p>
+            <p>L'installation comprend un bassin peu profond de 180 m², un système de filtration intégré invisible, des buses de jet programmables et un éclairage LED sous-marin. La gestion de l'eau a été pensée pour valoriser les eaux météorologiques collectées sur la place.</p>
+            <p>La fontaine a été inaugurée en août 2024 et est depuis devenue un lieu de rencontre apprécié des habitants et des visiteurs de la capitale vaudoise.</p>
+            <button class="modal-close" onclick="actuCloseModal('modal-4')">Fermer</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div class="container footer-grid">
+          <div class="footer-column">
+            <h3>H. Schumacher ingénieurs conseils SA</h3>
+            <p>Chemin du Publoz 11<br />1073 Savigny</p>
+            <p>
+              <a href="tel:+41216443777">+41 21 644 37 77</a><br />
+              <a href="mailto:h2o@hschumacher.ch">h2o@hschumacher.ch</a>
+            </p>
+          </div>
+          <div class="footer-column">
+            <h3>H. Schumacher Vernier Sàrl</h3>
+            <p>Avenue du Lignon 41<br />1219 Le Lignon</p>
+            <p><a href="tel:+41223001313">+41 22 300 13 13</a></p>
+          </div>
+          <div class="footer-column">
+            <h3>H. Schumacher Fribourg Sàrl</h3>
+            <p>Rte de la Fonderie 16<br />1700 Fribourg</p>
+            <p><a href="tel:+41264224344">+41 26 422 43 44</a></p>
+          </div>
+          <div class="footer-column">
+            <h3>Navigation</h3>
+            <ul class="footer-links">
+              <li><a href="presentation.html">Présentation</a></li>
+              <li><a href="references.html">Références</a></li>
+              <li><a href="actualites.html">Actualités</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="container footer-bottom">
+          <p>© 2026 H. Schumacher — Tous droits réservés</p>
+        </div>
+      </footer>
+
+      <button id="toTop" class="to-top" aria-label="Remonter en haut">↑</button>
+    </div>
+
+    <!-- Modal carousel -->
+    <div class="modal-overlay" id="modal-carousel">
+      <div class="modal-box">
+        <img class="modal-img" id="modal-carousel-img" src="" alt="" />
+        <div class="modal-body">
+          <span class="tag" id="modal-carousel-tag"></span>
+          <h2 id="modal-carousel-title"></h2>
+          <div id="modal-carousel-text"></div>
+          <button class="modal-close" onclick="actuCloseModal('modal-carousel')">Fermer</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="assets/script.js"></script>
+    <script>
+    (function () {
+      // ── CAROUSEL ──
+      const carTrack = document.getElementById('carouselTrack');
+      const carDots = document.querySelectorAll('#carouselDots span');
+      const carSlides = document.querySelectorAll('.carousel-slide');
+      let carCurrent = 0;
+
+      const actuData = [
+        {
+          tag: 'Santé', title: 'Extension du bloc opératoire — CHUV, Lausanne',
+          img: 'assets/img/CHUV_BOPC.jpg',
+          text: '<p>Dans le cadre de la modernisation du Bloc Opératoire Polyvalent Centralisé (BOPC) du CHUV, H. Schumacher ingénieurs conseils SA a été mandaté pour les études d\'exécution complètes des installations sanitaires et de gaz médicaux.</p><p>Le projet porte sur la rénovation de 18 salles chirurgicales réparties sur 4 000 m², avec la mise aux normes des réseaux d\'oxygène, d\'air médical, de protoxyde d\'azote et d\'évacuation des gaz.</p><p>La livraison est prévue par phases, sans interruption de l\'activité chirurgicale, d\'ici fin 2027.</p>'
+        },
+        {
+          tag: 'Aquatique', title: 'Nouveau système de filtration — Aquatis, Lausanne',
+          img: 'assets/img/AQUATIS.jpg',
+          text: '<p>Aquatis, le plus grand aquarium d\'eau douce d\'Europe, a confié à H. Schumacher la conception d\'un nouveau système de filtration biologique pour ses bassins tropicaux principaux.</p><p>Le nouveau système utilise une technologie membranaire couplée à un traitement UV, permettant d\'atteindre des niveaux de qualité d\'eau inédits.</p><p>La mise en service s\'est déroulée en décembre 2025, avec une phase de rodage de 6 semaines supervisée par nos équipes.</p>'
+        },
+        {
+          tag: 'Sport', title: 'Rénovation piscine des Mélèzes — Phase 2',
+          img: 'assets/img/PISC_MEL.jpg',
+          text: '<p>La deuxième phase de la rénovation de la piscine des Mélèzes a été réceptionnée en novembre 2025. Cette phase portait sur l\'assainissement du bassin olympique et de la fosse plongeoir, avec cuvelage inox et rénovation du local technique.</p><p>Une attention particulière a été portée à la réduction des produits chimiques grâce à un traitement par électrolyse au sel.</p><p>La phase 3 portant sur la pataugeoire débutera au printemps 2026.</p>'
+        }
+      ];
+
+      function carGoTo(index) {
+        carCurrent = (index + carSlides.length) % carSlides.length;
+        carTrack.style.transform = 'translateX(-' + (carCurrent * 100) + '%)';
+        carDots.forEach(function(d, i) { d.classList.toggle('active', i === carCurrent); });
+      }
+
+      document.getElementById('carouselPrev').addEventListener('click', function() { carGoTo(carCurrent - 1); });
+      document.getElementById('carouselNext').addEventListener('click', function() { carGoTo(carCurrent + 1); });
+      carDots.forEach(function(d) { d.addEventListener('click', function() { carGoTo(+d.dataset.dot); }); });
+
+      var carAutoplay = setInterval(function() { carGoTo(carCurrent + 1); }, 5000);
+      carTrack.parentElement.addEventListener('mouseenter', function() { clearInterval(carAutoplay); });
+      carTrack.parentElement.addEventListener('mouseleave', function() { carAutoplay = setInterval(function() { carGoTo(carCurrent + 1); }, 5000); });
+
+      carSlides.forEach(function(slide, i) {
+        slide.addEventListener('click', function() {
+          var c = actuData[i];
+          document.getElementById('modal-carousel-tag').textContent = c.tag;
+          document.getElementById('modal-carousel-title').textContent = c.title;
+          document.getElementById('modal-carousel-img').src = c.img;
+          document.getElementById('modal-carousel-text').innerHTML = c.text;
+          actuOpenModal('modal-carousel');
+        });
+      });
+
+      // ── MODALS ACTUS ──
+      window.actuOpenModal = function(id) { document.getElementById(id).classList.add('open'); };
+      window.actuCloseModal = function(id) { document.getElementById(id).classList.remove('open'); };
+
+      document.querySelectorAll('.modal-overlay').forEach(function(overlay) {
+        overlay.addEventListener('click', function(e) {
+          if (e.target === overlay) overlay.classList.remove('open');
+        });
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          document.querySelectorAll('.modal-overlay.open').forEach(function(m) { m.classList.remove('open'); });
+        }
+      });
+    })();
+    </script>
+
+  </body>
+</html>

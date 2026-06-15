@@ -526,6 +526,7 @@ a {
 
 .contact-header {
   margin-bottom: 32px;
+  padding-top: 60px;
 }
 
 .contact-header h1 {
@@ -580,6 +581,16 @@ a {
   color: var(--primary);
   margin: 0 0 8px;
   font-size: 0.95rem;
+}
+
+.contact-card a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.contact-card a:hover {
+  color: var(--primary);
+  text-decoration: underline;
 }
 
 .contact-form form {

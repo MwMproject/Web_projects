@@ -72,30 +72,28 @@
                 <div class="contact-block contact-card">
                   <h3>H. Schumacher ingénieurs conseils SA</h3>
                   <p>Chemin du Publoz 11<br />1073 Savigny</p>
-                  <p>+41 21 644 37 77</p>
-                  <p>h2o@hschumacher.ch</p>
+                  <p><a href="tel:+41216443777">+41 21 644 37 77</a></p>
+                  <p><a href="mailto:h2o@hschumacher.ch">h2o@hschumacher.ch</a></p>
                 </div>
 
                 <div class="contact-block contact-card">
                   <h3>Vernier</h3>
                   <p>Avenue du Lignon 41<br />1219 Le Lignon</p>
-                  <p>+41 22 300 13 13</p>
+                  <p><a href="tel:+41223001313">+41 22 300 13 13</a></p>
                 </div>
 
                 <div class="contact-block contact-card">
                   <h3>Fribourg</h3>
                   <p>Rte de la Fonderie 16<br />1700 Fribourg</p>
-                  <p>+41 26 422 43 44</p>
+                  <p><a href="tel:+41264224344">+41 26 422 43 44</a></p>
                 </div>
               </div>
 
               <!-- FORM -->
               <div class="contact-form">
-                <form
-                  action="mailto:h2o@hschumacher.ch"
-                  method="post"
-                  enctype="text/plain"
-                >
+                <form action="contact.php" method="post">
+                  <!-- Honeypot anti-spam -->
+                  <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off" />
                   <div class="form-row">
                     <input type="text" name="nom" placeholder="Nom" required />
                     <input
