@@ -40,6 +40,8 @@ body {
     fixed;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .container {
@@ -125,7 +127,17 @@ a {
    HERO
 ========================================================= */
 
+#bubbleCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
 .hero {
+  position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -141,15 +153,18 @@ a {
       transparent 60%
     ),
     var(--primary-dark);
-  padding-top: 160px;
+  padding-top: 200px;
   padding-bottom: 180px;
   color: white;
 }
 
 .hero-content {
+  position: relative;
+  z-index: 1;
   max-width: 1000px;
   margin: auto;
 }
+
 
 .hero-logos {
   display: flex;
@@ -218,11 +233,13 @@ a {
 }
 
 .stat-card {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(10, 25, 70, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.20);
   padding: 28px;
   border-radius: var(--radius-sm);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
 }
 
 .stat-card strong {
@@ -342,7 +359,23 @@ a {
 }
 
 .section-cta {
-  margin-top: 70px;
+  margin-top: 28px;
+  display: flex;
+  justify-content: center;
+}
+.btn-outline {
+  padding: 14px 36px;
+  border-radius: 50px;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: background 0.2s, color 0.2s;
+  display: inline-block;
+}
+.btn-outline:hover {
+  background: var(--primary);
+  color: #fff;
 }
 
 /* =========================================================
@@ -442,6 +475,29 @@ a {
 /* =========================================================
    FOOTER
 ========================================================= */
+
+/* ── ACCUEIL : section prestations ── */
+.home-prestations {
+  background: rgba(255, 255, 255, 0.55);
+}
+.home-prestations-inner {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.home-prestations-inner h2 {
+  font-size: 1.9rem;
+  margin: 8px 0 16px;
+}
+.home-prestations-inner p {
+  color: var(--muted);
+  line-height: 1.75;
+  margin: 0 0 36px;
+}
+
+@media (max-width: 768px) {
+  .home-prestations-inner { text-align: left; }
+}
 
 .footer {
   background: #081a38;
