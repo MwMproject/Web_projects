@@ -63,13 +63,13 @@
           <div class="hero-overlay"></div>
           <div class="container hero-content">
             <div class="hero-logos reveal">
-              <img src="assets/img/Logo_HS.png" alt="Logo H. Schumacher" class="hero-logo main-logo" />
-              <img src="assets/img/logo-kannewischer.png" alt="Logo Kannewischer Group" class="hero-logo secondary-logo" />
+              <a href="apropos.html">
+                <img src="assets/img/Logo_HS.png" alt="Logo H. Schumacher" class="hero-logo main-logo" />
+              </a>
+              <a href="https://www.kannewischer.ch/" target="_blank" rel="noopener">
+                <img src="assets/img/logo-kannewischer.png" alt="Logo Kannewischer Group" class="hero-logo secondary-logo" />
+              </a>
             </div>
-            <p class="eyebrow reveal">
-              Bureau d’ingénierie en techniques du bâtiment dans le domaine
-              sanitaires, les fluides, le traitement des eaux et les aquariums.
-            </p>
             <h1 class="reveal">Pour une qualité d’eau maitrisée</h1>
             <div class="hero-actions reveal">
               <a href="apropos.html" class="btn btn-primary">Découvrir le bureau</a>
@@ -99,40 +99,40 @@
               <p class="section-kicker">Actualités</p>
               <h2>Dernières nouvelles du bureau</h2>
             </div>
-            <div class="carousel-wrapper">
-              <div class="carousel-track" id="carouselTrack">
-                <div class="carousel-slide" data-index="0">
+            <div class="cards-grid references-grid">
+              <article class="reference-card reveal">
+                <div class="card-image">
                   <img src="assets/img/CHUV_BOPC.jpg" alt="Chantier CHUV" />
-                  <div class="carousel-caption">
-                    <span class="tag">Santé</span>
-                    <h2>Extension du bloc opératoire — CHUV, Lausanne</h2>
-                    <p>Janvier 2026 — Démarrage des études d’exécution pour la modernisation de 18 salles chirurgicales.</p>
-                  </div>
                 </div>
-                <div class="carousel-slide" data-index="1">
+                <div class="card-body">
+                  <span class="tag">Santé</span>
+                  <h3>Extension du bloc opératoire — CHUV, Lausanne</h3>
+                  <p>Janvier 2026 — Démarrage des études d’exécution pour la modernisation de 18 salles chirurgicales.</p>
+                  <a href="actualites.html" class="card-link">Lire la suite</a>
+                </div>
+              </article>
+              <article class="reference-card reveal">
+                <div class="card-image">
                   <img src="assets/img/AQUATIS.jpg" alt="Chantier Aquatis" />
-                  <div class="carousel-caption">
-                    <span class="tag">Aquatique</span>
-                    <h2>Nouveau système de filtration — Aquatis, Lausanne</h2>
-                    <p>Décembre 2025 — Mise en service du nouveau traitement biologique pour les bassins tropicaux.</p>
-                  </div>
                 </div>
-                <div class="carousel-slide" data-index="2">
+                <div class="card-body">
+                  <span class="tag">Aquatique</span>
+                  <h3>Nouveau système de filtration — Aquatis, Lausanne</h3>
+                  <p>Décembre 2025 — Mise en service du nouveau traitement biologique pour les bassins tropicaux.</p>
+                  <a href="actualites.html" class="card-link">Lire la suite</a>
+                </div>
+              </article>
+              <article class="reference-card reveal">
+                <div class="card-image">
                   <img src="assets/img/PISC_MEL.jpg" alt="Piscine des Mélèzes" />
-                  <div class="carousel-caption">
-                    <span class="tag">Sport</span>
-                    <h2>Rénovation piscine des Mélèzes — Phase 2</h2>
-                    <p>Novembre 2025 — Réception des travaux d’assainissement du bassin olympique et de la fosse plongeoir.</p>
-                  </div>
                 </div>
-              </div>
-              <button class="carousel-btn prev" id="carouselPrev">&#8592;</button>
-              <button class="carousel-btn next" id="carouselNext">&#8594;</button>
-            </div>
-            <div class="carousel-dots" id="carouselDots">
-              <span class="active" data-dot="0"></span>
-              <span data-dot="1"></span>
-              <span data-dot="2"></span>
+                <div class="card-body">
+                  <span class="tag">Sport</span>
+                  <h3>Rénovation piscine des Mélèzes — Phase 2</h3>
+                  <p>Novembre 2025 — Réception des travaux d’assainissement du bassin olympique et de la fosse plongeoir.</p>
+                  <a href="actualites.html" class="card-link">Lire la suite</a>
+                </div>
+              </article>
             </div>
             <div class="section-cta reveal">
               <a href="actualites.html" class="btn btn-outline">Toutes les actualités</a>
@@ -147,7 +147,9 @@
               <p class="section-kicker">Expertise</p>
               <h2>Nos prestations &amp; compétences</h2>
               <p>De la conception à la réalisation, nous couvrons la technique sanitaire, les fluides spéciaux, le traitement des eaux, les gaz médicaux, les piscines et les ouvrages aquatiques.</p>
-              <a href="presentation.html" class="btn btn-primary">Voir nos prestations</a>
+            </div>
+            <div class="section-cta reveal">
+              <a href="presentation.html" class="btn btn-outline">Voir nos prestations</a>
             </div>
           </div>
         </section>
@@ -235,6 +237,15 @@
           </div>
 
           <div class="footer-column">
+            <h3>Kannewischer Group</h3>
+            <p>Gewerbestrasse 5<br />6330 Cham</p>
+            <p>
+              <a href="tel:+41417253051">+41 41 725 30 51</a><br />
+              <a href="mailto:info@kannewischer.ch">info@kannewischer.ch</a>
+            </p>
+          </div>
+
+          <div class="footer-column">
             <h3>Navigation</h3>
             <ul class="footer-links">
               <li><a href="presentation.html">Prestation</a></li>
@@ -255,29 +266,5 @@
 
     <script src="assets/script.js"></script>
     <script src="assets/bubbles.js"></script>
-    <script>
-      (function () {
-        const carTrack = document.getElementById('carouselTrack');
-        const carDots  = document.querySelectorAll('#carouselDots span');
-        const carSlides = document.querySelectorAll('.carousel-slide');
-        let carCurrent = 0;
-
-        function carGoTo(index) {
-          carCurrent = (index + carSlides.length) % carSlides.length;
-          carTrack.style.transform = 'translateX(-' + carCurrent * 100 + '%)';
-          carDots.forEach(function (d, i) { d.classList.toggle('active', i === carCurrent); });
-        }
-
-        document.getElementById('carouselPrev').addEventListener('click', function () { carGoTo(carCurrent - 1); });
-        document.getElementById('carouselNext').addEventListener('click', function () { carGoTo(carCurrent + 1); });
-        carDots.forEach(function (d) { d.addEventListener('click', function () { carGoTo(+d.dataset.dot); }); });
-
-        var carAutoplay = setInterval(function () { carGoTo(carCurrent + 1); }, 5000);
-        carTrack.parentElement.addEventListener('mouseenter', function () { clearInterval(carAutoplay); });
-        carTrack.parentElement.addEventListener('mouseleave', function () {
-          carAutoplay = setInterval(function () { carGoTo(carCurrent + 1); }, 5000);
-        });
-      })();
-    </script>
   </body>
 </html>

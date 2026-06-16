@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
@@ -58,66 +58,43 @@
           <p>Suivez les dernières nouvelles et chantiers du bureau.</p>
         </div>
 
-        <!-- CAROUSEL -->
+        <!-- ACTUALITÉS RÉCENTES -->
         <section class="carousel-section">
           <div class="container">
-            <div class="carousel-wrapper">
-              <div class="carousel-track" id="carouselTrack">
-                <!-- Actu 1 -->
-                <div class="carousel-slide" data-index="0">
+            <div class="cards-grid references-grid">
+              <article class="reference-card reveal">
+                <div class="card-image">
                   <img src="assets/img/CHUV_BOPC.jpg" alt="Chantier CHUV" />
-                  <div class="carousel-caption">
-                    <span class="tag">Santé</span>
-                    <h2>Extension du bloc opératoire — CHUV, Lausanne</h2>
-                    <p>
-                      Janvier 2026 — Démarrage des études d'exécution pour la
-                      modernisation de 18 salles chirurgicales.
-                    </p>
-                  </div>
                 </div>
-
-                <!-- Actu 2 -->
-                <div class="carousel-slide" data-index="1">
+                <div class="card-body">
+                  <span class="tag">Santé</span>
+                  <h3>Extension du bloc opératoire — CHUV, Lausanne</h3>
+                  <p>Janvier 2026 — Démarrage des études d'exécution pour la modernisation de 18 salles chirurgicales.</p>
+                  <a href="#" class="card-link" onclick="openActuCard(0); return false;">Lire la suite</a>
+                </div>
+              </article>
+              <article class="reference-card reveal">
+                <div class="card-image">
                   <img src="assets/img/AQUATIS.jpg" alt="Chantier Aquatis" />
-                  <div class="carousel-caption">
-                    <span class="tag">Aquatique</span>
-                    <h2>Nouveau système de filtration — Aquatis, Lausanne</h2>
-                    <p>
-                      Décembre 2025 — Mise en service du nouveau traitement
-                      biologique pour les bassins tropicaux.
-                    </p>
-                  </div>
                 </div>
-
-                <!-- Actu 3 -->
-                <div class="carousel-slide" data-index="2">
-                  <img
-                    src="assets/img/PISC_MEL.jpg"
-                    alt="Piscine des Mélèzes"
-                  />
-                  <div class="carousel-caption">
-                    <span class="tag">Sport</span>
-                    <h2>Rénovation piscine des Mélèzes — Phase 2</h2>
-                    <p>
-                      Novembre 2025 — Réception des travaux d'assainissement du
-                      bassin olympique et de la fosse plongeoir.
-                    </p>
-                  </div>
+                <div class="card-body">
+                  <span class="tag">Aquatique</span>
+                  <h3>Nouveau système de filtration — Aquatis, Lausanne</h3>
+                  <p>Décembre 2025 — Mise en service du nouveau traitement biologique pour les bassins tropicaux.</p>
+                  <a href="#" class="card-link" onclick="openActuCard(1); return false;">Lire la suite</a>
                 </div>
-              </div>
-
-              <button class="carousel-btn prev" id="carouselPrev">
-                &#8592;
-              </button>
-              <button class="carousel-btn next" id="carouselNext">
-                &#8594;
-              </button>
-            </div>
-
-            <div class="carousel-dots" id="carouselDots">
-              <span class="active" data-dot="0"></span>
-              <span data-dot="1"></span>
-              <span data-dot="2"></span>
+              </article>
+              <article class="reference-card reveal">
+                <div class="card-image">
+                  <img src="assets/img/PISC_MEL.jpg" alt="Piscine des Mélèzes" />
+                </div>
+                <div class="card-body">
+                  <span class="tag">Sport</span>
+                  <h3>Rénovation piscine des Mélèzes — Phase 2</h3>
+                  <p>Novembre 2025 — Réception des travaux d'assainissement du bassin olympique et de la fosse plongeoir.</p>
+                  <a href="#" class="card-link" onclick="openActuCard(2); return false;">Lire la suite</a>
+                </div>
+              </article>
             </div>
           </div>
         </section>
@@ -384,6 +361,15 @@
             <p><a href="tel:+41264224344">+41 26 422 43 44</a></p>
           </div>
           <div class="footer-column">
+            <h3>Kannewischer Group</h3>
+            <p>Gewerbestrasse 5<br />6330 Cham</p>
+            <p>
+              <a href="tel:+41417253051">+41 41 725 30 51</a><br />
+              <a href="mailto:info@kannewischer.ch">info@kannewischer.ch</a>
+            </p>
+          </div>
+
+          <div class="footer-column">
             <h3>Navigation</h3>
             <ul class="footer-links">
               <li><a href="presentation.html">Prestation</a></li>
@@ -422,13 +408,7 @@
     <script src="assets/script.js"></script>
     <script>
       (function () {
-        // ── CAROUSEL ──
-        const carTrack = document.getElementById("carouselTrack");
-        const carDots = document.querySelectorAll("#carouselDots span");
-        const carSlides = document.querySelectorAll(".carousel-slide");
-        let carCurrent = 0;
-
-        const actuData = [
+        var actuData = [
           {
             tag: "Santé",
             title: "Extension du bloc opératoire — CHUV, Lausanne",
@@ -449,55 +429,15 @@
           },
         ];
 
-        function carGoTo(index) {
-          carCurrent = (index + carSlides.length) % carSlides.length;
-          carTrack.style.transform = "translateX(-" + carCurrent * 100 + "%)";
-          carDots.forEach(function (d, i) {
-            d.classList.toggle("active", i === carCurrent);
-          });
-        }
+        window.openActuCard = function (index) {
+          var c = actuData[index];
+          document.getElementById("modal-carousel-tag").textContent = c.tag;
+          document.getElementById("modal-carousel-title").textContent = c.title;
+          document.getElementById("modal-carousel-img").src = c.img;
+          document.getElementById("modal-carousel-text").innerHTML = c.text;
+          actuOpenModal("modal-carousel");
+        };
 
-        document
-          .getElementById("carouselPrev")
-          .addEventListener("click", function () {
-            carGoTo(carCurrent - 1);
-          });
-        document
-          .getElementById("carouselNext")
-          .addEventListener("click", function () {
-            carGoTo(carCurrent + 1);
-          });
-        carDots.forEach(function (d) {
-          d.addEventListener("click", function () {
-            carGoTo(+d.dataset.dot);
-          });
-        });
-
-        var carAutoplay = setInterval(function () {
-          carGoTo(carCurrent + 1);
-        }, 5000);
-        carTrack.parentElement.addEventListener("mouseenter", function () {
-          clearInterval(carAutoplay);
-        });
-        carTrack.parentElement.addEventListener("mouseleave", function () {
-          carAutoplay = setInterval(function () {
-            carGoTo(carCurrent + 1);
-          }, 5000);
-        });
-
-        carSlides.forEach(function (slide, i) {
-          slide.addEventListener("click", function () {
-            var c = actuData[i];
-            document.getElementById("modal-carousel-tag").textContent = c.tag;
-            document.getElementById("modal-carousel-title").textContent =
-              c.title;
-            document.getElementById("modal-carousel-img").src = c.img;
-            document.getElementById("modal-carousel-text").innerHTML = c.text;
-            actuOpenModal("modal-carousel");
-          });
-        });
-
-        // ── MODALS ACTUS ──
         window.actuOpenModal = function (id) {
           document.getElementById(id).classList.add("open");
         };
@@ -513,11 +453,9 @@
 
         document.addEventListener("keydown", function (e) {
           if (e.key === "Escape") {
-            document
-              .querySelectorAll(".modal-overlay.open")
-              .forEach(function (m) {
-                m.classList.remove("open");
-              });
+            document.querySelectorAll(".modal-overlay.open").forEach(function (m) {
+              m.classList.remove("open");
+            });
           }
         });
       })();

@@ -5,7 +5,7 @@
 body.page-recrutement {
   overflow: hidden;
   height: 100vh;
-  background: linear-gradient(160deg, #ddeeff 0%, #eef6ff 55%, #f5faff 100%);
+  background: linear-gradient(160deg, #061228 0%, #0a1a38 55%, #0d2050 100%);
 }
 
 body.page-recrutement .site-wrapper {
@@ -13,7 +13,7 @@ body.page-recrutement .site-wrapper {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background: linear-gradient(160deg, #ddeeff 0%, #eef6ff 55%, #f5faff 100%);
+  background: linear-gradient(160deg, #061228 0%, #0a1a38 55%, #0d2050 100%);
 }
 
 body.page-recrutement main {
@@ -35,11 +35,9 @@ body.page-recrutement main {
 
 .recrutement-box {
   display: inline-block;
-  border: 1px solid rgba(180, 210, 240, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: #0d1a2e;
   padding: 32px 48px;
   box-shadow: var(--shadow-soft);
   max-width: 520px;

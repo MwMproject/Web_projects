@@ -18,7 +18,7 @@
   padding: 72px 0;
 }
 .prestation-section:nth-child(even) {
-  background: rgba(255, 255, 255, 0.55);
+  background: #0a1525;
 }
 .prestation-section-header {
   text-align: center;
@@ -37,10 +37,8 @@
   gap: 16px;
 }
 .prestation-card {
-  background: rgba(255, 255, 255, 0.82);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border: 1px solid rgba(180, 210, 240, 0.5);
+  background: #0d1a2e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 14px;
   padding: 28px 16px 20px;
   display: flex;
@@ -60,7 +58,7 @@
   width: 44px;
   height: 44px;
   border-radius: 10px;
-  background: #e8f0fd;
+  background: rgba(12, 84, 237, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -69,14 +67,14 @@
 .prestation-card span {
   font-size: 0.85rem;
   font-weight: 500;
-  color: #2c3d55;
+  color: var(--text);
   line-height: 1.4;
 }
 
 /* ── CTA ── */
 .prestation-cta {
   padding: 80px 0;
-  background: #c8ddf0;
+  background: #0a1630;
 }
 
 /* ── RESPONSIVE ── */

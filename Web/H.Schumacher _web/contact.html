@@ -56,94 +56,107 @@
       </header>
 
       <main class="contact-page">
+
+        <!-- FORMULAIRE -->
         <section class="section">
           <div class="container">
             <div class="contact-header">
               <h1>Contact</h1>
-              <p>
-                Vous avez un projet ou une question technique ? Notre équipe
-                vous répond dans les meilleurs délais.
-              </p>
+              <p>Vous avez un projet ou une question technique ? Notre équipe vous répond dans les meilleurs délais.</p>
             </div>
-          </div>
-          <div class="container contact-layout">
-            <!-- LEFT INFO -->
-            <div class="contact-info">
-              <div class="contact-block contact-card">
-                <h3>H. Schumacher ingénieurs conseils SA</h3>
-                <p>Chemin du Publoz 11<br />1073 Savigny</p>
-                <p><a href="tel:+41216443777">+41 21 644 37 77</a></p>
-                <p>
-                  <a href="mailto:h2o@hschumacher.ch">h2o@hschumacher.ch</a>
-                </p>
-              </div>
-
-              <div class="contact-block contact-card">
-                <h3>Vernier</h3>
-                <p>Avenue du Lignon 41<br />1219 Le Lignon</p>
-                <p><a href="tel:+41223001313">+41 22 300 13 13</a></p>
-              </div>
-
-              <div class="contact-block contact-card">
-                <h3>Fribourg</h3>
-                <p>Rte de la Fonderie 16<br />1700 Fribourg</p>
-                <p><a href="tel:+41264224344">+41 26 422 43 44</a></p>
-              </div>
-            </div>
-
-            <!-- FORM -->
-            <div class="contact-form">
-              <form action="contact.php" method="post">
-                <!-- Honeypot anti-spam -->
-                <input
-                  type="text"
-                  name="website"
-                  style="display: none"
-                  tabindex="-1"
-                  autocomplete="off"
-                />
+            <div class="contact-form-wrap">
+              <form action="contact.php" method="post" class="contact-form">
+                <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off" />
                 <div class="form-row">
                   <input type="text" name="nom" placeholder="Nom" required />
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    required
-                  />
+                  <input type="email" name="email" placeholder="Email" required />
                 </div>
-
                 <input type="text" name="societe" placeholder="Société" />
-
                 <div class="form-checkbox">
-                  <label
-                    ><input
-                      type="checkbox"
-                      name="technique"
-                      value="sanitaire"
-                    />
-                    Technique sanitaire</label
-                  >
-                  <label
-                    ><input type="checkbox" name="technique" value="gaz" /> Gaz
-                    médicaux</label
-                  >
-                  <label
-                    ><input type="checkbox" name="technique" value="piscine" />
-                    Technique piscine</label
-                  >
+                  <label><input type="checkbox" name="technique" value="sanitaire" /> Technique sanitaire</label>
+                  <label><input type="checkbox" name="technique" value="gaz" /> Gaz médicaux</label>
+                  <label><input type="checkbox" name="technique" value="piscine" /> Technique piscine</label>
                 </div>
-
-                <textarea
-                  name="message"
-                  placeholder="Votre message"
-                  required
-                ></textarea>
-
+                <textarea name="message" placeholder="Votre message" required></textarea>
                 <button type="submit" class="btn btn-primary">Envoyer</button>
               </form>
             </div>
           </div>
         </section>
+
+        <!-- BUREAUX -->
+        <section class="section contact-offices">
+          <div class="container">
+            <div class="section-heading reveal">
+              <p class="section-kicker">Nos implantations</p>
+              <h2>Nos bureaux</h2>
+            </div>
+            <div class="offices-grid">
+
+              <div class="office-card reveal">
+                <div class="office-map">
+                  <iframe
+                    src="https://maps.google.com/maps?q=Chemin+du+Publoz+11,+1073+Savigny,+Suisse&output=embed"
+                    width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy">
+                  </iframe>
+                </div>
+                <div class="office-info">
+                  <h3>H. Schumacher ingénieurs conseils SA</h3>
+                  <p>Chemin du Publoz 11 &nbsp;1073 Savigny</p>
+                  <p><a href="tel:+41216443777">+41 21 644 37 77</a></p>
+                  <p><a href="mailto:h2o@hschumacher.ch">h2o@hschumacher.ch</a></p>
+                </div>
+              </div>
+
+              <div class="office-card reveal">
+                <div class="office-map">
+                  <iframe
+                    src="https://maps.google.com/maps?q=Avenue+du+Lignon+41,+1219+Le+Lignon,+Suisse&output=embed"
+                    width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy">
+                  </iframe>
+                </div>
+                <div class="office-info">
+                  <h3>H. Schumacher Vernier Sàrl</h3>
+                  <p>Avenue du Lignon 41 &nbsp;1219 Le Lignon</p>
+                  <p><a href="tel:+41223001313">+41 22 300 13 13</a></p>
+                  <p><a href="mailto:h2o@hschumacher.ch">h2o@hschumacher.ch</a></p>
+                </div>
+              </div>
+
+              <div class="office-card reveal">
+                <div class="office-map">
+                  <iframe
+                    src="https://maps.google.com/maps?q=Route+de+la+Fonderie+16,+1700+Fribourg,+Suisse&output=embed"
+                    width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy">
+                  </iframe>
+                </div>
+                <div class="office-info">
+                  <h3>H. Schumacher Fribourg Sàrl</h3>
+                  <p>Rte de la Fonderie 16 &nbsp;1700 Fribourg</p>
+                  <p><a href="tel:+41264224344">+41 26 422 43 44</a></p>
+                  <p><a href="mailto:fribourg@hschumacher.ch">fribourg@hschumacher.ch</a></p>
+                </div>
+              </div>
+
+              <div class="office-card reveal">
+                <div class="office-map">
+                  <iframe
+                    src="https://maps.google.com/maps?q=Gewerbestrasse+5,+6330+Cham,+Suisse&output=embed"
+                    width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy">
+                  </iframe>
+                </div>
+                <div class="office-info">
+                  <h3>Kannewischer Group</h3>
+                  <p>Gewerbestrasse 5 &nbsp;6330 Cham</p>
+                  <p><a href="tel:+41417253051">+41 41 725 30 51</a></p>
+                  <p><a href="mailto:info@kannewischer.ch">info@kannewischer.ch</a></p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
       </main>
 
       <!-- FOOTER -->
@@ -175,6 +188,15 @@
               <a href="mailto:fribourg@hschumacher.ch"
                 >fribourg@hschumacher.ch</a
               >
+            </p>
+          </div>
+
+          <div class="footer-column">
+            <h3>Kannewischer Group</h3>
+            <p>Gewerbestrasse 5<br />6330 Cham</p>
+            <p>
+              <a href="tel:+41417253051">+41 41 725 30 51</a><br />
+              <a href="mailto:info@kannewischer.ch">info@kannewischer.ch</a>
             </p>
           </div>
 

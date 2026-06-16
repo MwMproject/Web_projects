@@ -11,10 +11,8 @@ body {
 }
 .message-box {
   text-align: center;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(180, 210, 240, 0.5);
+  background: #0d1a2e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
   padding: 56px 72px;
   max-width: 520px;
@@ -29,10 +27,10 @@ body {
 .message-box h1 {
   font-size: 1.6rem;
   margin: 0 0 12px;
-  color: #172033;
+  color: var(--dark);
 }
 .message-box p {
-  color: #475467;
+  color: var(--muted);
   line-height: 1.7;
   margin: 0 0 8px;
 }
