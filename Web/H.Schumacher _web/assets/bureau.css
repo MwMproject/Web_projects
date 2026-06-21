@@ -48,7 +48,6 @@
 /* ── VALEURS ── */
 .bureau-valeurs {
   padding: 80px 0;
-  background: #0a1525;
 }
 .valeurs-grid {
   display: grid;
@@ -265,7 +264,6 @@
 /* ── TIMELINE ── */
 .bureau-timeline {
   padding: 80px 0;
-  background: #0a1525;
 }
 
 .tl-ruler-wrap {

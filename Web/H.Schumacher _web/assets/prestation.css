@@ -16,9 +16,16 @@
 /* ── SECTIONS ── */
 .prestation-section {
   padding: 72px 0;
+  position: relative;
 }
-.prestation-section:nth-child(even) {
-  background: #0a1525;
+.prestation-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
 }
 .prestation-section-header {
   text-align: center;

@@ -49,12 +49,20 @@ body.page-recrutement main {
   line-height: 1.7;
 }
 
-.recrutement-box a {
-  color: var(--primary);
+.email-btn {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 10px 24px;
+  background: var(--secondary);
+  color: #fff;
   font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 8px;
   text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
 }
-
-.recrutement-box a:hover {
-  text-decoration: underline;
+.email-btn:hover {
+  background: #1aa3ef;
+  color: #fff;
+  transform: translateY(-1px);
 }

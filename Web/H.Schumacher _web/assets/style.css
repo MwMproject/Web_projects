@@ -150,35 +150,47 @@ a {
   color: white;
 }
 
-body.page-home .site-wrapper {
+.site-wrapper {
   background: linear-gradient(
     to bottom,
-    #061228 0%,
-    #0d3060 12%,
-    #0a1830 28%,
-    #0a1525 48%,
-    #080f1e 68%,
-    #050b18 85%,
+    #0a1f3d 0%,
+    #0a1830 18%,
+    #0a1525 38%,
+    #080f1e 58%,
+    #060d1a 75%,
+    #050b18 90%,
     #040a14 100%
   );
 }
-body.page-home .hero,
-body.page-home .home-actus,
-body.page-home .home-prestations,
-body.page-home .home-refs,
-body.page-home .footer {
+
+.hero,
+.home-actus,
+.home-prestations,
+.home-refs,
+.page-hero,
+.bureau-valeurs,
+.bureau-timeline,
+.contact-offices,
+.footer {
   background: transparent;
 }
-body.page-home .home-actus,
-body.page-home .home-prestations,
-body.page-home .home-refs,
-body.page-home .footer {
+.home-actus,
+.home-prestations,
+.home-refs,
+.page-hero,
+.bureau-valeurs,
+.bureau-timeline,
+.contact-offices,
+.footer {
   position: relative;
 }
-body.page-home .home-actus::before,
-body.page-home .home-prestations::before,
-body.page-home .home-refs::before,
-body.page-home .footer::before {
+.home-actus::before,
+.home-prestations::before,
+.home-refs::before,
+.bureau-valeurs::before,
+.bureau-timeline::before,
+.contact-offices::before,
+.footer::before {
   content: "";
   position: absolute;
   top: 0;
@@ -555,7 +567,6 @@ body.page-home .footer::before {
 
 .page-hero {
   padding: 100px 0 60px;
-  background: var(--bg);
   text-align: center;
 }
 
@@ -563,6 +574,7 @@ body.page-home .footer::before {
   display: flex;
   justify-content: center;
   gap: 15px;
+  margin-top: 30px;
   margin-bottom: 60px;
   flex-wrap: wrap;
 }

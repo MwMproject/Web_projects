@@ -89,9 +89,6 @@
 }
 
 /* ── BUREAUX ── */
-.contact-offices {
-  background: #0a1525;
-}
 .offices-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
