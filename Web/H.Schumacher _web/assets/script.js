@@ -116,6 +116,37 @@ if (track) {
 }
 
 /* =========================================================
+   REFERENCES CAROUSEL (ACCUEIL)
+========================================================= */
+
+const refsTrack = document.getElementById("refsTrack");
+
+if (refsTrack) {
+  const refsCarousel = refsTrack.parentElement;
+  let refsSpeed = 0.5;
+  let refsPosition = 0;
+  let refsPaused = false;
+
+  refsTrack.innerHTML += refsTrack.innerHTML;
+
+  refsCarousel.addEventListener("mouseenter", () => (refsPaused = true));
+  refsCarousel.addEventListener("mouseleave", () => (refsPaused = false));
+
+  function animateRefs() {
+    if (!refsPaused) {
+      refsPosition -= refsSpeed;
+      if (refsPosition <= -refsTrack.scrollWidth / 2) refsPosition = 0;
+    }
+
+    refsTrack.style.transform = `translateX(${refsPosition}px)`;
+
+    requestAnimationFrame(animateRefs);
+  }
+
+  animateRefs();
+}
+
+/* =========================================================
    REFERENCES PAGE
 ========================================================= */
 

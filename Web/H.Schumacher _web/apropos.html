@@ -31,14 +31,19 @@
           </a>
           <nav class="nav" id="nav">
             <ul class="nav-list">
-              <li><a href="index.html">Accueil</a></li>
-              <li><a href="presentation.html">Prestation</a></li>
-              <li><a href="references.html">Références</a></li>
-              <li><a href="apropos.html" class="active">Bureau</a></li>
-              <li><a href="actualites.html">Actualités</a></li>
-              <li><a href="recrutement.html">Recrutement</a></li>
-              <li><a href="contact.html">Contact</a></li>
+              <li><a href="index.html" data-i18n="nav.accueil">Accueil</a></li>
+              <li><a href="presentation.html" data-i18n="nav.prestation">Prestation</a></li>
+              <li><a href="references.html" data-i18n="nav.references">Références</a></li>
+              <li><a href="apropos.html" class="active" data-i18n="nav.bureau">Bureau</a></li>
+              <li><a href="actualites.html" data-i18n="nav.actualites">Actualités</a></li>
+              <li><a href="recrutement.html" data-i18n="nav.recrutement">Recrutement</a></li>
+              <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
             </ul>
+            <div class="lang-switch">
+              <button data-lang="fr" onclick="setLang('fr')">FR</button>
+              <button data-lang="de" onclick="setLang('de')">DE</button>
+              <button data-lang="en" onclick="setLang('en')">EN</button>
+            </div>
           </nav>
           <button
             class="burger"
@@ -143,89 +148,29 @@
                 Les personnes qui dirigent et font vivre le bureau au quotidien.
               </p>
             </div>
-            <div class="direction-grid">
-              <div class="director-card reveal" onclick="dirOpenModal('dir-1')">
-                <div class="director-avatar">
-                  <svg
-                    width="80"
-                    height="80"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="rgba(255,255,255,0.4)"
-                    stroke-width="1.2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <circle cx="12" cy="8" r="4" />
-                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
-                  </svg>
-                </div>
-                <div class="director-overlay">
-                  <p class="director-name">Rémy Schumacher</p>
-                  <p class="director-role">Administrateur</p>
-                  <span class="director-btn">Voir le profil</span>
-                </div>
-              </div>
+            <!-- Photo de groupe à fournir : remplacer team-photo-placeholder par <img src="..."> et ajuster les % top/left de chaque .team-hotspot pour qu'ils tombent sur le bon visage -->
+            <div class="team-photo">
+              <div class="team-photo-placeholder"></div>
 
-              <div class="director-card reveal" onclick="dirOpenModal('dir-2')">
-                <div class="director-avatar">
-                  <svg
-                    width="80"
-                    height="80"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="rgba(255,255,255,0.4)"
-                    stroke-width="1.2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <circle cx="12" cy="8" r="4" />
-                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
-                  </svg>
-                </div>
-                <div class="director-overlay">
-                  <p class="director-name">Alexandre Maleszewski</p>
-                  <p class="director-role">Administrateur</p>
-                  <span class="director-btn">Voir le profil</span>
-                </div>
-              </div>
+              <button class="team-hotspot" style="left: 18%; top: 45%;" onclick="dirOpenModal('dir-1')" aria-label="Rémy Schumacher">
+                <span class="team-hotspot-dot"></span>
+                <span class="team-hotspot-label">Rémy Schumacher</span>
+              </button>
 
-              <div class="director-card reveal" onclick="dirOpenModal('dir-3')">
-                <div class="director-avatar">
-                  <svg
-                    width="80"
-                    height="80"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="rgba(255,255,255,0.4)"
-                    stroke-width="1.2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <circle cx="12" cy="8" r="4" />
-                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
-                  </svg>
-                </div>
-                <div class="director-overlay">
-                  <p class="director-name">Michael Weiss</p>
-                  <p class="director-role">Administrateur</p>
-                  <span class="director-btn">Voir le profil</span>
-                </div>
-              </div>
+              <button class="team-hotspot" style="left: 39%; top: 50%;" onclick="dirOpenModal('dir-2')" aria-label="Alexandre Maleszewski">
+                <span class="team-hotspot-dot"></span>
+                <span class="team-hotspot-label">Alexandre Maleszewski</span>
+              </button>
 
-              <div class="director-card reveal" onclick="dirOpenModal('dir-4')">
-                <div class="director-avatar">
-                  <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="8" r="4" />
-                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
-                  </svg>
-                </div>
-                <div class="director-overlay">
-                  <p class="director-name">Harald Kannewischer</p>
-                  <p class="director-role">Administrateur</p>
-                  <span class="director-btn">Voir le profil</span>
-                </div>
-              </div>
+              <button class="team-hotspot" style="left: 61%; top: 48%;" onclick="dirOpenModal('dir-3')" aria-label="Michael Weiss">
+                <span class="team-hotspot-dot"></span>
+                <span class="team-hotspot-label">Michael Weiss</span>
+              </button>
+
+              <button class="team-hotspot" style="left: 82%; top: 46%;" onclick="dirOpenModal('dir-4')" aria-label="Harald Kannewischer">
+                <span class="team-hotspot-dot"></span>
+                <span class="team-hotspot-label">Harald Kannewischer</span>
+              </button>
             </div>
           </div>
         </section>
@@ -650,23 +595,24 @@
           </div>
 
           <div class="footer-column">
-            <h3>Navigation</h3>
+            <h3 data-i18n="footer.nav.title">Navigation</h3>
             <ul class="footer-links">
-              <li><a href="presentation.html">Prestation</a></li>
-              <li><a href="references.html">Références</a></li>
-              <li><a href="actualites.html">Actualités</a></li>
-              <li><a href="contact.html">Contact</a></li>
+              <li><a href="presentation.html" data-i18n="nav.prestation">Prestation</a></li>
+              <li><a href="references.html" data-i18n="nav.references">Références</a></li>
+              <li><a href="actualites.html" data-i18n="nav.actualites">Actualités</a></li>
+              <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
             </ul>
           </div>
         </div>
         <div class="container footer-bottom">
-          <p>© 2026 H. Schumacher — Tous droits réservés</p>
+          <p data-i18n="footer.bottom">© 2026 H. Schumacher — Tous droits réservés</p>
         </div>
       </footer>
 
       <button id="toTop" class="to-top" aria-label="Remonter en haut">↑</button>
     </div>
 
+    <script src="assets/i18n.js"></script>
     <script src="assets/script.js"></script>
     <script>
       (function () {

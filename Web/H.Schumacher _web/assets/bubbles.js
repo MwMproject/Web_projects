@@ -12,9 +12,8 @@
   const bubbles = [];
 
   function resize() {
-    const hero = canvas.parentElement;
-    canvas.width  = hero.offsetWidth;
-    canvas.height = hero.offsetHeight;
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
     sources = SOURCE_X_RATIOS.map(r => ({ x: canvas.width * r }));
   }
 

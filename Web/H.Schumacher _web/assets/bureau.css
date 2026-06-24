@@ -87,6 +87,67 @@
   gap: 28px;
   margin-top: 40px;
 }
+
+.team-photo {
+  position: relative;
+  margin-top: 40px;
+  height: 480px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.team-photo-placeholder {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, #0d1a3a 0%, #1a2f5e 100%);
+}
+.team-hotspot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.team-hotspot-dot {
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--secondary);
+  box-shadow: 0 0 0 0 rgba(41, 182, 255, 0.5);
+  animation: team-pulse 2.2s infinite;
+}
+@keyframes team-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(41, 182, 255, 0.5); }
+  70%  { box-shadow: 0 0 0 12px rgba(41, 182, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(41, 182, 255, 0); }
+}
+.team-hotspot-label {
+  position: absolute;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(8, 15, 30, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+.team-hotspot:hover .team-hotspot-label {
+  opacity: 1;
+}
+@media (max-width: 700px) {
+  .team-photo {
+    height: 320px;
+  }
+}
 .director-card {
   position: relative;
   border-radius: 14px;

@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="assets/actualites.css" />
   </head>
   <body class="page-home">
+    <canvas id="bubbleCanvas" aria-hidden="true"></canvas>
     <div class="site-wrapper">
       <!-- HEADER -->
       <header class="header" id="header">
@@ -32,14 +33,19 @@
 
           <nav class="nav" id="nav">
             <ul class="nav-list">
-              <li><a href="index.html" class="active">Accueil</a></li>
-              <li><a href="presentation.html">Prestation</a></li>
-              <li><a href="references.html">Références</a></li>
-              <li><a href="apropos.html">Bureau</a></li>
-              <li><a href="actualites.html">Actualités</a></li>
-              <li><a href="recrutement.html">Recrutement</a></li>
-              <li><a href="contact.html">Contact</a></li>
+              <li><a href="index.html" class="active" data-i18n="nav.accueil">Accueil</a></li>
+              <li><a href="presentation.html" data-i18n="nav.prestation">Prestation</a></li>
+              <li><a href="references.html" data-i18n="nav.references">Références</a></li>
+              <li><a href="apropos.html" data-i18n="nav.bureau">Bureau</a></li>
+              <li><a href="actualites.html" data-i18n="nav.actualites">Actualités</a></li>
+              <li><a href="recrutement.html" data-i18n="nav.recrutement">Recrutement</a></li>
+              <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
             </ul>
+            <div class="lang-switch">
+              <button data-lang="fr" onclick="setLang('fr')">FR</button>
+              <button data-lang="de" onclick="setLang('de')">DE</button>
+              <button data-lang="en" onclick="setLang('en')">EN</button>
+            </div>
           </nav>
 
           <button
@@ -59,7 +65,6 @@
 
         <!-- HERO -->
         <section class="hero">
-          <canvas id="bubbleCanvas" aria-hidden="true"></canvas>
           <div class="hero-overlay"></div>
           <div class="container hero-content">
             <div class="hero-logos reveal">
@@ -70,55 +75,7 @@
                 <img src="assets/img/logo-kannewischer.png" alt="Logo Kannewischer Group" class="hero-logo secondary-logo" />
               </a>
             </div>
-            <h1 class="reveal">Pour une qualité d’eau maitrisée</h1>
-          </div>
-        </section>
-
-        <!-- ACTUALITÉS -->
-        <section class="home-actus section">
-          <div class="container">
-            <div class="section-heading reveal">
-              <p class="section-kicker">Actualités</p>
-              <h2>Dernières nouvelles du bureau</h2>
-            </div>
-            <div class="cards-grid references-grid">
-              <article class="reference-card reveal">
-                <div class="card-image">
-                  <img src="assets/img/CHUV_BOPC.jpg" alt="Chantier CHUV" />
-                </div>
-                <div class="card-body">
-                  <span class="tag">Santé</span>
-                  <h3>Extension du bloc opératoire — CHUV, Lausanne</h3>
-                  <p>Janvier 2026 — Démarrage des études d’exécution pour la modernisation de 18 salles chirurgicales.</p>
-                  <a href="actualites.html" class="card-link">Lire la suite</a>
-                </div>
-              </article>
-              <article class="reference-card reveal">
-                <div class="card-image">
-                  <img src="assets/img/AQUATIS.jpg" alt="Chantier Aquatis" />
-                </div>
-                <div class="card-body">
-                  <span class="tag">Aquatique</span>
-                  <h3>Nouveau système de filtration — Aquatis, Lausanne</h3>
-                  <p>Décembre 2025 — Mise en service du nouveau traitement biologique pour les bassins tropicaux.</p>
-                  <a href="actualites.html" class="card-link">Lire la suite</a>
-                </div>
-              </article>
-              <article class="reference-card reveal">
-                <div class="card-image">
-                  <img src="assets/img/PISC_MEL.jpg" alt="Piscine des Mélèzes" />
-                </div>
-                <div class="card-body">
-                  <span class="tag">Sport</span>
-                  <h3>Rénovation piscine des Mélèzes — Phase 2</h3>
-                  <p>Novembre 2025 — Réception des travaux d’assainissement du bassin olympique et de la fosse plongeoir.</p>
-                  <a href="actualites.html" class="card-link">Lire la suite</a>
-                </div>
-              </article>
-            </div>
-            <div class="section-cta reveal">
-              <a href="actualites.html" class="btn btn-outline">Toutes les actualités</a>
-            </div>
+            <h1 class="reveal" data-i18n="hero.title">Pour une qualité d’eau maitrisée</h1>
           </div>
         </section>
 
@@ -126,12 +83,60 @@
         <section class="home-prestations section">
           <div class="container">
             <div class="home-prestations-inner reveal">
-              <p class="section-kicker">Expertise</p>
-              <h2>Nos prestations &amp; compétences</h2>
-              <p>De la conception à la réalisation, nous couvrons la technique sanitaire, les fluides spéciaux, le traitement des eaux, les gaz médicaux, les piscines et les ouvrages aquatiques.</p>
+              <p class="section-kicker" data-i18n="home.prestations.kicker">Expertise</p>
+              <h2 data-i18n="home.prestations.title">Nos prestations &amp; compétences</h2>
+              <p data-i18n="home.prestations.text">De la conception à la réalisation, nous couvrons la technique sanitaire, les fluides spéciaux, le traitement des eaux, les gaz médicaux, les piscines et les ouvrages aquatiques.</p>
             </div>
             <div class="section-cta reveal">
-              <a href="presentation.html" class="btn btn-outline">Voir nos prestations</a>
+              <a href="presentation.html" class="btn btn-outline" data-i18n="home.prestations.btn">Voir nos prestations</a>
+            </div>
+          </div>
+        </section>
+
+        <!-- ACTUALITÉS -->
+        <section class="home-actus section">
+          <div class="container">
+            <div class="section-heading reveal">
+              <p class="section-kicker" data-i18n="home.actus.kicker">Actualités</p>
+              <h2 data-i18n="home.actus.title">Dernières nouvelles du bureau</h2>
+            </div>
+            <div class="cards-grid references-grid">
+              <article class="reference-card reveal">
+                <div class="card-image">
+                  <img src="assets/img/CHUV_BOPC.jpg" alt="Chantier CHUV" />
+                </div>
+                <div class="card-body">
+                  <span class="tag" data-i18n="home.actus.card1.tag">Santé</span>
+                  <h3 data-i18n="home.actus.card1.title">Extension du bloc opératoire — CHUV, Lausanne</h3>
+                  <p data-i18n="home.actus.card1.text">Janvier 2026 — Démarrage des études d’exécution pour la modernisation de 18 salles chirurgicales.</p>
+                  <a href="actualites.html" class="card-link" data-i18n="home.actus.link">Lire la suite</a>
+                </div>
+              </article>
+              <article class="reference-card reveal">
+                <div class="card-image">
+                  <img src="assets/img/AQUATIS.jpg" alt="Chantier Aquatis" />
+                </div>
+                <div class="card-body">
+                  <span class="tag" data-i18n="home.actus.card2.tag">Aquatique</span>
+                  <h3 data-i18n="home.actus.card2.title">Nouveau système de filtration — Aquatis, Lausanne</h3>
+                  <p data-i18n="home.actus.card2.text">Décembre 2025 — Mise en service du nouveau traitement biologique pour les bassins tropicaux.</p>
+                  <a href="actualites.html" class="card-link" data-i18n="home.actus.link">Lire la suite</a>
+                </div>
+              </article>
+              <article class="reference-card reveal">
+                <div class="card-image">
+                  <img src="assets/img/PISC_MEL.jpg" alt="Piscine des Mélèzes" />
+                </div>
+                <div class="card-body">
+                  <span class="tag" data-i18n="home.actus.card3.tag">Sport</span>
+                  <h3 data-i18n="home.actus.card3.title">Rénovation piscine des Mélèzes — Phase 2</h3>
+                  <p data-i18n="home.actus.card3.text">Novembre 2025 — Réception des travaux d’assainissement du bassin olympique et de la fosse plongeoir.</p>
+                  <a href="actualites.html" class="card-link" data-i18n="home.actus.link">Lire la suite</a>
+                </div>
+              </article>
+            </div>
+            <div class="section-cta reveal">
+              <a href="actualites.html" class="btn btn-outline" data-i18n="home.actus.btn">Toutes les actualités</a>
             </div>
           </div>
         </section>
@@ -140,46 +145,48 @@
         <section class="home-refs section">
           <div class="container">
             <div class="section-heading reveal">
-              <p class="section-kicker">Références</p>
-              <h2>Quelques projets représentatifs</h2>
+              <p class="section-kicker" data-i18n="home.refs.kicker">Références</p>
+              <h2 data-i18n="home.refs.title">Quelques projets représentatifs</h2>
             </div>
-            <div class="cards-grid references-grid">
-              <article class="reference-card reveal">
-                <div class="card-image">
-                  <img src="assets/img/AQUATIS.jpg" alt="Projet Aquatis" />
-                </div>
-                <div class="card-body">
-                  <span class="tag">Loisirs / Aquarium</span>
-                  <h3>Aquatis 2002 – 2017</h3>
-                  <p>Conception des aquariums, traitement des eaux, filtration mécanique et biologique, fontaine décorative et miroir d’eau extérieur.</p>
-                  <a href="references.html" class="card-link">Voir la fiche projet</a>
-                </div>
-              </article>
-              <article class="reference-card reveal">
-                <div class="card-image">
-                  <img src="assets/img/PISC_MEL.jpg" alt="Piscine des Mélèzes" />
-                </div>
-                <div class="card-body">
-                  <span class="tag">Sport / Piscine</span>
-                  <h3>Piscine des Mélèzes</h3>
-                  <p>Assainissement complet avec cuvelage inox, nage à contre-courant et nouveau local technique de traitement d’eau.</p>
-                  <a href="references.html" class="card-link">Voir la fiche projet</a>
-                </div>
-              </article>
-              <article class="reference-card reveal">
-                <div class="card-image">
-                  <img src="assets/img/CHUV_BOPC.jpg" alt="BOPC CHUV" />
-                </div>
-                <div class="card-body">
-                  <span class="tag">Santé / Gaz médicaux</span>
-                  <h3>BOPC — CHUV</h3>
-                  <p>Réaménagement et modernisation complète de 18 salles chirurgicales dans le plus grand bloc opératoire centralisé de Suisse.</p>
-                  <a href="references.html" class="card-link">Voir la fiche projet</a>
-                </div>
-              </article>
+            <div class="refs-carousel">
+              <div class="refs-track" id="refsTrack">
+                <article class="reference-card reveal">
+                  <div class="card-image">
+                    <img src="assets/img/AQUATIS.jpg" alt="Projet Aquatis" />
+                  </div>
+                  <div class="card-body">
+                    <span class="tag" data-i18n="home.refs.card1.tag">Loisirs / Aquarium</span>
+                    <h3 data-i18n="home.refs.card1.title">Aquatis 2002 – 2017</h3>
+                    <p data-i18n="home.refs.card1.text">Conception des aquariums, traitement des eaux, filtration mécanique et biologique, fontaine décorative et miroir d’eau extérieur.</p>
+                    <a href="references.html" class="card-link" data-i18n="home.refs.link">Voir la fiche projet</a>
+                  </div>
+                </article>
+                <article class="reference-card reveal">
+                  <div class="card-image">
+                    <img src="assets/img/PISC_MEL.jpg" alt="Piscine des Mélèzes" />
+                  </div>
+                  <div class="card-body">
+                    <span class="tag" data-i18n="home.refs.card2.tag">Sport / Piscine</span>
+                    <h3 data-i18n="home.refs.card2.title">Piscine des Mélèzes</h3>
+                    <p data-i18n="home.refs.card2.text">Assainissement complet avec cuvelage inox, nage à contre-courant et nouveau local technique de traitement d’eau.</p>
+                    <a href="references.html" class="card-link" data-i18n="home.refs.link">Voir la fiche projet</a>
+                  </div>
+                </article>
+                <article class="reference-card reveal">
+                  <div class="card-image">
+                    <img src="assets/img/CHUV_BOPC.jpg" alt="BOPC CHUV" />
+                  </div>
+                  <div class="card-body">
+                    <span class="tag" data-i18n="home.refs.card3.tag">Santé / Gaz médicaux</span>
+                    <h3 data-i18n="home.refs.card3.title">BOPC — CHUV</h3>
+                    <p data-i18n="home.refs.card3.text">Réaménagement et modernisation complète de 18 salles chirurgicales dans le plus grand bloc opératoire centralisé de Suisse.</p>
+                    <a href="references.html" class="card-link" data-i18n="home.refs.link">Voir la fiche projet</a>
+                  </div>
+                </article>
+              </div>
             </div>
             <div class="section-cta reveal">
-              <a href="references.html" class="btn btn-outline">Toutes les références</a>
+              <a href="references.html" class="btn btn-outline" data-i18n="home.refs.btn">Toutes les références</a>
             </div>
           </div>
         </section>
@@ -228,24 +235,25 @@
           </div>
 
           <div class="footer-column">
-            <h3>Navigation</h3>
+            <h3 data-i18n="footer.nav.title">Navigation</h3>
             <ul class="footer-links">
-              <li><a href="presentation.html">Prestation</a></li>
-              <li><a href="references.html">Références</a></li>
-              <li><a href="actualites.html">Actualités</a></li>
-              <li><a href="contact.html">Contact</a></li>
+              <li><a href="presentation.html" data-i18n="nav.prestation">Prestation</a></li>
+              <li><a href="references.html" data-i18n="nav.references">Références</a></li>
+              <li><a href="actualites.html" data-i18n="nav.actualites">Actualités</a></li>
+              <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
             </ul>
           </div>
         </div>
 
         <div class="container footer-bottom">
-          <p>© 2026 H. Schumacher — Tous droits réservés</p>
+          <p data-i18n="footer.bottom">© 2026 H. Schumacher — Tous droits réservés</p>
         </div>
       </footer>
 
       <button id="toTop" class="to-top" aria-label="Remonter en haut">↑</button>
     </div>
 
+    <script src="assets/i18n.js"></script>
     <script src="assets/script.js"></script>
     <script src="assets/bubbles.js"></script>
   </body>
