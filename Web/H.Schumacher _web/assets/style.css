@@ -90,12 +90,15 @@ a {
   gap: 14px;
   font-weight: 700;
   font-size: 18px;
+  flex-shrink: 0;
 }
 
 .brand-logo {
   height: 80px;
+  width: auto;
+  flex-shrink: 0;
+  object-fit: contain;
   padding: 5px;
-  filter: brightness(0) invert(1);
   padding-right: 20px;
   border-right: 1px solid rgba(255, 255, 255, 0.15);
 }
@@ -159,7 +162,24 @@ a {
 .burger[aria-expanded="true"] span:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
 }
-@media (max-width: 900px) {
+@media (min-width: 1301px) and (max-width: 1600px) {
+  .brand-logo {
+    height: 64px;
+    padding-right: 14px;
+  }
+  .nav {
+    margin-left: 24px;
+  }
+  .nav-list {
+    gap: 20px;
+    font-size: 14px;
+  }
+  .lang-switch {
+    margin-left: 20px;
+  }
+}
+
+@media (max-width: 1300px) {
   .nav {
     display: none;
     position: fixed;
@@ -337,6 +357,12 @@ a {
   margin-right: -60px;
   margin-bottom: 90px;
 }
+@media (max-width: 1150px) {
+  .hero-logos {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
 
 .hero-logos a {
   display: inline-flex;
@@ -344,8 +370,13 @@ a {
 }
 .hero-logo {
   height: 56px;
+  width: auto;
+  flex-shrink: 0;
+  object-fit: contain;
   opacity: 0.92;
   transition: opacity 0.2s;
+}
+.hero-logo.secondary-logo {
   filter: brightness(0) invert(1);
 }
 .hero-logo:hover {

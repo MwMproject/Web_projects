@@ -75,12 +75,25 @@ body.page-recrutement main {
     overflow: visible;
   }
   body.page-recrutement main {
-    padding: 130px 0 60px;
+    padding: 130px 20px 60px;
   }
   .recrutement-box {
     padding: 28px 28px;
+    max-width: 100%;
   }
   .recrutement-content h1 {
     font-size: 1.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body.page-recrutement main {
+    padding: 110px 16px 50px;
+  }
+  .recrutement-box {
+    padding: 24px 20px;
+  }
+  .recrutement-content h1 {
+    font-size: 1.6rem;
   }
 }

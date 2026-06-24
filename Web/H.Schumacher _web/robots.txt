@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /thanks.html
+Disallow: /error.html
+
+Sitemap: https://www.hschumacher.ch/sitemap.xml
