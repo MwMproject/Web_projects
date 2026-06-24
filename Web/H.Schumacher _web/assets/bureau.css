@@ -473,11 +473,11 @@
   .direction-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  .valeurs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 @media (max-width: 900px) {
-  .valeurs-grid {
-    grid-template-columns: 1fr;
-  }
   .direction-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -486,5 +486,29 @@
   }
   .tl-card {
     padding: 0 24px;
+  }
+  .bureau-hero {
+    min-height: 560px;
+  }
+}
+@media (max-width: 600px) {
+  .valeurs-grid {
+    grid-template-columns: 1fr;
+  }
+  .team-hotspot-label {
+    font-size: 0.72rem;
+    padding: 4px 10px;
+  }
+  .dir-modal-box {
+    max-width: 92%;
+  }
+  .dir-modal-body {
+    padding: 24px 22px 26px;
+  }
+  .tl-ruler-wrap {
+    padding: 0 20px;
+  }
+  .tl-card strong {
+    font-size: 2.2rem;
   }
 }

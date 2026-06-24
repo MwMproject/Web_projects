@@ -189,4 +189,13 @@
   .old-actu-actions {
     align-items: flex-start;
   }
+  .actu-page-header h1 {
+    font-size: 2rem;
+  }
+  .modal-body {
+    padding: 24px 22px 28px;
+  }
+  .modal-img {
+    height: 180px;
+  }
 }

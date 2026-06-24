@@ -66,3 +66,21 @@ body.page-recrutement main {
   color: #fff;
   transform: translateY(-1px);
 }
+
+@media (max-width: 700px) {
+  body.page-recrutement,
+  body.page-recrutement .site-wrapper {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+  }
+  body.page-recrutement main {
+    padding: 130px 0 60px;
+  }
+  .recrutement-box {
+    padding: 28px 28px;
+  }
+  .recrutement-content h1 {
+    font-size: 1.9rem;
+  }
+}
