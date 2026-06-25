@@ -29,6 +29,12 @@
     <meta property="og:url" content="https://mwm-project.ch/services.html" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="fr_CH" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Services – MwM Project" />
+    <meta
+      name="twitter:description"
+      content="Sites vitrines, boutiques en ligne et applications web sur mesure pour indépendants et PME en Suisse romande."
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -78,7 +84,7 @@
           <a href="faq.html" class="nav-link">FAQ</a>
           <a href="contact.html" class="nav-link nav-cta">Contact</a>
         </nav>
-        <div class="theme-toggle" id="themeToggle">
+        <div class="theme-toggle" id="themeToggle" role="button" tabindex="0" aria-label="Changer de thème" aria-pressed="false">
           <div class="toggle-circle"></div>
         </div>
         <button id="burger-btn" class="burger" aria-label="Menu">
@@ -121,6 +127,7 @@
               <div class="service-icon">
                 <img
                   src="assets/icons/icon_web.png"
+                  loading="lazy"
                   alt="web"
                   width="48"
                   height="48"
@@ -136,6 +143,7 @@
               <div class="service-icon">
                 <img
                   src="assets/icons/icon_eshop.png"
+                  loading="lazy"
                   alt="eshop"
                   width="48"
                   height="48"
@@ -151,6 +159,7 @@
               <div class="service-icon">
                 <img
                   src="assets/icons/icon_app.png"
+                  loading="lazy"
                   alt="app"
                   width="48"
                   height="48"
@@ -229,6 +238,7 @@
             aria-label="GitHub"
             ><img
               src="assets/img/social_logo/github.svg"
+              loading="lazy"
               alt=""
               width="24"
               height="24"
@@ -240,6 +250,7 @@
             aria-label="Instagram"
             ><img
               src="assets/img/social_logo/insta.svg"
+              loading="lazy"
               alt=""
               width="24"
               height="24"
@@ -247,6 +258,7 @@
           <a href="#top" aria-label="Retour en haut"
             ><img
               src="assets/img/social_logo/up.png"
+              loading="lazy"
               alt=""
               width="24"
               height="24"
@@ -283,6 +295,6 @@
         ]
       }
     </script>
-    <script src="assets/main.js"></script>
+    <script src="assets/main.js" defer></script>
   </body>
 </html>

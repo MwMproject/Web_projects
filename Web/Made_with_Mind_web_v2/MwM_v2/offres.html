@@ -27,6 +27,12 @@
     <meta property="og:url" content="https://mwm-project.ch/offres.html" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="fr_CH" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Offres & Tarifs – MwM Project" />
+    <meta
+      name="twitter:description"
+      content="Création de site web en abonnement dès 89 CHF/mois. Solutions claires et évolutives pour entreprises en Suisse romande."
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -77,7 +83,7 @@
           <a href="faq.html" class="nav-link">FAQ</a>
           <a href="contact.html" class="nav-link nav-cta">Contact</a>
         </nav>
-        <div class="theme-toggle" id="themeToggle">
+        <div class="theme-toggle" id="themeToggle" role="button" tabindex="0" aria-label="Changer de thème" aria-pressed="false">
           <div class="toggle-circle"></div>
         </div>
         <button id="burger-btn" class="burger" aria-label="Menu">
@@ -191,6 +197,7 @@
             aria-label="GitHub"
             ><img
               src="assets/img/social_logo/github.svg"
+              loading="lazy"
               alt=""
               width="24"
               height="24"
@@ -202,6 +209,7 @@
             aria-label="Instagram"
             ><img
               src="assets/img/social_logo/insta.svg"
+              loading="lazy"
               alt=""
               width="24"
               height="24"
@@ -209,6 +217,7 @@
           <a href="#top" aria-label="Retour en haut"
             ><img
               src="assets/img/social_logo/up.png"
+              loading="lazy"
               alt=""
               width="24"
               height="24"
@@ -262,6 +271,6 @@
         ]
       }
     </script>
-    <script src="assets/main.js"></script>
+    <script src="assets/main.js" defer></script>
   </body>
 </html>

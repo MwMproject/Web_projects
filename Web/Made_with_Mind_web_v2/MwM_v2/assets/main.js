@@ -50,15 +50,24 @@ if (burger && mobileNav) {
 const themeToggle = document.getElementById("themeToggle");
 if (localStorage.getItem("theme") === "light")
   document.documentElement.classList.add("light-theme");
+themeToggle?.setAttribute(
+  "aria-pressed",
+  document.documentElement.classList.contains("light-theme"),
+);
 
-themeToggle?.addEventListener("click", () => {
+function toggleTheme() {
   document.documentElement.classList.toggle("light-theme");
-  localStorage.setItem(
-    "theme",
-    document.documentElement.classList.contains("light-theme")
-      ? "light"
-      : "dark",
-  );
+  const isLight = document.documentElement.classList.contains("light-theme");
+  localStorage.setItem("theme", isLight ? "light" : "dark");
+  themeToggle?.setAttribute("aria-pressed", isLight);
+}
+
+themeToggle?.addEventListener("click", toggleTheme);
+themeToggle?.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    toggleTheme();
+  }
 });
 
 // Portfolio filtering
@@ -112,15 +121,20 @@ if (overlay && zoomImg && zoomLink) {
 
 // FAQ accordion
 document.querySelectorAll(".faq-question").forEach((btn) => {
+  btn.setAttribute("aria-expanded", "false");
   btn.addEventListener("click", () => {
     const item = btn.closest(".faq-item");
     const wasOpen = item.classList.contains("open");
     // Close all
-    document
-      .querySelectorAll(".faq-item")
-      .forEach((i) => i.classList.remove("open"));
+    document.querySelectorAll(".faq-item").forEach((i) => {
+      i.classList.remove("open");
+      i.querySelector(".faq-question")?.setAttribute("aria-expanded", "false");
+    });
     // Toggle clicked
-    if (!wasOpen) item.classList.add("open");
+    if (!wasOpen) {
+      item.classList.add("open");
+      btn.setAttribute("aria-expanded", "true");
+    }
   });
 });
 
