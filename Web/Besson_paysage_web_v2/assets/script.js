@@ -97,33 +97,63 @@ document.addEventListener("DOMContentLoaded", () => {
     updateParallax();
   }
 
-  /* ── Portfolio grid pagination ── */
-  const projectSlides = document.querySelectorAll(".project-slide");
-  const projectDots = document.querySelectorAll(".project-dot");
+  /* ── Portfolio grid filters + pagination ── */
+  const projectFilterBtns = document.querySelectorAll(".project-filter");
+  const projectImages = Array.from(document.querySelectorAll(".project-grid img"));
   const projectPagerBtns = document.querySelectorAll(".project-pager-btn");
+  const projectDotsContainer = document.querySelector(".project-dots");
+  const PROJECT_PAGE_SIZE = 12;
 
-  if (projectSlides.length > 1) {
+  if (projectImages.length) {
+    let currentFilter = "all";
     let currentPage = 0;
 
-    function showPage(page) {
-      currentPage = (page + projectSlides.length) % projectSlides.length;
-      projectSlides.forEach((s, i) =>
-        s.classList.toggle("active", i === currentPage),
-      );
-      projectDots.forEach((d, i) =>
-        d.classList.toggle("active", i === currentPage),
+    function filteredImages() {
+      return projectImages.filter(
+        (img) => currentFilter === "all" || img.dataset.category === currentFilter,
       );
     }
 
-    projectDots.forEach((dot) => {
-      dot.addEventListener("click", () => showPage(Number(dot.dataset.page)));
+    function renderProjectGrid() {
+      const filtered = filteredImages();
+      const totalPages = Math.max(1, Math.ceil(filtered.length / PROJECT_PAGE_SIZE));
+      currentPage = Math.min(currentPage, totalPages - 1);
+      const start = currentPage * PROJECT_PAGE_SIZE;
+      const visible = new Set(filtered.slice(start, start + PROJECT_PAGE_SIZE));
+
+      projectImages.forEach((img) => img.classList.toggle("is-hidden", !visible.has(img)));
+
+      projectDotsContainer.innerHTML = "";
+      for (let i = 0; i < totalPages; i++) {
+        const dot = document.createElement("button");
+        dot.className = "project-dot" + (i === currentPage ? " active" : "");
+        dot.setAttribute("aria-label", `Page ${i + 1}`);
+        dot.addEventListener("click", () => {
+          currentPage = i;
+          renderProjectGrid();
+        });
+        projectDotsContainer.appendChild(dot);
+      }
+    }
+
+    projectFilterBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        currentFilter = btn.dataset.filter;
+        currentPage = 0;
+        projectFilterBtns.forEach((b) => b.classList.toggle("active", b === btn));
+        renderProjectGrid();
+      });
     });
 
     projectPagerBtns.forEach((btn) => {
-      btn.addEventListener("click", () =>
-        showPage(currentPage + Number(btn.dataset.dir)),
-      );
+      btn.addEventListener("click", () => {
+        const totalPages = Math.max(1, Math.ceil(filteredImages().length / PROJECT_PAGE_SIZE));
+        currentPage = (currentPage + Number(btn.dataset.dir) + totalPages) % totalPages;
+        renderProjectGrid();
+      });
     });
+
+    renderProjectGrid();
   }
 
   /* ── Lightbox ── */
@@ -133,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (lightbox && lightboxImg) {
     document
-      .querySelectorAll(".project-grid img, .carousel-slide img")
+      .querySelectorAll(".project-grid img")
       .forEach((img) => {
         img.style.cursor = "zoom-in";
         img.addEventListener("click", () => {
@@ -161,64 +191,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* ── Carousel ── */
-  const track = document.querySelector(".carousel-track");
-  const slides = document.querySelectorAll(".carousel-slide");
-  const nextBtn = document.querySelector(".carousel-btn.next");
-  const prevBtn = document.querySelector(".carousel-btn.prev");
-  const carousel = document.querySelector(".carousel");
-  const counter = document.querySelector(".carousel-counter");
-
-  if (!track || !slides.length || !carousel) return;
-
-  let current = 0;
-  let startX = 0;
-  let autoTimer = null;
-  const TOTAL = slides.length;
-  const AUTO_DELAY = 4000;
-
-  // Précharger toutes les images
-  slides.forEach((slide) => {
-    const img = slide.querySelector("img");
-    if (img) { const p = new Image(); p.src = img.src; }
-  });
-
-  function goTo(index) {
-    current = (index + TOTAL) % TOTAL;
-    track.style.transform = `translateX(-${current * 100}%)`;
-    if (counter) counter.textContent = `${current + 1} / ${TOTAL}`;
-  }
-
-  function next() { goTo(current + 1); }
-  function prev() { goTo(current - 1); }
-
-  function startAuto() {
-    clearInterval(autoTimer);
-    autoTimer = setInterval(next, AUTO_DELAY);
-  }
-
-  function resetAuto() {
-    startAuto();
-  }
-
-  nextBtn?.addEventListener("click", () => { next(); resetAuto(); });
-  prevBtn?.addEventListener("click", () => { prev(); resetAuto(); });
-
-  // Swipe mobile
-  carousel.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-  }, { passive: true });
-
-  carousel.addEventListener("touchend", (e) => {
-    const diff = startX - e.changedTouches[0].clientX;
-    if (diff > 50) { next(); resetAuto(); }
-    if (diff < -50) { prev(); resetAuto(); }
-  }, { passive: true });
-
-  // Pause au hover
-  carousel.addEventListener("mouseenter", () => clearInterval(autoTimer));
-  carousel.addEventListener("mouseleave", startAuto);
-
-  goTo(0);
-  startAuto();
 });

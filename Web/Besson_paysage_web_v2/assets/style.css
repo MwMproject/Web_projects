@@ -424,7 +424,7 @@ textarea {
 .hero-media {
   position: absolute;
   inset: 0;
-  background: url("img/realisations/amenagement.jpg") center/cover no-repeat;
+  background: url("img/realisations/amenagement.webp") center/cover no-repeat;
   transform: scale(1.04);
 }
 
@@ -933,10 +933,43 @@ textarea {
   background: var(--white);
 }
 
+.project-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.project-filter {
+  border: 1px solid rgba(58, 82, 11, 0.18);
+  background: var(--white);
+  color: var(--green-dark);
+  font-family: var(--font);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 9px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.project-filter:hover {
+  transform: translateY(-2px);
+}
+
+.project-filter.active {
+  background: var(--green);
+  color: var(--white);
+  border-color: var(--green);
+}
+
 .project-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 14px;
   margin-bottom: 42px;
 }
@@ -944,7 +977,7 @@ textarea {
 .project-grid img {
   width: 100%;
   height: 100%;
-  min-height: 200px;
+  min-height: 220px;
   object-fit: cover;
   border-radius: 18px;
   box-shadow: 0 12px 28px rgba(28, 44, 18, 0.09);
@@ -954,27 +987,13 @@ textarea {
     box-shadow 0.35s ease;
 }
 
-.project-grid img:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-soft);
-}
-
-.project-grid img:nth-child(1) {
-  grid-row: 1 / 3;
-  min-height: 440px;
-}
-
-.project-grid img:nth-child(2),
-.project-grid img:nth-child(3) {
-  min-height: 210px;
-}
-
-.project-slide {
+.project-grid img.is-hidden {
   display: none;
 }
 
-.project-slide.active {
-  display: grid;
+.project-grid img:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-soft);
 }
 
 .project-pager {
@@ -1008,6 +1027,8 @@ textarea {
 
 .project-dots {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 8px;
 }
 
@@ -1079,109 +1100,6 @@ textarea {
 
 .lightbox-close:hover {
   background: rgba(255, 255, 255, 0.28);
-}
-
-.carousel {
-  position: relative;
-  overflow: hidden;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  background: var(--green-dark);
-}
-
-.carousel-track {
-  display: flex;
-  transition: transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-
-.carousel-slide {
-  min-width: 100%;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-}
-
-.carousel-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.6s ease;
-}
-
-.carousel-buttons {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 18px;
-  pointer-events: none;
-}
-
-.carousel-btn {
-  pointer-events: auto;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  background: rgba(255, 255, 255, 0.18);
-  color: var(--white);
-  backdrop-filter: blur(12px);
-  font-size: 2rem;
-  line-height: 1;
-  cursor: pointer;
-  transition:
-    background 0.25s ease,
-    transform 0.25s ease;
-}
-
-.carousel-btn:hover {
-  background: var(--green);
-  transform: scale(1.07);
-}
-
-.carousel-counter {
-  position: absolute;
-  bottom: 14px;
-  right: 18px;
-  background: rgba(0, 0, 0, 0.45);
-  color: #fff;
-  font-size: 0.82rem;
-  font-family: var(--font);
-  padding: 4px 10px;
-  border-radius: 20px;
-  backdrop-filter: blur(8px);
-  pointer-events: none;
-}
-
-.project-grid {
-  grid-auto-flow: dense;
-}
-
-.project-grid img:nth-child(2),
-.project-grid img:nth-child(5) {
-  border-radius: 18px;
-}
-
-.carousel {
-  border: 10px solid rgba(255, 255, 255, 0.92);
-}
-
-.carousel::after {
-  content: "Réalisations Besson Paysage";
-  position: absolute;
-  left: 22px;
-  bottom: 22px;
-  z-index: 4;
-  color: var(--white);
-  font-weight: 900;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  font-size: 0.78rem;
-  padding: 10px 14px;
-  border-radius: 999px;
-  background: rgba(20, 32, 10, 0.46);
-  backdrop-filter: blur(12px);
 }
 
 /* ========================== CTA ========================== */
@@ -1385,9 +1303,6 @@ textarea {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .project-grid img:nth-child(1) {
-    min-height: 300px;
-  }
 }
 
 @media (max-width: 820px) {
@@ -1486,14 +1401,12 @@ textarea {
     grid-template-columns: 1fr;
   }
 
-  .services-grid,
-  .project-grid {
+  .services-grid {
     grid-template-columns: 1fr 1fr;
   }
 
-  .project-grid img:nth-child(1) {
-    grid-row: span 1;
-    min-height: 220px;
+  .project-grid {
+    grid-template-columns: 1fr 1fr;
   }
 
   .cta-inner {
@@ -1564,16 +1477,8 @@ textarea {
     min-height: 220px;
   }
 
-  .project-grid img:nth-child(1) {
-    min-height: 220px;
-  }
-
   .form-row {
     grid-template-columns: 1fr;
-  }
-
-  .carousel-slide {
-    aspect-ratio: 4 / 3;
   }
 
   .hero-proof {
@@ -1584,9 +1489,5 @@ textarea {
     width: 100%;
 
     justify-content: center;
-  }
-
-  .carousel::after {
-    display: none;
   }
 }
