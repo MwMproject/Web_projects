@@ -608,7 +608,7 @@ img {
   display: flex;
   align-items: baseline;
   gap: 0.3rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.15rem;
 }
 .offer-price .price {
   font-size: 2.2rem;
@@ -619,6 +619,21 @@ img {
 .offer-price .period {
   color: var(--muted);
   font-size: 0.9rem;
+}
+
+.offer-deposit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text);
+  background: var(--accent-soft);
+  border: 1px solid var(--border-hover);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.35rem 0.85rem;
+  margin-bottom: 1.75rem;
+  width: fit-content;
 }
 
 .offer-features {
