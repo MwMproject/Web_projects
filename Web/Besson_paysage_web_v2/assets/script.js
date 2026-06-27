@@ -4,6 +4,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const burger = document.querySelector(".burger");
   const navLinks = document.querySelectorAll(".nav-links a");
 
+  /* ── Avis Google : boucle infinie ── */
+  const reviewsTrack = document.querySelector(".reviews-track");
+  if (reviewsTrack) {
+    reviewsTrack
+      .querySelectorAll(".review-card")
+      .forEach((card) => reviewsTrack.appendChild(card.cloneNode(true)));
+  }
+
   /* ── Header scroll ── */
   const onScroll = () =>
     header?.classList.toggle("scrolled", window.scrollY > 24);

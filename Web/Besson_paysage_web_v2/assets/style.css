@@ -928,6 +928,106 @@ textarea {
   margin-bottom: 12px;
 }
 
+/* ========================== Avis Google ========================== */
+.reviews-section {
+  background: var(--cream);
+  padding-bottom: 70px;
+}
+
+.reviews-stars {
+  color: #f5a623;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  margin-right: 10px;
+}
+
+.reviews-marquee {
+  overflow: hidden;
+  margin-top: 10px;
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    black 6%,
+    black 94%,
+    transparent
+  );
+}
+
+.reviews-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: reviews-scroll 38s linear infinite;
+}
+
+.reviews-marquee:hover .reviews-track {
+  animation-play-state: paused;
+}
+
+@keyframes reviews-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.review-card {
+  flex: 0 0 280px;
+  background: var(--white);
+  border-radius: var(--radius-sm);
+  padding: 24px;
+  box-shadow: 0 12px 28px rgba(28, 44, 18, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.review-stars {
+  color: #f5a623;
+  font-size: 1rem;
+  letter-spacing: 2px;
+}
+
+.review-text {
+  color: var(--text);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.review-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.review-tags span {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  background: rgba(110, 124, 42, 0.12);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.review-author {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.review-author strong {
+  color: var(--green-dark);
+  font-size: 0.92rem;
+}
+
+.review-author span {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
 /* ========================== Réalisations + carrousel ========================== */
 .realisations {
   background: var(--white);
