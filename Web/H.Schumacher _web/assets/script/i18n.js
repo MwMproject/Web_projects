@@ -5,7 +5,7 @@
   const DICT = {
     fr: {
       'nav.accueil': 'Accueil',
-      'nav.prestation': 'Prestation',
+      'nav.prestation': 'Compétences',
       'nav.references': 'Références',
       'nav.bureau': 'Bureau',
       'nav.actualites': 'Actualités',
@@ -14,10 +14,14 @@
 
       'hero.title': 'Pour une qualité d’eau maitrisée',
 
-      'home.prestations.kicker': 'Expertise',
-      'home.prestations.title': 'Nos prestations & compétences',
+      'home.prestations.kicker': 'Domaines de',
+      'home.prestations.title': 'Compétences',
       'home.prestations.text': 'De la conception à la réalisation, nous couvrons la technique sanitaire, les fluides spéciaux, le traitement des eaux, les gaz médicaux, les piscines et les ouvrages aquatiques.',
-      'home.prestations.btn': 'Voir nos prestations',
+      'home.prestations.btn': 'Découvrir nos compétences',
+      'home.competences.icon1': 'Piscine publique',
+      'home.competences.icon2': 'Installations sanitaires',
+      'home.competences.icon3': 'Gaz médicaux',
+      'home.competences.icon4': 'Expertise technique',
 
       'home.actus.kicker': 'Actualités',
       'home.actus.title': 'Dernières nouvelles du bureau',
@@ -52,7 +56,7 @@
     },
     de: {
       'nav.accueil': 'Startseite',
-      'nav.prestation': 'Leistungen',
+      'nav.prestation': 'Kompetenzen',
       'nav.references': 'Referenzen',
       'nav.bureau': 'Büro',
       'nav.actualites': 'Aktuelles',
@@ -61,10 +65,14 @@
 
       'hero.title': 'Für eine kontrollierte Wasserqualität',
 
-      'home.prestations.kicker': 'Expertise',
-      'home.prestations.title': 'Unsere Leistungen & Kompetenzen',
+      'home.prestations.kicker': 'Bereiche der',
+      'home.prestations.title': 'Kompetenz',
       'home.prestations.text': 'Von der Planung bis zur Umsetzung decken wir Sanitärtechnik, Spezialflüssigkeiten, Wasseraufbereitung, medizinische Gase, Schwimmbäder und Wasserbauten ab.',
-      'home.prestations.btn': 'Unsere Leistungen ansehen',
+      'home.prestations.btn': 'Unsere Kompetenzen entdecken',
+      'home.competences.icon1': 'Öffentliches Schwimmbad',
+      'home.competences.icon2': 'Sanitäranlagen',
+      'home.competences.icon3': 'Medizinische Gase',
+      'home.competences.icon4': 'Technische Expertise',
 
       'home.actus.kicker': 'Aktuelles',
       'home.actus.title': 'Neuigkeiten aus dem Büro',
@@ -99,7 +107,7 @@
     },
     en: {
       'nav.accueil': 'Home',
-      'nav.prestation': 'Services',
+      'nav.prestation': 'Expertise',
       'nav.references': 'References',
       'nav.bureau': 'About us',
       'nav.actualites': 'News',
@@ -108,10 +116,14 @@
 
       'hero.title': 'For controlled water quality',
 
-      'home.prestations.kicker': 'Expertise',
-      'home.prestations.title': 'Our services & expertise',
+      'home.prestations.kicker': 'Areas of',
+      'home.prestations.title': 'expertise',
       'home.prestations.text': 'From design to completion, we cover sanitary engineering, specialty fluids, water treatment, medical gases, swimming pools and aquatic structures.',
-      'home.prestations.btn': 'View our services',
+      'home.prestations.btn': 'Discover our expertise',
+      'home.competences.icon1': 'Public swimming pools',
+      'home.competences.icon2': 'Sanitary installations',
+      'home.competences.icon3': 'Medical gases',
+      'home.competences.icon4': 'Technical expertise',
 
       'home.actus.kicker': 'News',
       'home.actus.title': 'Latest news from the firm',

@@ -26,8 +26,8 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="assets/style.css" />
-    <link rel="stylesheet" href="assets/actualites.css" />
+    <link rel="stylesheet" href="assets/style/style.css" />
+    <link rel="stylesheet" href="assets/style/actualites.css" />
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -104,7 +104,7 @@
           <nav class="nav" id="nav">
             <ul class="nav-list">
               <li><a href="index.html" class="active" data-i18n="nav.accueil">Accueil</a></li>
-              <li><a href="presentation.html" data-i18n="nav.prestation">Prestation</a></li>
+              <li><a href="competences.html" data-i18n="nav.prestation">Compétences</a></li>
               <li><a href="references.html" data-i18n="nav.references">Références</a></li>
               <li><a href="apropos.html" data-i18n="nav.bureau">Bureau</a></li>
               <li><a href="actualites.html" data-i18n="nav.actualites">Actualités</a></li>
@@ -149,16 +149,34 @@
           </div>
         </section>
 
-        <!-- PRESTATIONS -->
+        <!-- COMPÉTENCES -->
         <section class="home-prestations section">
           <div class="container">
             <div class="home-prestations-inner reveal">
-              <p class="section-kicker" data-i18n="home.prestations.kicker">Expertise</p>
-              <h2 data-i18n="home.prestations.title">Nos prestations &amp; compétences</h2>
+              <p class="section-kicker" data-i18n="home.prestations.kicker">Domaines de</p>
+              <h2 data-i18n="home.prestations.title">Compétences</h2>
               <p data-i18n="home.prestations.text">De la conception à la réalisation, nous couvrons la technique sanitaire, les fluides spéciaux, le traitement des eaux, les gaz médicaux, les piscines et les ouvrages aquatiques.</p>
             </div>
+            <div class="competences-icons reveal">
+              <div class="competence-icon-card">
+                <img src="assets/img/piscines_publique.png" alt="Piscine publique" />
+                <span data-i18n="home.competences.icon1">Piscine publique</span>
+              </div>
+              <div class="competence-icon-card">
+                <img src="assets/img/installations_sanitaires.png" alt="Installations sanitaires" />
+                <span data-i18n="home.competences.icon2">Installations sanitaires</span>
+              </div>
+              <div class="competence-icon-card">
+                <img src="assets/img/gaz_medicaux.png" alt="Gaz médicaux" />
+                <span data-i18n="home.competences.icon3">Gaz médicaux</span>
+              </div>
+              <div class="competence-icon-card">
+                <img src="assets/img/expertise_technique.png" alt="Expertise technique" />
+                <span data-i18n="home.competences.icon4">Expertise technique</span>
+              </div>
+            </div>
             <div class="section-cta reveal">
-              <a href="presentation.html" class="btn btn-outline" data-i18n="home.prestations.btn">Voir nos prestations</a>
+              <a href="competences.html" class="btn btn-outline" data-i18n="home.prestations.btn">Découvrir nos compétences</a>
             </div>
           </div>
         </section>
@@ -307,7 +325,7 @@
           <div class="footer-column">
             <h3 data-i18n="footer.nav.title">Navigation</h3>
             <ul class="footer-links">
-              <li><a href="presentation.html" data-i18n="nav.prestation">Prestation</a></li>
+              <li><a href="competences.html" data-i18n="nav.prestation">Compétences</a></li>
               <li><a href="references.html" data-i18n="nav.references">Références</a></li>
               <li><a href="actualites.html" data-i18n="nav.actualites">Actualités</a></li>
               <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
@@ -323,8 +341,8 @@
       <button id="toTop" class="to-top" aria-label="Remonter en haut">↑</button>
     </div>
 
-    <script src="assets/i18n.js"></script>
-    <script src="assets/script.js"></script>
-    <script src="assets/bubbles.js"></script>
+    <script src="assets/script/i18n.js"></script>
+    <script src="assets/script/script.js"></script>
+    <script src="assets/script/bubbles.js"></script>
   </body>
 </html>

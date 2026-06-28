@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════
-   prestation.css — Page Prestation
+   competences.css — Page Compétences
    ══════════════════════════════════════ */
 
 /* ── HERO ── */
@@ -40,42 +40,69 @@
 /* ── GRILLE DE CARTES ── */
 .prestation-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1140px;
+  margin: 0 auto;
+  align-items: start;
 }
 .prestation-card {
   background: #0d1a2e;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 14px;
-  padding: 28px 16px 20px;
+  border-radius: var(--radius);
+  padding: 24px 16px 22px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 14px;
   text-align: center;
+  box-shadow: var(--shadow-soft);
   transition:
     box-shadow 0.2s,
     transform 0.2s;
 }
 .prestation-card:hover {
-  box-shadow: 0 6px 20px rgba(12, 84, 237, 0.1);
-  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+  transform: translateY(-4px);
 }
 .prestation-card-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 10px;
-  background: rgba(12, 84, 237, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
+  max-width: 96px;
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
+  object-fit: cover;
   flex-shrink: 0;
 }
 .prestation-card span {
-  font-size: 0.85rem;
-  font-weight: 500;
+  font-size: 0.95rem;
+  font-weight: 700;
   color: var(--text);
   line-height: 1.4;
+}
+.prestation-card-list {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-top: 4px;
+}
+.prestation-card-list li {
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.5;
+  padding-left: 14px;
+  position: relative;
+}
+.prestation-card-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--secondary);
 }
 
 /* ── CTA ── */
@@ -85,14 +112,16 @@
 }
 
 /* ── RESPONSIVE ── */
-@media (max-width: 1100px) {
-  .prestation-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .prestation-grid {
     grid-template-columns: repeat(2, 1fr);
+    max-width: 600px;
+  }
+}
+@media (max-width: 600px) {
+  .prestation-grid {
+    grid-template-columns: 1fr;
+    max-width: 380px;
   }
   .prestation-hero h1 {
     font-size: 2rem;
