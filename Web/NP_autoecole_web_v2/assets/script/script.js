@@ -58,6 +58,96 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && modal?.classList.contains("active")) closeModal();
 });
 
+// DATES SENSIBILISATION
+function getTodayStart() {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return today;
+}
+
+function parseCourseDate(value) {
+  if (!value) return null;
+  const date = new Date(`${value}T12:00:00`);
+  return Number.isNaN(date.getTime()) ? null : date;
+}
+
+function formatCourseDate(value) {
+  const date = parseCourseDate(value);
+  if (!date) return "";
+
+  return new Intl.DateTimeFormat("fr-CH", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(date);
+}
+
+function getCourseLabel(course) {
+  return course.label || formatCourseDate(course.date);
+}
+
+function renderSensibilisationDates() {
+  const containers = document.querySelectorAll("[data-sensi-dates]");
+  const sourceDates = Array.isArray(window.sensibilisationDates)
+    ? window.sensibilisationDates
+    : [];
+  const today = getTodayStart();
+  const upcomingDates = sourceDates
+    .filter((course) => course && typeof course === "object")
+    .map((course) => ({
+      ...course,
+      parsedDate: parseCourseDate(course.date),
+      parsedEndDate: parseCourseDate(course.endDate || course.date),
+    }))
+    .filter((course) => course.parsedDate && course.parsedEndDate >= today)
+    .sort((a, b) => a.parsedDate - b.parsedDate);
+
+  containers.forEach((container) => {
+    container.innerHTML = "";
+
+    const title = document.createElement("h4");
+    title.textContent = "Prochaines dates";
+    container.append(title);
+
+    if (!upcomingDates.length) {
+      const empty = document.createElement("p");
+      empty.className = "sensi-dates-empty";
+      empty.textContent = "Dates à venir prochainement.";
+      container.append(empty);
+      return;
+    }
+
+    const list = document.createElement("ul");
+    list.className = "sensi-dates-list";
+
+    upcomingDates.forEach((course) => {
+      const item = document.createElement("li");
+      const date = document.createElement("strong");
+      date.textContent = getCourseLabel(course);
+      item.append(date);
+
+      if (course.time) {
+        const time = document.createElement("span");
+        time.textContent = course.time;
+        item.append(time);
+      }
+
+      if (course.note) {
+        const note = document.createElement("small");
+        note.textContent = course.note;
+        item.append(note);
+      }
+
+      list.append(item);
+    });
+
+    container.append(list);
+  });
+}
+
+renderSensibilisationDates();
+
 // AVIS GOOGLE CAROUSEL
 const reviewCards = document.querySelectorAll(".review-card");
 const reviewPrev = document.querySelector(".review-prev");

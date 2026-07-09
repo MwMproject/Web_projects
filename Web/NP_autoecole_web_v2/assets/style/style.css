@@ -687,6 +687,69 @@ img {
   margin-bottom: 8px;
 }
 
+.sensi-dates-block {
+  margin-top: 22px;
+  padding: 18px;
+  border: 1px solid rgba(181, 116, 28, 0.22);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.66);
+}
+
+.sensi-dates-block h4 {
+  margin: 0 0 12px;
+  color: var(--brand-dark);
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.sensi-dates-empty {
+  margin: 0;
+  color: var(--muted);
+}
+
+.sensi-dates-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sensi-dates-list li {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  color: #352c23;
+  background: #fff;
+  border: 1px solid rgba(181, 116, 28, 0.14);
+}
+
+.sensi-dates-list strong {
+  color: var(--text);
+  font-weight: 800;
+  text-transform: capitalize;
+}
+
+.sensi-dates-list span {
+  color: var(--brand-dark);
+  font-weight: 750;
+}
+
+.sensi-dates-list small {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+@media (max-width: 560px) {
+  .sensi-dates-list {
+    grid-template-columns: 1fr;
+  }
+}
+
 .service-book {
   display: inline-flex;
   align-items: center;
