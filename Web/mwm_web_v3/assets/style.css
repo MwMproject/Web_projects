@@ -1438,44 +1438,44 @@ img {
 /* ==========================================================
    RESPONSIVE
    ========================================================== */
+.back-to-top {
+  position: fixed;
+  right: 1.5rem;
+  bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+  z-index: 90;
+  width: 48px;
+  height: 48px;
+  display: grid !important;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--border-hover);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--bg-alt) 92%, transparent);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(12px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    visibility 0.25s ease;
+}
+
+.back-to-top.back-to-top-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.back-to-top img {
+  width: 22px;
+  height: 22px;
+}
+
 @media (max-width: 900px) {
-  .back-to-top {
-    position: fixed;
-    right: 1rem;
-    bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
-    z-index: 90;
-    width: 48px;
-    height: 48px;
-    display: grid !important;
-    place-items: center;
-    padding: 0;
-    border: 1px solid var(--border-hover);
-    border-radius: 50%;
-    background: color-mix(in srgb, var(--bg-alt) 92%, transparent);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
-    backdrop-filter: blur(12px);
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transform: translateY(12px);
-    transition:
-      opacity 0.25s ease,
-      transform 0.25s ease,
-      visibility 0.25s ease;
-  }
-
-  .back-to-top.back-to-top-visible {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transform: translateY(0);
-  }
-
-  .back-to-top img {
-    width: 22px;
-    height: 22px;
-  }
-
   .nav,
   .theme-toggle {
     display: none;
