@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mwm-project.ch/sitemap.xml

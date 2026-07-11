@@ -1,0 +1,159 @@
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  color: white;
+  overflow: hidden;
+  background: url("assets/img/background-img.png") center/cover no-repeat fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ----- Conteneur du jeu ----- */
+#game-container {
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+
+canvas {
+  background: rgba(0, 0, 0, 0.75);
+  image-rendering: pixelated;
+  background-size: contain;
+
+  width: 85vw;
+  max-width: 500px;
+  min-width: 260px;
+  height: 85vw;
+  max-height: 500px;
+  min-height: 260px;
+
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+}
+
+#ui {
+  margin-top: 10px;
+  padding: 10px 15px;
+  font-size: 20px;
+  text-shadow: 0 0 8px #000;
+  background-color: #292929;
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+}
+
+/* ----- Overlay de démarrage ----- */
+#start-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+  text-align: center;
+}
+
+#start-overlay.hidden {
+  display: none;
+}
+
+#start-overlay h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  text-shadow: 0 0 15px #000;
+}
+
+#start-btn {
+  padding: 15px 35px;
+  font-size: 22px;
+  border-radius: 10px;
+  border: none;
+  background: #4caf50;
+  cursor: pointer;
+  color: white;
+  text-shadow: 0 0 8px black;
+  box-shadow: 0 0 15px black;
+  margin-bottom: 10px;
+}
+
+#hint-text {
+  font-size: 16px;
+  opacity: 0.9;
+  text-shadow: 0 0 8px #000;
+}
+
+/* ----- Joystick ----- */
+#joystick {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 180px;
+  z-index: 80;
+  display: none; /* masqué par défaut, affiché en JS sur appareils tactiles */
+}
+
+/* --------------- RESPONSIVE   ----------------- */
+/* ----------- < 600px ----------- */
+@media (max-width: 600px) {
+  canvas {
+    width: 75vw;
+    height: 75vw;
+    min-width: 220px;
+    min-height: 220px;
+  }
+
+  #start-overlay h1 {
+    font-size: 36px;
+  }
+
+  #hint-text {
+    font-size: 14px;
+  }
+
+  #ui {
+    font-size: 16px;
+    padding: 8px 10px;
+  }
+}
+
+/* ----------- < 700px ----------- */
+@media (max-height: 700px) {
+  canvas {
+    width: 60vw;
+    height: 60vw;
+    min-width: 200px;
+    min-height: 200px;
+  }
+
+  #start-overlay h1 {
+    font-size: 32px;
+  }
+
+  #hint-text {
+    font-size: 14px;
+  }
+}
+
+/* ----------- 600px → 1024px ----------- */
+@media (min-width: 600px) and (max-width: 1024px) {
+  canvas {
+    width: 70vw;
+    height: 70vw;
+    max-width: 500px;
+    max-height: 500px;
+  }
+
+  #start-overlay h1 {
+    font-size: 42px;
+  }
+
+  #ui {
+    font-size: 20px;
+  }
+}
