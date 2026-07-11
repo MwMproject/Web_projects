@@ -23,6 +23,11 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener("click", (e) => {
     const id = link.getAttribute("href").slice(1);
     if (!id) return;
+    if (id === "top") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
     const target = document.getElementById(id);
     if (!target) return;
     e.preventDefault();
@@ -34,6 +39,21 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
     burger?.setAttribute("aria-expanded", "false");
   });
 });
+
+// Floating back-to-top button on mobile
+const backToTopLinks = document.querySelectorAll('a[href="#top"]');
+const updateBackToTop = () => {
+  const shouldShow = window.scrollY > 120;
+  backToTopLinks.forEach((link) => {
+    link.classList.add("back-to-top");
+    link.classList.toggle("back-to-top-visible", shouldShow);
+  });
+};
+
+if (backToTopLinks.length) {
+  updateBackToTop();
+  window.addEventListener("scroll", updateBackToTop, { passive: true });
+}
 
 // Reveal on scroll
 const revealObserver = new IntersectionObserver(
