@@ -1504,6 +1504,12 @@ img {
   }
 }
 
+@media (max-width: 700px) {
+  .comparison-section {
+    display: none;
+  }
+}
+
 @media (max-width: 600px) {
   .hero {
     min-height: auto;
