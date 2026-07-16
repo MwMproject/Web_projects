@@ -12,7 +12,7 @@
     <link rel="canonical" href="https://www.besson-paysage.ch/" />
     <meta
       property="og:title"
-      content="Besson Paysage – Paysagiste dans le canton de Vaud"
+      content="Besson Paysage | Paysagiste dans le canton de Vaud"
     />
     <meta
       property="og:description"
@@ -33,6 +33,57 @@
       href="assets/img/realisations/amenagement-fond.webp"
     />
     <link rel="stylesheet" href="assets/style.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "HomeAndConstructionBusiness",
+        "name": "Besson Paysage",
+        "image": "https://www.besson-paysage.ch/assets/img/realisations/amenagement-fond.webp",
+        "logo": "https://www.besson-paysage.ch/assets/img/logo/logo-couleur.png",
+        "url": "https://www.besson-paysage.ch/",
+        "telephone": "+41799003626",
+        "email": "bessonpaysage@outlook.com",
+        "foundingDate": "2018",
+        "founder": {
+          "@type": "Person",
+          "name": "Adrien Besson"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Chemin du Stand 4",
+          "postalCode": "1407",
+          "addressLocality": "Bioley-Magnoux",
+          "addressRegion": "Vaud",
+          "addressCountry": "CH"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 46.7274137,
+          "longitude": 6.7106336
+        },
+        "areaServed": {
+          "@type": "AdministrativeArea",
+          "name": "Canton de Vaud"
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "08:00",
+          "closes": "18:00"
+        },
+        "sameAs": [
+          "https://www.instagram.com/besson_paysage/",
+          "https://www.facebook.com/people/Besson-Paysage/100063940089501/",
+          "https://www.google.com/maps/place/Besson+Paysage/@46.7274136,6.7057627,1066m/data=!3m2!1e3!4b1!4m6!3m5!1s0x478dd18591c67ded:0xcf6ebcf39534a6d3!8m2!3d46.7274137!4d6.7106336!16s%2Fg%2F11h3804ynt?entry=ttu"
+        ]
+      }
+    </script>
   </head>
   <body>
     <header class="site-header" data-header>
@@ -56,6 +107,7 @@
           <a href="#accueil">Accueil</a>
           <a href="#expertise">À propos</a>
           <a href="#entretien">Entretien</a>
+          <a href="#amenagements">Aménagements</a>
           <a href="#services">Services</a>
           <a href="#avis">Avis</a>
           <a href="#realisations">Réalisations</a>
@@ -302,6 +354,18 @@
               espace de vie, agréable en toute saison.
             </p>
           </div>
+        </div>
+      </section>
+
+      <section class="cta-band" aria-labelledby="titre-cta">
+        <div class="container cta-inner reveal">
+          <div>
+            <p class="eyebrow">Votre jardin mérite une attention experte</p>
+            <h2 id="titre-cta">
+              Un projet d’extérieur ? Parlons-en simplement.
+            </h2>
+          </div>
+          <a href="#contact" class="btn btn-primary">Nous contacter</a>
         </div>
       </section>
 
@@ -696,18 +760,6 @@
         </div>
       </section>
 
-      <section class="cta-band" aria-labelledby="titre-cta">
-        <div class="container cta-inner reveal">
-          <div>
-            <p class="eyebrow">Votre jardin mérite une attention experte</p>
-            <h2 id="titre-cta">
-              Un projet d’extérieur ? Parlons-en simplement.
-            </h2>
-          </div>
-          <a href="#contact" class="btn btn-primary">Nous contacter</a>
-        </div>
-      </section>
-
       <section
         id="contact"
         class="section contact"
@@ -721,13 +773,13 @@
               Décrivez votre besoin et nous revenons vers vous pour échanger sur
               votre extérieur.
             </p>
-            <div class="contact-links">
+            <address class="contact-links">
               <a href="tel:+41799003626">079 900 36 26</a>
               <a href="mailto:bessonpaysage@outlook.com"
                 >bessonpaysage@outlook.com</a
               >
               <span>Chemin du Stand 4 · 1407 Bioley-Magnoux</span>
-            </div>
+            </address>
             <div class="trust-list" aria-label="Engagements">
               <span>Réponse rapide</span>
               <span>Conseils personnalisés</span>

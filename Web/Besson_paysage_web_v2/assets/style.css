@@ -1285,6 +1285,7 @@ textarea {
   display: grid;
   gap: 12px;
   margin-top: 30px;
+  font-style: normal;
 }
 
 .contact-links a,
@@ -1538,6 +1539,11 @@ textarea {
   .story-gallery {
     position: relative;
     top: auto;
+  }
+
+  .story-gallery .image-card {
+    flex: none;
+    aspect-ratio: 4 / 3;
   }
 
   .story-grid {
