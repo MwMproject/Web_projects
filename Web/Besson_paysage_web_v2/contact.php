@@ -19,6 +19,16 @@ if (!empty($_POST['website'])) {
   exit;
 }
 
+// ================= DÉLAI MINIMUM ANTI-SPAM =================
+// Un humain met toujours plus de 3s entre le chargement du formulaire
+// et l'envoi ; un bot le remplit quasi instantanément.
+$formTs = (int) ($_POST['ts'] ?? 0);
+$elapsedMs = $formTs > 0 ? (round(microtime(true) * 1000) - $formTs) : 0;
+if ($formTs <= 0 || $elapsedMs < 3000) {
+  header('Location: /thanks.html');
+  exit;
+}
+
 // ================= DONNÉES FORMULAIRE =================
 $name    = trim($_POST['name'] ?? '');
 $email   = trim($_POST['email'] ?? '');
@@ -32,6 +42,14 @@ if (
   !filter_var($email, FILTER_VALIDATE_EMAIL)
 ) {
   header('Location: /error.html');
+  exit;
+}
+
+// ================= BLOCAGE LIENS (spam) =================
+// Les vraies demandes de jardinage ne contiennent jamais de lien ;
+// le spam quasi toujours (backlinks, promos, etc.).
+if (preg_match('#https?://#i', $name . ' ' . $message)) {
+  header('Location: /thanks.html');
   exit;
 }
 

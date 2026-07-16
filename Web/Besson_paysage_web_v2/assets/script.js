@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
+  /* ── Anti-spam : horodatage de chargement du formulaire ── */
+  const formTs = document.getElementById("form-ts");
+  if (formTs) formTs.value = Date.now();
+
   const header = document.querySelector("[data-header]");
   const nav = document.querySelector(".nav");
   const burger = document.querySelector(".burger");
