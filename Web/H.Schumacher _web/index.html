@@ -27,7 +27,6 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/style/style.css" />
-    <link rel="stylesheet" href="assets/style/actualites.css" />
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -152,129 +151,47 @@
         <!-- COMPÉTENCES -->
         <section class="home-prestations section">
           <div class="container">
-            <div class="home-prestations-inner reveal">
-              <p class="section-kicker" data-i18n="home.prestations.kicker">Domaines de</p>
-              <h2 data-i18n="home.prestations.title">Compétences</h2>
-              <p data-i18n="home.prestations.text">De la conception à la réalisation, nous couvrons la technique sanitaire, les fluides spéciaux, le traitement des eaux, les gaz médicaux, les piscines et les ouvrages aquatiques.</p>
-            </div>
-            <div class="competences-icons reveal">
-              <div class="competence-icon-card">
-                <img src="assets/img/piscines_publique.png" alt="Piscine publique" />
-                <span data-i18n="home.competences.icon1">Piscine publique</span>
+            <div class="competence-showcase reveal" id="competenceShowcase">
+              <div class="competence-feature">
+                <div class="competence-copy" aria-live="polite">
+                  <p class="section-kicker">Nos compétences</p>
+                  <h2 id="competenceTitle">Sanitaire</h2>
+                  <p id="competenceDescription">Conception et réalisation d’installations sanitaires performantes, de la distribution à la gestion durable de l’eau.</p>
+                  <ul id="competenceList">
+                    <li>Distribution et évacuation</li>
+                    <li>Gestion et revalorisation des eaux météorologiques</li>
+                    <li>STEP</li>
+                    <li>Pisciculture</li>
+                  </ul>
+                  <a href="competences.html" class="competence-link">Découvrir cette compétence <span aria-hidden="true">→</span></a>
+                </div>
+                <div class="competence-visual">
+                  <img id="competenceMainImage" src="assets/img/competences/competence-sanitaire.webp" alt="Installations sanitaires" />
+                </div>
               </div>
-              <div class="competence-icon-card">
-                <img src="assets/img/installations_sanitaires.png" alt="Installations sanitaires" />
-                <span data-i18n="home.competences.icon2">Installations sanitaires</span>
-              </div>
-              <div class="competence-icon-card">
-                <img src="assets/img/gaz_medicaux.png" alt="Gaz médicaux" />
-                <span data-i18n="home.competences.icon3">Gaz médicaux</span>
-              </div>
-              <div class="competence-icon-card">
-                <img src="assets/img/expertise_technique.png" alt="Expertise technique" />
-                <span data-i18n="home.competences.icon4">Expertise technique</span>
-              </div>
-            </div>
-            <div class="section-cta reveal">
-              <a href="competences.html" class="btn btn-outline" data-i18n="home.prestations.btn">Découvrir nos compétences</a>
-            </div>
-          </div>
-        </section>
 
-        <!-- ACTUALITÉS -->
-        <section class="home-actus section">
-          <div class="container">
-            <div class="section-heading reveal">
-              <p class="section-kicker" data-i18n="home.actus.kicker">Actualités</p>
-              <h2 data-i18n="home.actus.title">Dernières nouvelles du bureau</h2>
-            </div>
-            <div class="cards-grid references-grid">
-              <article class="reference-card reveal">
-                <div class="card-image">
-                  <img src="assets/img/CHUV_BOPC.jpg" alt="Chantier CHUV" />
-                </div>
-                <div class="card-body">
-                  <span class="tag" data-i18n="home.actus.card1.tag">Santé</span>
-                  <h3 data-i18n="home.actus.card1.title">Extension du bloc opératoire — CHUV, Lausanne</h3>
-                  <p data-i18n="home.actus.card1.text">Janvier 2026 — Démarrage des études d’exécution pour la modernisation de 18 salles chirurgicales.</p>
-                  <a href="actualites.html" class="card-link" data-i18n="home.actus.link">Lire la suite</a>
-                </div>
-              </article>
-              <article class="reference-card reveal">
-                <div class="card-image">
-                  <img src="assets/img/AQUATIS.jpg" alt="Chantier Aquatis" />
-                </div>
-                <div class="card-body">
-                  <span class="tag" data-i18n="home.actus.card2.tag">Aquatique</span>
-                  <h3 data-i18n="home.actus.card2.title">Nouveau système de filtration — Aquatis, Lausanne</h3>
-                  <p data-i18n="home.actus.card2.text">Décembre 2025 — Mise en service du nouveau traitement biologique pour les bassins tropicaux.</p>
-                  <a href="actualites.html" class="card-link" data-i18n="home.actus.link">Lire la suite</a>
-                </div>
-              </article>
-              <article class="reference-card reveal">
-                <div class="card-image">
-                  <img src="assets/img/PISC_MEL.jpg" alt="Piscine des Mélèzes" />
-                </div>
-                <div class="card-body">
-                  <span class="tag" data-i18n="home.actus.card3.tag">Sport</span>
-                  <h3 data-i18n="home.actus.card3.title">Rénovation piscine des Mélèzes — Phase 2</h3>
-                  <p data-i18n="home.actus.card3.text">Novembre 2025 — Réception des travaux d’assainissement du bassin olympique et de la fosse plongeoir.</p>
-                  <a href="actualites.html" class="card-link" data-i18n="home.actus.link">Lire la suite</a>
-                </div>
-              </article>
-            </div>
-            <div class="section-cta reveal">
-              <a href="actualites.html" class="btn btn-outline" data-i18n="home.actus.btn">Toutes les actualités</a>
-            </div>
-          </div>
-        </section>
-
-        <!-- RÉFÉRENCES -->
-        <section class="home-refs section">
-          <div class="container">
-            <div class="section-heading reveal">
-              <p class="section-kicker" data-i18n="home.refs.kicker">Références</p>
-              <h2 data-i18n="home.refs.title">Quelques projets représentatifs</h2>
-            </div>
-            <div class="refs-carousel">
-              <div class="refs-track" id="refsTrack">
-                <article class="reference-card reveal">
-                  <div class="card-image">
-                    <img src="assets/img/AQUATIS.jpg" alt="Projet Aquatis" />
-                  </div>
-                  <div class="card-body">
-                    <span class="tag" data-i18n="home.refs.card1.tag">Loisirs / Aquarium</span>
-                    <h3 data-i18n="home.refs.card1.title">Aquatis 2002 – 2017</h3>
-                    <p data-i18n="home.refs.card1.text">Conception des aquariums, traitement des eaux, filtration mécanique et biologique, fontaine décorative et miroir d’eau extérieur.</p>
-                    <a href="references.html" class="card-link" data-i18n="home.refs.link">Voir la fiche projet</a>
-                  </div>
-                </article>
-                <article class="reference-card reveal">
-                  <div class="card-image">
-                    <img src="assets/img/PISC_MEL.jpg" alt="Piscine des Mélèzes" />
-                  </div>
-                  <div class="card-body">
-                    <span class="tag" data-i18n="home.refs.card2.tag">Sport / Piscine</span>
-                    <h3 data-i18n="home.refs.card2.title">Piscine des Mélèzes</h3>
-                    <p data-i18n="home.refs.card2.text">Assainissement complet avec cuvelage inox, nage à contre-courant et nouveau local technique de traitement d’eau.</p>
-                    <a href="references.html" class="card-link" data-i18n="home.refs.link">Voir la fiche projet</a>
-                  </div>
-                </article>
-                <article class="reference-card reveal">
-                  <div class="card-image">
-                    <img src="assets/img/CHUV_BOPC.jpg" alt="BOPC CHUV" />
-                  </div>
-                  <div class="card-body">
-                    <span class="tag" data-i18n="home.refs.card3.tag">Santé / Gaz médicaux</span>
-                    <h3 data-i18n="home.refs.card3.title">BOPC — CHUV</h3>
-                    <p data-i18n="home.refs.card3.text">Réaménagement et modernisation complète de 18 salles chirurgicales dans le plus grand bloc opératoire centralisé de Suisse.</p>
-                    <a href="references.html" class="card-link" data-i18n="home.refs.link">Voir la fiche projet</a>
-                  </div>
-                </article>
+              <div class="competence-thumbnails" role="tablist" aria-label="Choisir une compétence">
+                <button class="competence-thumb active" type="button" role="tab" aria-selected="true" data-competence="sanitaire">
+                  <img src="assets/img/competences/competence-sanitaire.webp" alt="" />
+                  <span>Sanitaire</span>
+                </button>
+                <button class="competence-thumb" type="button" role="tab" aria-selected="false" data-competence="piscineAquarium">
+                  <img src="assets/img/competences/competence-piscine-aquarium.webp" alt="" />
+                  <span>Piscine – Aquarium</span>
+                </button>
+                <button class="competence-thumb" type="button" role="tab" aria-selected="false" data-competence="medical">
+                  <img src="assets/img/competences/competence-medical.webp" alt="" />
+                  <span>Médical</span>
+                </button>
+                <button class="competence-thumb" type="button" role="tab" aria-selected="false" data-competence="industriel">
+                  <img src="assets/img/competences/competence-industriel.webp" alt="" />
+                  <span>Industriel</span>
+                </button>
+                <button class="competence-thumb" type="button" role="tab" aria-selected="false" data-competence="expertise">
+                  <img src="assets/img/competences/competence-expertise.webp" alt="" />
+                  <span>Expertise</span>
+                </button>
               </div>
-            </div>
-            <div class="section-cta reveal">
-              <a href="references.html" class="btn btn-outline" data-i18n="home.refs.btn">Toutes les références</a>
             </div>
           </div>
         </section>

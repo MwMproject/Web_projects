@@ -89,6 +89,80 @@ if (revealElements.length) {
 }
 
 /* =========================================================
+   COMPÉTENCES — ACCUEIL
+========================================================= */
+
+const competenceContent = {
+  sanitaire: {
+    title: "Sanitaire",
+    description: "Conception et réalisation d’installations sanitaires performantes, de la distribution à la gestion durable de l’eau.",
+    items: ["Distribution et évacuation", "Gestion et revalorisation des eaux météorologiques", "STEP", "Pisciculture"],
+    image: "assets/img/competences/competence-sanitaire.webp",
+    alt: "Installations sanitaires",
+  },
+  piscineAquarium: {
+    title: "Piscine – Aquarium",
+    description: "Planification générale des installations aquatiques, du traitement d’eau aux équipements de loisirs et de sécurité.",
+    items: ["Traitement d’eau", "Bassins et fonds mobiles", "Attractions, pataugeoires et spray-parks", "Plongeoirs", "Mise aux normes", "Installations de ventilation"],
+    image: "assets/img/competences/competence-piscine-aquarium.webp",
+    alt: "Piscine et installations aquatiques",
+  },
+  medical: {
+    title: "Médical",
+    description: "Conception et réalisation de réseaux médicaux fiables, avec une attention particulière portée à la sécurité et à la continuité de service.",
+    items: ["Gaz médicaux", "Analyse de risques", "Production et distribution", "Eau ultrapure", "Planification générale", "Stérilisation centrale"],
+    image: "assets/img/competences/competence-medical.webp",
+    alt: "Installations techniques médicales",
+  },
+  industriel: {
+    title: "Industriel",
+    description: "Planification de systèmes de production et de distribution adaptés aux contraintes des environnements industriels.",
+    items: ["Gaz et air comprimé", "Fluides et produits chimiques, zones EX", "Encres d’imprimerie", "Processus de production industrielle"],
+    image: "assets/img/competences/competence-industriel.webp",
+    alt: "Installations techniques industrielles",
+  },
+  expertise: {
+    title: "Expertise",
+    description: "Un accompagnement indépendant pour analyser, sécuriser et évaluer les installations techniques complexes.",
+    items: ["Expertises devant les tribunaux", "Installations sanitaires", "Conception de piscines", "Traitement d’eau de piscine", "Fluides et gaz"],
+    image: "assets/img/competences/competence-expertise.webp",
+    alt: "Expertise technique",
+  },
+};
+
+const competenceButtons = document.querySelectorAll(".competence-thumb");
+const competenceTitle = document.getElementById("competenceTitle");
+const competenceDescription = document.getElementById("competenceDescription");
+const competenceList = document.getElementById("competenceList");
+const competenceMainImage = document.getElementById("competenceMainImage");
+
+if (competenceButtons.length && competenceTitle && competenceDescription && competenceList && competenceMainImage) {
+  competenceButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const content = competenceContent[button.dataset.competence];
+      if (!content || button.classList.contains("active")) return;
+
+      competenceButtons.forEach((item) => {
+        const active = item === button;
+        item.classList.toggle("active", active);
+        item.setAttribute("aria-selected", String(active));
+      });
+
+      competenceMainImage.classList.add("switching");
+      window.setTimeout(() => {
+        competenceTitle.textContent = content.title;
+        competenceDescription.textContent = content.description;
+        competenceList.innerHTML = content.items.map((item) => `<li>${item}</li>`).join("");
+        competenceMainImage.onload = () => competenceMainImage.classList.remove("switching");
+        competenceMainImage.onerror = () => competenceMainImage.classList.remove("switching");
+        competenceMainImage.alt = content.alt;
+        competenceMainImage.src = content.image;
+      }, 180);
+    });
+  });
+}
+
+/* =========================================================
    PARTNERS CAROUSEL (SAFE)
 ========================================================= */
 
@@ -152,89 +226,81 @@ if (refsTrack) {
 
 const modal = document.getElementById("refModal");
 const closeBtn = document.getElementById("refClose");
-const cards = document.querySelectorAll(".ref-card");
 const filters = document.querySelectorAll(".filter");
+const referencesGrid = document.getElementById("referencesGrid");
 
 const modalTitle = document.getElementById("modalTitle");
-const modalContext = document.getElementById("modalContext");
-const modalSolution = document.getElementById("modalSolution");
-const modalRole = document.getElementById("modalRole");
-const modalResult = document.getElementById("modalResult");
+const modalClient = document.getElementById("modalClient");
+const modalArchitect = document.getElementById("modalArchitect");
+const modalPeriod = document.getElementById("modalPeriod");
+const modalCost = document.getElementById("modalCost");
+const modalDescription = document.getElementById("modalDescription");
 const gallery = document.getElementById("modalGallery");
 const mainImage = document.getElementById("modalMainImage");
+const referenceProjects = Array.isArray(window.REFERENCES_DATA)
+  ? window.REFERENCES_DATA
+  : [];
 
 /* =========================================================
    FILTERS
 ========================================================= */
 
-if (filters.length && cards.length) {
+if (referencesGrid && referenceProjects.length) {
+  renderReferences(referenceProjects);
+}
+
+if (filters.length && referenceProjects.length) {
   filters.forEach((btn) => {
     btn.addEventListener("click", () => {
       filters.forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
-
       const type = btn.dataset.filter;
-
-      cards.forEach((card) => {
-        if (type === "all" || card.dataset.type === type) {
-          card.style.display = "block"; // important pour grid
-        } else {
-          card.style.display = "none";
-        }
-      });
+      const projects = type === "all"
+        ? referenceProjects
+        : referenceProjects.filter((project) => project.category === type);
+      renderReferences(projects);
     });
   });
+}
+
+function renderReferences(projects) {
+  referencesGrid.innerHTML = "";
+  projects.forEach((project) => {
+    const card = document.createElement("article");
+    card.className = "ref-card";
+    card.tabIndex = 0;
+    const image = project.images[0] || "assets/img/Logo_HS.png";
+    card.innerHTML = `
+      <div class="ref-img">
+        <img src="${image}" alt="${escapeHtml(project.title)}" loading="lazy" />
+        <span class="ref-tag">${escapeHtml(project.category)}</span>
+      </div>
+      <div class="ref-info">
+        <h3>${escapeHtml(project.title)}</h3>
+        ${project.period ? `<p>${escapeHtml(project.period)}</p>` : ""}
+      </div>`;
+    card.addEventListener("click", () => openReference(project));
+    card.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openReference(project);
+      }
+    });
+    referencesGrid.appendChild(card);
+  });
+}
+
+function escapeHtml(value) {
+  const node = document.createElement("span");
+  node.textContent = value || "";
+  return node.innerHTML;
 }
 
 /* =========================================================
    MODAL
 ========================================================= */
 
-if (cards.length && modal && gallery && mainImage) {
-  cards.forEach((card) => {
-    card.addEventListener("click", () => {
-      if (modalTitle) modalTitle.textContent = card.dataset.title || "";
-      if (modalContext) modalContext.textContent = card.dataset.context || "";
-      if (modalSolution)
-        modalSolution.textContent = card.dataset.solution || "";
-      if (modalRole) modalRole.textContent = card.dataset.role || "";
-      if (modalResult) modalResult.textContent = card.dataset.result || "";
-
-      gallery.innerHTML = "";
-
-      const images = [
-        card.dataset.img1,
-        card.dataset.img2,
-        card.dataset.img3,
-        card.dataset.img4,
-      ];
-
-      let first = true;
-
-      images.forEach((img) => {
-        if (!img) return;
-
-        const thumb = document.createElement("img");
-        thumb.src = img;
-        thumb.classList.add("thumb");
-
-        thumb.addEventListener("click", () => {
-          mainImage.src = img;
-        });
-
-        gallery.appendChild(thumb);
-
-        if (first) {
-          mainImage.src = img;
-          first = false;
-        }
-      });
-
-      modal.classList.add("open");
-      document.body.style.overflow = "hidden";
-    });
-  });
-
+if (modal && gallery && mainImage) {
   if (closeBtn) {
     closeBtn.addEventListener("click", closeModal);
   }
@@ -248,7 +314,39 @@ if (cards.length && modal && gallery && mainImage) {
   });
 }
 
+function setMetaValue(id, element, value) {
+  const row = document.getElementById(id);
+  if (!row || !element) return;
+  row.hidden = !value;
+  element.textContent = value || "";
+}
+
+function openReference(project) {
+  if (!modal || !gallery || !mainImage) return;
+  modalTitle.textContent = project.title || "";
+  setMetaValue("modalClientRow", modalClient, project.client);
+  setMetaValue("modalArchitectRow", modalArchitect, project.architect);
+  setMetaValue("modalPeriodRow", modalPeriod, project.period);
+  setMetaValue("modalCostRow", modalCost, project.cost);
+  modalDescription.textContent = project.description || "";
+  gallery.innerHTML = "";
+  const images = project.images.length ? project.images : ["assets/img/Logo_HS.png"];
+  mainImage.src = images[0];
+  mainImage.alt = project.title || "";
+  images.forEach((image) => {
+    const thumb = document.createElement("img");
+    thumb.src = image;
+    thumb.alt = "";
+    thumb.loading = "lazy";
+    thumb.addEventListener("click", () => { mainImage.src = image; });
+    gallery.appendChild(thumb);
+  });
+  modal.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
 function closeModal() {
+  if (!modal) return;
   modal.classList.remove("open");
   document.body.style.overflow = "auto";
 }

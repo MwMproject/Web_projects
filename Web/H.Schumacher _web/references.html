@@ -83,34 +83,18 @@
 
         <section class="filters container">
           <button class="filter active" data-filter="all">Tous</button>
-          <button class="filter" data-filter="Piscine">Piscines</button>
+          <button class="filter" data-filter="Piscines & bien-être">Piscines & bien-être</button>
           <button class="filter" data-filter="Santé">Santé</button>
-          <button class="filter" data-filter="Aquarium">Aquarium</button>
+          <button class="filter" data-filter="Aquariums">Aquariums</button>
+          <button class="filter" data-filter="Formation">Formation</button>
+          <button class="filter" data-filter="Logements">Logements</button>
+          <button class="filter" data-filter="Culture & patrimoine">Culture & patrimoine</button>
+          <button class="filter" data-filter="Industrie & administration">Industrie & administration</button>
+          <button class="filter" data-filter="Autres projets">Autres</button>
         </section>
 
-        <section class="container references-grid">
-          <!-- CARD -->
-          <div
-            class="ref-card"
-            data-type="Aquarium"
-            data-title="Aquatis"
-            data-context="Conception complète du parcours de visite et des aquariums."
-            data-solution="Planification hydraulique et technique des bassins."
-            data-role="Études techniques et suivi travaux."
-            data-result="Projet livré avec performance énergétique optimisée."
-            data-img1="assets/img/AQUATIS.jpg"
-            data-img2="assets/img/AQUATIS_2.jpg"
-            data-img3="assets/img/AQUATIS_3.jpg"
-            data-img4="assets/img/AQUATIS_4.jpg"
-          >
-            <div class="ref-img">
-              <img src="assets/img/AQUATIS.jpg" />
-              <span class="ref-tag">Aquarium</span>
-            </div>
-            <div class="ref-info">
-              <h3>Aquatis</h3>
-            </div>
-          </div>
+        <section class="container references-grid" id="referencesGrid" aria-live="polite">
+          <p class="references-loading">Chargement des références…</p>
         </section>
       </main>
 
@@ -130,60 +114,15 @@
             <h2 id="modalTitle"></h2>
 
             <div class="project-meta">
-              <div class="meta-row">
-                <span>Architectes</span>
-                <p>Groupe BOAS / Grisoni Zaugg</p>
-              </div>
-
-              <div class="meta-row">
-                <span>Architecte</span>
-                <p>Richter Dal Rocha</p>
-              </div>
-
-              <div class="meta-row">
-                <span>Période</span>
-                <p>2002 – 2017</p>
-              </div>
-
-              <div class="meta-row">
-                <span>Coût total</span>
-                <p>109 mio</p>
-              </div>
-
-              <div class="meta-row">
-                <span>Coût sanitaire</span>
-                <p>17 mio</p>
-              </div>
-
-              <div class="meta-row">
-                <span>Installations</span>
-                <p>50 bassins</p>
-              </div>
-
-              <div class="meta-row">
-                <span>Capacité</span>
-                <p>2 millions de litres d’eau</p>
-              </div>
-
-              <div class="meta-row">
-                <span>Programme</span>
-                <p>Hôtel 143 chambres + P+R 1132 places</p>
-              </div>
+              <div class="meta-row" id="modalClientRow"><span>Maître d’ouvrage</span><p id="modalClient"></p></div>
+              <div class="meta-row" id="modalArchitectRow"><span>Architecte</span><p id="modalArchitect"></p></div>
+              <div class="meta-row" id="modalPeriodRow"><span>Période</span><p id="modalPeriod"></p></div>
+              <div class="meta-row" id="modalCostRow"><span>Coût</span><p id="modalCost"></p></div>
             </div>
 
             <div class="project-description">
-              <h4>Prestations HS</h4>
-
-              <ul>
-                <li>Conception du parcours de visite</li>
-                <li>Conception des décors artificiels et naturels</li>
-                <li>Conception et réalisation de la serre</li>
-                <li>Conception des aquariums</li>
-                <li>Traitement des eaux aquariums</li>
-                <li>Revalorisation des eaux météorologiques</li>
-                <li>Filtration mécanique et biologique</li>
-                <li>Fontaines décoratives et cascades</li>
-              </ul>
+              <h4>Présentation du projet</h4>
+              <p id="modalDescription"></p>
             </div>
           </div>
 
@@ -252,6 +191,7 @@
     </div>
 
     <script src="assets/script/i18n.js"></script>
+    <script src="assets/script/references-data.js"></script>
     <script src="assets/script/script.js"></script>
   </body>
 </html>
