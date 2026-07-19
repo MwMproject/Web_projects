@@ -681,7 +681,7 @@ a {
 
 /* ── ACCUEIL : section prestations ── */
 .home-prestations {
-  background: #0a1525;
+  background: transparent;
 }
 
 .competence-showcase {
@@ -695,7 +695,7 @@ a {
 .competence-feature {
   display: grid;
   grid-template-columns: minmax(320px, 0.72fr) minmax(0, 1.55fr);
-  min-height: 520px;
+  height: 560px;
 }
 
 .competence-copy {
@@ -704,31 +704,38 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: clamp(34px, 5vw, 70px);
+  min-height: 0;
+  overflow: hidden;
+  padding: clamp(28px, 3vw, 40px);
   background:
     linear-gradient(135deg, rgba(17, 35, 56, 0.98), rgba(7, 19, 33, 0.96)),
     radial-gradient(circle at top left, rgba(38, 153, 211, 0.16), transparent 45%);
 }
 
 .competence-copy h2 {
-  margin: 8px 0 18px;
-  font-size: clamp(2rem, 4vw, 3.35rem);
+  margin: 6px 0 14px;
+  font-size: clamp(2rem, 3.2vw, 3rem);
 }
 
 .competence-copy > p:not(.section-kicker) {
   max-width: 46ch;
-  margin: 0 0 20px;
+  margin: 0 0 14px;
   color: #d0d8e4;
-  line-height: 1.7;
+  line-height: 1.55;
 }
 
 .competence-copy ul {
   display: grid;
-  gap: 8px;
-  margin: 0 0 28px;
+  gap: 3px;
+  margin: 0 0 18px;
   padding: 0;
   list-style: none;
   color: var(--muted);
+  font-size: 0.96rem;
+}
+
+.competence-copy li {
+  line-height: 1.4;
 }
 
 .competence-copy li::before {
@@ -783,7 +790,7 @@ a {
 
 .competence-thumb {
   position: relative;
-  min-height: 138px;
+  height: 138px;
   overflow: hidden;
   padding: 0;
   border: 2px solid transparent;
@@ -798,6 +805,11 @@ a {
 .competence-thumb.active {
   border-color: var(--primary);
   transform: translateY(-2px);
+}
+
+.competence-thumb:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }
 
 .competence-thumb img {
@@ -820,6 +832,7 @@ a {
 @media (max-width: 768px) {
   .competence-feature {
     grid-template-columns: 1fr;
+    height: auto;
   }
   .competence-copy {
     min-height: 430px;
@@ -834,7 +847,7 @@ a {
     scroll-snap-type: x mandatory;
   }
   .competence-thumb {
-    min-height: 110px;
+    height: 110px;
     scroll-snap-align: start;
   }
 }
