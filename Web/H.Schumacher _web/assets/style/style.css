@@ -35,7 +35,13 @@
 }
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family:
+    "Franklin Gothic Book",
+    "Franklin Gothic",
+    "ITC Franklin Gothic",
+    "Inter",
+    Arial,
+    sans-serif;
   color: var(--text);
   background: #080f1e;
   line-height: 1.65;
