@@ -1,0 +1,738 @@
+(function () {
+  const STORAGE_KEY = 'hs_lang';
+  const DEFAULT_LANG = 'fr';
+
+  const DICT = {
+    fr: {
+      'nav.accueil': 'Accueil',
+      'nav.prestation': 'Compétences',
+      'nav.references': 'Références',
+      'nav.bureau': 'Bureau',
+      'nav.actualites': 'Actualités',
+      'nav.recrutement': 'Recrutement',
+      'nav.contact': 'Contact',
+
+      'hero.title': 'Pour une qualité d’eau maîtrisée',
+
+      'home.prestations.kicker': 'Domaines de',
+      'home.prestations.title': 'Compétences',
+      'home.prestations.text': 'De la conception à la réalisation, nous couvrons la technique sanitaire, les fluides spéciaux, le traitement des eaux, les gaz médicaux, les piscines et les ouvrages aquatiques.',
+      'home.prestations.btn': 'Découvrir nos compétences',
+      'home.competences.icon1': 'Piscine publique',
+      'home.competences.icon2': 'Installations sanitaires',
+      'home.competences.icon3': 'Gaz médicaux',
+      'home.competences.icon4': 'Expertise technique',
+
+      'home.actus.kicker': 'Actualités',
+      'home.actus.title': 'Dernières nouvelles du bureau',
+      'home.actus.card1.tag': 'Santé',
+      'home.actus.card1.title': 'Extension du bloc opératoire — CHUV, Lausanne',
+      'home.actus.card1.text': 'Janvier 2026 — Démarrage des études d’exécution pour la modernisation de 18 salles chirurgicales.',
+      'home.actus.card2.tag': 'Aquatique',
+      'home.actus.card2.title': 'Nouveau système de filtration — Aquatis, Lausanne',
+      'home.actus.card2.text': 'Décembre 2025 — Mise en service du nouveau traitement biologique pour les bassins tropicaux.',
+      'home.actus.card3.tag': 'Sport',
+      'home.actus.card3.title': 'Rénovation piscine des Mélèzes — Phase 2',
+      'home.actus.card3.text': 'Novembre 2025 — Réception des travaux d’assainissement du bassin olympique et de la fosse plongeoir.',
+      'home.actus.link': 'Lire la suite',
+      'home.actus.btn': 'Toutes les actualités',
+
+      'home.refs.kicker': 'Références',
+      'home.refs.title': 'Quelques projets représentatifs',
+      'home.refs.card1.tag': 'Loisirs / Aquarium',
+      'home.refs.card1.title': 'Aquatis 2002 – 2017',
+      'home.refs.card1.text': 'Conception des aquariums, traitement des eaux, filtration mécanique et biologique, fontaine décorative et miroir d’eau extérieur.',
+      'home.refs.card2.tag': 'Sport / Piscine',
+      'home.refs.card2.title': 'Piscine des Mélèzes',
+      'home.refs.card2.text': 'Assainissement complet avec cuvelage inox, nage à contre-courant et nouveau local technique de traitement d’eau.',
+      'home.refs.card3.tag': 'Santé / Gaz médicaux',
+      'home.refs.card3.title': 'BOPC — CHUV',
+      'home.refs.card3.text': 'Réaménagement et modernisation complète de 18 salles chirurgicales dans le plus grand bloc opératoire centralisé de Suisse.',
+      'home.refs.link': 'Voir la fiche projet',
+      'home.refs.btn': 'Toutes les références',
+
+      'footer.nav.title': 'Navigation',
+      'footer.bottom': '© 2026 H. Schumacher — Tous droits réservés',
+    },
+    de: {
+      'nav.accueil': 'Startseite',
+      'nav.prestation': 'Kompetenzen',
+      'nav.references': 'Referenzen',
+      'nav.bureau': 'Büro',
+      'nav.actualites': 'Aktuelles',
+      'nav.recrutement': 'Stellenangebote',
+      'nav.contact': 'Kontakt',
+
+      'hero.title': 'Für eine kontrollierte Wasserqualität',
+
+      'home.prestations.kicker': 'Bereiche der',
+      'home.prestations.title': 'Kompetenz',
+      'home.prestations.text': 'Von der Planung bis zur Umsetzung decken wir Sanitärtechnik, Spezialflüssigkeiten, Wasseraufbereitung, medizinische Gase, Schwimmbäder und Wasserbauten ab.',
+      'home.prestations.btn': 'Unsere Kompetenzen entdecken',
+      'home.competences.icon1': 'Öffentliches Schwimmbad',
+      'home.competences.icon2': 'Sanitäranlagen',
+      'home.competences.icon3': 'Medizinische Gase',
+      'home.competences.icon4': 'Technische Expertise',
+
+      'home.actus.kicker': 'Aktuelles',
+      'home.actus.title': 'Neuigkeiten aus dem Büro',
+      'home.actus.card1.tag': 'Gesundheit',
+      'home.actus.card1.title': 'Erweiterung des Operationstrakts — CHUV, Lausanne',
+      'home.actus.card1.text': 'Januar 2026 — Beginn der Ausführungsplanung zur Modernisierung von 18 Operationssälen.',
+      'home.actus.card2.tag': 'Wasser',
+      'home.actus.card2.title': 'Neue Filteranlage — Aquatis, Lausanne',
+      'home.actus.card2.text': 'Dezember 2025 — Inbetriebnahme der neuen biologischen Aufbereitung für die Tropenbecken.',
+      'home.actus.card3.tag': 'Sport',
+      'home.actus.card3.title': 'Sanierung Schwimmbad Mélèzes — Phase 2',
+      'home.actus.card3.text': 'November 2025 — Abnahme der Sanierungsarbeiten am Olympiabecken und am Sprungbecken.',
+      'home.actus.link': 'Weiterlesen',
+      'home.actus.btn': 'Alle Neuigkeiten',
+
+      'home.refs.kicker': 'Referenzen',
+      'home.refs.title': 'Einige repräsentative Projekte',
+      'home.refs.card1.tag': 'Freizeit / Aquarium',
+      'home.refs.card1.title': 'Aquatis 2002 – 2017',
+      'home.refs.card1.text': 'Planung der Aquarien, Wasseraufbereitung, mechanische und biologische Filterung, Zierbrunnen und Wasserspiegel im Außenbereich.',
+      'home.refs.card2.tag': 'Sport / Schwimmbad',
+      'home.refs.card2.title': 'Schwimmbad Mélèzes',
+      'home.refs.card2.text': 'Komplettsanierung mit Edelstahlauskleidung, Gegenstromanlage und neuer Wasseraufbereitungstechnik.',
+      'home.refs.card3.tag': 'Gesundheit / Medizinische Gase',
+      'home.refs.card3.title': 'BOPC — CHUV',
+      'home.refs.card3.text': 'Umbau und vollständige Modernisierung von 18 Operationssälen im größten zentralisierten OP-Trakt der Schweiz.',
+      'home.refs.link': 'Projekt ansehen',
+      'home.refs.btn': 'Alle Referenzen',
+
+      'footer.nav.title': 'Navigation',
+      'footer.bottom': '© 2026 H. Schumacher — Alle Rechte vorbehalten',
+    },
+    en: {
+      'nav.accueil': 'Home',
+      'nav.prestation': 'Expertise',
+      'nav.references': 'References',
+      'nav.bureau': 'About us',
+      'nav.actualites': 'News',
+      'nav.recrutement': 'Careers',
+      'nav.contact': 'Contact',
+
+      'hero.title': 'For controlled water quality',
+
+      'home.prestations.kicker': 'Areas of',
+      'home.prestations.title': 'expertise',
+      'home.prestations.text': 'From design to completion, we cover sanitary engineering, specialty fluids, water treatment, medical gases, swimming pools and aquatic structures.',
+      'home.prestations.btn': 'Discover our expertise',
+      'home.competences.icon1': 'Public swimming pools',
+      'home.competences.icon2': 'Sanitary installations',
+      'home.competences.icon3': 'Medical gases',
+      'home.competences.icon4': 'Technical expertise',
+
+      'home.actus.kicker': 'News',
+      'home.actus.title': 'Latest news from the firm',
+      'home.actus.card1.tag': 'Health',
+      'home.actus.card1.title': 'Operating block extension — CHUV, Lausanne',
+      'home.actus.card1.text': 'January 2026 — Start of detailed design studies for the modernisation of 18 operating rooms.',
+      'home.actus.card2.tag': 'Aquatic',
+      'home.actus.card2.title': 'New filtration system — Aquatis, Lausanne',
+      'home.actus.card2.text': 'December 2025 — Commissioning of the new biological treatment for the tropical pools.',
+      'home.actus.card3.tag': 'Sport',
+      'home.actus.card3.title': 'Mélèzes pool renovation — Phase 2',
+      'home.actus.card3.text': 'November 2025 — Completion of refurbishment works on the olympic pool and diving pit.',
+      'home.actus.link': 'Read more',
+      'home.actus.btn': 'All news',
+
+      'home.refs.kicker': 'References',
+      'home.refs.title': 'A few representative projects',
+      'home.refs.card1.tag': 'Leisure / Aquarium',
+      'home.refs.card1.title': 'Aquatis 2002 – 2017',
+      'home.refs.card1.text': 'Design of the aquariums, water treatment, mechanical and biological filtration, decorative fountain and outdoor water mirror.',
+      'home.refs.card2.tag': 'Sport / Swimming pool',
+      'home.refs.card2.title': 'Mélèzes swimming pool',
+      'home.refs.card2.text': 'Full refurbishment with stainless steel lining, counter-current swimming and new water treatment plant room.',
+      'home.refs.card3.tag': 'Health / Medical gases',
+      'home.refs.card3.title': 'BOPC — CHUV',
+      'home.refs.card3.text': 'Refurbishment and complete modernisation of 18 operating rooms in the largest centralised operating block in Switzerland.',
+      'home.refs.link': 'View project sheet',
+      'home.refs.btn': 'All references',
+
+      'footer.nav.title': 'Navigation',
+      'footer.bottom': '© 2026 H. Schumacher — All rights reserved',
+    },
+  };
+
+  /*
+   * Traductions des contenus de page.
+   * Les clés correspondent au texte source français normalisé. Ce système
+   * couvre aussi les contenus injectés après le chargement (cartes, modales,
+   * carrousels et références).
+   */
+  const CONTENT = {
+    de: {
+      'Nos compétences': 'Unsere Kompetenzen',
+      'Sanitaire': 'Sanitärtechnik',
+      'Piscine – Aquarium': 'Schwimmbad – Aquarium',
+      'Médical': 'Medizintechnik',
+      'Industriel': 'Industrie',
+      'Expertise': 'Gutachten',
+      'Découvrir cette compétence': 'Diesen Kompetenzbereich entdecken',
+      'Conception et réalisation d’installations sanitaires performantes, de la distribution à la gestion durable de l’eau.': 'Planung und Realisierung leistungsfähiger Sanitäranlagen – von der Verteilung bis zur nachhaltigen Wasserbewirtschaftung.',
+      'Distribution et évacuation': 'Ver- und Entsorgung',
+      'Gestion et revalorisation des eaux météorologiques': 'Bewirtschaftung und Nutzung von Regenwasser',
+      'Pisciculture': 'Fischzucht',
+      'Expertises techniques': 'Technische Kompetenzen',
+      'De la conception à la réalisation, nous planifions des installations techniques exigeantes et adaptées à chaque ouvrage.': 'Von der Planung bis zur Realisierung entwickeln wir anspruchsvolle technische Anlagen, die auf jedes Bauwerk abgestimmt sind.',
+      'Installations techniques': 'Technische Anlagen',
+      'Ouvrages aquatiques': 'Wasseranlagen',
+      'Milieux de soins': 'Gesundheitseinrichtungen',
+      'Process et fluides': 'Prozesse und Medien',
+      'Conseil indépendant': 'Unabhängige Beratung',
+      'Planification générale des installations aquatiques, du traitement d’eau aux équipements de loisirs et de sécurité.': 'Gesamtplanung von Wasseranlagen – von der Wasseraufbereitung bis zu Freizeit- und Sicherheitseinrichtungen.',
+      'Traitement d’eau': 'Wasseraufbereitung',
+      'Bassins et fonds mobiles': 'Becken und Hubböden',
+      'Attractions, pataugeoires et spray-parks': 'Attraktionen, Planschbecken und Sprayparks',
+      'Plongeoirs': 'Sprunganlagen',
+      'Mise aux normes': 'Normgerechte Sanierung',
+      'Installations de ventilation': 'Lüftungsanlagen',
+      'Conception et réalisation de réseaux médicaux fiables, avec une attention particulière portée à la sécurité et à la continuité de service.': 'Planung und Realisierung zuverlässiger medizinischer Versorgungsnetze mit besonderem Fokus auf Sicherheit und Betriebskontinuität.',
+      'Gaz médicaux': 'Medizinische Gase',
+      'Analyse de risques': 'Risikoanalyse',
+      'Production et distribution': 'Erzeugung und Verteilung',
+      'Eau ultrapure': 'Reinstwasser',
+      'Planification générale': 'Gesamtplanung',
+      'Stérilisation centrale': 'Zentralsterilisation',
+      'Planification de systèmes de production et de distribution adaptés aux contraintes des environnements industriels.': 'Planung von Produktions- und Verteilungssystemen für die besonderen Anforderungen industrieller Umgebungen.',
+      'Gaz et air comprimé': 'Gase und Druckluft',
+      'Fluides et produits chimiques, zones EX': 'Flüssigkeiten und Chemikalien, EX-Zonen',
+      'Encres d’imprimerie': 'Druckfarben',
+      'Processus de production industrielle': 'Industrielle Produktionsprozesse',
+      'Un accompagnement indépendant pour analyser, sécuriser et évaluer les installations techniques complexes.': 'Unabhängige Begleitung zur Analyse, Absicherung und Bewertung komplexer technischer Anlagen.',
+      'Expertises devant les tribunaux': 'Gerichtsgutachten',
+      'Installations sanitaires': 'Sanitäranlagen',
+      'Conception de piscines': 'Schwimmbadplanung',
+      'Traitement d’eau de piscine': 'Schwimmbadwasseraufbereitung',
+      'Fluides et gaz': 'Flüssigkeiten und Gase',
+      'Discutons de votre projet': 'Sprechen wir über Ihr Projekt',
+      'Notre équipe vous accompagne à chaque étape.': 'Unser Team begleitet Sie in jeder Projektphase.',
+      'Nous contacter': 'Kontakt aufnehmen',
+      'Références': 'Referenzen',
+      'Une sélection de projets techniques réalisés par notre bureau.': 'Eine Auswahl technischer Projekte, die von unserem Büro realisiert wurden.',
+      'Tous': 'Alle',
+      'Aquariums': 'Aquarien',
+      'Logement': 'Wohnungsbau',
+      'Formation': 'Bildung',
+      'Piscine': 'Schwimmbad',
+      'Administratif': 'Verwaltung',
+      'Hôtellerie': 'Hotellerie',
+      'Industrie': 'Industrie',
+      'Santé': 'Gesundheit',
+      'Chargement des références…': 'Referenzen werden geladen …',
+      'Maître d’ouvrage': 'Bauherrschaft',
+      'Architecte': 'Architekt',
+      'Période': 'Zeitraum',
+      'Coût': 'Kosten',
+      'Présentation du projet': 'Projektbeschreibung',
+      'Îlots Sud – Morges': 'Îlots Sud – Morges',
+      'Production de mouvement – Bienne': 'Uhrwerkproduktion – Biel',
+      'Établissement hospitalier de la Côte (EHC) – Morges': 'Spital de la Côte (EHC) – Morges',
+      'Extension du CHUV – 16 salles d’opération – Lausanne': 'Erweiterung des CHUV – 16 Operationssäle – Lausanne',
+      'Sciences de la vie UNIL–EPFL – Lausanne': 'Lebenswissenschaften UNIL–EPFL – Lausanne',
+      'Hôpital ophtalmique – Lausanne': 'Augenklinik – Lausanne',
+      'Piscine du Lignon – Vernier': 'Schwimmbad Lignon – Vernier',
+      'Flon Ville – Commerces et administration – Lausanne': 'Flon Ville – Handel und Verwaltung – Lausanne',
+      'Logements protégés Épalinges 501 – Épalinges': 'Betreutes Wohnen Épalinges 501 – Épalinges',
+      'Gymnase CEOL – Renens': 'Gymnasium CEOL – Renens',
+      'Collège du Sud – Bulle': 'Collège du Sud – Bulle',
+      'Collège de Cheseaux – Cheseaux-sur-Lausanne': 'Schule Cheseaux – Cheseaux-sur-Lausanne',
+      'École de la Condémine – Bulle': 'Schule La Condémine – Bulle',
+      'Établissement scolaire – Nyon': 'Schulanlage – Nyon',
+      'Habitations et résidence pour seniors – Valbirse': 'Wohnungen und Seniorenresidenz – Valbirse',
+      'Habitations en Cojonnex – Lausanne': 'Wohnüberbauung En Cojonnex – Lausanne',
+      'Hôpital psychiatrique de Cery – Prilly': 'Psychiatrische Klinik Cery – Prilly',
+      'Théâtre de Beaulieu et Tribunal arbitral du sport (TAS) – Lausanne': 'Theater Beaulieu und Internationaler Sportgerichtshof (TAS) – Lausanne',
+      'Les Borées – Préverenges': 'Wohnüberbauung Les Borées – Préverenges',
+      'Projet de ferme urbaine – Sébeillon, Lausanne': 'Projekt Stadtfarm – Sébeillon, Lausanne',
+      'Château Saint-Maire – Lausanne': 'Schloss Saint-Maire – Lausanne',
+      'Aquarium de la Clinique des Grangettes – Genève': 'Aquarium der Clinique des Grangettes – Genf',
+      'Coop Prilly Centre – Prilly': 'Coop-Einkaufszentrum – Prilly',
+      'Quartier de l’innovation EPFL et PSE – Ecublens': 'Innovationsquartier EPFL und PSE – Ecublens',
+      'Château de l’Aile – Vevey': 'Schloss de l’Aile – Vevey',
+      'Château d’Allaman – Allaman': 'Schloss Allaman – Allaman',
+      'Haute École de théâtre de Suisse romande (HETSR) – Lausanne': 'Hochschule für Theater der Westschweiz (HETSR) – Lausanne',
+      'Théâtre du Jura (TICLE) – Delémont': 'Theater Jura (TICLE) – Delémont',
+      'Gymnase et Centre d’enseignement professionnel de Marcelin – Morges': 'Gymnasium und Berufsbildungszentrum Marcelin – Morges',
+      'Université de Fribourg, plateau de Pérolles – Fribourg': 'Universität Freiburg, Pérolles-Plateau – Freiburg',
+      'Bains de Saillon': 'Thermalbad Saillon',
+      'Transformation des bains thermaux 2015–2023 – Yverdon-les-Bains': 'Umbau des Thermalbads 2015–2023 – Yverdon-les-Bains',
+      'Écoquartier des Échervettes – Romont': 'Ökoquartier Échervettes – Romont',
+      'Quartier de la Suettaz – Nyon': 'Wohnquartier La Suettaz – Nyon',
+      'Transformation des bains thermaux 2015–2025 – Yverdon-les-Bains': 'Umbau des Thermalbads 2015–2025 – Yverdon-les-Bains',
+      'Mise en conformité de la piscine des Mélèzes – La Chaux-de-Fonds': 'Normgerechte Sanierung des Schwimmbads Mélèzes – La Chaux-de-Fonds',
+      'Complexe scolaire Le Marais du Billet – Cheseaux-sur-Lausanne': 'Schulkomplex Le Marais du Billet – Cheseaux-sur-Lausanne',
+      'Fondation Maison de la Rivière – Tolochenaz': 'Stiftung Maison de la Rivière – Tolochenaz',
+      'Siège administratif de la Fondation Jeunesses et Famille – Ecublens': 'Verwaltungssitz der Stiftung Jeunesses et Famille – Ecublens',
+      'Centre de formation de la Fédération vaudoise des entrepreneurs': 'Ausbildungszentrum des Waadtländer Unternehmerverbands',
+      'Extension du complexe scolaire, culturel et sportif de Marrens – Nyon': 'Erweiterung des Schul-, Kultur- und Sportzentrums Marrens – Nyon',
+      'Rénovation de 45 appartements, chemin de la Culturaz 42–44 – Lutry': 'Sanierung von 45 Wohnungen, Chemin de la Culturaz 42–44 – Lutry',
+      'Avenue de Montelly 34–44, construction Minergie – Lausanne': 'Avenue de Montelly 34–44, Minergie-Bau – Lausanne',
+      'Propriété privée – La Croix-sur-Lutry': 'Privatliegenschaft – La Croix-sur-Lutry',
+      'Maison Gubler, patrimoine cantonal – Nyon': 'Maison Gubler, kantonales Kulturerbe – Nyon',
+      'Collège Sainte-Croix – Fribourg': 'Schule Sainte-Croix – Freiburg',
+      'Collège Gustave-Roud – Carrouge': 'Schule Gustave-Roud – Carrouge',
+      'Collège de Courbet – La Tour-de-Peilz': 'Schule de Courbet – La Tour-de-Peilz',
+      'Rénovation de la piscine des Mélèzes – La Chaux-de-Fonds': 'Sanierung des Schwimmbads Mélèzes – La Chaux-de-Fonds',
+      'Rénovation du Migros Servette – Genève': 'Sanierung Migros Servette – Genf',
+      'Le bureau': 'Das Büro',
+      'Un partenaire technique engagé': 'Ein engagierter technischer Partner',
+      "H. Schumacher ingénieurs conseils SA accompagne ses clients dans la conception, la planification et le suivi de projets techniques dans les domaines sanitaires, des fluides spéciaux et des ouvrages aquatiques. Depuis plus de 55 ans, le bureau développe une expertise reconnue dans la conception d'installations techniques complexes en Suisse romande.": 'H. Schumacher ingénieurs conseils SA begleitet seine Kunden bei der Konzeption, Planung und Ausführung technischer Projekte in den Bereichen Sanitärtechnik, Spezialmedien und Wasseranlagen. Seit mehr als 55 Jahren entwickelt das Büro eine anerkannte Kompetenz in der Planung komplexer technischer Anlagen in der Westschweiz.',
+      'Nos valeurs': 'Unsere Werte',
+      'ADN du bureau': 'Die DNA unseres Büros',
+      'Ce qui guide chaque projet, chaque décision et chaque relation client.': 'Was jedes Projekt, jede Entscheidung und jede Kundenbeziehung leitet.',
+      'Rigueur technique': 'Technische Sorgfalt',
+      'Proximité client': 'Kundennähe',
+      'Excellence': 'Exzellenz',
+      'Innovation': 'Innovation',
+      'Durabilité': 'Nachhaltigkeit',
+      'Collaboration': 'Zusammenarbeit',
+      'Notre équipe': 'Unser Team',
+      'La direction': 'Die Geschäftsleitung',
+      'Les personnes qui dirigent et font vivre le bureau au quotidien.': 'Die Menschen, die das Büro leiten und täglich mit Leben erfüllen.',
+      'Administrateur': 'Geschäftsführer',
+      "Administrateur — 30 ans d'avenir": 'Geschäftsführer — 30 Jahre Zukunft',
+      "Administrateur — 33 ans d'expérience": 'Geschäftsführer — 33 Jahre Erfahrung',
+      "Administrateur — 35 ans d'expérience": 'Geschäftsführer — 35 Jahre Erfahrung',
+      'Collaborateur': 'Mitarbeiter',
+      'Collaboratrice': 'Mitarbeiterin',
+      'Notre histoire': 'Unsere Geschichte',
+      "55 ans d'expertise": '55 Jahre Erfahrung',
+      'Fondation du bureau par Hermann Schumacher et Tercier': 'Gründung des Büros durch Hermann Schumacher und Tercier',
+      'Ouverture du bureau technique H. Schumacher à Fribourg': 'Eröffnung des technischen Büros H. Schumacher in Freiburg',
+      'Ouverture du bureau technique H. Schumacher à Genève': 'Eröffnung des technischen Büros H. Schumacher in Genf',
+      'Membres fondateurs de la SBii, actuellement Suisse.ing': 'Gründungsmitglieder der SBii, heute Suisse.ing',
+      'Création de la société anonyme H. Schumacher SBii SA': 'Gründung der Aktiengesellschaft H. Schumacher SBii SA',
+      'Conception et études du premier aquarium public': 'Konzeption und Planung des ersten öffentlichen Aquariums',
+      'Création du bureau à Fribourg — Schumacher & associés Sàrl': 'Gründung des Büros in Freiburg — Schumacher & associés Sàrl',
+      'Nouvelle raison sociale H. Schumacher ingénieurs conseils SA': 'Neue Firmenbezeichnung H. Schumacher ingénieurs conseils SA',
+      'Après 15 ans de travaux, ouverture d’Aquatis à Lausanne': 'Eröffnung von Aquatis in Lausanne nach 15 Jahren Projektarbeit',
+      "Après 15 ans de travaux, ouverture d'Aquatis à Lausanne": 'Eröffnung von Aquatis in Lausanne nach 15 Jahren Projektarbeit',
+      'Rémy Schumacher prend la direction avec Alexandre Maleszewski': 'Rémy Schumacher übernimmt gemeinsam mit Alexandre Maleszewski die Geschäftsleitung',
+      'Intégration au groupe Kannewischer et reprise des projets piscine pour la Suisse romande': 'Integration in die Kannewischer Gruppe und Übernahme der Schwimmbadprojekte für die Westschweiz',
+      'Nouvelle raison sociale pour le bureau de Fribourg — H. Schumacher Fribourg Sàrl': 'Neue Firmenbezeichnung des Freiburger Büros — H. Schumacher Fribourg Sàrl',
+      'H. Schumacher ingénieurs conseils SA fête ses 50 ans': 'H. Schumacher ingénieurs conseils SA feiert sein 50-jähriges Bestehen',
+      'Création à Genève — H. Schumacher Vernier Sàrl': 'Gründung in Genf — H. Schumacher Vernier Sàrl',
+      'Michael Weiss rejoint la direction': 'Michael Weiss tritt der Geschäftsleitung bei',
+      'Fermer': 'Schliessen',
+      'Actualités': 'Aktuelles',
+      'Suivez les dernières nouvelles et chantiers du bureau.': 'Verfolgen Sie die neuesten Nachrichten und Projekte unseres Büros.',
+      'Lire la suite': 'Weiterlesen',
+      'Lire plus': 'Mehr lesen',
+      'Santé': 'Gesundheit',
+      'Aquatique': 'Wasseranlagen',
+      'Sport': 'Sport',
+      'Traitement des eaux': 'Wasseraufbereitung',
+      'Ouvrages spécifiques': 'Spezialbauwerke',
+      'Archives': 'Archiv',
+      'Août 2024': 'August 2024',
+      'Juin 2025': 'Juni 2025',
+      'Mars 2025': 'März 2025',
+      'Nov. 2024': 'Nov. 2024',
+      'Extension du bloc opératoire — CHUV, Lausanne': 'Erweiterung des Operationstrakts — CHUV, Lausanne',
+      "Janvier 2026 — Démarrage des études d'exécution pour la modernisation de 18 salles chirurgicales.": 'Januar 2026 — Beginn der Ausführungsplanung zur Modernisierung von 18 Operationssälen.',
+      'Nouveau système de filtration — Aquatis, Lausanne': 'Neue Filteranlage — Aquatis, Lausanne',
+      'Décembre 2025 — Mise en service du nouveau traitement biologique pour les bassins tropicaux.': 'Dezember 2025 — Inbetriebnahme der neuen biologischen Aufbereitung für die Tropenbecken.',
+      'Rénovation piscine des Mélèzes — Phase 2': 'Sanierung des Schwimmbads Mélèzes — Phase 2',
+      "Novembre 2025 — Réception des travaux d'assainissement du bassin olympique et de la fosse plongeoir.": 'November 2025 — Abnahme der Sanierungsarbeiten am Olympiabecken und am Sprungbecken.',
+      'Hôpital ophtalmologique de Lausanne — installation gaz médicaux': 'Augenklinik Lausanne — medizinische Gasanlagen',
+      "Planification complète des réseaux de fluides médicaux pour les nouvelles salles d'opération.": 'Gesamtplanung der medizinischen Mediennetze für die neuen Operationssäle.',
+      'Aquatis — extension de la serre tropicale': 'Aquatis — Erweiterung des Tropenhauses',
+      "Conception et suivi des installations hydrauliques et de traitement d'eau pour la nouvelle serre.": 'Planung und Begleitung der Hydraulik- und Wasseraufbereitungsanlagen für das neue Tropenhaus.',
+      "Fontaine miroir d'eau — Place de la Riponne, Lausanne": 'Wasserspiegelbrunnen — Place de la Riponne, Lausanne',
+      "Conception et réalisation d'une fontaine décorative extérieure avec système de filtration intégré.": 'Planung und Realisierung eines Aussenbrunnens mit integriertem Filtersystem.',
+      "Réseau d'adduction d'eau potable — commune de Savigny": 'Trinkwasserversorgungsnetz — Gemeinde Savigny',
+      'Études et planification du renouvellement du réseau principal de distribution pour 3 200 habitants.': 'Studien und Planung der Erneuerung des Hauptverteilnetzes für 3 200 Einwohner.',
+      "Dans le cadre de la rénovation et de l'extension des salles d'opération de l'Hôpital ophtalmologique de Lausanne, H. Schumacher ingénieurs conseils SA a été mandaté pour la planification complète des réseaux de fluides médicaux.": 'Im Rahmen der Sanierung und Erweiterung der Operationssäle der Augenklinik Lausanne wurde H. Schumacher ingénieurs conseils SA mit der Gesamtplanung der medizinischen Mediennetze beauftragt.',
+      "Les travaux ont porté sur la conception des réseaux d'oxygène, de protoxyde d'azote, d'air médical et d'évacuation des gaz anesthésiants, en conformité avec les normes SN EN ISO 7396. Le bureau a assuré la coordination avec les équipes de génie civil et les fournisseurs d'équipements médicaux.": 'Die Arbeiten umfassten die Planung der Netze für Sauerstoff, Lachgas, medizinische Druckluft und die Ableitung von Anästhesiegasen gemäss SN EN ISO 7396. Das Büro koordinierte die Arbeiten mit den Bauingenieuren und den Lieferanten der medizinischen Ausrüstung.',
+      'La mise en service a été réalisée avec succès en juin 2025, après une phase de tests et de validation par un organisme indépendant agréé.': 'Die Inbetriebnahme erfolgte nach einer Test- und Validierungsphase durch eine zugelassene unabhängige Stelle erfolgreich im Juni 2025.',
+      "Suite au succès de l'ouverture d'Aquatis en 2017, le parc aquatique a lancé un projet d'extension de sa serre tropicale. H. Schumacher a assuré la maîtrise d'œuvre des installations hydrauliques et du traitement d'eau pour les nouveaux bassins.": 'Nach der erfolgreichen Eröffnung von Aquatis im Jahr 2017 startete der Wasserpark ein Projekt zur Erweiterung seines Tropenhauses. H. Schumacher übernahm die Gesamtplanung der Hydraulik- und Wasseraufbereitungsanlagen für die neuen Becken.',
+      "Le projet a intégré un système de filtration mécanique et biologique innovant, permettant de maintenir une qualité d'eau optimale pour les espèces sensibles tout en réduisant la consommation d'eau de 30% par rapport à l'installation existante.": 'Das Projekt umfasst ein innovatives mechanisches und biologisches Filtersystem, das eine optimale Wasserqualität für empfindliche Arten gewährleistet und den Wasserverbrauch gegenüber der bestehenden Anlage um 30 % reduziert.',
+      "Les travaux se sont déroulés sans interruption du parc, grâce à une planification en phases minutieusement coordonnée avec la direction d'Aquatis.": 'Dank einer sorgfältig mit der Leitung von Aquatis abgestimmten Etappenplanung wurden die Arbeiten ohne Unterbrechung des Parkbetriebs ausgeführt.',
+      "Dans le cadre du réaménagement de la Place de la Riponne à Lausanne, H. Schumacher a été mandaté pour la conception et la réalisation d'une fontaine décorative de type miroir d'eau, intégrée dans le nouvel aménagement urbain.": 'Im Rahmen der Neugestaltung der Place de la Riponne in Lausanne wurde H. Schumacher mit der Planung und Realisierung eines in die neue Stadtgestaltung integrierten Wasserspiegelbrunnens beauftragt.',
+      "L'installation comprend un bassin peu profond de 180 m², un système de filtration intégré invisible, des buses de jet programmables et un éclairage LED sous-marin. La gestion de l'eau a été pensée pour valoriser les eaux météorologiques collectées sur la place.": 'Die Anlage umfasst ein 180 m² grosses Flachbecken, ein unsichtbar integriertes Filtersystem, programmierbare Düsen und eine LED-Unterwasserbeleuchtung. Die Wasserbewirtschaftung nutzt das auf dem Platz gesammelte Regenwasser.',
+      'La fontaine a été inaugurée en août 2024 et est depuis devenue un lieu de rencontre apprécié des habitants et des visiteurs de la capitale vaudoise.': 'Der Brunnen wurde im August 2024 eingeweiht und ist seither ein beliebter Treffpunkt für Einwohner und Besucher der Waadtländer Hauptstadt.',
+      "La commune de Savigny a confié à H. Schumacher ingénieurs conseils SA les études et la planification du renouvellement de son réseau principal de distribution d'eau potable, vieillissant et source de pertes importantes.": 'Die Gemeinde Savigny beauftragte H. Schumacher ingénieurs conseils SA mit den Studien und der Planung zur Erneuerung ihres veralteten Trinkwasser-Hauptverteilnetzes, das erhebliche Verluste aufwies.',
+      "Le projet a porté sur l'analyse du réseau existant, la modélisation hydraulique, la définition du tracé optimisé et l'élaboration des dossiers d'appel d'offres. Une attention particulière a été portée à la réduction des pertes en ligne et à la sécurisation de l'alimentation des zones à risque sismique.": 'Das Projekt umfasste die Analyse des bestehenden Netzes, die hydraulische Modellierung, die Festlegung einer optimierten Linienführung und die Erstellung der Ausschreibungsunterlagen. Besonderes Augenmerk galt der Reduktion der Netzverluste und der Versorgungssicherheit in erdbebengefährdeten Gebieten.',
+      'Le chantier de renouvellement a débuté au printemps 2025, pour une livraison prévue en été 2026.': 'Die Erneuerungsarbeiten begannen im Frühjahr 2025; die Fertigstellung ist für Sommer 2026 vorgesehen.',
+      'Postes ouverts :': 'Offene Stellen:',
+      'Aucun poste ouvert pour le moment.': 'Derzeit sind keine Stellen offen.',
+      'Si vous souhaitez envoyer votre candidature spontanée, contactez-nous à': 'Für eine Initiativbewerbung kontaktieren Sie uns unter',
+      'Vous avez un projet ou une question technique ? Notre équipe vous répond dans les meilleurs délais.': 'Sie haben ein Projekt oder eine technische Frage? Unser Team antwortet Ihnen so rasch wie möglich.',
+      'Technique sanitaire': 'Sanitärtechnik',
+      'Technique piscine': 'Schwimmbadtechnik',
+      'Nom': 'Name',
+      'Société': 'Unternehmen',
+      'Votre message': 'Ihre Nachricht',
+      'Envoyer': 'Senden',
+      'Nos implantations': 'Unsere Standorte',
+      'Nos bureaux': 'Unsere Büros',
+      'Ouvrir le menu': 'Menü öffnen',
+      'Remonter en haut': 'Nach oben',
+      'Installations sanitaires': 'Sanitäranlagen',
+      'Piscine et installations aquatiques': 'Schwimmbad und Wasseranlagen',
+      'Installations techniques médicales': 'Medizintechnische Anlagen',
+      'Installations techniques industrielles': 'Industrielle technische Anlagen',
+      'Expertise technique': 'Technisches Gutachten',
+      'Message envoyé': 'Nachricht gesendet',
+      'Merci pour votre message.': 'Vielen Dank für Ihre Nachricht.',
+      'Nous vous répondrons dès que possible.': 'Wir werden Ihnen so schnell wie möglich antworten.',
+      "Retour à l'accueil": 'Zurück zur Startseite',
+      'Une erreur est survenue': 'Ein Fehler ist aufgetreten',
+      "Nous n'avons pas pu envoyer votre message.": 'Ihre Nachricht konnte nicht gesendet werden.',
+      'Merci de nous contacter directement à': 'Bitte kontaktieren Sie uns direkt unter',
+      'Réessayer': 'Erneut versuchen'
+    },
+    en: {
+      'Nos compétences': 'Our expertise',
+      'Sanitaire': 'Sanitary engineering',
+      'Piscine – Aquarium': 'Swimming pools – Aquariums',
+      'Médical': 'Medical',
+      'Industriel': 'Industrial',
+      'Expertise': 'Consulting',
+      'Découvrir cette compétence': 'Discover this area of expertise',
+      'Conception et réalisation d’installations sanitaires performantes, de la distribution à la gestion durable de l’eau.': 'Design and delivery of high-performance sanitary systems, from distribution to sustainable water management.',
+      'Distribution et évacuation': 'Distribution and drainage',
+      'Gestion et revalorisation des eaux météorologiques': 'Stormwater management and reuse',
+      'Pisciculture': 'Fish farming',
+      'Expertises techniques': 'Technical expertise',
+      'De la conception à la réalisation, nous planifions des installations techniques exigeantes et adaptées à chaque ouvrage.': 'From design to completion, we plan demanding technical installations tailored to each project.',
+      'Installations techniques': 'Technical installations',
+      'Ouvrages aquatiques': 'Aquatic facilities',
+      'Milieux de soins': 'Healthcare environments',
+      'Process et fluides': 'Processes and fluids',
+      'Conseil indépendant': 'Independent consulting',
+      'Planification générale des installations aquatiques, du traitement d’eau aux équipements de loisirs et de sécurité.': 'Overall planning of aquatic facilities, from water treatment to leisure and safety equipment.',
+      'Traitement d’eau': 'Water treatment',
+      'Bassins et fonds mobiles': 'Pools and movable floors',
+      'Attractions, pataugeoires et spray-parks': 'Attractions, paddling pools and spray parks',
+      'Plongeoirs': 'Diving facilities',
+      'Mise aux normes': 'Compliance upgrades',
+      'Installations de ventilation': 'Ventilation systems',
+      'Conception et réalisation de réseaux médicaux fiables, avec une attention particulière portée à la sécurité et à la continuité de service.': 'Design and delivery of reliable medical utility networks, with particular attention to safety and continuity of service.',
+      'Gaz médicaux': 'Medical gases',
+      'Analyse de risques': 'Risk analysis',
+      'Production et distribution': 'Production and distribution',
+      'Eau ultrapure': 'Ultrapure water',
+      'Planification générale': 'Overall planning',
+      'Stérilisation centrale': 'Central sterilisation',
+      'Planification de systèmes de production et de distribution adaptés aux contraintes des environnements industriels.': 'Planning of production and distribution systems suited to the constraints of industrial environments.',
+      'Gaz et air comprimé': 'Gases and compressed air',
+      'Fluides et produits chimiques, zones EX': 'Fluids and chemicals, EX zones',
+      'Encres d’imprimerie': 'Printing inks',
+      'Processus de production industrielle': 'Industrial production processes',
+      'Un accompagnement indépendant pour analyser, sécuriser et évaluer les installations techniques complexes.': 'Independent support to analyse, secure and assess complex technical installations.',
+      'Expertises devant les tribunaux': 'Expert witness services',
+      'Installations sanitaires': 'Sanitary installations',
+      'Conception de piscines': 'Swimming pool design',
+      'Traitement d’eau de piscine': 'Swimming pool water treatment',
+      'Fluides et gaz': 'Fluids and gases',
+      'Discutons de votre projet': 'Let’s discuss your project',
+      'Notre équipe vous accompagne à chaque étape.': 'Our team supports you at every stage.',
+      'Nous contacter': 'Contact us',
+      'Références': 'References',
+      'Une sélection de projets techniques réalisés par notre bureau.': 'A selection of technical projects delivered by our firm.',
+      'Tous': 'All',
+      'Aquariums': 'Aquariums',
+      'Logement': 'Residential',
+      'Formation': 'Education',
+      'Piscine': 'Swimming pools',
+      'Administratif': 'Administration',
+      'Hôtellerie': 'Hospitality',
+      'Industrie': 'Industry',
+      'Santé': 'Healthcare',
+      'Chargement des références…': 'Loading references…',
+      'Maître d’ouvrage': 'Client',
+      'Architecte': 'Architect',
+      'Période': 'Period',
+      'Coût': 'Cost',
+      'Présentation du projet': 'Project overview',
+      'Îlots Sud – Morges': 'Îlots Sud – Morges',
+      'Production de mouvement – Bienne': 'Watch movement production – Biel',
+      'Établissement hospitalier de la Côte (EHC) – Morges': 'EHC regional hospital – Morges',
+      'Extension du CHUV – 16 salles d’opération – Lausanne': 'CHUV extension – 16 operating rooms – Lausanne',
+      'Sciences de la vie UNIL–EPFL – Lausanne': 'UNIL–EPFL Life Sciences – Lausanne',
+      'Hôpital ophtalmique – Lausanne': 'Eye Hospital – Lausanne',
+      'Piscine du Lignon – Vernier': 'Lignon swimming pool – Vernier',
+      'Flon Ville – Commerces et administration – Lausanne': 'Flon Ville – Retail and administration – Lausanne',
+      'Logements protégés Épalinges 501 – Épalinges': 'Assisted housing Épalinges 501 – Épalinges',
+      'Gymnase CEOL – Renens': 'CEOL upper secondary school – Renens',
+      'Collège du Sud – Bulle': 'Collège du Sud school – Bulle',
+      'Collège de Cheseaux – Cheseaux-sur-Lausanne': 'Cheseaux school – Cheseaux-sur-Lausanne',
+      'École de la Condémine – Bulle': 'La Condémine school – Bulle',
+      'Établissement scolaire – Nyon': 'School complex – Nyon',
+      'Habitations et résidence pour seniors – Valbirse': 'Housing and senior residence – Valbirse',
+      'Habitations en Cojonnex – Lausanne': 'En Cojonnex housing – Lausanne',
+      'Hôpital psychiatrique de Cery – Prilly': 'Cery Psychiatric Hospital – Prilly',
+      'Théâtre de Beaulieu et Tribunal arbitral du sport (TAS) – Lausanne': 'Beaulieu Theatre and Court of Arbitration for Sport (CAS) – Lausanne',
+      'Les Borées – Préverenges': 'Les Borées housing – Préverenges',
+      'Projet de ferme urbaine – Sébeillon, Lausanne': 'Urban farm project – Sébeillon, Lausanne',
+      'Château Saint-Maire – Lausanne': 'Saint-Maire Castle – Lausanne',
+      'Aquarium de la Clinique des Grangettes – Genève': 'Clinique des Grangettes aquarium – Geneva',
+      'Coop Prilly Centre – Prilly': 'Coop Prilly shopping centre – Prilly',
+      'Quartier de l’innovation EPFL et PSE – Ecublens': 'EPFL and PSE Innovation District – Ecublens',
+      'Château de l’Aile – Vevey': 'Château de l’Aile – Vevey',
+      'Château d’Allaman – Allaman': 'Allaman Castle – Allaman',
+      'Haute École de théâtre de Suisse romande (HETSR) – Lausanne': 'French-speaking Switzerland Theatre School (HETSR) – Lausanne',
+      'Théâtre du Jura (TICLE) – Delémont': 'Jura Theatre (TICLE) – Delémont',
+      'Gymnase et Centre d’enseignement professionnel de Marcelin – Morges': 'Marcelin upper secondary and vocational education centre – Morges',
+      'Université de Fribourg, plateau de Pérolles – Fribourg': 'University of Fribourg, Pérolles campus – Fribourg',
+      'Bains de Saillon': 'Saillon thermal baths',
+      'Transformation des bains thermaux 2015–2023 – Yverdon-les-Bains': 'Thermal baths refurbishment 2015–2023 – Yverdon-les-Bains',
+      'Écoquartier des Échervettes – Romont': 'Échervettes eco-district – Romont',
+      'Quartier de la Suettaz – Nyon': 'La Suettaz residential district – Nyon',
+      'Transformation des bains thermaux 2015–2025 – Yverdon-les-Bains': 'Thermal baths refurbishment 2015–2025 – Yverdon-les-Bains',
+      'Mise en conformité de la piscine des Mélèzes – La Chaux-de-Fonds': 'Mélèzes swimming pool compliance upgrade – La Chaux-de-Fonds',
+      'Complexe scolaire Le Marais du Billet – Cheseaux-sur-Lausanne': 'Le Marais du Billet school complex – Cheseaux-sur-Lausanne',
+      'Fondation Maison de la Rivière – Tolochenaz': 'Maison de la Rivière Foundation – Tolochenaz',
+      'Siège administratif de la Fondation Jeunesses et Famille – Ecublens': 'Jeunesses et Famille Foundation headquarters – Ecublens',
+      'Centre de formation de la Fédération vaudoise des entrepreneurs': 'Vaud Contractors Federation training centre',
+      'Extension du complexe scolaire, culturel et sportif de Marrens – Nyon': 'Marrens school, cultural and sports complex extension – Nyon',
+      'Rénovation de 45 appartements, chemin de la Culturaz 42–44 – Lutry': 'Renovation of 45 apartments, Chemin de la Culturaz 42–44 – Lutry',
+      'Avenue de Montelly 34–44, construction Minergie – Lausanne': 'Avenue de Montelly 34–44, Minergie development – Lausanne',
+      'Propriété privée – La Croix-sur-Lutry': 'Private property – La Croix-sur-Lutry',
+      'Maison Gubler, patrimoine cantonal – Nyon': 'Maison Gubler, cantonal heritage building – Nyon',
+      'Collège Sainte-Croix – Fribourg': 'Sainte-Croix school – Fribourg',
+      'Collège Gustave-Roud – Carrouge': 'Gustave-Roud school – Carrouge',
+      'Collège de Courbet – La Tour-de-Peilz': 'Courbet school – La Tour-de-Peilz',
+      'Rénovation de la piscine des Mélèzes – La Chaux-de-Fonds': 'Mélèzes swimming pool renovation – La Chaux-de-Fonds',
+      'Rénovation du Migros Servette – Genève': 'Migros Servette refurbishment – Geneva',
+      'Le bureau': 'The firm',
+      'Un partenaire technique engagé': 'A committed technical partner',
+      "H. Schumacher ingénieurs conseils SA accompagne ses clients dans la conception, la planification et le suivi de projets techniques dans les domaines sanitaires, des fluides spéciaux et des ouvrages aquatiques. Depuis plus de 55 ans, le bureau développe une expertise reconnue dans la conception d'installations techniques complexes en Suisse romande.": 'H. Schumacher ingénieurs conseils SA supports its clients in the design, planning and delivery of technical projects in sanitary engineering, specialist fluids and aquatic facilities. For more than 55 years, the firm has developed recognised expertise in complex technical installations throughout French-speaking Switzerland.',
+      'Nos valeurs': 'Our values',
+      'ADN du bureau': 'Our DNA',
+      'Ce qui guide chaque projet, chaque décision et chaque relation client.': 'What guides every project, every decision and every client relationship.',
+      'Rigueur technique': 'Technical rigour',
+      'Proximité client': 'Client focus',
+      'Excellence': 'Excellence',
+      'Innovation': 'Innovation',
+      'Durabilité': 'Sustainability',
+      'Collaboration': 'Collaboration',
+      'Notre équipe': 'Our team',
+      'La direction': 'Management',
+      'Les personnes qui dirigent et font vivre le bureau au quotidien.': 'The people who lead the firm and bring it to life every day.',
+      'Administrateur': 'Director',
+      "Administrateur — 30 ans d'avenir": 'Director — 30 years shaping the future',
+      "Administrateur — 33 ans d'expérience": 'Director — 33 years of experience',
+      "Administrateur — 35 ans d'expérience": 'Director — 35 years of experience',
+      'Collaborateur': 'Team member',
+      'Collaboratrice': 'Team member',
+      'Notre histoire': 'Our history',
+      "55 ans d'expertise": '55 years of expertise',
+      'Fondation du bureau par Hermann Schumacher et Tercier': 'The firm is founded by Hermann Schumacher and Tercier',
+      'Ouverture du bureau technique H. Schumacher à Fribourg': 'Opening of the H. Schumacher technical office in Fribourg',
+      'Ouverture du bureau technique H. Schumacher à Genève': 'Opening of the H. Schumacher technical office in Geneva',
+      'Membres fondateurs de la SBii, actuellement Suisse.ing': 'Founding members of SBii, now Suisse.ing',
+      'Création de la société anonyme H. Schumacher SBii SA': 'Incorporation of H. Schumacher SBii SA',
+      'Conception et études du premier aquarium public': 'Design and planning of the first public aquarium',
+      'Création du bureau à Fribourg — Schumacher & associés Sàrl': 'Creation of the Fribourg office — Schumacher & associés Sàrl',
+      'Nouvelle raison sociale H. Schumacher ingénieurs conseils SA': 'New company name: H. Schumacher ingénieurs conseils SA',
+      'Après 15 ans de travaux, ouverture d’Aquatis à Lausanne': 'Aquatis opens in Lausanne after 15 years of project work',
+      "Après 15 ans de travaux, ouverture d'Aquatis à Lausanne": 'Aquatis opens in Lausanne after 15 years of project work',
+      'Rémy Schumacher prend la direction avec Alexandre Maleszewski': 'Rémy Schumacher takes over management with Alexandre Maleszewski',
+      'Intégration au groupe Kannewischer et reprise des projets piscine pour la Suisse romande': 'Integration into the Kannewischer Group and takeover of swimming pool projects for French-speaking Switzerland',
+      'Nouvelle raison sociale pour le bureau de Fribourg — H. Schumacher Fribourg Sàrl': 'New company name for the Fribourg office — H. Schumacher Fribourg Sàrl',
+      'H. Schumacher ingénieurs conseils SA fête ses 50 ans': 'H. Schumacher ingénieurs conseils SA celebrates its 50th anniversary',
+      'Création à Genève — H. Schumacher Vernier Sàrl': 'Creation in Geneva — H. Schumacher Vernier Sàrl',
+      'Michael Weiss rejoint la direction': 'Michael Weiss joins the management team',
+      'Fermer': 'Close',
+      'Actualités': 'News',
+      'Suivez les dernières nouvelles et chantiers du bureau.': 'Follow the latest news and projects from our firm.',
+      'Lire la suite': 'Read more',
+      'Lire plus': 'Read more',
+      'Aquatique': 'Aquatic',
+      'Sport': 'Sport',
+      'Traitement des eaux': 'Water treatment',
+      'Ouvrages spécifiques': 'Specialist structures',
+      'Archives': 'Archive',
+      'Août 2024': 'August 2024',
+      'Juin 2025': 'June 2025',
+      'Mars 2025': 'March 2025',
+      'Nov. 2024': 'Nov. 2024',
+      'Extension du bloc opératoire — CHUV, Lausanne': 'Operating block extension — CHUV, Lausanne',
+      "Janvier 2026 — Démarrage des études d'exécution pour la modernisation de 18 salles chirurgicales.": 'January 2026 — Start of detailed design work for the modernisation of 18 operating rooms.',
+      'Nouveau système de filtration — Aquatis, Lausanne': 'New filtration system — Aquatis, Lausanne',
+      'Décembre 2025 — Mise en service du nouveau traitement biologique pour les bassins tropicaux.': 'December 2025 — Commissioning of the new biological treatment system for the tropical pools.',
+      'Rénovation piscine des Mélèzes — Phase 2': 'Mélèzes swimming pool renovation — Phase 2',
+      "Novembre 2025 — Réception des travaux d'assainissement du bassin olympique et de la fosse plongeoir.": 'November 2025 — Completion of refurbishment works on the Olympic pool and diving pit.',
+      'Hôpital ophtalmologique de Lausanne — installation gaz médicaux': 'Lausanne Eye Hospital — medical gas installation',
+      "Planification complète des réseaux de fluides médicaux pour les nouvelles salles d'opération.": 'Complete planning of the medical utility networks for the new operating rooms.',
+      'Aquatis — extension de la serre tropicale': 'Aquatis — tropical greenhouse extension',
+      "Conception et suivi des installations hydrauliques et de traitement d'eau pour la nouvelle serre.": 'Design and supervision of the hydraulic and water treatment systems for the new greenhouse.',
+      "Fontaine miroir d'eau — Place de la Riponne, Lausanne": 'Reflecting pool fountain — Place de la Riponne, Lausanne',
+      "Conception et réalisation d'une fontaine décorative extérieure avec système de filtration intégré.": 'Design and construction of an outdoor decorative fountain with an integrated filtration system.',
+      "Réseau d'adduction d'eau potable — commune de Savigny": 'Drinking water supply network — municipality of Savigny',
+      'Études et planification du renouvellement du réseau principal de distribution pour 3 200 habitants.': 'Studies and planning for the renewal of the main distribution network serving 3,200 residents.',
+      "Dans le cadre de la rénovation et de l'extension des salles d'opération de l'Hôpital ophtalmologique de Lausanne, H. Schumacher ingénieurs conseils SA a été mandaté pour la planification complète des réseaux de fluides médicaux.": 'As part of the renovation and extension of the operating rooms at Lausanne Eye Hospital, H. Schumacher ingénieurs conseils SA was commissioned to provide the complete planning of the medical utility networks.',
+      "Les travaux ont porté sur la conception des réseaux d'oxygène, de protoxyde d'azote, d'air médical et d'évacuation des gaz anesthésiants, en conformité avec les normes SN EN ISO 7396. Le bureau a assuré la coordination avec les équipes de génie civil et les fournisseurs d'équipements médicaux.": 'The work covered the design of the oxygen, nitrous oxide, medical air and anaesthetic gas evacuation networks in compliance with SN EN ISO 7396. The firm coordinated with the civil engineering teams and medical equipment suppliers.',
+      'La mise en service a été réalisée avec succès en juin 2025, après une phase de tests et de validation par un organisme indépendant agréé.': 'The installation was successfully commissioned in June 2025 after testing and validation by an approved independent body.',
+      "Suite au succès de l'ouverture d'Aquatis en 2017, le parc aquatique a lancé un projet d'extension de sa serre tropicale. H. Schumacher a assuré la maîtrise d'œuvre des installations hydrauliques et du traitement d'eau pour les nouveaux bassins.": 'Following the successful opening of Aquatis in 2017, the aquatic park launched a project to extend its tropical greenhouse. H. Schumacher managed the hydraulic and water treatment systems for the new pools.',
+      "Le projet a intégré un système de filtration mécanique et biologique innovant, permettant de maintenir une qualité d'eau optimale pour les espèces sensibles tout en réduisant la consommation d'eau de 30% par rapport à l'installation existante.": 'The project incorporates an innovative mechanical and biological filtration system that maintains optimum water quality for sensitive species while reducing water consumption by 30% compared with the existing installation.',
+      "Les travaux se sont déroulés sans interruption du parc, grâce à une planification en phases minutieusement coordonnée avec la direction d'Aquatis.": 'The work was completed without closing the park, thanks to carefully phased planning coordinated with Aquatis management.',
+      "Dans le cadre du réaménagement de la Place de la Riponne à Lausanne, H. Schumacher a été mandaté pour la conception et la réalisation d'une fontaine décorative de type miroir d'eau, intégrée dans le nouvel aménagement urbain.": 'As part of the redevelopment of Place de la Riponne in Lausanne, H. Schumacher was commissioned to design and deliver a reflecting-pool fountain integrated into the new urban landscape.',
+      "L'installation comprend un bassin peu profond de 180 m², un système de filtration intégré invisible, des buses de jet programmables et un éclairage LED sous-marin. La gestion de l'eau a été pensée pour valoriser les eaux météorologiques collectées sur la place.": 'The installation includes a 180 m² shallow pool, a concealed integrated filtration system, programmable water jets and underwater LED lighting. The water management system reuses rainwater collected from the square.',
+      'La fontaine a été inaugurée en août 2024 et est depuis devenue un lieu de rencontre apprécié des habitants et des visiteurs de la capitale vaudoise.': 'The fountain was inaugurated in August 2024 and has since become a popular meeting place for residents and visitors to the Vaud capital.',
+      "La commune de Savigny a confié à H. Schumacher ingénieurs conseils SA les études et la planification du renouvellement de son réseau principal de distribution d'eau potable, vieillissant et source de pertes importantes.": 'The municipality of Savigny commissioned H. Schumacher ingénieurs conseils SA to study and plan the renewal of its ageing main drinking-water distribution network, which was causing significant losses.',
+      "Le projet a porté sur l'analyse du réseau existant, la modélisation hydraulique, la définition du tracé optimisé et l'élaboration des dossiers d'appel d'offres. Une attention particulière a été portée à la réduction des pertes en ligne et à la sécurisation de l'alimentation des zones à risque sismique.": 'The project covered analysis of the existing network, hydraulic modelling, definition of an optimised route and preparation of the tender documents. Particular attention was paid to reducing network losses and securing the supply to areas exposed to seismic risk.',
+      'Le chantier de renouvellement a débuté au printemps 2025, pour une livraison prévue en été 2026.': 'Renewal work began in spring 2025 and is scheduled for completion in summer 2026.',
+      'Postes ouverts :': 'Open positions:',
+      'Aucun poste ouvert pour le moment.': 'There are currently no open positions.',
+      'Si vous souhaitez envoyer votre candidature spontanée, contactez-nous à': 'To send us a speculative application, contact us at',
+      'Vous avez un projet ou une question technique ? Notre équipe vous répond dans les meilleurs délais.': 'Do you have a project or a technical question? Our team will respond as quickly as possible.',
+      'Technique sanitaire': 'Sanitary engineering',
+      'Technique piscine': 'Swimming pool engineering',
+      'Nom': 'Name',
+      'Société': 'Company',
+      'Votre message': 'Your message',
+      'Envoyer': 'Send',
+      'Nos implantations': 'Our locations',
+      'Nos bureaux': 'Our offices',
+      'Ouvrir le menu': 'Open menu',
+      'Remonter en haut': 'Back to top',
+      'Installations sanitaires': 'Sanitary installations',
+      'Piscine et installations aquatiques': 'Swimming pools and aquatic facilities',
+      'Installations techniques médicales': 'Medical technical installations',
+      'Installations techniques industrielles': 'Industrial technical installations',
+      'Expertise technique': 'Technical consulting',
+      'Message envoyé': 'Message sent',
+      'Merci pour votre message.': 'Thank you for your message.',
+      'Nous vous répondrons dès que possible.': 'We will get back to you as soon as possible.',
+      "Retour à l'accueil": 'Back to home',
+      'Une erreur est survenue': 'An error occurred',
+      "Nous n'avons pas pu envoyer votre message.": 'We were unable to send your message.',
+      'Merci de nous contacter directement à': 'Please contact us directly at',
+      'Réessayer': 'Try again'
+    }
+  };
+
+  const PAGE_TITLES = {
+    de: {
+      'index.html': 'H. Schumacher Ingenieurberatung — Sanitärtechnik, Schwimmbäder und medizinische Gase',
+      'competences.html': 'Kompetenzen — H. Schumacher Ingenieurberatung',
+      'references.html': 'Referenzen — H. Schumacher Ingenieurberatung',
+      'bureau.html': 'Büro — H. Schumacher Ingenieurberatung',
+      'actualites.html': 'Aktuelles — H. Schumacher Ingenieurberatung',
+      'recrutement.html': 'Stellenangebote — H. Schumacher Ingenieurberatung',
+      'contact.html': 'Kontakt — H. Schumacher Ingenieurberatung',
+      'thanks.html': 'Nachricht gesendet — H. Schumacher',
+      'error.html': 'Fehler — H. Schumacher'
+    },
+    en: {
+      'index.html': 'H. Schumacher Consulting Engineers — Sanitary engineering, swimming pools and medical gases',
+      'competences.html': 'Expertise — H. Schumacher Consulting Engineers',
+      'references.html': 'References — H. Schumacher Consulting Engineers',
+      'bureau.html': 'The firm — H. Schumacher Consulting Engineers',
+      'actualites.html': 'News — H. Schumacher Consulting Engineers',
+      'recrutement.html': 'Careers — H. Schumacher Consulting Engineers',
+      'contact.html': 'Contact — H. Schumacher Consulting Engineers',
+      'thanks.html': 'Message sent — H. Schumacher',
+      'error.html': 'Error — H. Schumacher'
+    }
+  };
+  const defaultTitle = document.title;
+
+  function getLang() {
+    return localStorage.getItem(STORAGE_KEY) || DEFAULT_LANG;
+  }
+
+  const sourceTexts = new WeakMap();
+  const sourceAttributes = new WeakMap();
+
+  function normalizeText(value) {
+    return String(value || '').replace(/\s+/g, ' ').trim();
+  }
+
+  function translateTextNodes(root, lang) {
+    const translations = CONTENT[lang] || {};
+    const elements = root.nodeType === 1
+      ? [root, ...root.querySelectorAll('*')]
+      : [];
+
+    elements.forEach((element) => {
+      if (element.closest('script, style')) return;
+
+      Array.from(element.childNodes).forEach((node) => {
+        if (node.nodeType !== Node.TEXT_NODE) return;
+        if (!sourceTexts.has(node)) sourceTexts.set(node, normalizeText(node.nodeValue));
+        const source = sourceTexts.get(node);
+        if (!source) return;
+        const translated = lang === DEFAULT_LANG ? source : translations[source];
+        if (!translated) return;
+        const leading = (node.nodeValue.match(/^\s*/) || [''])[0];
+        const trailing = (node.nodeValue.match(/\s*$/) || [''])[0];
+        node.nodeValue = `${leading}${translated}${trailing}`;
+      });
+
+      ['placeholder', 'aria-label', 'title', 'alt'].forEach((attribute) => {
+        if (!element.hasAttribute(attribute)) return;
+        let originals = sourceAttributes.get(element);
+        if (!originals) {
+          originals = {};
+          sourceAttributes.set(element, originals);
+        }
+        if (!Object.prototype.hasOwnProperty.call(originals, attribute)) {
+          originals[attribute] = element.getAttribute(attribute);
+        }
+        const source = originals[attribute];
+        const translated = lang === DEFAULT_LANG ? source : translations[source];
+        if (translated) element.setAttribute(attribute, translated);
+      });
+    });
+  }
+
+  function applyTranslations(lang) {
+    const dict = DICT[lang] || DICT[DEFAULT_LANG];
+    document.documentElement.setAttribute('lang', lang);
+    translateTextNodes(document.body, lang);
+    const pageName = window.location.pathname.split('/').pop() || 'index.html';
+    document.title = lang === DEFAULT_LANG
+      ? defaultTitle
+      : (PAGE_TITLES[lang]?.[pageName] || defaultTitle);
+
+    document.querySelectorAll('[data-i18n]').forEach((el) => {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key]) el.textContent = dict[key];
+    });
+
+    document.querySelectorAll('[data-i18n-attr]').forEach((el) => {
+      const pairs = el.getAttribute('data-i18n-attr').split(',');
+      pairs.forEach((pair) => {
+        const [attr, key] = pair.split(':').map((s) => s.trim());
+        if (dict[key]) el.setAttribute(attr, dict[key]);
+      });
+    });
+
+    document.querySelectorAll('.lang-switch button').forEach((btn) => {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+
+    window.dispatchEvent(new CustomEvent('languagechange', { detail: { lang } }));
+  }
+
+  window.setLang = function (lang) {
+    localStorage.setItem(STORAGE_KEY, lang);
+    applyTranslations(lang);
+  };
+
+  document.addEventListener('DOMContentLoaded', () => {
+    applyTranslations(getLang());
+
+    const observer = new MutationObserver((mutations) => {
+      const lang = getLang();
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          if (node.nodeType === Node.ELEMENT_NODE) translateTextNodes(node, lang);
+          if (node.nodeType === Node.TEXT_NODE && node.parentElement) {
+            translateTextNodes(node.parentElement, lang);
+          }
+        });
+      });
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+  });
+})();
