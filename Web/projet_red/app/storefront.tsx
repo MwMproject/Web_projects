@@ -1,0 +1,97 @@
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+import { comingSoon, levelLabels, products, type Product } from "./products";
+
+type Cart = Record<string, number>;
+const money = (value: number) => `${value.toFixed(2)} CHF`;
+
+function Bottle({ product, small = false }: { product: Product; small?: boolean }) {
+  return <div className={`bottle bottle--${product.id} ${small ? "bottle--small" : ""}`} aria-label={`Bouteille ${product.name}`} role="img"><span className="bottle-cap" /><span className="bottle-label"><b>{product.name}</b><small>{product.flavor}</small><i>{product.heatScore}/5</i></span></div>;
+}
+
+function Heat({ score }: { score: number }) {
+  return <span className="heat" aria-label={`Intensité ${score} sur 5`}>{[1, 2, 3, 4, 5].map((n) => <i key={n} className={n <= score ? "on" : ""} />)}</span>;
+}
+
+export function Storefront() {
+  const [cart, setCart] = useState<Cart>({});
+  const [cartOpen, setCartOpen] = useState(false);
+  const [notice, setNotice] = useState(false);
+
+  useEffect(() => { try { setCart(JSON.parse(localStorage.getItem("red-cart") || "{}")); } catch {} }, []);
+  useEffect(() => { localStorage.setItem("red-cart", JSON.stringify(cart)); }, [cart]);
+  useEffect(() => { document.body.style.overflow = cartOpen ? "hidden" : ""; return () => { document.body.style.overflow = ""; }; }, [cartOpen]);
+
+  const rows = products.filter((p) => cart[p.id]).map((product) => ({ product, quantity: cart[product.id] }));
+  const count = Object.values(cart).reduce((sum, n) => sum + n, 0);
+  const subtotal = rows.reduce((sum, row) => sum + (row.product.price || 0) * row.quantity, 0);
+  const shipping = subtotal ? 7.9 : 0;
+  const update = (id: string, delta: number) => setCart((current) => { const next = Math.max(0, (current[id] || 0) + delta); const result = { ...current, [id]: next }; if (!next) delete result[id]; return result; });
+  const add = (id: string) => { update(id, 1); setCartOpen(true); };
+  const trioPrice = useMemo(() => 46.9, []);
+  const addTrio = () => { setCart((current) => Object.fromEntries(products.map((p) => [p.id, (current[p.id] || 0) + 1]))); setCartOpen(true); };
+
+  return <main>
+    <header className="header">
+      <a href="#top" className="logo" aria-label="Red, accueil">R<span>•</span>ED</a>
+      <nav aria-label="Navigation principale"><a href="#sauces">Sauces</a><a href="#atelier">À propos</a></nav>
+      <button className="cart-button" onClick={() => setCartOpen(true)}>Panier <span>{count}</span></button>
+    </header>
+
+    <section className="hero" id="top">
+      <div className="eyebrow">DROP 001 · SAUCES ARTISANALES</div>
+      <h1>Le goût d’abord.<br/><em>Le feu ensuite.</em></h1>
+      <p>Trois recettes. Trois intensités. Une montée en puissance pensée pour la table, pas pour le spectacle.</p>
+      <a href="#sauces" className="button button--dark">Découvrir le drop <span>↓</span></a>
+      <div className="hero-bottles">{products.map((product, index) => <div className={`hero-bottle hero-bottle--${index}`} key={product.id}><Bottle product={product} /><span>0{index + 1} / 03</span></div>)}</div>
+      <div className="hero-foot"><span>Fabriqué en Suisse</span><span>Petites séries</span><span>100 ml de caractère</span></div>
+    </section>
+
+    <section className="manifesto">
+      <div className="section-index">[ NOTRE FORMULE ]</div>
+      <p>Des fruits francs. Une acidité précise. Des épices choisies. Le piment arrive ensuite — pour prolonger le goût, jamais pour l’effacer.</p>
+      <div className="formula"><span>PIQUANTE <b>03</b></span><i>→</i><span>FORTE <b>04</b></span><i>→</i><span>EXTRÊME <b>05</b></span></div>
+    </section>
+
+    <section className="levels" id="sauces">
+      <div className="section-head"><div><span className="section-index">[ LE PREMIER DROP ]</span><h2>Choisis ton niveau.</h2></div><p>Du frisson fruité à la zone de turbulences.</p></div>
+      <div className="level-grid">{products.map((product) => <a href={`#${product.id}`} className={`level-card level-card--${product.id}`} key={product.id}><span>{levelLabels[product.heatLevel]}</span><strong>{product.name}</strong><div><Heat score={product.heatScore}/><b>↘</b></div></a>)}</div>
+    </section>
+
+    {products.map((product) => <section className={`product product--${product.id}`} id={product.id} key={product.id}>
+      <div className="product-number">{product.number}<span>/03</span></div>
+      <div className="product-visual"><Bottle product={product} /><span className="orbit">{product.profile} · {product.profile} ·</span></div>
+      <div className="product-copy">
+        <div className="product-meta"><span>{levelLabels[product.heatLevel]}</span><Heat score={product.heatScore}/><b>{product.heatScore}/5</b></div>
+        {product.id === "void" && <div className="warning">▲ Pour palais avertis</div>}
+        <h2>{product.name}</h2><h3>{product.flavor}</h3>
+        <p className="profile">{product.profile}</p>
+        <div className="description">{product.description.map((line) => <p key={line}>{line}</p>)}</div>
+        <div className="pairings"><small>ACCORDS</small>{product.pairings?.map((pairing) => <span key={pairing}>{pairing}</span>)}</div>
+        <div className="buy"><div><small>{product.volume} ML</small><strong>{money(product.price || 0)}</strong></div><button className="button" onClick={() => add(product.id)}>Ajouter au panier <span>＋</span></button></div>
+      </div>
+    </section>)}
+
+    <section className="next">
+      <div className="section-head"><div><span className="section-index">[ EN DÉVELOPPEMENT ]</span><h2>Next drops.</h2></div><p>Le laboratoire ne s’arrête jamais.</p></div>
+      <div className="next-list">{comingSoon.map((item, index) => <div className="next-row" key={item.name}><span>0{index + 4}</span><strong>{item.name}</strong><p>{item.flavor}</p><small>{item.level}</small><i>Prochainement</i></div>)}</div>
+      <form className="notify" onSubmit={(e) => { e.preventDefault(); setNotice(true); }}><label htmlFor="email">Recevoir les prochains signaux.</label><div><input id="email" type="email" placeholder="ton@email.ch" required/><button className="button">Me prévenir →</button></div>{notice && <p>Signal reçu — la connexion email sera activée prochainement.</p>}</form>
+    </section>
+
+    <section className="trio">
+      <div className="trio-copy"><span className="section-index">[ EXPÉRIENCE COMPLÈTE ]</span><h2>Le protocole<br/>en trois actes.</h2><p>PULSE pour ouvrir. RUSH pour accélérer. VOID pour franchir le seuil.</p><div className="trio-price"><strong>{money(trioPrice)}</strong><s>{money(50.7)}</s></div><button className="button button--light" onClick={addTrio}>Prendre le trio <span>＋</span></button></div>
+      <div className="trio-bottles">{products.map((product) => <Bottle product={product} small key={product.id}/>)}</div>
+    </section>
+
+    <section className="craft" id="atelier"><div className="craft-photo"><span>ATELIER / SUISSE</span></div><div><span className="section-index">[ FAIT MAISON, POUR DE VRAI ]</span><h2>Petites quantités.<br/>Grandes idées.</h2><p>Chaque recette est développée, cuisinée et embouteillée à la main. Pas de compromis, pas de production anonyme.</p><div className="craft-points"><span>01<br/><b>Recettes originales</b></span><span>02<br/><b>Fabrication artisanale</b></span><span>03<br/><b>Petites séries</b></span></div></div></section>
+
+    <section className="faq"><div><span className="section-index">[ INFOS UTILES ]</span><h2>FAQ & livraison.</h2><div className="trust"><span>◇<b>Paiement sécurisé*</b></span><span>◌<b>Expédition Suisse</b></span><span>□<b>CB · Apple Pay · Google Pay*</b></span></div><small>*Disponible lors du lancement du checkout.</small></div><div>{[
+      ["Où livrez-vous ?", "En Suisse pour le lancement. D’autres zones suivront."], ["Combien coûte la livraison ?", "Tarif indicatif : 7.90 CHF. À confirmer avant le lancement."], ["Comment conserver les sauces ?", "Au frais après ouverture. Les indications définitives figureront sur le flacon."], ["Quelle sauce choisir ?", "PULSE pour commencer, RUSH pour monter, VOID pour aller au bout."], ["Comment sont-elles fabriquées ?", "En petites séries, à la main, à partir de recettes originales."], ["C’est vraiment piquant ?", "Oui — mais chaque recette est d’abord conçue pour être bonne."]
+    ].map(([q, a]) => <details key={q}><summary>{q}<span>＋</span></summary><p>{a}</p></details>)}</div></section>
+
+    <footer><div className="logo logo--footer">R<span>•</span>ED</div><p>SAUCES ARTISANALES<br/>GOÛT D’ABORD · FEU ENSUITE</p><div><a href="#sauces">Sauces</a><a href="#atelier">À propos</a><a href="#top">Instagram ↗</a></div><small>© 2026 RED — PREMIER DROP, BIENTÔT.</small></footer>
+
+    {cartOpen && <div className="cart-layer" role="dialog" aria-modal="true" aria-label="Panier"><button className="cart-backdrop" aria-label="Fermer le panier" onClick={() => setCartOpen(false)}/><aside className="cart-drawer"><div className="cart-head"><div><small>TON PANIER</small><h2>{count ? `${count} article${count > 1 ? "s" : ""}` : "Encore vide"}</h2></div><button onClick={() => setCartOpen(false)} aria-label="Fermer">×</button></div><div className="cart-rows">{rows.length ? rows.map(({ product, quantity }) => <div className="cart-row" key={product.id}><Bottle product={product} small/><div><strong>{product.name}</strong><span>{product.flavor}</span><small>{money(product.price || 0)}</small><div className="quantity"><button onClick={() => update(product.id, -1)}>−</button><span>{quantity}</span><button onClick={() => update(product.id, 1)}>＋</button><button className="remove" onClick={() => setCart((c) => { const n = { ...c }; delete n[product.id]; return n; })}>Supprimer</button></div></div></div>) : <div className="empty"><span>○</span><p>Choisis ton niveau<br/>pour commencer.</p><button className="button" onClick={() => setCartOpen(false)}>Voir les sauces</button></div>}</div>{rows.length > 0 && <div className="cart-summary"><p><span>Sous-total</span><b>{money(subtotal)}</b></p><p><span>Livraison (indicative)</span><b>{money(shipping)}</b></p><p className="total"><span>Total</span><b>{money(subtotal + shipping)}</b></p><button className="button button--dark" onClick={() => setNotice(true)}>Commander bientôt</button><small>Le checkout sécurisé sera activé lors de la prochaine phase.</small></div>}</aside></div>}
+  </main>;
+}
