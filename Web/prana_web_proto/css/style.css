@@ -613,22 +613,33 @@ ul { margin: 0; padding: 0; list-style: none; }
   align-items: center;
 }
 .partner-logo {
-  background: rgba(55, 55, 55, 0.81);
-  border: 1px solid rgba(216, 175, 93, 0.22);
+  background: #f1efeb;
+  border: 1px solid rgba(216, 175, 93, 0.48);
   border-radius: var(--radius);
-  padding: 4px;
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 120px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
 }
 .partner-logo img {
   max-width: 100%;
-  max-height: 108px;
+  max-height: 100px;
   width: auto;
   height: auto;
   object-fit: contain;
-  filter: grayscale(20%);
+  filter: none;
+}
+
+/* Renforce les détails clairs tout en conservant des cartes uniformes. */
+.partner-logo:nth-child(1) img,
+.partner-logo:nth-child(4) img {
+  filter:
+    drop-shadow(1px 0 0 rgba(52, 48, 50, 0.7))
+    drop-shadow(-1px 0 0 rgba(52, 48, 50, 0.7))
+    drop-shadow(0 1px 0 rgba(52, 48, 50, 0.7))
+    drop-shadow(0 -1px 0 rgba(52, 48, 50, 0.7));
 }
 
 /* ---------- Avis ---------- */
@@ -800,6 +811,11 @@ ul { margin: 0; padding: 0; list-style: none; }
 
   .hero-media video { display: block; }
   .hero-fallback { display: none; }
+
+  .watermark-logo {
+    width: 100vw;
+    opacity: 0.11;
+  }
 
   .header-actions .btn { padding: 8px 16px; font-size: 0.9rem; }
 
