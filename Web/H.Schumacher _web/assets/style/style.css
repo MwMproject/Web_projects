@@ -100,7 +100,7 @@ a {
 }
 
 .brand-logo {
-  height: 80px;
+  height: 64px;
   width: auto;
   flex-shrink: 0;
   object-fit: contain;
@@ -170,7 +170,7 @@ a {
 }
 @media (min-width: 1301px) and (max-width: 1600px) {
   .brand-logo {
-    height: 64px;
+    height: 54px;
     padding-right: 14px;
   }
   .nav {
@@ -236,13 +236,13 @@ a {
     --header-height: 70px;
   }
   .brand-logo {
-    height: 52px;
+    height: 44px;
     padding-right: 12px;
   }
 }
 @media (max-width: 420px) {
   .brand-logo {
-    height: 42px;
+    height: 38px;
   }
 }
 
