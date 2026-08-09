@@ -6,8 +6,8 @@ const sans = Geist({ variable: "--font-sans", subsets: ["latin"] });
 const mono = Geist_Mono({ variable: "--font-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "RED — Le goût d’abord. Le feu ensuite.",
-  description: "Sauces piquantes artisanales. Trois recettes, trois intensités, un premier drop.",
+  title: "RED — Sauces artisanales, goût d’abord",
+  description: "PULSE, RUSH et VOID : trois sauces artisanales fruitées, trois intensités, un premier drop.",
   icons: { icon: "/favicon.svg" },
 };
 

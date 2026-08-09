@@ -64,20 +64,22 @@ export function Storefront() {
   const addTrio = () => { setCart((current) => Object.fromEntries(products.map((p) => [p.id, (current[p.id] || 0) + 1]))); setCartOpen(true); };
 
   return <main>
-    <div className="color-field" aria-hidden="true"><i/><i/><i/></div>
     <header className="header">
-      <a href="#top" className="logo" aria-label="Red, accueil">R<span>•</span>ED</a>
-      <nav aria-label="Navigation principale"><a href="#sauces">Sauces</a><a href="#atelier">À propos</a></nav>
+      <a href="#top" className="logo" aria-label="Red, accueil"><i>R</i><span>RED<small>Sauces artisanales</small></span></a>
+      <nav aria-label="Navigation principale"><a href="#sauces">Nos sauces</a><a href="#trio">Le pack</a><a href="#atelier">À propos</a><a href="#atelier">Notre histoire</a></nav>
       <button className="cart-button" onClick={() => setCartOpen(true)}>Panier <span>{count}</span></button>
     </header>
 
     <section className="hero" id="top">
-      <div className="eyebrow">DROP 001 · SAUCES ARTISANALES</div>
-      <h1>Le goût d’abord.<br/><em>Le feu ensuite.</em></h1>
-      <p>Trois recettes. Trois intensités. Une montée en puissance pensée pour la table, pas pour le spectacle.</p>
-      <a href="#sauces" className="button button--dark">Découvrir le drop <span>↓</span></a>
-      <div className="hero-bottles">{products.map((product, index) => <div className={`hero-bottle hero-bottle--${index}`} key={product.id}><Bottle product={product} /><span>0{index + 1} / 03</span></div>)}</div>
-      <div className="hero-foot"><span>Fabriqué en Suisse</span><span>Petites séries</span><span>100 ml de caractère</span></div>
+      <img className="hero-image" src="/hero-red-v2.png" alt="Les trois sauces RED PULSE, RUSH et VOID entourées de leurs ingrédients" />
+      <div className="hero-shade" aria-hidden="true" />
+      <div className="hero-content">
+        <div className="eyebrow"><span /> DROP 001 · SAUCES ARTISANALES</div>
+        <h1>Éveille<br/>le goût.<br/><em>Brise la routine.</em></h1>
+        <p>Fruits francs, acidité précise et chaleur maîtrisée. Trois recettes conçues pour la table.</p>
+        <div className="hero-actions"><a href="#sauces" className="button button--red">Découvrir les sauces <span>→</span></a><a href="#trio" className="button button--ghost">Voir le pack</a></div>
+      </div>
+      <div className="hero-foot"><span><b>01</b>Ingrédients choisis<small>Sans compromis</small></span><span><b>02</b>Chaleur maîtrisée<small>Du fruit au piment</small></span><span><b>03</b>Fabrication locale<small>Petites séries</small></span></div>
     </section>
 
     <section className="manifesto">
@@ -88,7 +90,7 @@ export function Storefront() {
 
     <section className="levels" id="sauces">
       <div className="section-head"><div><span className="section-index">[ LE PREMIER DROP ]</span><h2>Choisis ton niveau.</h2></div><p>Du frisson fruité à la zone de turbulences.</p></div>
-      <div className="level-grid">{products.map((product) => <a href={`#${product.id}`} className={`level-card level-card--${product.id}`} key={product.id}><span>{levelLabels[product.heatLevel]}</span><strong>{product.name}</strong><div><Heat score={product.heatScore}/><b>↘</b></div></a>)}</div>
+      <div className="level-grid">{products.map((product) => <article id={product.id} className={`level-card level-card--${product.id}`} key={product.id}><div className="level-copy"><span>{levelLabels[product.heatLevel]}</span><strong>{product.name}</strong><em>{product.flavor}</em><small>{product.profile}</small><p>{product.description[0]}<br/>{product.description[1]}</p><Heat score={product.heatScore}/><button className="button" onClick={() => add(product.id)}>Ajouter · {money(product.price || 0)}</button></div><div className="level-bottle"><Bottle product={product}/></div></article>)}</div>
     </section>
 
     {products.map((product) => <section className={`product product--${product.id}`} id={product.id} key={product.id}>
@@ -111,7 +113,7 @@ export function Storefront() {
       <form className="notify" onSubmit={(e) => { e.preventDefault(); setNotice(true); }}><label htmlFor="email">Recevoir les prochains signaux.</label><div><input id="email" type="email" placeholder="ton@email.ch" required/><button className="button">Me prévenir →</button></div>{notice && <p>Signal reçu — la connexion email sera activée prochainement.</p>}</form>
     </section>
 
-    <section className="trio">
+    <section className="trio" id="trio">
       <div className="trio-copy"><span className="section-index">[ EXPÉRIENCE COMPLÈTE ]</span><h2>Le protocole<br/>en trois actes.</h2><p>PULSE pour ouvrir. RUSH pour accélérer. VOID pour franchir le seuil.</p><div className="trio-price"><strong>{money(trioPrice)}</strong><s>{money(50.7)}</s></div><button className="button button--light" onClick={addTrio}>Prendre le trio <span>＋</span></button></div>
       <div className="trio-bottles">{products.map((product) => <Bottle product={product} small key={product.id}/>)}</div>
     </section>
