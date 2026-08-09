@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import { comingSoon, levelLabels, products, type Product } from "./products";
 
 type Cart = Record<string, number>;
@@ -13,6 +13,35 @@ function Bottle({ product, small = false }: { product: Product; small?: boolean 
 
 function Heat({ score }: { score: number }) {
   return <span className="heat" aria-label={`Intensité ${score} sur 5`}>{[1, 2, 3, 4, 5].map((n) => <i key={n} className={n <= score ? "on" : ""} />)}</span>;
+}
+
+type SmokeParticle = { id: number; zone: "pulse" | "rush" | "void"; style: CSSProperties };
+
+function SmokeField() {
+  const [particles, setParticles] = useState<SmokeParticle[]>([]);
+
+  useEffect(() => {
+    const zones = ["pulse", "rush", "void"] as const;
+    const next = Array.from({ length: 30 }, (_, id) => {
+      const zone = zones[id % zones.length];
+      const zoneStart = zone === "pulse" ? 3 : zone === "rush" ? 36 : 69;
+      return {
+        id,
+        zone,
+        style: {
+          "--smoke-left": `${zoneStart + Math.random() * 27}%`,
+          "--smoke-size": `${110 + Math.random() * 210}px`,
+          "--smoke-duration": `${8 + Math.random() * 9}s`,
+          "--smoke-delay": `${-Math.random() * 16}s`,
+          "--smoke-drift": `${-55 + Math.random() * 110}px`,
+          "--smoke-opacity": `${0.08 + Math.random() * 0.14}`,
+        } as CSSProperties,
+      };
+    });
+    setParticles(next);
+  }, []);
+
+  return <div className="smoke-field" aria-hidden="true">{particles.map((particle) => <i key={particle.id} className={`smoke smoke--${particle.zone}`} style={particle.style} />)}</div>;
 }
 
 export function Storefront() {
@@ -72,15 +101,10 @@ export function Storefront() {
     </header>
 
     <section className="hero" id="top">
-      <img className="hero-image" src="/hero.png" alt="Les trois sauces RED PULSE, RUSH et VOID entourées de leurs ingrédients" />
-      <div className="hero-shade" aria-hidden="true" />
-      <div className="hero-content">
-        <div className="eyebrow"><span /> DROP 001 · SAUCES ARTISANALES</div>
-        <h1>Le goût d’abord.<br/><em>Le feu ensuite.</em></h1>
-        <p>Fruits francs, acidité précise et chaleur maîtrisée. Trois recettes conçues pour la table.</p>
-        <div className="hero-actions"><a href="#sauces" className="button button--red">Découvrir les sauces <span>→</span></a><a href="#trio" className="button button--ghost">Voir le pack</a></div>
-      </div>
-      <div className="hero-foot"><span><b>01</b>Ingrédients choisis<small>Sans compromis</small></span><span><b>02</b>Chaleur maîtrisée<small>Du fruit au piment</small></span><span><b>03</b>Fabrication locale<small>Petites séries</small></span></div>
+      <SmokeField />
+      <div className="hero-kicker">DROP 001 <span>·</span> CHOISIS TON NIVEAU</div>
+      <div className="hero-products">{products.map((product) => <a href={`#${product.id}`} className={`hero-product hero-product--${product.id}`} key={product.id} aria-label={`Découvrir ${product.name}, ${product.flavor}`}><img className="hero-product-title" src={`/${product.id}${product.id === "pulse" ? "01" : product.id === "rush" ? "02" : "03"}.1.png`} alt={`${levelLabels[product.heatLevel]} ${product.name}, intensité ${product.heatScore} sur 5`} /><Bottle product={product}/><span>{product.flavor} <b>↘</b></span></a>)}</div>
+      <a className="hero-scroll" href="#sauces">Découvrir le drop <span>↓</span></a>
     </section>
 
     <section className="manifesto">
