@@ -22,6 +22,37 @@ export function Storefront() {
   useEffect(() => { try { setCart(JSON.parse(localStorage.getItem("red-cart") || "{}")); } catch {} }, []);
   useEffect(() => { localStorage.setItem("red-cart", JSON.stringify(cart)); }, [cart]);
   useEffect(() => { document.body.style.overflow = cartOpen ? "hidden" : ""; return () => { document.body.style.overflow = ""; }; }, [cartOpen]);
+  useEffect(() => {
+    const root = document.documentElement;
+    const animated = document.querySelectorAll<HTMLElement>("section, .level-card, .next-row");
+    animated.forEach((element) => element.classList.add("reveal"));
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("is-visible");
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -6%" });
+    animated.forEach((element) => observer.observe(element));
+
+    let frame = 0;
+    const updateScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const distance = document.documentElement.scrollHeight - innerHeight;
+        const progress = distance > 0 ? scrollY / distance : 0;
+        root.style.setProperty("--scroll", String(progress));
+        root.style.setProperty("--drift-x", `${progress * 24}vw`);
+        root.style.setProperty("--drift-x-back", `${progress * -25}vw`);
+        root.style.setProperty("--drift-y", `${progress * -65}vh`);
+        root.style.setProperty("--travel-one", `${progress * 85}vh`);
+        root.style.setProperty("--travel-two", `${progress * 180}vh`);
+        root.style.setProperty("--travel-three", `${progress * 250}vh`);
+      });
+    };
+    updateScroll();
+    addEventListener("scroll", updateScroll, { passive: true });
+    return () => { observer.disconnect(); removeEventListener("scroll", updateScroll); cancelAnimationFrame(frame); };
+  }, []);
 
   const rows = products.filter((p) => cart[p.id]).map((product) => ({ product, quantity: cart[product.id] }));
   const count = Object.values(cart).reduce((sum, n) => sum + n, 0);
@@ -33,6 +64,7 @@ export function Storefront() {
   const addTrio = () => { setCart((current) => Object.fromEntries(products.map((p) => [p.id, (current[p.id] || 0) + 1]))); setCartOpen(true); };
 
   return <main>
+    <div className="color-field" aria-hidden="true"><i/><i/><i/></div>
     <header className="header">
       <a href="#top" className="logo" aria-label="Red, accueil">R<span>•</span>ED</a>
       <nav aria-label="Navigation principale"><a href="#sauces">Sauces</a><a href="#atelier">À propos</a></nav>
