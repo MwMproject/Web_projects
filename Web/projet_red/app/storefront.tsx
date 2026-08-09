@@ -7,7 +7,8 @@ type Cart = Record<string, number>;
 const money = (value: number) => `${value.toFixed(2)} CHF`;
 
 function Bottle({ product, small = false }: { product: Product; small?: boolean }) {
-  return <div className={`bottle bottle--${product.id} ${small ? "bottle--small" : ""}`} aria-label={`Bouteille ${product.name}`} role="img"><span className="bottle-cap" /><span className="bottle-label"><b>{product.name}</b><small>{product.flavor}</small><i>{product.heatScore}/5</i></span></div>;
+  const source = { pulse: "/pulse01.png", rush: "/rush02.png", void: "/void03.png" }[product.id];
+  return <img className={`bottle asset-bottle bottle--${product.id} ${small ? "bottle--small" : ""}`} src={source} alt={`Bouteille ${product.name} — ${product.flavor}`} />;
 }
 
 function Heat({ score }: { score: number }) {
@@ -71,7 +72,7 @@ export function Storefront() {
     </header>
 
     <section className="hero" id="top">
-      <img className="hero-image" src="/hero-red-v2.png" alt="Les trois sauces RED PULSE, RUSH et VOID entourées de leurs ingrédients" />
+      <img className="hero-image" src="/hero.png" alt="Les trois sauces RED PULSE, RUSH et VOID entourées de leurs ingrédients" />
       <div className="hero-shade" aria-hidden="true" />
       <div className="hero-content">
         <div className="eyebrow"><span /> DROP 001 · SAUCES ARTISANALES</div>
