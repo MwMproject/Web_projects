@@ -76,7 +76,7 @@ export function Storefront() {
       <div className="hero-shade" aria-hidden="true" />
       <div className="hero-content">
         <div className="eyebrow"><span /> DROP 001 · SAUCES ARTISANALES</div>
-        <h1>Éveille<br/>le goût.<br/><em>Brise la routine.</em></h1>
+        <h1>Le goût d’abord.<br/><em>Le feu ensuite.</em></h1>
         <p>Fruits francs, acidité précise et chaleur maîtrisée. Trois recettes conçues pour la table.</p>
         <div className="hero-actions"><a href="#sauces" className="button button--red">Découvrir les sauces <span>→</span></a><a href="#trio" className="button button--ghost">Voir le pack</a></div>
       </div>
