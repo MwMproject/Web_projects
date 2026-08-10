@@ -26,7 +26,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="assets/style/style.css" />
+    <link rel="stylesheet" href="assets/style/style.css?v=2" />
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -60,12 +60,12 @@
         },
         {
           "@type": "LocalBusiness",
-          "name": "H. Schumacher Fribourg Sàrl",
+          "name": "H. Schumacher FR Sàrl",
           "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Rte de la Fonderie 16",
-            "postalCode": "1700",
-            "addressLocality": "Fribourg",
+            "streetAddress": "Rue de Champ Riond 3",
+            "postalCode": "1609",
+            "addressLocality": "St-Martin FR",
             "addressCountry": "CH"
           },
           "telephone": "+41264224344"
@@ -151,44 +151,50 @@
         <!-- COMPÉTENCES -->
         <section class="home-prestations section">
           <div class="container">
-            <div class="competence-showcase reveal" id="competenceShowcase">
-              <div class="competence-feature" id="competenceFeature" style="--competence-background: url('../img/competences/competence-sanitaire.webp')">
-                <div class="competence-copy" aria-live="polite">
-                  <p class="section-kicker">Nos compétences</p>
-                  <h2 id="competenceTitle">Sanitaire</h2>
-                  <p id="competenceDescription">Conception et réalisation d’installations sanitaires performantes, de la distribution à la gestion durable de l’eau.</p>
-                  <ul id="competenceList">
-                    <li>Distribution et évacuation</li>
-                    <li>Gestion et revalorisation des eaux météorologiques</li>
-                    <li>STEP</li>
-                    <li>Pisciculture</li>
-                  </ul>
-                  <a href="competences.html#sanitaire" class="competence-link" id="competenceLink">Découvrir cette compétence <span aria-hidden="true">→</span></a>
+            <div class="section-heading competence-columns-heading reveal">
+              <h2>Nos compétences</h2>
+            </div>
+            <div class="competence-showcase competence-columns reveal">
+              <a class="competence-column" href="competences.html#sanitaire">
+                <div class="competence-column-copy">
+                  <h2>Sanitaire</h2>
+                  <p>Conception et réalisation d’installations sanitaires performantes.</p>
+                  <ul><li>Distribution et évacuation</li><li>Gestion des eaux météorologiques</li><li>STEP</li><li>Pisciculture</li></ul>
                 </div>
-              </div>
-
-              <div class="competence-thumbnails" role="tablist" aria-label="Choisir une compétence">
-                <button class="competence-thumb active" type="button" role="tab" aria-selected="true" data-competence="sanitaire">
-                  <img src="assets/img/competences/competence-sanitaire.webp" alt="" />
-                  <span>Sanitaire</span>
-                </button>
-                <button class="competence-thumb" type="button" role="tab" aria-selected="false" data-competence="piscineAquarium">
-                  <img src="assets/img/competences/competence-piscine-aquarium.webp" alt="" />
-                  <span>Piscine – Aquarium</span>
-                </button>
-                <button class="competence-thumb" type="button" role="tab" aria-selected="false" data-competence="medical">
-                  <img src="assets/img/competences/competence-medical.webp" alt="" />
-                  <span>Médical</span>
-                </button>
-                <button class="competence-thumb" type="button" role="tab" aria-selected="false" data-competence="industriel">
-                  <img src="assets/img/competences/competence-industriel.webp" alt="" />
-                  <span>Industriel</span>
-                </button>
-                <button class="competence-thumb" type="button" role="tab" aria-selected="false" data-competence="expertise">
-                  <img src="assets/img/competences/competence-expertise.webp" alt="" />
-                  <span>Expertise</span>
-                </button>
-              </div>
+                <div class="competence-column-image"><img src="assets/img/competences/competence-sanitaire.webp" alt="" /><span>Sanitaire</span></div>
+              </a>
+              <a class="competence-column" href="competences.html#piscine-aquarium">
+                <div class="competence-column-copy">
+                  <h2>Piscine – Aquarium</h2>
+                  <p>Planification générale des installations aquatiques.</p>
+                  <ul><li>Traitement d’eau</li><li>Bassins et fonds mobiles</li><li>Attractions et pataugeoires</li><li>Mise aux normes</li></ul>
+                </div>
+                <div class="competence-column-image"><img src="assets/img/competences/competence-piscine-aquarium.webp" alt="" /><span>Piscine – Aquarium</span></div>
+              </a>
+              <a class="competence-column" href="competences.html#medical">
+                <div class="competence-column-copy">
+                  <h2>Médical</h2>
+                  <p>Conception et réalisation de réseaux médicaux fiables.</p>
+                  <ul><li>Gaz médicaux</li><li>Analyse de risques</li><li>Eau ultrapure</li><li>Stérilisation centrale</li></ul>
+                </div>
+                <div class="competence-column-image"><img src="assets/img/competences/competence-medical.webp" alt="" /><span>Médical</span></div>
+              </a>
+              <a class="competence-column" href="competences.html#industriel">
+                <div class="competence-column-copy">
+                  <h2>Industriel</h2>
+                  <p>Planification de systèmes de production et de distribution.</p>
+                  <ul><li>Gaz et air comprimé</li><li>Fluides et produits chimiques</li><li>Zones EX</li><li>Processus de production</li></ul>
+                </div>
+                <div class="competence-column-image"><img src="assets/img/competences/competence-industriel.webp" alt="" /><span>Industriel</span></div>
+              </a>
+              <a class="competence-column" href="competences.html#expertise">
+                <div class="competence-column-copy">
+                  <h2>Expertise</h2>
+                  <p>Un accompagnement indépendant pour les installations complexes.</p>
+                  <ul><li>Expertises devant les tribunaux</li><li>Installations sanitaires</li><li>Conception de piscines</li><li>Fluides et gaz</li></ul>
+                </div>
+                <div class="competence-column-image"><img src="assets/img/competences/competence-expertise.webp" alt="" /><span>Expertise</span></div>
+              </a>
             </div>
           </div>
         </section>
@@ -217,8 +223,8 @@
           </div>
 
           <div class="footer-column">
-            <h3>H. Schumacher Fribourg Sàrl</h3>
-            <p>Rte de la Fonderie 16<br />1700 Fribourg</p>
+            <h3>H. Schumacher FR Sàrl</h3>
+            <p>Rue de Champ Riond 3<br />1609 St-Martin FR</p>
             <p>
               <a href="tel:+41264224344">+41 26 422 43 44</a><br />
               <a href="mailto:fribourg@hschumacher.ch"
@@ -255,7 +261,7 @@
       <button id="toTop" class="to-top" aria-label="Remonter en haut">↑</button>
     </div>
 
-    <script src="assets/script/translations.js?v=1"></script>
+    <script src="assets/script/translations.js?v=3"></script>
     <script src="assets/script/script.js?v=4"></script>
     <script src="assets/script/bubbles.js"></script>
   </body>

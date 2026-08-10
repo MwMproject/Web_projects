@@ -241,6 +241,25 @@ const referenceProjects = Array.isArray(window.REFERENCES_DATA)
   ? window.REFERENCES_DATA
   : [];
 
+document.querySelectorAll(".competence-related-references").forEach((section) => {
+  const grid = section.querySelector(".competence-reference-grid");
+  if (!grid || !referenceProjects.length) return;
+
+  const projectIds = (section.dataset.referenceIds || "").split(",").filter(Boolean);
+  projectIds.forEach((projectId) => {
+    const project = referenceProjects.find((item) => item.id === projectId);
+    if (!project) return;
+
+    const link = document.createElement("a");
+    link.className = "competence-reference-card";
+    link.href = `references.html?project=${encodeURIComponent(project.id)}`;
+    link.innerHTML = `
+      <img src="${project.images[0] || "assets/img/Logo_HS.png"}" alt="${escapeHtml(project.title)}" loading="lazy" />
+      <span>${escapeHtml(project.title)}</span>`;
+    grid.appendChild(link);
+  });
+});
+
 /* =========================================================
    FILTERS
 ========================================================= */
@@ -261,7 +280,7 @@ if (filters.length && referenceProjects.length) {
 
     const projects = showAll
       ? referenceProjects
-      : referenceProjects.filter((project) => normalizedFilters.includes(project.category));
+      : referenceProjects.filter((project) => getProjectTags(project).some((tag) => normalizedFilters.includes(tag)));
     renderReferences(projects);
 
     if (updateUrl) {
@@ -313,10 +332,11 @@ function renderReferences(projects) {
     card.className = "ref-card";
     card.tabIndex = 0;
     const image = project.images[0] || "assets/img/Logo_HS.png";
+    const projectTags = getProjectTags(project);
     card.innerHTML = `
       <div class="ref-img">
         <img src="${image}" alt="${escapeHtml(project.title)}" loading="lazy" />
-        <span class="ref-tag">${escapeHtml(project.category)}</span>
+        <span class="ref-tags">${projectTags.map((tag) => `<span class="ref-tag">${escapeHtml(tag)}</span>`).join("")}</span>
       </div>
       <div class="ref-info">
         <h3>${escapeHtml(project.title)}</h3>
@@ -331,6 +351,10 @@ function renderReferences(projects) {
     });
     referencesGrid.appendChild(card);
   });
+}
+
+function getProjectTags(project) {
+  return Array.isArray(project.tags) && project.tags.length ? project.tags : [project.category];
 }
 
 function escapeHtml(value) {
@@ -392,4 +416,10 @@ function closeModal() {
   if (!modal) return;
   modal.classList.remove("open");
   document.body.style.overflow = "auto";
+}
+
+const requestedProjectId = new URLSearchParams(window.location.search).get("project");
+if (requestedProjectId && referenceProjects.length) {
+  const requestedProject = referenceProjects.find((project) => project.id === requestedProjectId);
+  if (requestedProject) openReference(requestedProject);
 }

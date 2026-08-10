@@ -698,6 +698,179 @@ a {
   box-shadow: var(--shadow);
 }
 
+.competence-columns {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 20px;
+  overflow: visible;
+  padding: 12px 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.competence-columns-heading {
+  margin-bottom: 24px;
+}
+
+.competence-column {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 14px;
+  background: #081321;
+  color: inherit;
+  text-decoration: none;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+  transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+}
+
+.competence-column:last-child {
+  border-right: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.competence-column:hover,
+.competence-column:focus-within {
+  z-index: 2;
+  border-color: rgba(255, 255, 255, 0.32);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.42);
+  transform: translateY(-9px) scale(1.035);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .competence-column,
+  .competence-column-image img {
+    transition: none;
+  }
+  .competence-column:hover,
+  .competence-column:focus-within {
+    transform: none;
+  }
+}
+
+.competence-column-copy {
+  flex: 1;
+  min-height: 420px;
+  padding: 34px 22px 28px;
+  background: rgba(8, 19, 33, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.competence-column-copy .section-kicker {
+  margin-bottom: 10px;
+  font-size: 0.7rem;
+}
+
+.competence-column-copy h2 {
+  min-height: 2.4em;
+  margin: 0 0 16px;
+  color: #fff;
+  font-size: clamp(1.35rem, 1.8vw, 1.9rem);
+  line-height: 1.15;
+}
+
+.competence-column-copy > p:not(.section-kicker) {
+  min-height: 4.6em;
+  margin: 0 0 20px;
+  color: #d0d8e4;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.competence-column-copy ul {
+  display: grid;
+  gap: 11px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.competence-column-copy li {
+  position: relative;
+  padding-left: 14px;
+  line-height: 1.4;
+}
+
+.competence-column-copy li::before {
+  content: "";
+  position: absolute;
+  top: 0.55em;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+.competence-column-image {
+  position: relative;
+  display: block;
+  height: 150px;
+  overflow: hidden;
+  color: #fff;
+}
+
+.competence-column-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.competence-column-image:hover img,
+.competence-column:hover .competence-column-image img,
+.competence-column:focus-visible .competence-column-image img {
+  filter: brightness(1.08);
+  transform: scale(1.04);
+}
+
+.competence-column-image span {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 32px 14px 12px;
+  background: linear-gradient(transparent, rgba(2, 9, 18, 0.94));
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+@media (max-width: 1100px) {
+  .competence-columns {
+    grid-template-columns: repeat(5, minmax(230px, 1fr));
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+  .competence-column {
+    scroll-snap-align: start;
+  }
+}
+
+@media (max-width: 600px) {
+  .competence-columns {
+    grid-template-columns: 1fr;
+    overflow: hidden;
+  }
+  .competence-column {
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  }
+  .competence-column:last-child {
+    border-right: 0;
+  }
+  .competence-column-copy {
+    min-height: 0;
+  }
+  .competence-column-copy h2,
+  .competence-column-copy > p:not(.section-kicker) {
+    min-height: 0;
+  }
+}
+
 .competence-feature {
   position: relative;
   min-height: 430px;
@@ -960,10 +1133,17 @@ a {
   object-fit: cover;
 }
 
-.ref-tag {
+.ref-tags {
   position: absolute;
   bottom: 12px;
   left: 12px;
+  right: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ref-tag {
   background: rgba(0, 0, 0, 0.6);
   color: white;
   padding: 6px 12px;

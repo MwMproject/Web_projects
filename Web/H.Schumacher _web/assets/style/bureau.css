@@ -7,6 +7,12 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  padding-top: 84px;
 }
 .bureau-intro::before {
   content: "";
@@ -32,7 +38,7 @@
 }
 .bureau-hero {
   position: relative;
-  min-height: 720px;
+  min-height: 250px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,7 +48,7 @@
   z-index: 1;
   color: #fff;
   max-width: 680px;
-  padding: 80px 0;
+  padding: 28px 0 22px;
   text-align: center;
 }
 .bureau-hero-content .section-kicker {
@@ -65,7 +71,7 @@
 
 /* ── VALEURS ── */
 .bureau-valeurs {
-  padding: 80px 0;
+  padding: 18px 0 34px;
   background: transparent;
 }
 .bureau-valeurs .section-heading h2 {
@@ -77,14 +83,14 @@
 .valeurs-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-top: 40px;
+  gap: 16px;
+  margin-top: 22px;
 }
 .valeur-card {
   background: rgba(8, 21, 38, 0.58);
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 14px;
-  padding: 36px 28px;
+  padding: 22px 24px;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   box-shadow: 0 14px 36px rgba(0, 0, 0, 0.18);
