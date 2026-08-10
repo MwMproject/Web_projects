@@ -98,35 +98,35 @@ const competenceContent = {
     description: "Conception et réalisation d’installations sanitaires performantes, de la distribution à la gestion durable de l’eau.",
     items: ["Distribution et évacuation", "Gestion et revalorisation des eaux météorologiques", "STEP", "Pisciculture"],
     image: "assets/img/competences/competence-sanitaire.webp",
-    alt: "Installations sanitaires",
+    anchor: "sanitaire",
   },
   piscineAquarium: {
     title: "Piscine – Aquarium",
     description: "Planification générale des installations aquatiques, du traitement d’eau aux équipements de loisirs et de sécurité.",
     items: ["Traitement d’eau", "Bassins et fonds mobiles", "Attractions, pataugeoires et spray-parks", "Plongeoirs", "Mise aux normes", "Installations de ventilation"],
     image: "assets/img/competences/competence-piscine-aquarium.webp",
-    alt: "Piscine et installations aquatiques",
+    anchor: "piscine-aquarium",
   },
   medical: {
     title: "Médical",
     description: "Conception et réalisation de réseaux médicaux fiables, avec une attention particulière portée à la sécurité et à la continuité de service.",
     items: ["Gaz médicaux", "Analyse de risques", "Production et distribution", "Eau ultrapure", "Planification générale", "Stérilisation centrale"],
     image: "assets/img/competences/competence-medical.webp",
-    alt: "Installations techniques médicales",
+    anchor: "medical",
   },
   industriel: {
     title: "Industriel",
     description: "Planification de systèmes de production et de distribution adaptés aux contraintes des environnements industriels.",
     items: ["Gaz et air comprimé", "Fluides et produits chimiques, zones EX", "Encres d’imprimerie", "Processus de production industrielle"],
     image: "assets/img/competences/competence-industriel.webp",
-    alt: "Installations techniques industrielles",
+    anchor: "industriel",
   },
   expertise: {
     title: "Expertise",
     description: "Un accompagnement indépendant pour analyser, sécuriser et évaluer les installations techniques complexes.",
     items: ["Expertises devant les tribunaux", "Installations sanitaires", "Conception de piscines", "Traitement d’eau de piscine", "Fluides et gaz"],
     image: "assets/img/competences/competence-expertise.webp",
-    alt: "Expertise technique",
+    anchor: "expertise",
   },
 };
 
@@ -134,9 +134,9 @@ const competenceButtons = document.querySelectorAll(".competence-thumb");
 const competenceTitle = document.getElementById("competenceTitle");
 const competenceDescription = document.getElementById("competenceDescription");
 const competenceList = document.getElementById("competenceList");
-const competenceMainImage = document.getElementById("competenceMainImage");
-
-if (competenceButtons.length && competenceTitle && competenceDescription && competenceList && competenceMainImage) {
+const competenceFeature = document.getElementById("competenceFeature");
+const competenceLink = document.getElementById("competenceLink");
+if (competenceButtons.length && competenceTitle && competenceDescription && competenceList) {
   competenceButtons.forEach((button) => {
     button.addEventListener("click", () => {
       const content = competenceContent[button.dataset.competence];
@@ -148,16 +148,16 @@ if (competenceButtons.length && competenceTitle && competenceDescription && comp
         item.setAttribute("aria-selected", String(active));
       });
 
-      competenceMainImage.classList.add("switching");
-      window.setTimeout(() => {
-        competenceTitle.textContent = content.title;
-        competenceDescription.textContent = content.description;
-        competenceList.innerHTML = content.items.map((item) => `<li>${item}</li>`).join("");
-        competenceMainImage.onload = () => competenceMainImage.classList.remove("switching");
-        competenceMainImage.onerror = () => competenceMainImage.classList.remove("switching");
-        competenceMainImage.alt = content.alt;
-        competenceMainImage.src = content.image;
-      }, 180);
+      competenceTitle.textContent = content.title;
+      competenceDescription.textContent = content.description;
+      competenceList.innerHTML = content.items.map((item) => `<li>${item}</li>`).join("");
+      if (competenceLink) {
+        competenceLink.href = `competences.html#${content.anchor}`;
+      }
+      if (competenceFeature) {
+        const backgroundImage = content.image.replace("assets/", "../");
+        competenceFeature.style.setProperty("--competence-background", `url("${backgroundImage}")`);
+      }
     });
   });
 }
@@ -245,22 +245,65 @@ const referenceProjects = Array.isArray(window.REFERENCES_DATA)
    FILTERS
 ========================================================= */
 
-if (referencesGrid && referenceProjects.length) {
-  renderReferences(referenceProjects);
-}
-
 if (filters.length && referenceProjects.length) {
+  const availableFilters = new Set(Array.from(filters, (button) => button.dataset.filter));
+
+  const applyReferenceFilters = (selectedFilters, updateUrl = false) => {
+    const activeFilters = selectedFilters.filter((filter) => availableFilters.has(filter));
+    const showAll = !activeFilters.length || activeFilters.includes("all");
+    const normalizedFilters = showAll ? ["all"] : activeFilters;
+
+    filters.forEach((button) => {
+      const isActive = normalizedFilters.includes(button.dataset.filter);
+      button.classList.toggle("active", isActive);
+      button.setAttribute("aria-pressed", String(isActive));
+    });
+
+    const projects = showAll
+      ? referenceProjects
+      : referenceProjects.filter((project) => normalizedFilters.includes(project.category));
+    renderReferences(projects);
+
+    if (updateUrl) {
+      const url = new URL(window.location.href);
+      url.searchParams.delete("filter");
+      url.searchParams.delete("filters");
+      if (!showAll) {
+        url.searchParams.set(normalizedFilters.length > 1 ? "filters" : "filter", normalizedFilters.join(","));
+      }
+      window.history.replaceState({}, "", url);
+    }
+  };
+
+  const params = new URLSearchParams(window.location.search);
+  const requestedFilters = (params.get("filters") || params.get("filter") || "")
+    .split(",")
+    .map((filter) => filter.trim())
+    .filter(Boolean);
+
+  applyReferenceFilters(requestedFilters.length ? requestedFilters : ["all"]);
+
   filters.forEach((btn) => {
     btn.addEventListener("click", () => {
-      filters.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-      const type = btn.dataset.filter;
-      const projects = type === "all"
-        ? referenceProjects
-        : referenceProjects.filter((project) => project.category === type);
-      renderReferences(projects);
+      const selectedFilter = btn.dataset.filter;
+
+      if (selectedFilter === "all") {
+        applyReferenceFilters(["all"], true);
+        return;
+      }
+
+      const activeFilters = Array.from(filters)
+        .filter((button) => button.classList.contains("active") && button.dataset.filter !== "all")
+        .map((button) => button.dataset.filter);
+      const nextFilters = activeFilters.includes(selectedFilter)
+        ? activeFilters.filter((filter) => filter !== selectedFilter)
+        : [...activeFilters, selectedFilter];
+
+      applyReferenceFilters(nextFilters.length ? nextFilters : ["all"], true);
     });
   });
+} else if (referencesGrid && referenceProjects.length) {
+  renderReferences(referenceProjects);
 }
 
 function renderReferences(projects) {

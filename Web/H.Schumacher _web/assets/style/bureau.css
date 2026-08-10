@@ -192,9 +192,35 @@
 }
 .director-card {
   position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 14px;
   overflow: hidden;
+  background: #0d1a2e;
+  color: inherit;
+  font: inherit;
+  text-align: left;
   cursor: pointer;
+}
+
+.director-card:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+.direction-grid--compact .director-avatar {
+  height: 230px;
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.direction-grid--compact .director-overlay {
+  padding: 24px 20px;
+}
+
+.direction-grid--compact .director-btn {
+  align-self: flex-start;
 }
 .director-card img {
   width: 100%;
@@ -241,12 +267,14 @@
   );
 }
 .director-name {
+  display: block;
   color: #fff;
   font-size: 1.1rem;
   font-weight: 700;
   margin: 0 0 4px;
 }
 .director-role {
+  display: block;
   color: rgba(255, 255, 255, 0.75);
   font-size: 0.875rem;
   margin: 0 0 14px;

@@ -110,6 +110,10 @@
   padding: 42px 48px 44px;
 }
 
+.competence-detail {
+  scroll-margin-top: 110px;
+}
+
 .competence-detail-label {
   margin: 0 0 8px;
   color: var(--primary);
@@ -158,6 +162,27 @@
   height: 5px;
   border-radius: 50%;
   background: var(--primary);
+}
+
+.competence-references-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 28px;
+  padding: 11px 17px;
+  border: 1px solid rgba(38, 153, 211, 0.52);
+  border-radius: 999px;
+  color: #eaf7ff;
+  background: rgba(38, 153, 211, 0.1);
+  font-size: 0.88rem;
+  font-weight: 700;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.competence-references-link:hover {
+  border-color: var(--primary);
+  background: rgba(38, 153, 211, 0.2);
+  transform: translateY(-2px);
 }
 
 /* ── CTA ── */
