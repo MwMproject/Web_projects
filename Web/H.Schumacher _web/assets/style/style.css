@@ -717,6 +717,7 @@ a {
   position: relative;
   display: flex;
   min-width: 0;
+  min-height: 500px;
   flex-direction: column;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.16);
@@ -726,6 +727,22 @@ a {
   text-decoration: none;
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
   transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+}
+
+.competence-column::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--card-image) center / cover no-repeat;
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.competence-column::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(5, 14, 26, 0.5), rgba(5, 14, 26, 0.82));
+  transition: background 0.35s ease;
 }
 
 .competence-column:last-child {
@@ -740,8 +757,20 @@ a {
   transform: translateY(-9px) scale(1.035);
 }
 
+.competence-column:hover::before,
+.competence-column:focus-within::before {
+  filter: saturate(1.08) brightness(1.08);
+  transform: scale(1.08);
+}
+
+.competence-column:hover::after,
+.competence-column:focus-within::after {
+  background: linear-gradient(180deg, rgba(5, 14, 26, 0.4), rgba(5, 14, 26, 0.76));
+}
+
 @media (prefers-reduced-motion: reduce) {
   .competence-column,
+  .competence-column::before,
   .competence-column-image img {
     transition: none;
   }
@@ -749,15 +778,35 @@ a {
   .competence-column:focus-within {
     transform: none;
   }
+  .competence-column:hover::before,
+  .competence-column:focus-within::before {
+    transform: none;
+  }
 }
 
 .competence-column-copy {
+  position: relative;
+  z-index: 1;
+  display: flex;
   flex: 1;
-  min-height: 420px;
-  padding: 34px 22px 28px;
-  background: rgba(8, 19, 33, 0.78);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  flex-direction: column;
+  justify-content: center;
+  min-height: 0;
+  margin: 18px;
+  padding: 28px 20px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 12px;
+  background: rgba(5, 15, 28, 0.46);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.competence-column:hover .competence-column-copy,
+.competence-column:focus-within .competence-column-copy {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(5, 15, 28, 0.54);
 }
 
 .competence-column-copy .section-kicker {
@@ -856,6 +905,7 @@ a {
     overflow: hidden;
   }
   .competence-column {
+    min-height: 460px;
     border-right: 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.14);
   }
