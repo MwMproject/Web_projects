@@ -382,6 +382,24 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .card-contact a { color: var(--color-gold-light); }
 
+.card-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(160deg, rgba(167, 31, 27, 0.35), var(--color-black-soft) 70%);
+  border-color: rgba(167, 31, 27, 0.5);
+}
+.card-cta:hover { border-color: var(--color-red); }
+.card-cta-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 1em;
+  color: var(--color-gold-light);
+}
+.card-cta p { color: var(--color-white); flex-grow: 1; }
+.card-cta .btn { margin-top: 0.6em; align-self: center; }
+
 /* ---------- Coaching privé ---------- */
 .programme-grid {
   display: grid;
@@ -732,6 +750,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   width: 100%;
   height: 100%;
   min-height: 360px;
+  border: 0;
 }
 
 /* ---------- Footer ---------- */

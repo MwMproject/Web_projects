@@ -6,6 +6,7 @@ navToggle.addEventListener('click', () => {
   const isOpen = mainNav.classList.toggle('is-open');
   navToggle.classList.toggle('is-active', isOpen);
   navToggle.setAttribute('aria-expanded', isOpen);
+  navToggle.setAttribute('aria-label', isOpen ? 'Fermer le menu' : 'Ouvrir le menu');
 });
 
 mainNav.querySelectorAll('a').forEach((link) => {
@@ -13,26 +14,40 @@ mainNav.querySelectorAll('a').forEach((link) => {
     mainNav.classList.remove('is-open');
     navToggle.classList.remove('is-active');
     navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.setAttribute('aria-label', 'Ouvrir le menu');
   });
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key !== 'Escape' || !mainNav.classList.contains('is-open')) return;
+  mainNav.classList.remove('is-open');
+  navToggle.classList.remove('is-active');
+  navToggle.setAttribute('aria-expanded', 'false');
+  navToggle.setAttribute('aria-label', 'Ouvrir le menu');
+  navToggle.focus();
 });
 
 // Toggle mensuel / annuel dans les tarifs
 const toggleButtons = document.querySelectorAll('.toggle-btn');
 const priceAmounts = document.querySelectorAll('.price .amount[data-mois]');
 const priceUnits = document.querySelectorAll('.price .unit[data-mois]');
+const monthlyOnlyCards = document.querySelectorAll('[data-monthly-only]');
 
 toggleButtons.forEach((btn) => {
   btn.addEventListener('click', () => {
     const period = btn.dataset.period;
 
     toggleButtons.forEach((b) => b.classList.toggle('is-active', b === btn));
-    toggleButtons.forEach((b) => b.setAttribute('aria-selected', b === btn ? 'true' : 'false'));
+    toggleButtons.forEach((b) => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
 
     priceAmounts.forEach((el) => {
       el.textContent = el.dataset[period];
     });
     priceUnits.forEach((el) => {
       el.textContent = el.dataset[period];
+    });
+    monthlyOnlyCards.forEach((card) => {
+      card.style.display = period === 'annee' ? 'none' : '';
     });
   });
 });
