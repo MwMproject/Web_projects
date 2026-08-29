@@ -21,6 +21,35 @@
   padding-bottom: 64px;
 }
 
+.reference-card--pending {
+  display: grid;
+  min-height: 320px;
+  place-items: center;
+  border: 1px dashed rgba(255, 255, 255, 0.22);
+  background: linear-gradient(145deg, rgba(19, 38, 65, 0.78), rgba(7, 18, 33, 0.9));
+  box-shadow: none;
+}
+
+.reference-card--pending .card-body {
+  display: grid;
+  width: 100%;
+  min-height: 320px;
+  place-items: center;
+  padding: 32px;
+}
+
+.pending-status {
+  padding: 9px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 /* ── MODAL ── */
 .modal-overlay {
   display: none;
@@ -105,6 +134,19 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.old-actu-card:nth-child(n + 2) {
+  display: none;
+}
+
+.old-actu-card--pending {
+  display: grid;
+  min-height: 150px;
+  place-items: center;
+  grid-template-columns: 1fr;
+  border-style: dashed;
+  background: linear-gradient(145deg, rgba(19, 38, 65, 0.72), rgba(7, 18, 33, 0.86));
 }
 .old-actu-card {
   display: grid;

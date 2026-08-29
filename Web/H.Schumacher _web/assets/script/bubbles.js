@@ -22,9 +22,9 @@
   function spawnBubble(yRatio) {
     const src = sources[Math.floor(Math.random() * sources.length)];
     const r   = rand(1, 6);
-    const pts = Math.floor(rand(6, 13));
-    // offsets plus forts = forme plus trouble
-    const offsets = Array.from({ length: pts }, () => rand(-0.38, 0.38));
+    const pts = Math.floor(rand(8, 15));
+    // Contours plus ronds, tout en conservant une légère irrégularité organique.
+    const offsets = Array.from({ length: pts }, () => rand(-0.2, 0.2));
     bubbles.push({
       x:          src.x + rand(-canvas.width * 0.14, canvas.width * 0.14),
       y:          canvas.height * (yRatio !== undefined ? yRatio : rand(0.55, 1.08)),

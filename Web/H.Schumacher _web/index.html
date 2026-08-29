@@ -26,7 +26,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="assets/style/style.css?v=4" />
+    <link rel="stylesheet" href="assets/style/style.css?v=16" />
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -144,7 +144,10 @@
                 <img src="assets/img/logo-kannewischer.png" alt="Logo Kannewischer Group" class="hero-logo secondary-logo" />
               </a>
             </div>
-            <h1 class="reveal" data-i18n="hero.title">Pour une qualité d’eau maîtrisée</h1>
+            <h1 id="heroAnimatedTitle" class="reveal" data-i18n="hero.title">Pour une qualité d’eau maîtrisée</h1>
+          </div>
+          <div class="hero-bottom-action">
+            <a class="btn btn-primary" href="competences.html" data-i18n="home.prestations.btn">Découvrir nos compétences</a>
           </div>
         </section>
 
@@ -158,36 +161,36 @@
               <a class="competence-column" href="competences.html#sanitaire">
                 <div class="competence-column-copy">
                   <h2>Sanitaire</h2>
-                  <p>Conception et réalisation d’installations sanitaires performantes.</p>
+                  <p>Conception et réalisation d’installations sanitaires et fluides.</p>
                   <ul><li>Distribution et évacuation</li><li>Gestion des eaux météorologiques</li><li>STEP</li><li>Pisciculture</li></ul>
                 </div>
               </a>
               <a class="competence-column" href="competences.html#piscine-aquarium">
                 <div class="competence-column-copy">
-                  <h2>Piscine – Aquarium</h2>
-                  <p>Planification générale des installations aquatiques.</p>
-                  <ul><li>Traitement d’eau</li><li>Bassins et fonds mobiles</li><li>Attractions et pataugeoires</li><li>Mise aux normes</li></ul>
+                  <h2>Piscines et Aquarium</h2>
+                  <p>Conception et réalisation des installations aquatiques, de la réalisation des bassins, des équipements de loisirs et de sécurité.</p>
+                  <ul><li>Planification générale</li><li>Filtration et traitement de l’eau</li><li>Analyse et régulation de la qualité de l’eau</li><li>Optimisation énergétique des installations</li></ul>
                 </div>
               </a>
               <a class="competence-column" href="competences.html#medical">
                 <div class="competence-column-copy">
                   <h2>Médical</h2>
-                  <p>Conception et réalisation de réseaux médicaux fiables.</p>
-                  <ul><li>Gaz médicaux</li><li>Analyse de risques</li><li>Eau ultrapure</li><li>Stérilisation centrale</li></ul>
+                  <p>Conception et réalisation de réseaux de gaz médicaux.</p>
+                  <ul><li>Planification de centrale de stérilisation</li><li>Centrales de production et de distribution</li><li>Oxygène médical</li><li>Analyse des besoins et redondance</li></ul>
                 </div>
               </a>
               <a class="competence-column" href="competences.html#industriel">
                 <div class="competence-column-copy">
                   <h2>Industriel</h2>
-                  <p>Planification de systèmes de production et de distribution.</p>
-                  <ul><li>Gaz et air comprimé</li><li>Fluides et produits chimiques</li><li>Zones EX</li><li>Processus de production</li></ul>
+                  <p>Conception et réalisation de système de production et de distribution industriels.</p>
+                  <ul><li>Gaz spéciaux et air comprimé</li><li>Encres d’imprimerie</li><li>Fluides, alcool et produits chimiques</li><li>Process de production industrielle</li></ul>
                 </div>
               </a>
               <a class="competence-column" href="competences.html#expertise">
                 <div class="competence-column-copy">
-                  <h2>Expertise</h2>
+                  <h2>Expertise technique</h2>
                   <p>Un accompagnement indépendant pour les installations complexes.</p>
-                  <ul><li>Expertises devant les tribunaux</li><li>Installations sanitaires</li><li>Conception de piscines</li><li>Fluides et gaz</li></ul>
+                  <ul><li>Expert devant les tribunaux</li><li>Audit d’installations existantes</li><li>Analyse du cycle de vie des installations</li><li>Analyse de risque</li></ul>
                 </div>
               </a>
             </div>
@@ -222,9 +225,7 @@
             <p>Rue de Champ Riond 3<br />1609 St-Martin FR</p>
             <p>
               <a href="tel:+41264224344">+41 26 422 43 44</a><br />
-              <a href="mailto:fribourg@hschumacher.ch"
-                >fribourg@hschumacher.ch</a
-              >
+              <a href="mailto:h2o@hschumacher.ch">h2o@hschumacher.ch</a>
             </p>
           </div>
 
@@ -248,16 +249,24 @@
           </div>
         </div>
 
+        <div class="container footer-swiss-made">
+          <img class="footer-swiss-made-flag" src="assets/img/swiss-made-icon.svg" alt="" aria-hidden="true" />
+          <span>Swiss made</span>
+        </div>
         <div class="container footer-bottom">
-          <p data-i18n="footer.bottom">© 2026 H. Schumacher — Tous droits réservés</p>
+          <p>
+            <span data-i18n="footer.bottom">© 2026 H. Schumacher — Tous droits réservés</span>
+            - <span data-i18n="footer.createdBy">site créé par</span>
+            <a href="https://mwm-project.ch/" target="_blank" rel="noopener">MwM Project</a>
+          </p>
         </div>
       </footer>
 
       <button id="toTop" class="to-top" aria-label="Remonter en haut">↑</button>
     </div>
 
-    <script src="assets/script/translations.js?v=4"></script>
-    <script src="assets/script/script.js?v=4"></script>
-    <script src="assets/script/bubbles.js"></script>
+    <script src="assets/script/translations.js?v=6"></script>
+    <script src="assets/script/script.js?v=8"></script>
+    <script src="assets/script/bubbles.js?v=2"></script>
   </body>
 </html>

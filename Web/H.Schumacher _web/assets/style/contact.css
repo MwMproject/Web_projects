@@ -22,11 +22,15 @@
   margin: 0 auto;
 }
 .contact-form {
-  background: #0d1a2e;
+  position: relative;
+  z-index: 1;
+  background: rgba(7, 18, 33, 0.96);
   padding: 48px;
   border-radius: var(--radius);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -91,6 +95,10 @@
 }
 
 /* ── BUREAUX ── */
+.contact-offices {
+  padding-top: 40px;
+}
+
 .offices-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -139,6 +147,7 @@
   .offices-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 600px) {
+  .contact-offices { padding-top: 24px; }
   .offices-grid { grid-template-columns: 1fr; }
   .contact-form { padding: 28px 20px; }
   .form-row { grid-template-columns: 1fr; }

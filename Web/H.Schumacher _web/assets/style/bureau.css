@@ -111,6 +111,24 @@
   margin: 0;
 }
 
+/* ── ORDRE DES SECTIONS ── */
+.page-bureau main {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-bureau .bureau-intro {
+  order: 1;
+}
+
+.page-bureau .bureau-timeline {
+  order: 2;
+}
+
+.page-bureau .bureau-direction {
+  order: 3;
+}
+
 /* ── DIRECTION ── */
 .bureau-direction {
   padding: 80px 0;

@@ -10,6 +10,106 @@ const revealElements = document.querySelectorAll(".reveal");
 const navLinks = document.querySelectorAll(".nav a");
 
 /* =========================================================
+   HERO — ANIMATION DU LETTRAGE
+========================================================= */
+
+const heroAnimatedTitle = document.getElementById("heroAnimatedTitle");
+
+if (heroAnimatedTitle) {
+  const heroPhrases = {
+    fr: [
+      "Pour une qualité d’eau maîtrisée",
+      "Lorem ipsum dolor sit amet",
+      "Consectetur adipiscing elit",
+    ],
+    de: [
+      "Für eine kontrollierte Wasserqualität",
+      "Lorem ipsum dolor sit amet",
+      "Consectetur adipiscing elit",
+    ],
+    en: [
+      "For controlled water quality",
+      "Lorem ipsum dolor sit amet",
+      "Consectetur adipiscing elit",
+    ],
+  };
+  const scrambleCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZÀÄÉÈÖÜ0123456789";
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let phraseIndex = 0;
+  let animationFrame = 0;
+  let changeTimer = 0;
+
+  function scrambleTo(target) {
+    window.cancelAnimationFrame(animationFrame);
+    const source = heroAnimatedTitle.textContent;
+    const startedAt = performance.now();
+    const eraseCharacterDuration = 28;
+    const writeCharacterDuration = 48;
+    const pauseDuration = 180;
+    const eraseDuration = source.length * eraseCharacterDuration;
+    const writeDuration = target.length * writeCharacterDuration;
+    const duration = eraseDuration + pauseDuration + writeDuration;
+
+    function render(now) {
+      const elapsed = now - startedAt;
+
+      if (elapsed < eraseDuration) {
+        const removedCharacters = Math.floor(elapsed / eraseCharacterDuration);
+        heroAnimatedTitle.textContent = source.slice(0, Math.max(source.length - removedCharacters, 0));
+      } else if (elapsed < eraseDuration + pauseDuration) {
+        heroAnimatedTitle.textContent = "";
+      } else if (elapsed < duration) {
+        const writingElapsed = elapsed - eraseDuration - pauseDuration;
+        const writtenCharacters = Math.floor(writingElapsed / writeCharacterDuration);
+        const settledText = target.slice(0, writtenCharacters);
+        const activeCharacter = target[writtenCharacters];
+
+        if (!activeCharacter || activeCharacter === " ") {
+          heroAnimatedTitle.textContent = target.slice(0, writtenCharacters + 1);
+        } else {
+          const scrambledCharacter = scrambleCharacters[Math.floor(Math.random() * scrambleCharacters.length)];
+          heroAnimatedTitle.textContent = `${settledText}${scrambledCharacter}`;
+        }
+      } else {
+        heroAnimatedTitle.textContent = target;
+      }
+
+      if (elapsed < duration) animationFrame = window.requestAnimationFrame(render);
+    }
+
+    animationFrame = window.requestAnimationFrame(render);
+    return duration;
+  }
+
+  function scheduleNextPhrase(delay = 6000) {
+    window.clearTimeout(changeTimer);
+    changeTimer = window.setTimeout(() => {
+      const lang = document.documentElement.lang || "fr";
+      const phrases = heroPhrases[lang] || heroPhrases.fr;
+      phraseIndex = (phraseIndex + 1) % phrases.length;
+      const transitionDuration = scrambleTo(phrases[phraseIndex]);
+      scheduleNextPhrase(transitionDuration + 6000);
+    }, delay);
+  }
+
+  function startHeroTitleAnimation(lang = document.documentElement.lang || "fr") {
+    window.clearTimeout(changeTimer);
+    window.cancelAnimationFrame(animationFrame);
+    phraseIndex = 0;
+    const phrases = heroPhrases[lang] || heroPhrases.fr;
+    heroAnimatedTitle.textContent = phrases[0];
+
+    if (!reducedMotion.matches) scheduleNextPhrase(6000);
+  }
+
+  window.addEventListener("languagechange", (event) => {
+    startHeroTitleAnimation(event.detail?.lang);
+  });
+
+  reducedMotion.addEventListener("change", () => startHeroTitleAnimation());
+}
+
+/* =========================================================
    HEADER SCROLL + TOP BUTTON
 ========================================================= */
 
@@ -327,7 +427,11 @@ if (filters.length && referenceProjects.length) {
 
 function renderReferences(projects) {
   referencesGrid.innerHTML = "";
-  projects.forEach((project) => {
+  const sortedProjects = [...projects].sort((projectA, projectB) => {
+    return getReferenceYear(projectB) - getReferenceYear(projectA);
+  });
+
+  sortedProjects.forEach((project) => {
     const card = document.createElement("article");
     card.className = "ref-card";
     card.tabIndex = 0;
@@ -351,6 +455,11 @@ function renderReferences(projects) {
     });
     referencesGrid.appendChild(card);
   });
+}
+
+function getReferenceYear(project) {
+  const years = String(project.period || "").match(/\b(?:19|20)\d{2}\b/g);
+  return years?.length ? Math.max(...years.map(Number)) : Number.NEGATIVE_INFINITY;
 }
 
 function getProjectTags(project) {

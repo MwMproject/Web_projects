@@ -26,10 +26,10 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="assets/style/style.css" />
-    <link rel="stylesheet" href="assets/style/bureau.css" />
+    <link rel="stylesheet" href="assets/style/style.css?v=16" />
+    <link rel="stylesheet" href="assets/style/bureau.css?v=1" />
   </head>
-  <body>
+  <body class="page-bureau">
     <div class="site-wrapper">
       <!-- HEADER -->
       <header class="header" id="header">
@@ -792,12 +792,18 @@
           <div class="footer-column">
             <h3>H. Schumacher Vernier Sàrl</h3>
             <p>Avenue du Lignon 41<br />1219 Le Lignon</p>
-            <p><a href="tel:+41223001313">+41 22 300 13 13</a></p>
+            <p>
+              <a href="tel:+41223001313">+41 22 300 13 13</a><br />
+              <a href="mailto:h2o@hschumacher.ch">h2o@hschumacher.ch</a>
+            </p>
           </div>
           <div class="footer-column">
             <h3>H. Schumacher FR Sàrl</h3>
             <p>Rue de Champ Riond 3<br />1609 St-Martin FR</p>
-            <p><a href="tel:+41264224344">+41 26 422 43 44</a></p>
+            <p>
+              <a href="tel:+41264224344">+41 26 422 43 44</a><br />
+              <a href="mailto:h2o@hschumacher.ch">h2o@hschumacher.ch</a>
+            </p>
           </div>
           <div class="footer-column">
             <h3>Kannewischer Group</h3>
@@ -818,15 +824,23 @@
             </ul>
           </div>
         </div>
+        <div class="container footer-swiss-made">
+          <img class="footer-swiss-made-flag" src="assets/img/swiss-made-icon.svg" alt="" aria-hidden="true" />
+          <span>Swiss made</span>
+        </div>
         <div class="container footer-bottom">
-          <p data-i18n="footer.bottom">© 2026 H. Schumacher — Tous droits réservés</p>
+          <p>
+            <span data-i18n="footer.bottom">© 2026 H. Schumacher — Tous droits réservés</span>
+            - <span data-i18n="footer.createdBy">site créé par</span>
+            <a href="https://mwm-project.ch/" target="_blank" rel="noopener">MwM Project</a>
+          </p>
         </div>
       </footer>
 
       <button id="toTop" class="to-top" aria-label="Remonter en haut">↑</button>
     </div>
 
-    <script src="assets/script/translations.js?v=2"></script>
+    <script src="assets/script/translations.js?v=6"></script>
     <script src="assets/script/script.js"></script>
     <script>
       (function () {
