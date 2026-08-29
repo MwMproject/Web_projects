@@ -377,6 +377,15 @@ main section[id] {
   margin: 0 auto 1em;
   object-fit: contain;
 }
+.card-level {
+  display: block;
+  margin-top: 4px;
+  color: var(--color-gold);
+  font-size: 0.62em;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
 .card h3 { text-align: center; }
 .card h3 {
   font-size: 1.4rem;
@@ -566,13 +575,27 @@ main section[id] {
 }
 .schedule-day p, .schedule-extra p {
   display: flex;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 10px;
   margin-bottom: 8px;
   color: var(--color-white);
   font-size: 0.95rem;
 }
-.schedule-day p span, .schedule-extra p span { color: var(--color-grey); }
+.schedule-day p span, .schedule-extra p span {
+  flex-shrink: 0;
+  white-space: nowrap;
+  color: var(--color-grey);
+}
+.schedule-level {
+  display: block;
+  margin-top: 3px;
+  color: var(--color-gold);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
 
 .schedule-extra-grid {
   display: grid;
