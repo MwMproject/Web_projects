@@ -206,18 +206,18 @@
   padding: 8px 18px;
   background: var(--secondary);
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   color: #fff;
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 700;
   font-family: inherit;
   cursor: pointer;
-  transition: background 0.2s, transform 0.15s;
+  transition: background 0.2s ease, transform 0.2s ease;
   white-space: nowrap;
 }
 .btn-lire-plus:hover {
   background: #1aa3ef;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 @media (max-width: 700px) {

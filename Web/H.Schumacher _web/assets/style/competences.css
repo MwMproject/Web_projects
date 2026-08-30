@@ -46,7 +46,7 @@
 .competence-detail {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(220px, 24%) minmax(340px, 43%) minmax(280px, 33%);
+  grid-template-columns: minmax(280px, 34%) minmax(0, 66%);
   width: 100%;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -74,7 +74,7 @@
 }
 
 .competence-detail--reverse {
-  grid-template-columns: minmax(220px, 24%) minmax(340px, 43%) minmax(280px, 33%);
+  grid-template-columns: minmax(280px, 34%) minmax(0, 66%);
   margin-left: 0;
 }
 
@@ -164,18 +164,168 @@
   background: var(--primary);
 }
 
+/* ── ACCORDÉONS DE COMPÉTENCES ── */
+.competence-accordions {
+  display: grid;
+  gap: 10px;
+}
+
+.competence-accordion {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  background: rgba(3, 10, 19, 0.72);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.competence-accordion:hover,
+.competence-accordion:focus-within {
+  border-color: rgba(255, 255, 255, 0.24);
+  background: rgba(3, 10, 19, 0.9);
+}
+
+.competence-accordion summary {
+  position: relative;
+  padding: 15px 46px 15px 38px;
+  color: #f4f7fb;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.35;
+  cursor: pointer;
+  list-style: none;
+}
+
+.competence-accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.competence-accordion summary::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 18px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--primary);
+  transform: translateY(-50%);
+}
+
+.competence-accordion summary::after {
+  content: "+";
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  color: var(--muted);
+  font-size: 1.25rem;
+  font-weight: 400;
+  transform: translateY(-52%);
+}
+
+.competence-accordion > ul {
+  display: none;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin: 0;
+  padding: 0 22px 18px 38px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.competence-accordion > ul li {
+  padding-top: 9px;
+  padding-left: 14px;
+  color: #b9c5d6;
+  font-size: 0.84rem;
+}
+
+.competence-subskills {
+  grid-column: 2;
+  grid-row: 2;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px 30px;
+  padding: 0 48px 44px;
+}
+
+.competence-subskills .competence-accordion {
+  overflow: visible;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.competence-subskills .competence-accordion:hover {
+  transform: none;
+}
+
+.competence-subskills .competence-accordion h3 {
+  position: relative;
+  min-height: 0;
+  margin: 0 0 12px;
+  padding-left: 17px;
+  color: #f4f7fb;
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+
+.competence-subskills .competence-accordion h3::before {
+  content: "";
+  position: absolute;
+  top: 0.48em;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+.competence-subskills .competence-accordion > ul {
+  display: grid;
+  gap: 7px;
+  padding: 0 0 0 17px;
+  border-top: 0;
+}
+
+.competence-subskills .competence-accordion > ul li {
+  padding-top: 0;
+  color: #aebbd0;
+}
+
+.competence-subskills .competence-accordion > ul li::before {
+  width: 4px;
+  height: 4px;
+  background: rgba(174, 187, 208, 0.72);
+}
+
+.competence-subskills > .competence-references-link {
+  grid-column: 1 / -1;
+  justify-self: start;
+  margin-top: 2px;
+}
+
+#sanitaire .competence-detail-index {
+  grid-column: 1;
+  grid-row: 1 / 3;
+}
+
+#sanitaire .competence-related-references {
+  grid-column: 1 / -1;
+  grid-row: 3;
+}
+
 .competence-references-link {
   display: inline-flex;
   align-items: center;
   gap: 9px;
   margin-top: 28px;
-  padding: 11px 17px;
+  padding: 13px 20px;
   border: 1px solid rgba(255, 255, 255, 0.24);
-  border-radius: 999px;
+  border-radius: 10px;
   color: #eaf7ff;
   background: rgba(255, 255, 255, 0.06);
   font-size: 0.88rem;
   font-weight: 700;
+  line-height: 1.2;
   transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
@@ -186,11 +336,11 @@
 }
 
 .competence-related-references {
-  grid-column: 3;
-  grid-row: 1;
+  grid-column: 1 / -1;
+  grid-row: 2;
   padding: 30px 24px;
   border-top: 0;
-  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  border-left: 0;
 }
 
 .competence-related-references h3 {
@@ -201,7 +351,7 @@
 
 .competence-reference-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
 }
 
@@ -263,11 +413,25 @@
   .competence-related-references {
     grid-column: 1 / -1;
     grid-row: 2;
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    border-top: 0;
     border-left: 0;
   }
   .competence-reference-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .competence-subskills {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-column: 1 / -1;
+    grid-row: 2;
+    padding: 28px 30px 34px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  #sanitaire .competence-detail-index {
+    grid-row: 1;
+  }
+  #sanitaire .competence-related-references {
+    grid-column: 1 / -1;
+    grid-row: 3;
   }
 }
 @media (max-width: 600px) {
@@ -305,6 +469,25 @@
   }
   .competence-detail-content {
     padding: 28px 28px 32px;
+  }
+
+  .competence-subskills {
+    grid-template-columns: 1fr;
+    grid-column: 1;
+    grid-row: 3;
+    padding: 24px 28px 30px;
+  }
+
+  .competence-subskills .competence-accordion h3 {
+    min-height: 0;
+  }
+  #sanitaire .competence-detail-index {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  #sanitaire .competence-related-references {
+    grid-column: 1;
+    grid-row: 4;
   }
   .competence-detail ul {
     grid-template-columns: 1fr;
