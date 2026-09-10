@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteBase /
+
+# Conserve les URL Wix sans redirection visible dans le navigateur.
+RewriteRule ^contact/?$ contact.html [L]
+RewriteRule ^en/?$ index.html?lang=en [L,QSA]
+RewriteRule ^en/contact/?$ contact.html?lang=en [L,QSA]
+
+# Empêche la négociation automatique de noms de fichiers de modifier les URL.
+Options -MultiViews
