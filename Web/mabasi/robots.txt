@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: *?lightbox=
+
+User-agent: PetalBot
+Disallow: /
+
+Sitemap: https://www.mabasi.com/sitemap.xml
