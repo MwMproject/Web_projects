@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+>
+  <url>
+    <loc>https://www.hibou-etoile.com/</loc>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://www.hibou-etoile.com/" />
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.hibou-etoile.com/en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.hibou-etoile.com/" />
+  </url>
+  <url>
+    <loc>https://www.hibou-etoile.com/en</loc>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://www.hibou-etoile.com/" />
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.hibou-etoile.com/en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.hibou-etoile.com/" />
+  </url>
+  <url>
+    <loc>https://www.hibou-etoile.com/contact</loc>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://www.hibou-etoile.com/contact" />
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.hibou-etoile.com/en/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.hibou-etoile.com/contact" />
+  </url>
+  <url>
+    <loc>https://www.hibou-etoile.com/en/contact</loc>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://www.hibou-etoile.com/contact" />
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.hibou-etoile.com/en/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.hibou-etoile.com/contact" />
+  </url>
+</urlset>
