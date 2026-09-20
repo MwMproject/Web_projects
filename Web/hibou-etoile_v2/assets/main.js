@@ -4,13 +4,23 @@ const hero = document.querySelector(".hero");
 const burger = document.querySelector(".burger");
 const nav = document.querySelector(".nav");
 const isContactPage = location.pathname.includes("contact");
-const urlLanguage = location.pathname.startsWith("/en") || new URLSearchParams(location.search).get("lang") === "en" ? "en" : null;
+const urlLanguage =
+  location.pathname.startsWith("/en") ||
+  new URLSearchParams(location.search).get("lang") === "en"
+    ? "en"
+    : null;
 let language = urlLanguage || "fr";
 
 function routeFor(next, contact = isContactPage) {
-  const local = location.hostname === "127.0.0.1" || location.hostname === "localhost";
-  if (local) return `${contact ? "contact.html" : "index.html"}${next === "en" ? "?lang=en" : ""}`;
-  return next === "en" ? `/en${contact ? "/contact" : ""}` : contact ? "/contact" : "/";
+  const local =
+    location.hostname === "127.0.0.1" || location.hostname === "localhost";
+  if (local)
+    return `${contact ? "contact.html" : "index.html"}${next === "en" ? "?lang=en" : ""}`;
+  return next === "en"
+    ? `/en${contact ? "/contact" : ""}`
+    : contact
+      ? "/contact"
+      : "/";
 }
 
 function valueAt(object, path) {
@@ -22,18 +32,32 @@ function applyLanguage(next) {
   document.documentElement.lang = next;
   document.title = isContactPage
     ? "Contact | L'hibou Étoilé"
-    : next === "en" ? "HOME | Hibou Etoile" : "L'Hibou étoilé | holiday rental";
+    : next === "en"
+      ? "HOME | Hibou Etoile"
+      : "L'Hibou étoilé | holiday rental";
   const canonical = document.querySelector('link[rel="canonical"]');
   canonical.href = `https://www.hibou-etoile.com${next === "en" ? `/en${isContactPage ? "/contact" : ""}` : isContactPage ? "/contact" : "/"}`;
   const description = document.querySelector('meta[name="description"]');
-  if (description) description.content = next === "en"
-    ? "Swiss chalet holiday rentals in Morgins and Troistorrents, in the heart of the Valais Alps."
-    : "L'Hibou étoilé vous propose des locations de chalets suisses hors du commun à des prix raisonnables afin que vous puissiez profiter de ce que notre magnifique région peut offrir.";
-  document.querySelectorAll('a[data-i18n="nav.home"]').forEach((link) => link.href = routeFor(next, false));
-  document.querySelectorAll('a[data-i18n="nav.contact"]').forEach((link) => link.href = routeFor(next, true));
-  document.querySelectorAll(".logo-card, .compact-brand").forEach((link) => link.href = routeFor(next, false));
-  document.querySelectorAll('a[data-i18n="direct.cta"]').forEach((link) => link.href = routeFor(next, true));
-  document.querySelectorAll(".mobile-book").forEach((link) => link.href = `${routeFor(next, false)}#booking`);
+  if (description)
+    description.content =
+      next === "en"
+        ? "Swiss chalet holiday rentals in Morgins and Troistorrents, in the heart of the Valais Alps."
+        : "L'Hibou étoilé vous propose des locations de chalets suisses hors du commun à des prix raisonnables afin que vous puissiez profiter de ce que notre magnifique région peut offrir.";
+  document
+    .querySelectorAll('a[data-i18n="nav.home"]')
+    .forEach((link) => (link.href = routeFor(next, false)));
+  document
+    .querySelectorAll('a[data-i18n="nav.contact"]')
+    .forEach((link) => (link.href = routeFor(next, true)));
+  document
+    .querySelectorAll(".logo-card, .compact-brand")
+    .forEach((link) => (link.href = routeFor(next, false)));
+  document
+    .querySelectorAll('a[data-i18n="direct.cta"]')
+    .forEach((link) => (link.href = routeFor(next, true)));
+  document
+    .querySelectorAll(".mobile-book")
+    .forEach((link) => (link.href = `${routeFor(next, false)}#booking`));
   document.querySelectorAll("[data-i18n]").forEach((element) => {
     const value = valueAt(window.translations[next], element.dataset.i18n);
     if (value) element.innerHTML = value;
@@ -50,29 +74,43 @@ function applyLanguage(next) {
     .forEach((element) => {
       element.textContent = next === "fr" ? "RÉSERVER" : "BOOK NOW";
     });
-  document.querySelectorAll('[data-i18n="footer.credit"]').forEach((element) => {
-    element.innerHTML = next === "fr"
-      ? '© 2026 L\'Hibou Étoilé — Site créé par <a href="https://mwm-project.ch" target="_blank" rel="noopener">MWM Project</a>'
-      : '© 2026 L\'Hibou Étoilé — Website created by <a href="https://mwm-project.ch" target="_blank" rel="noopener">MWM Project</a>';
-  });
+  document
+    .querySelectorAll('[data-i18n="footer.credit"]')
+    .forEach((element) => {
+      element.innerHTML =
+        next === "fr"
+          ? '© 2026 L\'Hibou Étoilé — Site créé par <a href="https://mwm-project.ch" target="_blank" rel="noopener">MWM Project</a>'
+          : '© 2026 L\'Hibou Étoilé — Website created by <a href="https://mwm-project.ch" target="_blank" rel="noopener">MWM Project</a>';
+    });
   const bookingLabel = document.querySelector("[data-booking-label]");
   if (bookingLabel) {
     bookingLabel.textContent = next === "fr" ? "Exceptionnel" : "Exceptional";
-    document.querySelector("[data-booking-reviews]").textContent = next === "fr" ? "140 avis" : "140 reviews";
-    document.querySelector("[data-booking-title]").textContent = next === "fr" ? "Voir sur Booking.com" : "View on Booking.com";
-    document.querySelector("[data-booking-grand]").textContent = next === "fr" ? "Chalet grand luxe" : "Luxury chalet";
-    document.querySelector("[data-booking-small]").textContent = next === "fr" ? "Petit chalet familial" : "Small family chalet";
+    document.querySelector("[data-booking-reviews]").textContent =
+      next === "fr" ? "140 avis" : "140 reviews";
+    document.querySelector("[data-booking-title]").textContent =
+      next === "fr" ? "Voir sur Booking.com" : "View on Booking.com";
+    document.querySelector("[data-booking-grand]").textContent =
+      next === "fr" ? "Chalet grand luxe" : "Luxury chalet";
+    document.querySelector("[data-booking-small]").textContent =
+      next === "fr" ? "Petit chalet familial" : "Small family chalet";
   }
   languageSwitchers.forEach((switcher) => {
     const trigger = switcher.querySelector(".language-select");
-    trigger.querySelector(".language-flag").src = next === "fr"
-      ? "assets/img/flag-ch.svg"
-      : "assets/img/flag-gb.svg";
+    trigger.querySelector(".language-flag").src =
+      next === "fr" ? "assets/img/flag-ch.svg" : "assets/img/flag-gb.svg";
     trigger.querySelector("b").textContent = next.toUpperCase();
-    trigger.setAttribute("aria-label", next === "fr" ? "Choisir la langue. Français sélectionné" : "Choose language. English selected");
+    trigger.setAttribute(
+      "aria-label",
+      next === "fr"
+        ? "Choisir la langue. Français sélectionné"
+        : "Choose language. English selected",
+    );
     switcher.querySelectorAll("[data-language]").forEach((option) => {
       option.classList.toggle("selected", option.dataset.language === next);
-      option.setAttribute("aria-current", option.dataset.language === next ? "true" : "false");
+      option.setAttribute(
+        "aria-current",
+        option.dataset.language === next ? "true" : "false",
+      );
     });
   });
   localStorage.setItem("hibou-language", next);
@@ -82,7 +120,9 @@ function closeLanguageMenus(exception) {
   languageSwitchers.forEach((switcher) => {
     if (switcher === exception) return;
     switcher.classList.remove("open");
-    switcher.querySelector(".language-select").setAttribute("aria-expanded", "false");
+    switcher
+      .querySelector(".language-select")
+      .setAttribute("aria-expanded", "false");
   });
 }
 
@@ -137,8 +177,14 @@ if (bookingBadge) {
 }
 
 const galleryFiles = {
-  grand: Array.from({ length: 27 }, (_, index) => `assets/img/chalet_grand_luxe${index + 1}.webp`),
-  small: Array.from({ length: 14 }, (_, index) => `assets/img/petit_chalet_familial${index + 1}.webp`),
+  grand: Array.from(
+    { length: 27 },
+    (_, index) => `assets/img/chalet_grand_luxe${index + 1}.webp`,
+  ),
+  small: Array.from(
+    { length: 14 },
+    (_, index) => `assets/img/petit_chalet_familial${index + 1}.webp`,
+  ),
 };
 
 document.querySelectorAll("[data-gallery]").forEach((card) => {
@@ -155,7 +201,10 @@ document.querySelectorAll("[data-gallery]").forEach((card) => {
     count.textContent = `${current + 1} / ${images.length}`;
     thumbs.querySelectorAll(".gallery-thumb").forEach((thumb, thumbIndex) => {
       thumb.classList.toggle("active", thumbIndex === current);
-      thumb.setAttribute("aria-current", thumbIndex === current ? "true" : "false");
+      thumb.setAttribute(
+        "aria-current",
+        thumbIndex === current ? "true" : "false",
+      );
     });
   };
   images.forEach((source, index) => {
@@ -216,7 +265,8 @@ if (form) {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     const data = new FormData(form);
-    const selectedChalet = chaletSelect.options[chaletSelect.selectedIndex].text;
+    const selectedChalet =
+      chaletSelect.options[chaletSelect.selectedIndex].text;
     const subject = encodeURIComponent("Demande depuis le site L'Hibou Étoilé");
     const body = encodeURIComponent(
       `${data.get("name")} (${data.get("email")})\nHébergement : ${selectedChalet}\n\n${data.get("message")}`,

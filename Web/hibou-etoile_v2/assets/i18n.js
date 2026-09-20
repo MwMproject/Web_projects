@@ -11,9 +11,12 @@ window.translations = {
     stays: {
       eyebrow: "NOS DEUX CHALETS",
       title: "Choisissez votre séjour dans les Alpes",
-      intro: "Deux chalets authentiques, deux atmosphères. Découvrez-les en images puis contactez-nous directement pour préparer votre séjour.",
-      grandText: "Construit au 19ème siècle et entièrement rénové, ce grand chalet dispose d’un jardin tropical intérieur, d’un sauna, d’un hammam et d’un vaste jardin extérieur avec étang.",
-      smallText: "Situé à Morgins, ce chalet chaleureux est idéal pour accueillir votre famille lors de vos prochaines vacances au cœur des Alpes suisses.",
+      intro:
+        "Deux chalets authentiques, deux atmosphères. Découvrez-les en images puis contactez-nous directement pour préparer votre séjour.",
+      grandText:
+        "Construit au 19ème siècle et entièrement rénové, ce grand chalet dispose d’un jardin tropical intérieur, d’un sauna, d’un hammam et d’un vaste jardin extérieur avec étang.",
+      smallText:
+        "Situé à Morgins, ce chalet chaleureux est idéal pour accueillir votre famille lors de vos prochaines vacances au cœur des Alpes suisses.",
       directCta: "RÉSERVER LE LOGEMENT",
       bookingCta: "Booking",
       abritelCta: "Abritel",
@@ -40,10 +43,16 @@ window.translations = {
     reviews: {
       eyebrow: "AVIS & EXPÉRIENCES",
       title: "Ils ont séjourné chez nous",
-      bookingText: "Retrouvez les notes et commentaires laissés par nos voyageurs sur Booking.",
-      googleText: "Consultez notre présence Google et partagez votre expérience avec L’Hibou Étoilé.",
+      bookingRating: "141 avis",
+      googleRating: "8 avis",
+      abritelRating: "2 avis",
+      bookingText:
+        "Retrouvez les notes et commentaires laissés par nos voyageurs sur Booking.",
+      googleText:
+        "Consultez notre présence Google et partagez votre expérience avec L’Hibou Étoilé.",
       googleCta: "VOIR SUR GOOGLE",
-      abritelText: "Découvrez les avis et les informations détaillées de nos logements sur Abritel.",
+      abritelText:
+        "Découvrez les avis et les informations détaillées de nos logements sur Abritel.",
     },
     contact: {
       question: "Des questions?<br>Nous sommes à votre disposition!",
@@ -71,9 +80,12 @@ window.translations = {
     stays: {
       eyebrow: "OUR TWO CHALETS",
       title: "Choose your stay in the Alps",
-      intro: "Two authentic chalets, two distinct atmospheres. Explore them in pictures, then contact us directly to plan your stay.",
-      grandText: "Built in the 19th century and fully renovated, this large chalet features an indoor tropical garden, a sauna, a hammam and a spacious outdoor garden with a pond.",
-      smallText: "Located in Morgins, this welcoming chalet is ideal for a family holiday in the heart of the Swiss Alps.",
+      intro:
+        "Two authentic chalets, two distinct atmospheres. Explore them in pictures, then contact us directly to plan your stay.",
+      grandText:
+        "Built in the 19th century and fully renovated, this large chalet features an indoor tropical garden, a sauna, a hammam and a spacious outdoor garden with a pond.",
+      smallText:
+        "Located in Morgins, this welcoming chalet is ideal for a family holiday in the heart of the Swiss Alps.",
       directCta: "BOOK THIS PROPERTY",
       bookingCta: "Booking",
       abritelCta: "Abritel",
@@ -100,10 +112,16 @@ window.translations = {
     reviews: {
       eyebrow: "REVIEWS & EXPERIENCES",
       title: "Our guests share their experience",
-      bookingText: "Read the ratings and reviews left by our guests on Booking.",
-      googleText: "Visit our Google profile and share your experience with L’Hibou Étoilé.",
+      bookingRating: "141 reviews",
+      googleRating: "8 reviews",
+      abritelRating: "2 reviews",
+      bookingText:
+        "Read the ratings and reviews left by our guests on Booking.",
+      googleText:
+        "Visit our Google profile and share your experience with L’Hibou Étoilé.",
       googleCta: "VIEW ON GOOGLE",
-      abritelText: "Discover guest reviews and detailed property information on Abritel.",
+      abritelText:
+        "Discover guest reviews and detailed property information on Abritel.",
     },
     contact: {
       question: "Any questions?<br>We are here to help!",
