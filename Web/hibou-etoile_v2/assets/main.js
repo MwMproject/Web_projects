@@ -60,7 +60,7 @@ function applyLanguage(next) {
     .forEach((link) => (link.href = `${routeFor(next, true)}#maps`));
   document
     .querySelectorAll(".mobile-book")
-    .forEach((link) => (link.href = `${routeFor(next, false)}#booking`));
+    .forEach((link) => (link.href = `${routeFor(next, true)}#contact-form`));
   document.querySelectorAll("[data-i18n]").forEach((element) => {
     const value = valueAt(window.translations[next], element.dataset.i18n);
     if (value) element.innerHTML = value;
