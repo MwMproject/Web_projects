@@ -34,7 +34,7 @@ window.translations = {
     region: {
       title: "Notre région",
       text: "Morgins et Troistorrents, entre Montreux et Martigny, sont deux communes Valaisannes, situées dans le district de Monthey, dans le domaine des Portes du Soleil, au cœur des Alpes suisses! Dans un environnement calme et apaisant, nos logements se situent également proche du centre ville de Monthey, où vous trouverez les commodités nécessaires: médecin, restauration, magasins.<br><br>La région vous propose des activités diverses telles que: ski, randonnée, vélo, bains thermaux et bien plus encore.",
-      map: "Voir sur la carte",
+      map: "Voir les cartes",
     },
     about: {
       title: "A propos",
@@ -55,8 +55,14 @@ window.translations = {
         "Découvrez les avis et les informations détaillées de nos logements sur Abritel.",
     },
     contact: {
+      pageTitle: "Contact & réservation",
       question: "Des questions?<br>Nous sommes à votre disposition!",
       us: "Nous contacter",
+    },
+    maps: {
+      grandLabel: "CHALET GRAND LUXE",
+      familyLabel: "PETIT CHALET FAMILIAL",
+      open: "Ouvrir la carte",
     },
     form: {
       name: "Nom",
@@ -103,7 +109,7 @@ window.translations = {
     region: {
       title: "Our region",
       text: "Morgins and Troistorrents, between Montreux and Martigny, are located in the Portes du Soleil area, at the heart of the Swiss Alps. Our accommodations are also close to Monthey and its amenities.<br><br>The region offers skiing, hiking, biking, thermal baths and much more.",
-      map: "See on the map",
+      map: "See the maps",
     },
     about: {
       title: "About us",
@@ -124,8 +130,14 @@ window.translations = {
         "Discover guest reviews and detailed property information on Abritel.",
     },
     contact: {
+      pageTitle: "Contact & booking",
       question: "Any questions?<br>We are here to help!",
       us: "Contact us",
+    },
+    maps: {
+      grandLabel: "LUXURY CHALET",
+      familyLabel: "SMALL FAMILY CHALET",
+      open: "Open map",
     },
     form: {
       name: "Name",

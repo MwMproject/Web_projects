@@ -27,10 +27,10 @@
       href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&family=Roboto+Slab:wght@400;600;700;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="assets/style.css?v=20260920modern6" />
+    <link rel="stylesheet" href="assets/style.css?v=20261001softtop" />
     <link rel="icon" href="assets/img/logo.png" />
   </head>
-  <body>
+  <body class="contact-page">
     <div class="compact-header" aria-hidden="true" inert>
       <a
         class="compact-brand"
@@ -100,9 +100,7 @@
             </button>
           </div>
         </div>
-        <h1 data-i18n="hero.title">
-          Vos prochaines vacances à la montagne en un clic !
-        </h1>
+        <h1 data-i18n="contact.pageTitle">Contact & réservation</h1>
       </div>
     </header>
     <main class="brown-page contact-main" id="content">
@@ -167,12 +165,52 @@
           </p>
         </div>
       </section>
-      <iframe
-        class="map"
-        title="Carte de Troistorrents"
-        loading="lazy"
-        src="https://www.google.com/maps?q=1872%20Troistorrents%20Switzerland&output=embed"
-      ></iframe>
+      <section class="maps-grid" id="maps" aria-label="Localisation des chalets">
+        <article class="map-card">
+          <div class="map-card-heading">
+            <div>
+              <p class="eyebrow" data-i18n="maps.grandLabel">CHALET GRAND LUXE</p>
+              <h2>Route de Chenarlier 11</h2>
+              <p>Troistorrents</p>
+            </div>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Route+de+Chenarlier+11%2C+Troistorrents%2C+Switzerland"
+              target="_blank"
+              rel="noopener"
+              data-i18n="maps.open"
+              >Ouvrir la carte</a
+            >
+          </div>
+          <iframe
+            class="map"
+            title="Vue satellite du Chalet Grand Luxe, Route de Chenarlier 11 à Troistorrents"
+            loading="lazy"
+            src="https://maps.google.com/maps?q=Route%20de%20Chenarlier%2011%2C%20Troistorrents%2C%20Switzerland&amp;t=k&amp;z=18&amp;output=embed"
+          ></iframe>
+        </article>
+        <article class="map-card">
+          <div class="map-card-heading">
+            <div>
+              <p class="eyebrow" data-i18n="maps.familyLabel">PETIT CHALET FAMILIAL</p>
+              <h2>Route Forestière 69</h2>
+              <p>Troistorrents</p>
+            </div>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Route+Foresti%C3%A8re+69%2C+Troistorrents%2C+Switzerland"
+              target="_blank"
+              rel="noopener"
+              data-i18n="maps.open"
+              >Ouvrir la carte</a
+            >
+          </div>
+          <iframe
+            class="map"
+            title="Vue satellite du Petit Chalet Familial, Route Forestière 69 à Troistorrents"
+            loading="lazy"
+            src="https://maps.google.com/maps?q=Route%20Foresti%C3%A8re%2069%2C%20Troistorrents%2C%20Switzerland&amp;t=k&amp;z=18&amp;output=embed"
+          ></iframe>
+        </article>
+      </section>
     </main>
     <footer>
       <div>
@@ -234,7 +272,7 @@
     <a class="mobile-book" href="index.html#booking" data-i18n="booking.mobile"
       >RÉSERVER</a
     >
-    <script src="assets/i18n.js?v=20260910b" defer></script>
-    <script src="assets/main.js?v=20260910f" defer></script>
+    <script src="assets/i18n.js?v=20261001maps" defer></script>
+    <script src="assets/main.js?v=20261001maps" defer></script>
   </body>
 </html>

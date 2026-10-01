@@ -641,16 +641,73 @@ textarea:focus-visible {
 }
 
 /* Contact */
+.contact-page {
+  position: relative;
+  isolation: isolate;
+  background: #2e3d34;
+}
+.contact-page::before {
+  content: "";
+  position: fixed;
+  z-index: -2;
+  inset: -18px;
+  background: url("img/about.jpg") center 46% / cover no-repeat;
+  filter: blur(5px);
+  transform: scale(1.035);
+}
+.contact-page::after {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  background: rgba(43, 32, 25, 0.38);
+  pointer-events: none;
+}
+.contact-page .hero {
+  min-height: 560px;
+  height: 560px;
+  background: transparent;
+}
+.contact-page .hero::before {
+  content: none;
+}
+.contact-page .hero::after {
+  content: none;
+}
+.contact-page .hero-tint {
+  inset: 0 0 auto;
+  height: 245px;
+  background: linear-gradient(
+    180deg,
+    rgba(42, 31, 24, 0.48),
+    rgba(42, 31, 24, 0.24) 62%,
+    transparent
+  );
+  pointer-events: none;
+}
+.contact-page .hero h1 {
+  top: 125px;
+  left: 180px;
+  width: auto;
+  font-size: clamp(34px, 4vw, 52px);
+}
 .contact-main {
-  padding-top: 110px;
+  position: relative;
+  z-index: 3;
+  margin-top: -350px;
+  padding: 0 0 100px;
+  background: transparent;
 }
 .contact-panel {
-  padding: 72px;
+  padding: 42px 48px;
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
-  gap: 38px 72px;
-  border-radius: 4px 4px 0 0;
+  gap: 24px 54px;
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  border-radius: 6px;
+  background: rgba(255, 253, 249, 0.94);
   box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
 }
 .contact-title h2 {
   margin: 0;
@@ -658,6 +715,8 @@ textarea:focus-visible {
   font: 600 clamp(28px, 3vw, 42px)/1.25 var(--serif);
 }
 .contact-panel form {
+  grid-column: 2;
+  grid-row: 1 / span 2;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -674,7 +733,7 @@ textarea:focus-visible {
   color: var(--ink);
 }
 .contact-panel textarea {
-  min-height: 150px;
+  min-height: 118px;
   resize: vertical;
 }
 .contact-panel input:focus,
@@ -699,7 +758,8 @@ textarea:focus-visible {
   background: var(--clay-dark);
 }
 .contact-info {
-  grid-column: 2;
+  grid-column: 1;
+  grid-row: 2;
   padding-top: 18px;
   border-top: 1px solid var(--line);
 }
@@ -710,9 +770,53 @@ textarea:focus-visible {
   margin: 0;
   color: var(--muted);
 }
-.map {
+.maps-grid {
+  width: min(1180px, calc(100% - 64px));
+  margin: 48px auto 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+.map-card {
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+.map-card-heading {
+  min-height: 132px;
+  padding: 24px 28px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+.map-card-heading .eyebrow {
+  margin-bottom: 7px;
+}
+.map-card-heading h2 {
+  margin: 0 0 4px;
+  color: var(--pine);
+  font: 600 24px/1.2 var(--serif);
+}
+.map-card-heading p:last-child {
+  margin: 0;
+  color: var(--muted);
+}
+.map-card-heading a {
+  flex: none;
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--clay);
+  color: var(--clay-dark);
+  font: 700 10px var(--sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.map-card .map {
+  width: 100%;
+  margin: 0;
   display: block;
-  height: 430px;
+  height: 300px;
   border: 0;
   background: #ddd;
 }
@@ -879,8 +983,16 @@ footer a:hover {
     grid-template-columns: 1fr;
     padding: 52px 40px;
   }
+  .contact-panel form {
+    grid-column: 1;
+    grid-row: auto;
+  }
   .contact-info {
     grid-column: auto;
+    grid-row: auto;
+  }
+  .maps-grid {
+    width: calc(100% - 40px);
   }
 }
 @media (max-width: 680px) {
@@ -972,6 +1084,11 @@ footer a:hover {
     width: 100%;
     font-size: clamp(40px, 12vw, 58px);
   }
+  .contact-page .hero h1 {
+    top: 150px;
+    left: 0;
+    font-size: 36px;
+  }
   .brown-page {
     padding-bottom: 70px;
   }
@@ -1056,7 +1173,15 @@ footer a:hover {
     padding: 40px 24px;
     gap: 28px;
   }
-  .map {
+  .maps-grid {
+    width: calc(100% - 24px);
+    grid-template-columns: 1fr;
+  }
+  .map-card-heading {
+    min-height: 0;
+    padding: 22px 20px;
+  }
+  .map-card .map {
     height: 330px;
   }
   footer {

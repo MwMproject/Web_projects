@@ -56,6 +56,9 @@ function applyLanguage(next) {
     .querySelectorAll('a[data-i18n="direct.cta"]')
     .forEach((link) => (link.href = routeFor(next, true)));
   document
+    .querySelectorAll(".region-map-link")
+    .forEach((link) => (link.href = `${routeFor(next, true)}#maps`));
+  document
     .querySelectorAll(".mobile-book")
     .forEach((link) => (link.href = `${routeFor(next, false)}#booking`));
   document.querySelectorAll("[data-i18n]").forEach((element) => {
@@ -178,11 +181,11 @@ if (bookingBadge) {
 
 const galleryFiles = {
   grand: Array.from(
-    { length: 27 },
+    { length: 10 },
     (_, index) => `assets/img/chalet_grand_luxe${index + 1}.webp`,
   ),
   small: Array.from(
-    { length: 14 },
+    { length: 10 },
     (_, index) => `assets/img/petit_chalet_familial${index + 1}.webp`,
   ),
 };
