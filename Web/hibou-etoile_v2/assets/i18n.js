@@ -70,9 +70,21 @@ window.translations = {
       chaletPlaceholder: "Choisissez un hébergement",
       chaletGrand: "Chalet Grand Luxe",
       chaletSmall: "Petit Chalet Familial",
+      chaletLabel: "Hébergement souhaité",
+      messageLabel: "Votre message",
       message: "Écrivez votre message ici...",
       submit: "Envoyer",
+      sending: "Envoi en cours...",
+      privacy:
+        "Vos informations servent uniquement à répondre à votre demande.",
+      success:
+        "Merci, votre demande a bien été envoyée. Nous vous répondrons rapidement.",
+      invalid:
+        "Veuillez vérifier les informations du formulaire puis réessayer.",
+      error:
+        "L’envoi n’a pas abouti. Vous pouvez aussi nous écrire à info@hibou-etoile.com.",
     },
+    footer: { privacy: "Protection des données" },
   },
   en: {
     nav: { home: "HOME", contact: "CONTACT" },
@@ -145,8 +157,17 @@ window.translations = {
       chaletPlaceholder: "Choose an accommodation",
       chaletGrand: "Luxury Chalet",
       chaletSmall: "Small Family Chalet",
+      chaletLabel: "Preferred accommodation",
+      messageLabel: "Your message",
       message: "Type your message here...",
       submit: "Submit",
+      sending: "Sending...",
+      privacy: "Your information is used only to answer your request.",
+      success: "Thank you, your request has been sent. We will reply shortly.",
+      invalid: "Please check the form information and try again.",
+      error:
+        "Your message could not be sent. You can also email info@hibou-etoile.com.",
     },
+    footer: { privacy: "Privacy policy" },
   },
 };

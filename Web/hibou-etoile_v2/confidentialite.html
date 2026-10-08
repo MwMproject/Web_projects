@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Protection des données | L'Hibou Étoilé</title>
+    <meta
+      name="description"
+      content="Informations sur le traitement des données transmises à L'Hibou Étoilé."
+    />
+    <link rel="canonical" href="https://www.hibou-etoile.com/confidentialite" />
+    <link
+      rel="alternate"
+      hreflang="fr-CH"
+      href="https://www.hibou-etoile.com/confidentialite"
+    />
+    <link
+      rel="alternate"
+      hreflang="en-GB"
+      href="https://www.hibou-etoile.com/en/privacy"
+    />
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link rel="stylesheet" href="assets/style.css?v=20261007deploy" />
+  </head>
+  <body class="legal-page">
+    <main class="legal-shell" id="content">
+      <a class="legal-logo" href="/" aria-label="Retour à l'accueil">
+        <img src="assets/img/logo.png" alt="" />
+        <span>L'Hibou Étoilé</span>
+      </a>
+      <article class="legal-card lang-fr">
+        <p class="eyebrow">INFORMATIONS LÉGALES</p>
+        <h1>Protection des données</h1>
+        <p>
+          La personne responsable du traitement des données est L'Hibou Étoilé,
+          1872 Troistorrents, Suisse. Pour toute question :
+          <a href="mailto:info@hibou-etoile.com">info@hibou-etoile.com</a>.
+        </p>
+        <h2>Données collectées</h2>
+        <p>
+          Le formulaire de contact recueille votre nom, votre adresse e-mail, le
+          chalet souhaité et votre message. Ces informations sont utilisées
+          uniquement pour répondre à votre demande et organiser, le cas échéant,
+          votre réservation.
+        </p>
+        <h2>Conservation et transmission</h2>
+        <p>
+          Les données sont conservées uniquement pendant la durée nécessaire au
+          traitement de votre demande et aux éventuelles obligations légales.
+          Elles ne sont ni vendues ni utilisées à des fins publicitaires. Elles
+          peuvent être traitées par nos prestataires techniques d'hébergement et
+          de messagerie dans la mesure nécessaire au fonctionnement du site.
+        </p>
+        <h2>Vos droits</h2>
+        <p>
+          Vous pouvez demander l'accès, la rectification ou la suppression de
+          vos données en écrivant à l'adresse indiquée ci-dessus.
+        </p>
+        <p>
+          Le site intègre des cartes Google et des liens vers des plateformes
+          externes. Lorsque vous utilisez ces services, leurs propres règles de
+          confidentialité s'appliquent.
+        </p>
+        <a class="legal-back" href="/contact">Retour au contact</a>
+      </article>
+      <article class="legal-card lang-en">
+        <p class="eyebrow">LEGAL INFORMATION</p>
+        <h1>Privacy policy</h1>
+        <p>
+          The data controller is L'Hibou Étoilé, 1872 Troistorrents,
+          Switzerland. For any question, contact
+          <a href="mailto:info@hibou-etoile.com">info@hibou-etoile.com</a>.
+        </p>
+        <h2>Data collected</h2>
+        <p>
+          The contact form collects your name, email address, preferred chalet
+          and message. This information is used only to answer your request and,
+          where applicable, arrange your booking.
+        </p>
+        <h2>Retention and sharing</h2>
+        <p>
+          Data is kept only as long as necessary to process your request and
+          meet any legal obligations. It is not sold or used for advertising. It
+          may be processed by our hosting and email providers insofar as this is
+          necessary to operate the website.
+        </p>
+        <h2>Your rights</h2>
+        <p>
+          You may request access to, correction of or deletion of your data by
+          writing to the address above.
+        </p>
+        <p>
+          The website embeds Google Maps and links to external booking
+          platforms. Their own privacy policies apply when you use those
+          services.
+        </p>
+        <a class="legal-back" href="/en/contact">Back to contact</a>
+      </article>
+    </main>
+    <script>
+      const english =
+        location.pathname.startsWith("/en/") ||
+        new URLSearchParams(location.search).get("lang") === "en";
+      document.documentElement.lang = english ? "en" : "fr";
+      document.title = english
+        ? "Privacy policy | L'Hibou Étoilé"
+        : "Protection des données | L'Hibou Étoilé";
+      document.querySelector('link[rel="canonical"]').href =
+        `https://www.hibou-etoile.com${english ? "/en/privacy" : "/confidentialite"}`;
+      document.querySelector(".legal-logo").href = english ? "/en" : "/";
+    </script>
+  </body>
+</html>

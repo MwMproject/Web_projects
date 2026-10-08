@@ -4,12 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <base href="/" />
-    <title>L'Hibou étoilé | holiday rental</title>
+    <title>L'Hibou Étoilé | Location de chalets en Valais</title>
     <meta
       name="description"
       content="L'Hibou étoilé vous propose des locations de chalets suisses hors du commun à des prix raisonnables afin que vous puissiez profiter de ce que notre magnifique région peut offrir."
     />
     <link rel="canonical" href="https://www.hibou-etoile.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="L'Hibou Étoilé | Chalets en Valais" />
+    <meta
+      property="og:description"
+      content="Deux chalets authentiques à Troistorrents et Morgins, au cœur des Alpes suisses."
+    />
+    <meta property="og:url" content="https://www.hibou-etoile.com/" />
+    <meta
+      property="og:image"
+      content="https://www.hibou-etoile.com/assets/img/about.webp"
+    />
     <link
       rel="alternate"
       hreflang="x-default"
@@ -31,8 +42,49 @@
       href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&family=Roboto+Slab:wght@400;600;700;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="assets/style.css?v=20261001mobilebook" />
-    <link rel="icon" href="assets/img/logo.png" />
+    <link rel="stylesheet" href="assets/style.css?v=20261007mobilelang" />
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/img/favicons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/img/favicons/favicon-16x16.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/img/favicons/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="site.webmanifest" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LodgingBusiness",
+        "name": "L'Hibou Étoilé",
+        "url": "https://www.hibou-etoile.com/",
+        "logo": "https://www.hibou-etoile.com/assets/img/logo.png",
+        "image": "https://www.hibou-etoile.com/assets/img/about.webp",
+        "email": "info@hibou-etoile.com",
+        "telephone": "+41791561169",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Route de Chenarlier 11",
+          "postalCode": "1872",
+          "addressLocality": "Troistorrents",
+          "addressCountry": "CH"
+        },
+        "sameAs": [
+          "https://www.booking.com/hotel/ch/traditional-chalet-with-some-luxurious-features-troistorrents.fr.html",
+          "https://www.booking.com/hotel/ch/sweet-amp-cosy-chalet-in-the-heart-of-the-swiss-alps.fr.html"
+        ]
+      }
+    </script>
   </head>
   <body>
     <div class="compact-header" aria-hidden="true" inert>
@@ -273,7 +325,7 @@
       <section class="mosaic region-block">
         <img
           class="region-photo"
-          src="assets/img/region.jpg"
+          src="assets/img/region.webp"
           alt="Vue des Alpes depuis une fenêtre du chalet"
         />
         <div class="ochre title-cell">
@@ -300,7 +352,7 @@
         </div>
         <img
           class="about-photo"
-          src="assets/img/about.jpg"
+          src="assets/img/about.webp"
           alt="Chalet enneigé à Troistorrents"
         />
         <div class="ochre about-copy">
@@ -433,11 +485,19 @@
           >MWM Project</a
         >
       </p>
+      <p class="footer-legal">
+        <a href="confidentialite.html" data-i18n="footer.privacy"
+          >Protection des données</a
+        >
+      </p>
     </footer>
-    <a class="mobile-book" href="contact.html#contact-form" data-i18n="booking.mobile"
+    <a
+      class="mobile-book"
+      href="contact.html#contact-form"
+      data-i18n="booking.mobile"
       >RÉSERVER</a
     >
-    <script src="assets/i18n.js?v=20261001maps" defer></script>
-    <script src="assets/main.js?v=20261001mobilebook" defer></script>
+    <script src="assets/i18n.js?v=20261007deploy" defer></script>
+    <script src="assets/main.js?v=20261007deploy" defer></script>
   </body>
 </html>

@@ -1,0 +1,8 @@
+# Configuration SMTP locale : contient le mot de passe de la boite mail.
+config/contact.php
+
+# Fichiers locaux et journaux
+.DS_Store
+Thumbs.db
+*.log
+

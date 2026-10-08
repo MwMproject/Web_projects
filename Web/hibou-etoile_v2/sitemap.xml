@@ -27,4 +27,16 @@
     <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.hibou-etoile.com/en/contact" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.hibou-etoile.com/contact" />
   </url>
+  <url>
+    <loc>https://www.hibou-etoile.com/confidentialite</loc>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://www.hibou-etoile.com/confidentialite" />
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.hibou-etoile.com/en/privacy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.hibou-etoile.com/confidentialite" />
+  </url>
+  <url>
+    <loc>https://www.hibou-etoile.com/en/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://www.hibou-etoile.com/confidentialite" />
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.hibou-etoile.com/en/privacy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.hibou-etoile.com/confidentialite" />
+  </url>
 </urlset>

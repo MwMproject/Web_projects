@@ -31,10 +31,12 @@ function applyLanguage(next) {
   language = next;
   document.documentElement.lang = next;
   document.title = isContactPage
-    ? "Contact | L'hibou Étoilé"
+    ? next === "en"
+      ? "Contact & booking | L'Hibou Étoilé"
+      : "Contact & réservation | L'Hibou Étoilé"
     : next === "en"
       ? "HOME | Hibou Etoile"
-      : "L'Hibou étoilé | holiday rental";
+      : "L'Hibou Étoilé | Location de chalets en Valais";
   const canonical = document.querySelector('link[rel="canonical"]');
   canonical.href = `https://www.hibou-etoile.com${next === "en" ? `/en${isContactPage ? "/contact" : ""}` : isContactPage ? "/contact" : "/"}`;
   const description = document.querySelector('meta[name="description"]');
@@ -61,6 +63,12 @@ function applyLanguage(next) {
   document
     .querySelectorAll(".mobile-book")
     .forEach((link) => (link.href = `${routeFor(next, true)}#contact-form`));
+  document
+    .querySelectorAll('a[data-i18n="footer.privacy"]')
+    .forEach(
+      (link) =>
+        (link.href = next === "en" ? "/en/privacy" : "/confidentialite"),
+    );
   document.querySelectorAll("[data-i18n]").forEach((element) => {
     const value = valueAt(window.translations[next], element.dataset.i18n);
     if (value) element.innerHTML = value;
@@ -261,20 +269,36 @@ document.querySelectorAll(".white-panel, .mosaic, .map").forEach((element) => {
 const form = document.querySelector("#contact-form");
 if (form) {
   const chaletSelect = form.querySelector('[name="chalet"]');
+  const startedInput = form.querySelector('[name="form_started"]');
+  const languageInput = form.querySelector('[name="language"]');
+  const statusElement = document.querySelector("#form-status");
+  if (startedInput) startedInput.value = Math.floor(Date.now() / 1000);
+  if (languageInput) languageInput.value = language;
   const requestedChalet = new URLSearchParams(location.search).get("chalet");
   if (["grand", "petit"].includes(requestedChalet)) {
     chaletSelect.value = requestedChalet;
   }
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const data = new FormData(form);
-    const selectedChalet =
-      chaletSelect.options[chaletSelect.selectedIndex].text;
-    const subject = encodeURIComponent("Demande depuis le site L'Hibou Étoilé");
-    const body = encodeURIComponent(
-      `${data.get("name")} (${data.get("email")})\nHébergement : ${selectedChalet}\n\n${data.get("message")}`,
+  const result = new URLSearchParams(location.search).get("status");
+  if (statusElement && ["sent", "invalid", "error"].includes(result)) {
+    const key = result === "sent" ? "success" : result;
+    statusElement.textContent = valueAt(
+      window.translations[language],
+      `form.${key}`,
     );
-    location.href = `mailto:info@hibou-etoile.com?subject=${subject}&body=${body}`;
+    statusElement.classList.toggle("is-success", result === "sent");
+    statusElement.classList.toggle("is-error", result !== "sent");
+    statusElement.hidden = false;
+  }
+  form.addEventListener("submit", () => {
+    if (languageInput) languageInput.value = language;
+    const button = form.querySelector('button[type="submit"]');
+    if (button) {
+      button.disabled = true;
+      button.textContent = valueAt(
+        window.translations[language],
+        "form.sending",
+      );
+    }
   });
 }
 
