@@ -622,16 +622,19 @@ main section[id] {
 /* ---------- Coachs ---------- */
 .coach-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 24px;
   margin-top: 2.5em;
 }
 .coach-card {
+  grid-column: span 2;
   background: var(--color-black-soft);
   border-top: 3px solid var(--color-red);
   border-radius: var(--radius);
   overflow: hidden;
 }
+.coach-card:nth-last-child(2) { grid-column: 2 / span 2; }
+.coach-card:last-child { grid-column: 4 / span 2; }
 .coach-photo {
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -849,6 +852,14 @@ main section[id] {
 @media (max-width: 900px) {
   .contact-grid { grid-template-columns: 1fr; }
   .review-card { flex-basis: calc((100% - 24px) / 2); }
+  .coach-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .coach-card,
+  .coach-card:nth-last-child(2) { grid-column: auto; }
+  .coach-card:last-child {
+    grid-column: 1 / -1;
+    width: calc((100% - 24px) / 2);
+    justify-self: center;
+  }
 }
 
 @media (max-width: 780px) {
@@ -867,6 +878,15 @@ main section[id] {
   .section { padding: 60px 0; }
 
   .logo img { height: 56px; }
+
+  .coach-grid { grid-template-columns: 1fr; }
+  .coach-card,
+  .coach-card:nth-last-child(2),
+  .coach-card:last-child {
+    grid-column: auto;
+    width: auto;
+    justify-self: stretch;
+  }
 }
 
 @media (max-width: 480px) {
