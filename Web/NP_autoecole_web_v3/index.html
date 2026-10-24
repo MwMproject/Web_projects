@@ -72,7 +72,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="assets/style/style.css?v=3" />
+    <link rel="stylesheet" href="assets/style/style.css?v=4" />
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -972,6 +972,12 @@
                 autocomplete="off"
               />
             </div>
+            <input
+              type="hidden"
+              id="form_started"
+              name="form_started"
+              value=""
+            />
             <h3>Demander un cours</h3>
             <div class="form-row">
               <div class="form-field">
@@ -981,6 +987,8 @@
                   name="nom"
                   type="text"
                   placeholder="Nom"
+                  maxlength="120"
+                  autocomplete="family-name"
                   required
                 />
               </div>
@@ -991,6 +999,8 @@
                   name="prenom"
                   type="text"
                   placeholder="Prénom"
+                  maxlength="120"
+                  autocomplete="given-name"
                   required
                 />
               </div>
@@ -1004,6 +1014,8 @@
                   name="email"
                   type="email"
                   placeholder="Email"
+                  maxlength="190"
+                  autocomplete="email"
                   required
                 />
               </div>
@@ -1014,6 +1026,8 @@
                   name="telephone"
                   type="tel"
                   placeholder="Téléphone"
+                  maxlength="40"
+                  autocomplete="tel"
                 />
               </div>
             </div>
@@ -1077,6 +1091,7 @@
                 id="message"
                 name="message"
                 placeholder="Message / disponibilités / lieu de départ / niveau actuel"
+                maxlength="3000"
                 required
               ></textarea>
             </div>
@@ -1089,9 +1104,7 @@
               Envoyer
             </button>
 
-            <p class="form-success" aria-live="polite" hidden>
-              Merci, votre message a bien été envoyé !
-            </p>
+            <p class="form-error" role="alert" hidden></p>
           </form>
         </div>
       </section>
@@ -1171,6 +1184,6 @@
     </a>
 
     <script src="assets/script/sensibilisation-dates.js?v=3"></script>
-    <script src="assets/script/script.js?v=3"></script>
+    <script src="assets/script/script.js?v=4"></script>
   </body>
 </html>

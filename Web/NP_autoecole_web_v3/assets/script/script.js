@@ -297,11 +297,25 @@ if ("IntersectionObserver" in window) {
 
 // FORMULAIRE CONTACT + RESERVATION
 const form = document.querySelector(".contact-form");
-const formSuccess = document.querySelector(".form-success");
+const formError = document.querySelector(".form-error");
 const serviceSelect = document.querySelector("#service");
 const bookingFields = document.querySelector(".booking-fields");
 const dateCours = document.querySelector("#date-cours");
 const heureCours = document.querySelector("#heure-cours");
+const formStarted = document.querySelector("#form_started");
+
+if (formStarted) {
+  formStarted.value = Math.floor(Date.now() / 1000);
+}
+
+const formErrorType = new URLSearchParams(window.location.search).get("erreur");
+if (formError && formErrorType) {
+  formError.textContent =
+    formErrorType === "envoi"
+      ? "L’envoi a échoué. Merci de réessayer ou de nous contacter par téléphone."
+      : "Certains champs sont invalides. Merci de vérifier le formulaire.";
+  formError.hidden = false;
+}
 
 const servicesAvecCreneau = [
   "Cours Cat B",
@@ -310,7 +324,10 @@ const servicesAvecCreneau = [
 ];
 
 function formatDateForInput(date) {
-  return date.toISOString().split("T")[0];
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
 }
 
 function updateBookingVisibility() {

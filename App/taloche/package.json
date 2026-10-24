@@ -1,0 +1,22 @@
+{
+  "name": "taloche",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Gestion bureau + chantier pour les PME du bâtiment en Suisse romande",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "db:start": "supabase start",
+    "db:reset": "supabase db reset",
+    "db:types": "supabase gen types typescript --local > lib/supabase/types.ts"
+  },
+  "dependencies": {
+    "@supabase/ssr": "0.12.7",
+    "@supabase/supabase-js": "2.117.2",
+    "next": "15.5.26",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "swissqrbill": "4.4.1"
+  }
+}

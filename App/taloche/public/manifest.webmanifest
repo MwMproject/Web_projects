@@ -1,0 +1,11 @@
+{
+  "name": "Taloche",
+  "short_name": "Taloche",
+  "description": "Rapports de chantier, stock et factures QR",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f4f0",
+  "theme_color": "#c2410c",
+  "lang": "fr-CH",
+  "icons": []
+}

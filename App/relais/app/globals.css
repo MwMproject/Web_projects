@@ -1,0 +1,57 @@
+/* Relais — sobre et lisible, pensé pour un patron pressé (PC et téléphone). */
+:root {
+  --fond: #f5f6f4; --carte: #ffffff; --texte: #1d2321; --texte-2: #5d6663; --ligne: #e1e5e2;
+  --accent: #0f766e; --accent-clair: #dff3ef; --urgent: #b91c1c; --urgent-clair: #fde8e8;
+  --ok: #15803d; --rayon: 12px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --fond: #131716; --carte: #1c2120; --texte: #e8ecea; --texte-2: #9aa5a1; --ligne: #2e3533;
+          --accent: #2dd4bf; --accent-clair: #12332f; --urgent: #f87171; --urgent-clair: #3a1d1d; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--fond); color: var(--texte); line-height: 1.45; }
+a { color: inherit; }
+h1 { font-size: 1.55rem; margin: 0 0 4px; }
+h2 { font-size: 1.1rem; margin: 28px 0 10px; }
+.sous-titre { color: var(--texte-2); margin: 0 0 20px; }
+.discret { color: var(--texte-2); font-size: 0.88rem; }
+
+.entete { display: flex; align-items: center; gap: 18px; padding: 12px 20px; background: var(--carte); border-bottom: 1px solid var(--ligne); flex-wrap: wrap; }
+.entete .logo { font-weight: 800; font-size: 1.2rem; text-decoration: none; }
+.entete .logo span { color: var(--accent); }
+.entete nav { display: flex; gap: 4px; flex: 1; flex-wrap: wrap; }
+.entete nav a { padding: 7px 12px; border-radius: 8px; text-decoration: none; color: var(--texte-2); }
+.entete nav a:hover { background: var(--accent-clair); color: var(--texte); }
+.page { max-width: 960px; margin: 0 auto; padding: 24px 16px 80px; }
+
+.carte { background: var(--carte); border: 1px solid var(--ligne); border-radius: var(--rayon); padding: 16px 18px; }
+.pile > * + * { margin-top: 10px; }
+.compteurs { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 8px; }
+.compteurs .carte strong { display: block; font-size: 1.6rem; }
+
+.mail { display: block; text-decoration: none; }
+.mail:hover { border-color: var(--accent); }
+.mail .haut { display: flex; justify-content: space-between; gap: 12px; }
+.mail .qui { font-weight: 600; }
+.mail .resume { margin-top: 4px; }
+.mail.urgent { border-left: 4px solid var(--urgent); }
+.badge { display: inline-block; padding: 2px 9px; border-radius: 99px; font-size: 0.78rem; background: var(--accent-clair); white-space: nowrap; }
+.badge.urgent { background: var(--urgent-clair); color: var(--urgent); font-weight: 600; }
+.puces { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+
+label { display: block; font-size: 0.9rem; color: var(--texte-2); margin: 14px 0 6px; }
+input, select, textarea { width: 100%; padding: 11px 12px; font: inherit; border: 1px solid var(--ligne); border-radius: 8px; background: var(--carte); color: var(--texte); }
+textarea { resize: vertical; }
+.bouton { display: inline-block; border: 0; border-radius: 10px; padding: 11px 18px; font: inherit; font-weight: 600; background: var(--accent); color: #fff; cursor: pointer; text-decoration: none; }
+.bouton.secondaire { background: transparent; color: var(--texte); border: 1px solid var(--ligne); }
+.bouton.danger { background: transparent; color: var(--urgent); border: 1px solid var(--ligne); }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+.message-ok { background: var(--accent-clair); padding: 10px 14px; border-radius: 10px; }
+.message-erreur { background: var(--urgent-clair); color: var(--urgent); padding: 10px 14px; border-radius: 10px; }
+.original { white-space: pre-wrap; font-size: 0.95rem; max-height: 360px; overflow: auto; }
+.deux { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 760px) { .deux { grid-template-columns: 1fr; } }
+dl.infos { display: grid; grid-template-columns: max-content 1fr; gap: 4px 12px; margin: 8px 0 0; }
+dl.infos dt { color: var(--texte-2); }
+dl.infos dd { margin: 0; }

@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -11,40 +13,164 @@ $SITE_NAME   = 'NP Auto-école';
 $MAIL_TO     = 'contact@np-autoecole.ch';
 $MAIL_FROM   = 'contact@np-autoecole.ch';
 
+const MAX_NAME_LENGTH = 120;
+const MAX_EMAIL_LENGTH = 190;
+const MAX_PHONE_LENGTH = 40;
+const MAX_MESSAGE_LENGTH = 3000;
+const MIN_FORM_TIME = 3;
+const MAX_FORM_TIME = 7200;
+const RATE_LIMIT_WINDOW = 3600;
+const RATE_LIMIT_MAX = 5;
+
+function redirectTo(string $location): void {
+    header('Location: ' . $location, true, 303);
+    exit;
+}
+
+function clientIp(): string {
+    return $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+}
+
+function textLength(string $value): int {
+    return function_exists('mb_strlen') ? mb_strlen($value) : strlen($value);
+}
+
+function rateLimitExceeded(string $ip): bool {
+    $directory = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'np-autoecole-contact-limit';
+    if (!is_dir($directory) && !@mkdir($directory, 0700, true) && !is_dir($directory)) {
+        error_log('NP Auto-école contact: impossible de créer le dossier de limitation.');
+        return false;
+    }
+
+    $file = $directory . DIRECTORY_SEPARATOR . hash('sha256', $ip) . '.json';
+    $now = time();
+    $handle = @fopen($file, 'c+');
+    if ($handle === false) {
+        return false;
+    }
+
+    try {
+        if (!flock($handle, LOCK_EX)) {
+            return false;
+        }
+
+        $contents = stream_get_contents($handle);
+        $stored = $contents ? json_decode($contents, true) : [];
+        $attempts = is_array($stored) ? array_values(array_filter(
+            $stored,
+            static fn ($timestamp): bool => is_int($timestamp) && $timestamp > $now - RATE_LIMIT_WINDOW
+        )) : [];
+
+        if (count($attempts) >= RATE_LIMIT_MAX) {
+            return true;
+        }
+
+        $attempts[] = $now;
+        rewind($handle);
+        ftruncate($handle, 0);
+        fwrite($handle, json_encode($attempts, JSON_THROW_ON_ERROR));
+        fflush($handle);
+        return false;
+    } catch (Throwable $exception) {
+        error_log('NP Auto-école contact rate limit: ' . $exception->getMessage());
+        return false;
+    } finally {
+        flock($handle, LOCK_UN);
+        fclose($handle);
+    }
+}
+
 // ── Sécurité ──
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(403);
-    exit('Accès interdit');
+    http_response_code(405);
+    header('Allow: POST');
+    exit('Méthode non autorisée');
+}
+
+// Faux succès pour les robots.
+if (!empty($_POST['website'])) {
+    redirectTo('thanks.html');
+}
+
+// Contrôle du délai de soumission.
+$startedAt = filter_input(INPUT_POST, 'form_started', FILTER_VALIDATE_INT);
+$elapsed = is_int($startedAt) ? time() - $startedAt : 0;
+if ($elapsed < MIN_FORM_TIME || $elapsed > MAX_FORM_TIME) {
+    error_log('NP Auto-école contact: délai invalide depuis ' . clientIp());
+    redirectTo('thanks.html');
+}
+
+if (rateLimitExceeded(clientIp())) {
+    error_log('NP Auto-école contact: limite atteinte pour ' . clientIp());
+    redirectTo('thanks.html');
 }
 
 // ── Récupération des champs ──
-function clean($val) {
-    return htmlspecialchars(trim($val ?? ''), ENT_QUOTES, 'UTF-8');
+function postString(string $key): string {
+    $value = $_POST[$key] ?? '';
+    return is_string($value) ? trim($value) : '';
 }
 
-$nom       = clean($_POST['nom'] ?? '');
-$prenom    = clean($_POST['prenom'] ?? '');
-$email     = filter_var(trim($_POST['email'] ?? ''), FILTER_VALIDATE_EMAIL);
-$telephone = clean($_POST['telephone'] ?? '');
-$service   = clean($_POST['service'] ?? '');
-$dateCours = clean($_POST['date-cours'] ?? '');
-$heureCours = clean($_POST['heure-cours'] ?? '');
-$message   = clean($_POST['message'] ?? '');
+function clean(string $value): string {
+    return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+}
+
+$nom        = clean(postString('nom'));
+$prenom     = clean(postString('prenom'));
+$email      = filter_var(postString('email'), FILTER_VALIDATE_EMAIL);
+$telephone  = clean(postString('telephone'));
+$service    = clean(postString('service'));
+$dateCours  = clean(postString('date-cours'));
+$heureCours = clean(postString('heure-cours'));
+$message    = clean(postString('message'));
 
 // ── Validation ──
-if (mb_strlen($message) > 3000 || mb_strlen($nom) > 120 || mb_strlen($prenom) > 120) {
-    header('Location: index.html?erreur=champs');
-    exit;
+$allowedServices = [
+    'Cours Cat B',
+    'Cours Cat BE',
+    'Reprise de confiance',
+    'Sensibilisation',
+    'Aide théorie',
+    'Premiers secours',
+    'Permis étranger',
+    'Autre demande',
+    'Pack 5 cours',
+    'Pack 10 cours',
+];
+$allowedTimes = ['07:00', '08:00', '09:00', '10:00', '15:00', '16:00', '17:00', '18:00'];
+
+if (
+    $nom === '' || $prenom === '' || !$email || $message === '' ||
+    !in_array($service, $allowedServices, true) ||
+    textLength($nom) > MAX_NAME_LENGTH ||
+    textLength($prenom) > MAX_NAME_LENGTH ||
+    textLength((string) $email) > MAX_EMAIL_LENGTH ||
+    textLength($telephone) > MAX_PHONE_LENGTH ||
+    textLength($message) > MAX_MESSAGE_LENGTH
+) {
+    redirectTo('index.html?erreur=champs#contact');
 }
 
-if (!$nom || !$prenom || !$email || !$service || !$message) {
-    header('Location: index.html?erreur=champs');
-    exit;
+preg_match_all('~(?:https?://|www\.)~i', $message, $links);
+if (count($links[0]) > 3) {
+    error_log('NP Auto-école contact: trop de liens depuis ' . clientIp());
+    redirectTo('thanks.html');
 }
 
 // ── Construction du corps HTML ──
 $servicesAvecCreneau = ['Cours Cat B', 'Cours Cat BE', 'Reprise de confiance'];
-$needsBooking = in_array($service, $servicesAvecCreneau);
+$needsBooking = in_array($service, $servicesAvecCreneau, true);
+
+if ($needsBooking) {
+    $date = DateTimeImmutable::createFromFormat('!Y-m-d', $dateCours);
+    $dateIsValid = $date && $date->format('Y-m-d') === $dateCours;
+    $today = new DateTimeImmutable('today');
+    $isWeekday = $dateIsValid && (int) $date->format('N') <= 5;
+
+    if (!$dateIsValid || $date < $today || !$isWeekday || !in_array($heureCours, $allowedTimes, true)) {
+        redirectTo('index.html?erreur=champs#contact');
+    }
+}
 
 $body = "
 <div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;'>
@@ -125,6 +251,5 @@ try {
 
 } catch (Exception $e) {
     error_log("Erreur PHPMailer NP Auto-école: " . $mail->ErrorInfo);
-    header('Location: index.html?erreur=envoi');
-    exit;
+    redirectTo('index.html?erreur=envoi#contact');
 }

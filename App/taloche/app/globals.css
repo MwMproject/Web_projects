@@ -1,0 +1,68 @@
+/* Taloche — styles de base. Sobre, lisible au soleil, gros boutons sur mobile. */
+:root {
+  --fond: #f6f4f0;
+  --carte: #ffffff;
+  --texte: #1f2328;
+  --texte-2: #5b6168;
+  --ligne: #e3dfd8;
+  --accent: #c2410c;      /* brique */
+  --accent-clair: #fde7dc;
+  --ok: #15803d;
+  --alerte: #b91c1c;
+  --rayon: 10px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fond: #16181b; --carte: #1f2226; --texte: #eceae6; --texte-2: #a3a8ae;
+    --ligne: #33373c; --accent: #f97316; --accent-clair: #3b2417;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--fond); color: var(--texte); }
+a { color: inherit; }
+h1 { font-size: 1.6rem; margin: 0 0 4px; }
+.sous-titre { color: var(--texte-2); margin: 0 0 24px; }
+
+/* Bureau : barre latérale + contenu */
+.bureau { display: grid; grid-template-columns: 230px 1fr; min-height: 100vh; }
+.nav { background: var(--carte); border-right: 1px solid var(--ligne); padding: 20px 12px; }
+.nav .logo { font-weight: 800; font-size: 1.25rem; padding: 0 10px 20px; }
+.nav .logo span { color: var(--accent); }
+.nav a { display: block; padding: 9px 10px; border-radius: 8px; text-decoration: none; color: var(--texte-2); }
+.nav a:hover { background: var(--accent-clair); color: var(--texte); }
+.contenu { padding: 32px; max-width: 1200px; }
+@media (max-width: 800px) {
+  .bureau { grid-template-columns: 1fr; }
+  .nav { display: flex; overflow-x: auto; gap: 4px; border-right: 0; border-bottom: 1px solid var(--ligne); padding: 8px; }
+  .nav .logo { display: none; }
+  .contenu { padding: 16px; }
+}
+
+.carte { background: var(--carte); border: 1px solid var(--ligne); border-radius: var(--rayon); padding: 18px; }
+.grille { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+table { width: 100%; border-collapse: collapse; background: var(--carte); border-radius: var(--rayon); overflow: hidden; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--ligne); font-size: 0.95rem; }
+th { color: var(--texte-2); font-weight: 600; font-size: 0.85rem; }
+td.nombre, th.nombre { text-align: right; font-variant-numeric: tabular-nums; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 99px; font-size: 0.8rem; background: var(--accent-clair); }
+.alerte { color: var(--alerte); font-weight: 600; }
+.ok { color: var(--ok); font-weight: 600; }
+
+/* Formulaires */
+label { display: block; font-size: 0.9rem; color: var(--texte-2); margin: 14px 0 6px; }
+input, select, textarea {
+  width: 100%; padding: 12px; font-size: 1rem; border: 1px solid var(--ligne);
+  border-radius: 8px; background: var(--carte); color: var(--texte);
+}
+.bouton {
+  display: inline-block; border: 0; border-radius: 10px; padding: 12px 18px; font-size: 1rem;
+  font-weight: 600; background: var(--accent); color: #fff; cursor: pointer; text-decoration: none;
+}
+.bouton.secondaire { background: transparent; color: var(--texte); border: 1px solid var(--ligne); }
+.bouton.large { width: 100%; padding: 16px; font-size: 1.1rem; }
+
+/* Terrain (téléphone) */
+.terrain { max-width: 560px; margin: 0 auto; padding: 16px 16px 96px; }
+.terrain .chantier { display: block; padding: 18px; margin-bottom: 12px; text-decoration: none; }
+.ligne-saisie { display: grid; grid-template-columns: 1fr 90px 44px; gap: 8px; align-items: end; }
