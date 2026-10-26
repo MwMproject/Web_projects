@@ -344,9 +344,24 @@
 }
 
 .competence-related-references h3 {
-  margin: 0 0 16px;
+  margin: 0 0 10px;
   color: #fff;
   font-size: 1rem;
+}
+
+.competence-references-coming-soon {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 7px 14px;
+  border: 1px solid rgba(90, 156, 255, 0.3);
+  border-radius: 999px;
+  background: rgba(90, 156, 255, 0.08);
+  color: #72a9ff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .competence-reference-grid {

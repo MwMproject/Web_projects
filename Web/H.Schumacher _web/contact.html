@@ -27,7 +27,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/style/style.css?v=18" />
-    <link rel="stylesheet" href="assets/style/contact.css?v=3" />
+    <link rel="stylesheet" href="assets/style/contact.css?v=4" />
   </head>
   <body class="page-contact">
     <canvas id="bubbleCanvas" aria-hidden="true"></canvas>
@@ -84,18 +84,30 @@
             </div>
             <div class="contact-form-wrap">
               <form action="contact.php" method="post" class="contact-form">
-                <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off" />
+                <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
                 <div class="form-row">
-                  <input type="text" name="nom" placeholder="Nom" required />
-                  <input type="email" name="email" placeholder="Email" required />
+                  <label class="form-field">
+                    <span>Nom</span>
+                    <input type="text" name="nom" placeholder="Nom" autocomplete="name" required />
+                  </label>
+                  <label class="form-field">
+                    <span>Email</span>
+                    <input type="email" name="email" placeholder="Email" autocomplete="email" required />
+                  </label>
                 </div>
-                <input type="text" name="societe" placeholder="Société" />
+                <label class="form-field">
+                  <span>Société</span>
+                  <input type="text" name="societe" placeholder="Société" autocomplete="organization" />
+                </label>
                 <div class="form-checkbox">
                   <label><input type="checkbox" name="technique" value="sanitaire" /> Technique sanitaire</label>
                   <label><input type="checkbox" name="technique" value="gaz" /> Gaz médicaux</label>
                   <label><input type="checkbox" name="technique" value="piscine" /> Technique piscine</label>
                 </div>
-                <textarea name="message" placeholder="Votre message" required></textarea>
+                <label class="form-field">
+                  <span>Votre message</span>
+                  <textarea name="message" placeholder="Votre message" required></textarea>
+                </label>
                 <button type="submit" class="btn btn-primary">Envoyer</button>
               </form>
             </div>

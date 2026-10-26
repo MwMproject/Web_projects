@@ -26,7 +26,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="assets/style/style.css?v=18" />
+    <link rel="stylesheet" href="assets/style/style.css?v=23" />
   </head>
   <body>
     <div class="site-wrapper">
@@ -102,7 +102,7 @@
         </section>
       </main>
 
-      <!-- MODAL -->
+      <!-- Les données détaillées sont conservées pour une publication ultérieure. -->
       <div class="ref-modal" id="refModal">
         <div class="ref-modal-content">
           <button class="ref-close" id="refClose">
@@ -118,15 +118,19 @@
             <h2 id="modalTitle"></h2>
 
             <div class="project-meta">
+              <div class="meta-row" id="modalTypeRow"><span>Type</span><p id="modalType"></p></div>
               <div class="meta-row" id="modalClientRow"><span>Maître d’ouvrage</span><p id="modalClient"></p></div>
               <div class="meta-row" id="modalArchitectRow"><span>Architecte</span><p id="modalArchitect"></p></div>
-              <div class="meta-row" id="modalPeriodRow"><span>Période</span><p id="modalPeriod"></p></div>
-              <div class="meta-row" id="modalCostRow"><span>Coût</span><p id="modalCost"></p></div>
+              <div class="meta-row" id="modalPeriodRow"><span>Construction</span><p id="modalPeriod"></p></div>
             </div>
 
             <div class="project-description">
               <h4>Présentation du projet</h4>
               <p id="modalDescription"></p>
+            </div>
+            <div class="project-services" id="modalServicesSection" hidden>
+              <h4>Prestations réalisées</h4>
+              <p id="modalServices"></p>
             </div>
           </div>
 
@@ -202,6 +206,8 @@
 
     <script src="assets/script/translations.js?v=6"></script>
     <script src="assets/script/references-data.js?v=2"></script>
-    <script src="assets/script/script.js?v=7"></script>
+    <script src="assets/script/reference-catalog.js?v=2"></script>
+    <script src="assets/script/reference-details.js?v=2"></script>
+    <script src="assets/script/script.js?v=12"></script>
   </body>
 </html>

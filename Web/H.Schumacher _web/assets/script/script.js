@@ -14,24 +14,14 @@ const navLinks = document.querySelectorAll(".nav a");
 ========================================================= */
 
 const heroAnimatedTitle = document.getElementById("heroAnimatedTitle");
+// Conservé pour une future série de phrases. Passer à true pour réactiver l'animation.
+const heroTitleAnimationEnabled = false;
 
 if (heroAnimatedTitle) {
   const heroPhrases = {
-    fr: [
-      "Pour une qualité d’eau maîtrisée",
-      "Lorem ipsum dolor sit amet",
-      "Consectetur adipiscing elit",
-    ],
-    de: [
-      "Für eine kontrollierte Wasserqualität",
-      "Lorem ipsum dolor sit amet",
-      "Consectetur adipiscing elit",
-    ],
-    en: [
-      "For controlled water quality",
-      "Lorem ipsum dolor sit amet",
-      "Consectetur adipiscing elit",
-    ],
+    fr: ["Pour une qualité d’eau maîtrisée"],
+    de: ["Für eine kontrollierte Wasserqualität"],
+    en: ["For controlled water quality"],
   };
   const scrambleCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZÀÄÉÈÖÜ0123456789";
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -99,7 +89,9 @@ if (heroAnimatedTitle) {
     const phrases = heroPhrases[lang] || heroPhrases.fr;
     heroAnimatedTitle.textContent = phrases[0];
 
-    if (!reducedMotion.matches) scheduleNextPhrase(6000);
+    if (heroTitleAnimationEnabled && !reducedMotion.matches && phrases.length > 1) {
+      scheduleNextPhrase(6000);
+    }
   }
 
   window.addEventListener("languagechange", (event) => {
@@ -330,16 +322,34 @@ const filters = document.querySelectorAll(".filter");
 const referencesGrid = document.getElementById("referencesGrid");
 
 const modalTitle = document.getElementById("modalTitle");
+const modalType = document.getElementById("modalType");
 const modalClient = document.getElementById("modalClient");
 const modalArchitect = document.getElementById("modalArchitect");
 const modalPeriod = document.getElementById("modalPeriod");
-const modalCost = document.getElementById("modalCost");
 const modalDescription = document.getElementById("modalDescription");
+const modalServicesSection = document.getElementById("modalServicesSection");
+const modalServices = document.getElementById("modalServices");
 const gallery = document.getElementById("modalGallery");
 const mainImage = document.getElementById("modalMainImage");
-const referenceProjects = Array.isArray(window.REFERENCES_DATA)
-  ? window.REFERENCES_DATA
-  : [];
+const storedReferenceProjects = Array.isArray(window.REFERENCES_DATA) ? window.REFERENCES_DATA : [];
+const suppliedReferenceDetails = Array.isArray(window.REFERENCE_DETAILS) ? window.REFERENCE_DETAILS : [];
+const referenceProjects = Array.isArray(window.REFERENCE_CATALOG)
+  ? window.REFERENCE_CATALOG.map((entry, index) => {
+      const storedProject = storedReferenceProjects.find((project) => project.id === entry.sourceId) || {};
+      const suppliedDetails = suppliedReferenceDetails[index] || {};
+      return {
+        ...storedProject,
+        ...entry,
+        ...suppliedDetails,
+        id: `client-reference-${index + 1}`,
+        order: index,
+        category: entry.tags[0],
+        images: storedProject.images?.length
+          ? storedProject.images
+          : [entry.image || "assets/img/Logo_HS.png"],
+      };
+    })
+  : storedReferenceProjects;
 
 document.querySelectorAll(".competence-related-references").forEach((section) => {
   const grid = section.querySelector(".competence-reference-grid");
@@ -428,6 +438,9 @@ if (filters.length && referenceProjects.length) {
 function renderReferences(projects) {
   referencesGrid.innerHTML = "";
   const sortedProjects = [...projects].sort((projectA, projectB) => {
+    if (Number.isInteger(projectA.order) && Number.isInteger(projectB.order)) {
+      return projectA.order - projectB.order;
+    }
     return getReferenceYear(projectB) - getReferenceYear(projectA);
   });
 
@@ -435,16 +448,16 @@ function renderReferences(projects) {
     const card = document.createElement("article");
     card.className = "ref-card";
     card.tabIndex = 0;
+    card.setAttribute("role", "button");
+    card.setAttribute("aria-label", `Voir les détails de ${project.title}`);
     const image = project.images[0] || "assets/img/Logo_HS.png";
-    const projectTags = getProjectTags(project);
     card.innerHTML = `
       <div class="ref-img">
         <img src="${image}" alt="${escapeHtml(project.title)}" loading="lazy" />
-        <span class="ref-tags">${projectTags.map((tag) => `<span class="ref-tag">${escapeHtml(tag)}</span>`).join("")}</span>
+        <span class="ref-tags"><span class="ref-tag">${escapeHtml(project.type || project.category)}</span></span>
       </div>
       <div class="ref-info">
         <h3>${escapeHtml(project.title)}</h3>
-        ${project.period ? `<p>${escapeHtml(project.period)}</p>` : ""}
       </div>`;
     card.addEventListener("click", () => openReference(project));
     card.addEventListener("keydown", (event) => {
@@ -500,11 +513,17 @@ function setMetaValue(id, element, value) {
 function openReference(project) {
   if (!modal || !gallery || !mainImage) return;
   modalTitle.textContent = project.title || "";
+  setMetaValue("modalTypeRow", modalType, project.type || project.category);
   setMetaValue("modalClientRow", modalClient, project.client);
   setMetaValue("modalArchitectRow", modalArchitect, project.architect);
   setMetaValue("modalPeriodRow", modalPeriod, project.period);
-  setMetaValue("modalCostRow", modalCost, project.cost);
-  modalDescription.textContent = project.description || "";
+  const descriptionParts = String(project.description || "").split(/\n\nPrestations réalisées\s*:\s*/i);
+  modalDescription.textContent = descriptionParts[0] || "";
+  const servicesText = descriptionParts.slice(1).join("\n\n").trim();
+  if (modalServicesSection && modalServices) {
+    modalServicesSection.hidden = !servicesText;
+    modalServices.textContent = servicesText;
+  }
   gallery.innerHTML = "";
   const images = project.images.length ? project.images : ["assets/img/Logo_HS.png"];
   mainImage.src = images[0];
@@ -532,3 +551,4 @@ if (requestedProjectId && referenceProjects.length) {
   const requestedProject = referenceProjects.find((project) => project.id === requestedProjectId);
   if (requestedProject) openReference(requestedProject);
 }
+
