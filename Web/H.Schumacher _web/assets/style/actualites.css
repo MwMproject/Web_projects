@@ -204,7 +204,7 @@
 }
 .btn-lire-plus {
   padding: 8px 18px;
-  background: var(--secondary);
+  background: var(--primary);
   border: none;
   border-radius: 10px;
   color: #fff;
@@ -216,7 +216,7 @@
   white-space: nowrap;
 }
 .btn-lire-plus:hover {
-  background: #1aa3ef;
+  background: var(--primary-hover);
   transform: translateY(-2px);
 }
 

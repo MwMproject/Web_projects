@@ -364,46 +364,6 @@
   text-transform: uppercase;
 }
 
-.competence-reference-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.competence-reference-card {
-  position: relative;
-  display: block;
-  height: 150px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
-  background: #071321;
-  color: #fff;
-  transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-.competence-reference-card:hover {
-  border-color: rgba(255, 255, 255, 0.42);
-  transform: translateY(-2px);
-}
-
-.competence-reference-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.72;
-}
-
-.competence-reference-card span {
-  position: absolute;
-  inset: auto 0 0;
-  padding: 26px 10px 10px;
-  background: linear-gradient(transparent, rgba(3, 10, 20, 0.94));
-  font-size: 0.76rem;
-  font-weight: 700;
-  line-height: 1.25;
-}
-
 /* ── CTA ── */
 .prestation-cta {
   padding: 80px 0;
@@ -430,9 +390,6 @@
     grid-row: 2;
     border-top: 0;
     border-left: 0;
-  }
-  .competence-reference-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
   .competence-subskills {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -506,9 +463,6 @@
   }
   .competence-detail ul {
     grid-template-columns: 1fr;
-  }
-  .competence-reference-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .prestation-hero h1 {
     font-size: 2.8rem;

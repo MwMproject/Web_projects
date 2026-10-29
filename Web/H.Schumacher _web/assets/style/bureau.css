@@ -19,7 +19,7 @@
   position: absolute;
   z-index: -2;
   inset: -16px;
-  background: url("../img/bureau_3.jpg") center 46% / cover no-repeat;
+  background: url("../img/bureau_3.webp") center 46% / cover no-repeat;
   filter: blur(5px) brightness(0.52) saturate(0.88);
   transform: scale(1.025);
 }
@@ -341,13 +341,13 @@
   display: none;
 }
 
-#dir-1 .dir-modal-avatar { background-image: url("../img/bureau/Rémy_Schumacher.JPG"); }
-#dir-2 .dir-modal-avatar { background-image: url("../img/bureau/Alexandre_Maleszewski.JPG"); }
-#dir-3 .dir-modal-avatar { background-image: url("../img/bureau/Michael_Weiss.JPG"); }
-#dir-5 .dir-modal-avatar { background-image: url("../img/bureau/Jean-Francois_Zapata.JPG"); }
-#dir-6 .dir-modal-avatar { background-image: url("../img/bureau/Patrick_Schwab.JPG"); }
-#dir-7 .dir-modal-avatar { background-image: url("../img/bureau/Bruno_Pacheco.JPG"); }
-#dir-8 .dir-modal-avatar { background-image: url("../img/bureau/Jonathan_Uwimana.JPG"); }
+#dir-1 .dir-modal-avatar { background-image: url("../img/bureau/Rémy_Schumacher.webp"); }
+#dir-2 .dir-modal-avatar { background-image: url("../img/bureau/Alexandre_Maleszewski.webp"); }
+#dir-3 .dir-modal-avatar { background-image: url("../img/bureau/Michael_Weiss.webp"); }
+#dir-5 .dir-modal-avatar { background-image: url("../img/bureau/Jean-Francois_Zapata.webp"); }
+#dir-6 .dir-modal-avatar { background-image: url("../img/bureau/Patrick_Schwab.webp"); }
+#dir-7 .dir-modal-avatar { background-image: url("../img/bureau/Bruno_Pacheco.webp"); }
+#dir-8 .dir-modal-avatar { background-image: url("../img/bureau/Jonathan_Uwimana.webp"); }
 .dir-modal-body {
   position: absolute;
   z-index: 1;

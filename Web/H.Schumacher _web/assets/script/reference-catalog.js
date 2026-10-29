@@ -1,42 +1,256 @@
 window.REFERENCE_CATALOG = [
-  { title: "Quartier de la Suettaz – Nyon", type: "Logement", tags: ["Logement"], sourceId: "quartier-de-la-suettaz-nyon" },
-  { title: "SCHL Crêtes – Lausanne", type: "Logement", tags: ["Logement"], client: "SCHL", architect: "RDR Architectes Lausanne", period: "2024-2027", description: "Démolition des bâtiments existants et reconstruction de trois nouveaux bâtiments, totalisant 100 nouveaux appartements. Prestations : installations sanitaires, sprinkler et coordination CVSE.", image: "assets/img/competences/competence-sanitaire.webp" },
-  { title: "Écoquartier des Échervettes – Secteur C – Logement PPE", type: "Logement / Médical / Techniques piscine / Cuisine professionnelle / Eaux de source", tags: ["Logement", "Santé", "Piscine", "Restauration"], sourceId: "ecoquartier-des-echervettes-romont" },
-  { title: "Écoquartier des Échervettes – Secteur C – Clinique médicale et blocs opératoires", type: "Logement / Médical / Techniques piscine", tags: ["Logement", "Santé", "Piscine"], sourceId: "ecoquartier-des-echervettes-romont" },
-  { title: "Écoquartier des Échervettes – Secteur C – Hôtel **** et zone wellness", type: "Hôtel / Médical / Technique piscine / Wellness", tags: ["Hôtellerie", "Santé", "Piscine"], sourceId: "ecoquartier-des-echervettes-romont" },
-  { title: "Centre thermal – Yverdon-les-Bains", type: "Centre thermal et wellness", tags: ["Piscine"], sourceId: "mise-en-conformite-transformation-bains-thermaux-yverdon-les-bains-2" },
-  { title: "Piscine de la Blancherie – Sion", type: "Piscine publique", tags: ["Piscine"], client: "Ville de Sion", period: "2020-2025", description: "Bassin olympique de 50 m, bassin non-nageur, toboggan et pataugeoire. Nouvelle installation de filtration et cuvelage en acier inoxydable. Prestations : planification générale, direction des travaux, installations sanitaires et traitement de l’eau.", image: "assets/img/competences/competence-piscine-aquarium.webp" },
-  { title: "Piscine des Mélèzes – La Chaux-de-Fonds", type: "Piscine publique", tags: ["Piscine"], sourceId: "renovation-transformation-piscine-des-melezes-la-chaux-de-fonds" },
-  { title: "Piscine du Liotard – Genève", type: "Piscine scolaire intérieure", tags: ["Piscine", "Formation"], client: "Ville de Genève", period: "2024-2027", description: "Bassin de natation scolaire avec fond mobile, nouvelle filtration et création de nouveaux locaux dédiés aux produits chimiques.", image: "assets/img/competences/competence-piscine-aquarium.webp" },
-  { title: "Piscine Belvédère – Chêne-Bougeries", type: "Piscine scolaire intérieure", tags: ["Piscine", "Formation"], client: "Commune de Chêne-Bougeries", period: "2024-2026", description: "Bassin de natation scolaire avec fond mobile, nouvelle filtration et création de nouveaux locaux dédiés aux produits chimiques.", image: "assets/img/competences/competence-piscine-aquarium.webp" },
-  { title: "BATPOL – Fribourg", type: "Bâtiment de police et halle de pompiers", tags: ["Administratif"], sourceId: "batpol-fribourg" },
-  { title: "ACPC – Villaz-Saint-Pierre", type: "Centre de formation professionnelle interdisciplinaire", tags: ["Formation"], sourceId: "acpc-villarz-saint-pierre" },
-  { title: "EMS 4 Marronniers – Yverdon", type: "Établissement médico-social", tags: ["EMS"], sourceId: "ems-4-marronniers" },
-  { title: "La Colline – Chexbres", type: "Établissement médico-social", tags: ["EMS"], client: "État de Vaud", period: "2016-2022", description: "Agrandissement et transformation de l’EMS, totalisant 100 chambres, ainsi qu’un restaurant et une cuisine professionnelle. Prestations : installations sanitaires et cuisine professionnelle.", image: "assets/img/competences/competence-sanitaire.webp" },
-  { title: "Collège Sainte-Croix – Fribourg", type: "Établissement scolaire", tags: ["Formation"], sourceId: "college-sainte-croix-fribourg" },
-  { title: "Migros Servette – Genève", type: "Grande distribution", tags: ["Commerce"], sourceId: "renovation-transformation-migros-servette" },
-  { title: "Migros Rieu – Genève", type: "Grande distribution", tags: ["Commerce"], sourceId: "renovation-transformation-migros-servette" },
-  { title: "Migros Rieu – Acacias", type: "Grande distribution", tags: ["Commerce"], sourceId: "renovation-transformation-migros-servette" },
-  { title: "Établissement hospitalier de la Côte (EHC) – Morges", type: "Hospitalier", tags: ["Santé"], sourceId: "ehc-etablissement-hospitalier-de-la-cote-morges" },
-  { title: "Collège Gustave-Roud – Carrouge", type: "Établissement scolaire", tags: ["Formation"], sourceId: "college-gustave-roud-carrouge-vd" },
-  { title: "Hôpital psychiatrique de Cery – Prilly", type: "Hospitalier", tags: ["Santé"], sourceId: "hopital-psychiatrique-de-cery-prilly-prestation-amo" },
-  { title: "CHUV – Lausanne – Extension de 16 blocs opératoires", type: "Hospitalier", tags: ["Santé"], sourceId: "chuv-extension-pour-16-salles-doperation-lausanne-agrandissement-surelev" },
-  { title: "Bains de Saillon", type: "Centre thermal", tags: ["Piscine"], sourceId: "bains-de-saillon" },
-  { title: "Collège de Courbet – La Tour-de-Peilz", type: "Établissement scolaire", tags: ["Formation"], sourceId: "college-de-courbet-la-tour-de-peils-vd" },
-  { title: "Îlots Sud – Morges", type: "Logement / Restaurant / Administratif", tags: ["Logement", "Restauration", "Administratif"], sourceId: "ilots-sud-logements-et-surfaces-commerciales-morges-projet-bim" },
-  { title: "EMS de Burier", type: "Établissement médico-social", tags: ["EMS"], sourceId: "ems-burier" },
-  { title: "Théâtre de Beaulieu – Lausanne", type: "Divertissement", tags: ["Culture"], sourceId: "theatre-de-beaulieu-et-tas-tribunal-arbitral-du-sport-lausanne" },
-  { title: "Tribunal arbitral du sport (TAS) – Lausanne", type: "Administratif", tags: ["Administratif"], sourceId: "theatre-de-beaulieu-et-tas-tribunal-arbitral-du-sport-lausanne" },
-  { title: "Atelier AFIRO – Ecublens", type: "Industrie", tags: ["Industrie"], sourceId: "afiro-ecublens-vd" },
-  { title: "Habitations en Cojonnex – Épalinges", type: "Logement / Restaurant / Administratif", tags: ["Logement", "Restauration", "Administratif"], sourceId: "habitations-en-cojonnex-lausanne" },
-  { title: "Théâtre du Jura – Delémont", type: "Divertissement", tags: ["Culture"], sourceId: "ticle-theatre-du-jura-delemont" },
-  { title: "Maison Gubler – Patrimoine cantonal – Nyon", type: "UAPE", tags: ["Formation"], sourceId: "maison-gubler-nyon-inscrite-au-patrimoine-cantonal" },
-  { title: "Fondation Bois de Chêne – Genolier", type: "UAPE", tags: ["Formation"], sourceId: "bois-de-chenes-genolier" },
-  { title: "Logements protégés – Épalinges", type: "Logement", tags: ["Logement"], sourceId: "epalinges-501" },
-  { title: "Aquatis – Aquarium – Lausanne", type: "Aquarium municipal", tags: ["Aquariums"], sourceId: "aquarium-public-techniques-complexes-et-traitements-deau-aquarium-hotel-" },
-  { title: "Aquatis – Hôtel – Lausanne", type: "Hôtel", tags: ["Hôtellerie", "Restauration"], sourceId: "aquarium-public-techniques-complexes-et-traitements-deau-aquarium-hotel-" },
-  { title: "EMS Mont Riant – Yverdon-les-Bains", type: "Établissement médico-social", tags: ["EMS"], sourceId: "ems-mont-riant" },
-  { title: "Établissement scolaire Marens – Nyon", type: "Établissement scolaire", tags: ["Formation"], sourceId: "etablissement-scolaire-nyon-vd" },
-  { title: "Gymnase du CEOL – Renens", type: "Établissement scolaire", tags: ["Formation"], sourceId: "ceol-gymnase-renens-vd" },
-  { title: "Collège du Sud – Bulle", type: "Établissement scolaire", tags: ["Formation"], sourceId: "college-du-sud-bulle-fr" }
+  {
+    "title": "Quartier de la Suettaz – Nyon",
+    "tags": [
+      "Logement"
+    ]
+  },
+  {
+    "title": "SCHL Crêtes – Lausanne",
+    "tags": [
+      "Logement"
+    ]
+  },
+  {
+    "title": "Écoquartier des Échervettes – Secteur C – Logement PPE",
+    "tags": [
+      "Logement",
+      "Santé",
+      "Piscine",
+      "Restauration"
+    ]
+  },
+  {
+    "title": "Écoquartier des Échervettes – Secteur C – Clinique médicale et blocs opératoires",
+    "tags": [
+      "Logement",
+      "Santé",
+      "Piscine"
+    ]
+  },
+  {
+    "title": "Écoquartier des Échervettes – Secteur C – Hôtel **** et zone wellness",
+    "tags": [
+      "Hôtellerie",
+      "Santé",
+      "Piscine"
+    ]
+  },
+  {
+    "title": "Centre thermal – Yverdon-les-Bains",
+    "tags": [
+      "Piscine"
+    ]
+  },
+  {
+    "title": "Piscine de la Blancherie – Sion",
+    "tags": [
+      "Piscine"
+    ]
+  },
+  {
+    "title": "Piscine des Mélèzes – La Chaux-de-Fonds",
+    "tags": [
+      "Piscine"
+    ]
+  },
+  {
+    "title": "Piscine du Liotard – Genève",
+    "tags": [
+      "Piscine",
+      "Formation"
+    ]
+  },
+  {
+    "title": "Piscine Belvédère – Chêne-Bougeries",
+    "tags": [
+      "Piscine",
+      "Formation"
+    ]
+  },
+  {
+    "title": "BATPOL – Fribourg",
+    "tags": [
+      "Administratif"
+    ]
+  },
+  {
+    "title": "ACPC – Villaz-Saint-Pierre",
+    "tags": [
+      "Formation"
+    ]
+  },
+  {
+    "title": "EMS 4 Marronniers – Yverdon",
+    "tags": [
+      "EMS"
+    ]
+  },
+  {
+    "title": "La Colline – Chexbres",
+    "tags": [
+      "EMS"
+    ]
+  },
+  {
+    "title": "Collège Sainte-Croix – Fribourg",
+    "tags": [
+      "Formation"
+    ]
+  },
+  {
+    "title": "Migros Servette – Genève",
+    "tags": [
+      "Commerce"
+    ]
+  },
+  {
+    "title": "Migros Rieu – Genève",
+    "tags": [
+      "Commerce"
+    ]
+  },
+  {
+    "title": "Migros Rieu – Acacias",
+    "tags": [
+      "Commerce"
+    ]
+  },
+  {
+    "title": "Établissement hospitalier de la Côte (EHC) – Morges",
+    "tags": [
+      "Santé"
+    ]
+  },
+  {
+    "title": "Collège Gustave-Roud – Carrouge",
+    "tags": [
+      "Formation"
+    ]
+  },
+  {
+    "title": "Hôpital psychiatrique de Cery – Prilly",
+    "tags": [
+      "Santé"
+    ]
+  },
+  {
+    "title": "CHUV – Lausanne – Extension de 16 blocs opératoires",
+    "tags": [
+      "Santé"
+    ]
+  },
+  {
+    "title": "Bains de Saillon",
+    "tags": [
+      "Piscine"
+    ]
+  },
+  {
+    "title": "Collège de Courbet – La Tour-de-Peilz",
+    "tags": [
+      "Formation"
+    ]
+  },
+  {
+    "title": "Îlots Sud – Morges",
+    "tags": [
+      "Logement",
+      "Restauration",
+      "Administratif"
+    ]
+  },
+  {
+    "title": "EMS de Burier",
+    "tags": [
+      "EMS"
+    ]
+  },
+  {
+    "title": "Théâtre de Beaulieu – Lausanne",
+    "tags": [
+      "Culture"
+    ]
+  },
+  {
+    "title": "Tribunal arbitral du sport (TAS) – Lausanne",
+    "tags": [
+      "Administratif"
+    ]
+  },
+  {
+    "title": "Atelier AFIRO – Ecublens",
+    "tags": [
+      "Industrie"
+    ]
+  },
+  {
+    "title": "Habitations en Cojonnex – Épalinges",
+    "tags": [
+      "Logement",
+      "Restauration",
+      "Administratif"
+    ]
+  },
+  {
+    "title": "Théâtre du Jura – Delémont",
+    "tags": [
+      "Culture"
+    ]
+  },
+  {
+    "title": "Maison Gubler – Patrimoine cantonal – Nyon",
+    "tags": [
+      "Formation"
+    ]
+  },
+  {
+    "title": "Fondation Bois de Chêne – Genolier",
+    "tags": [
+      "Formation"
+    ]
+  },
+  {
+    "title": "Logements protégés – Épalinges",
+    "tags": [
+      "Logement"
+    ]
+  },
+  {
+    "title": "Aquatis – Aquarium – Lausanne",
+    "tags": [
+      "Aquariums"
+    ]
+  },
+  {
+    "title": "Aquatis – Hôtel – Lausanne",
+    "tags": [
+      "Hôtellerie",
+      "Restauration"
+    ]
+  },
+  {
+    "title": "EMS Mont Riant – Yverdon-les-Bains",
+    "tags": [
+      "EMS"
+    ]
+  },
+  {
+    "title": "Établissement scolaire Marens – Nyon",
+    "tags": [
+      "Formation"
+    ]
+  },
+  {
+    "title": "Gymnase du CEOL – Renens",
+    "tags": [
+      "Formation"
+    ]
+  },
+  {
+    "title": "Collège du Sud – Bulle",
+    "tags": [
+      "Formation"
+    ]
+  }
 ];

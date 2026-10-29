@@ -255,64 +255,6 @@ if (competenceButtons.length && competenceTitle && competenceDescription && comp
 }
 
 /* =========================================================
-   PARTNERS CAROUSEL (SAFE)
-========================================================= */
-
-const track = document.getElementById("partnersTrack");
-
-if (track) {
-  let speed = 0.4;
-  let position = 0;
-
-  track.innerHTML += track.innerHTML;
-
-  function animatePartners() {
-    position -= speed;
-
-    if (position <= -track.scrollWidth / 2) position = 0;
-
-    if (window.innerWidth < 768) speed = 0.2;
-
-    track.style.transform = `translateX(${position}px)`;
-
-    requestAnimationFrame(animatePartners);
-  }
-
-  animatePartners();
-}
-
-/* =========================================================
-   REFERENCES CAROUSEL (ACCUEIL)
-========================================================= */
-
-const refsTrack = document.getElementById("refsTrack");
-
-if (refsTrack) {
-  const refsCarousel = refsTrack.parentElement;
-  let refsSpeed = 0.5;
-  let refsPosition = 0;
-  let refsPaused = false;
-
-  refsTrack.innerHTML += refsTrack.innerHTML;
-
-  refsCarousel.addEventListener("mouseenter", () => (refsPaused = true));
-  refsCarousel.addEventListener("mouseleave", () => (refsPaused = false));
-
-  function animateRefs() {
-    if (!refsPaused) {
-      refsPosition -= refsSpeed;
-      if (refsPosition <= -refsTrack.scrollWidth / 2) refsPosition = 0;
-    }
-
-    refsTrack.style.transform = `translateX(${refsPosition}px)`;
-
-    requestAnimationFrame(animateRefs);
-  }
-
-  animateRefs();
-}
-
-/* =========================================================
    REFERENCES PAGE
 ========================================================= */
 
@@ -331,50 +273,51 @@ const modalServicesSection = document.getElementById("modalServicesSection");
 const modalServices = document.getElementById("modalServices");
 const gallery = document.getElementById("modalGallery");
 const mainImage = document.getElementById("modalMainImage");
-const storedReferenceProjects = Array.isArray(window.REFERENCES_DATA) ? window.REFERENCES_DATA : [];
 const suppliedReferenceDetails = Array.isArray(window.REFERENCE_DETAILS) ? window.REFERENCE_DETAILS : [];
+const suppliedReferenceImages = Array.isArray(window.REFERENCE_IMAGES) ? window.REFERENCE_IMAGES : [];
 const referenceProjects = Array.isArray(window.REFERENCE_CATALOG)
   ? window.REFERENCE_CATALOG.map((entry, index) => {
-      const storedProject = storedReferenceProjects.find((project) => project.id === entry.sourceId) || {};
       const suppliedDetails = suppliedReferenceDetails[index] || {};
       return {
-        ...storedProject,
         ...entry,
         ...suppliedDetails,
         id: `client-reference-${index + 1}`,
         order: index,
         category: entry.tags[0],
-        images: storedProject.images?.length
-          ? storedProject.images
-          : [entry.image || "assets/img/Logo_HS.png"],
+        // Les références publiées utilisent exclusivement les images validées dans 02-Photos.
+        images: Array.isArray(suppliedReferenceImages[index]) ? suppliedReferenceImages[index] : [],
       };
     })
-  : storedReferenceProjects;
+  : [];
 
-document.querySelectorAll(".competence-related-references").forEach((section) => {
-  const grid = section.querySelector(".competence-reference-grid");
-  if (!grid || !referenceProjects.length) return;
+const referenceTagLabels = {
+  Aquariums: "Aquariums",
+  Logement: "Logement",
+  Formation: "Formation",
+  Piscine: "Techniques piscine",
+  Administratif: "Administratif",
+  Hôtellerie: "Hôtel",
+  Industrie: "Industrie",
+  EMS: "EMS",
+  Santé: "Médical",
+  Commerce: "Commerce",
+  Restauration: "Cuisine professionnelle",
+  Culture: "Divertissement",
+};
 
-  const projectIds = (section.dataset.referenceIds || "").split(",").filter(Boolean);
-  projectIds.forEach((projectId) => {
-    const project = referenceProjects.find((item) => item.id === projectId);
-    if (!project) return;
-
-    const link = document.createElement("a");
-    link.className = "competence-reference-card";
-    link.href = `references.html?project=${encodeURIComponent(project.id)}`;
-    link.innerHTML = `
-      <img src="${project.images[0] || "assets/img/Logo_HS.png"}" alt="${escapeHtml(project.title)}" loading="lazy" />
-      <span>${escapeHtml(project.title)}</span>`;
-    grid.appendChild(link);
-  });
-});
+const getReferenceTagLabel = (tag) => referenceTagLabels[tag] || tag;
 
 /* =========================================================
    FILTERS
 ========================================================= */
 
 if (filters.length && referenceProjects.length) {
+  filters.forEach((button) => {
+    if (button.dataset.filter !== "all") {
+      button.textContent = getReferenceTagLabel(button.dataset.filter);
+    }
+  });
+
   const availableFilters = new Set(Array.from(filters, (button) => button.dataset.filter));
 
   const applyReferenceFilters = (selectedFilters, updateUrl = false) => {
@@ -449,12 +392,18 @@ function renderReferences(projects) {
     card.className = "ref-card";
     card.tabIndex = 0;
     card.setAttribute("role", "button");
-    card.setAttribute("aria-label", `Voir les détails de ${project.title}`);
-    const image = project.images[0] || "assets/img/Logo_HS.png";
+    card.setAttribute("aria-label", "Voir les détails de la référence");
+    const image = project.images[0] || "";
+    const imageMarkup = image
+      ? `<img src="${image}" alt="${escapeHtml(project.title)}" loading="lazy" />`
+      : `<div class="ref-image-placeholder" aria-label="Images à venir"><span>Images à venir</span></div>`;
+    const tagMarkup = getProjectTags(project)
+      .map((tag) => `<span class="ref-tag">${escapeHtml(getReferenceTagLabel(tag))}</span>`)
+      .join("");
     card.innerHTML = `
       <div class="ref-img">
-        <img src="${image}" alt="${escapeHtml(project.title)}" loading="lazy" />
-        <span class="ref-tags"><span class="ref-tag">${escapeHtml(project.type || project.category)}</span></span>
+        ${imageMarkup}
+        <span class="ref-tags">${tagMarkup}</span>
       </div>
       <div class="ref-info">
         <h3>${escapeHtml(project.title)}</h3>
@@ -525,15 +474,29 @@ function openReference(project) {
     modalServices.textContent = servicesText;
   }
   gallery.innerHTML = "";
-  const images = project.images.length ? project.images : ["assets/img/Logo_HS.png"];
-  mainImage.src = images[0];
-  mainImage.alt = project.title || "";
-  images.forEach((image) => {
+  const images = Array.isArray(project.images) ? project.images : [];
+  const mainImageWrap = mainImage.parentElement;
+  const hasImages = images.length > 0;
+  mainImageWrap.hidden = !hasImages;
+  gallery.hidden = images.length <= 1;
+
+  if (hasImages) {
+    mainImage.src = images[0];
+    mainImage.alt = project.title || "";
+  } else {
+    mainImage.removeAttribute("src");
+    mainImage.alt = "";
+  }
+
+  images.slice(1).forEach((image, index) => {
     const thumb = document.createElement("img");
     thumb.src = image;
-    thumb.alt = "";
+    thumb.alt = `${project.title || "Référence"} — image ${index + 2}`;
     thumb.loading = "lazy";
-    thumb.addEventListener("click", () => { mainImage.src = image; });
+    thumb.addEventListener("click", () => {
+      mainImage.src = image;
+      gallery.querySelectorAll("img").forEach((item) => item.classList.toggle("active", item === thumb));
+    });
     gallery.appendChild(thumb);
   });
   modal.classList.add("open");

@@ -56,6 +56,6 @@ body {
   transition: background 0.2s ease, transform 0.2s ease;
 }
 .message-box a.btn:hover {
-  background: #0a42c0;
+  background: var(--primary-hover);
   transform: translateY(-2px);
 }

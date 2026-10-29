@@ -35,6 +35,13 @@
   flex-direction: column;
   gap: 20px;
 }
+.form-honeypot {
+  position: absolute !important;
+  left: -10000px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+}
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -84,8 +91,19 @@
   transition: background 0.2s ease, transform 0.2s ease;
 }
 .contact-form button[type="submit"]:hover {
-  background: #0a42c0;
+  background: var(--primary-hover);
   transform: translateY(-2px);
+}
+.contact-form button[type="submit"]:disabled {
+  cursor: wait;
+  opacity: 0.6;
+  transform: none;
+}
+.form-security-status {
+  margin: -6px 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
 }
 .form-checkbox {
   display: flex;

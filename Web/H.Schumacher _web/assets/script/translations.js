@@ -326,6 +326,9 @@
       'Commerce': 'Gewerbe',
       'Restauration': 'Gastronomie',
       'Culture': 'Kultur',
+      'Techniques piscine': 'Schwimmbadtechnik',
+      'Hôtel': 'Hotel',
+      'Divertissement': 'Unterhaltung',
       'Savoir-faire': 'Fachkompetenz',
       'Rigueur': 'Sorgfalt',
       'Accompagnements': 'Begleitung',
@@ -345,7 +348,6 @@
       'Coût': 'Kosten',
       'Présentation du projet': 'Projektbeschreibung',
       'Îlots Sud – Morges': 'Îlots Sud – Morges',
-      'Production de mouvement – Bienne': 'Uhrwerkproduktion – Biel',
       'Établissement hospitalier de la Côte (EHC) – Morges': 'Spital de la Côte (EHC) – Morges',
       'Extension du CHUV – 16 salles d’opération – Lausanne': 'Erweiterung des CHUV – 16 Operationssäle – Lausanne',
       'Sciences de la vie UNIL–EPFL – Lausanne': 'Lebenswissenschaften UNIL–EPFL – Lausanne',
@@ -504,7 +506,22 @@
       'Une erreur est survenue': 'Ein Fehler ist aufgetreten',
       "Nous n'avons pas pu envoyer votre message.": 'Ihre Nachricht konnte nicht gesendet werden.',
       'Merci de nous contacter directement à': 'Bitte kontaktieren Sie uns direkt unter',
-      'Réessayer': 'Erneut versuchen'
+      'Réessayer': 'Erneut versuchen',
+      'Accueil H. Schumacher': 'Startseite H. Schumacher',
+      'Ne pas remplir ce champ': 'Dieses Feld nicht ausfüllen',
+      'Images à venir': 'Bilder folgen',
+      'Voir les détails de la référence': 'Referenzdetails anzeigen',
+      'Aquatis extension': 'Aquatis-Erweiterung',
+      'Fontaine décorative': 'Zierbrunnen',
+      'Hôpital ophtalmologique': 'Augenklinik',
+      'Traitement eau': 'Wasseraufbereitung',
+      'Voir la fiche d’Alexandre Maleszewski': 'Profil von Alexandre Maleszewski anzeigen',
+      'Voir la fiche de Bruno Pacheco': 'Profil von Bruno Pacheco anzeigen',
+      'Voir la fiche de Jean-François Zapata': 'Profil von Jean-François Zapata anzeigen',
+      'Voir la fiche de Jonathan Uwimana': 'Profil von Jonathan Uwimana anzeigen',
+      'Voir la fiche de Michael Weiss': 'Profil von Michael Weiss anzeigen',
+      'Voir la fiche de Patrick Schwab': 'Profil von Patrick Schwab anzeigen',
+      'Voir la fiche de Rémy Schumacher': 'Profil von Rémy Schumacher anzeigen'
     },
     en: {
       'Nos compétences': 'Our expertise',
@@ -640,6 +657,9 @@
       'Commerce': 'Retail',
       'Restauration': 'Food service',
       'Culture': 'Culture',
+      'Techniques piscine': 'Pool technology',
+      'Hôtel': 'Hotel',
+      'Divertissement': 'Entertainment',
       'Savoir-faire': 'Expertise',
       'Rigueur': 'Rigour',
       'Accompagnements': 'Support',
@@ -659,7 +679,6 @@
       'Coût': 'Cost',
       'Présentation du projet': 'Project overview',
       'Îlots Sud – Morges': 'Îlots Sud – Morges',
-      'Production de mouvement – Bienne': 'Watch movement production – Biel',
       'Établissement hospitalier de la Côte (EHC) – Morges': 'EHC regional hospital – Morges',
       'Extension du CHUV – 16 salles d’opération – Lausanne': 'CHUV extension – 16 operating rooms – Lausanne',
       'Sciences de la vie UNIL–EPFL – Lausanne': 'UNIL–EPFL Life Sciences – Lausanne',
@@ -817,9 +836,27 @@
       'Une erreur est survenue': 'An error occurred',
       "Nous n'avons pas pu envoyer votre message.": 'We were unable to send your message.',
       'Merci de nous contacter directement à': 'Please contact us directly at',
-      'Réessayer': 'Try again'
+      'Réessayer': 'Try again',
+      'Accueil H. Schumacher': 'H. Schumacher home page',
+      'Ne pas remplir ce champ': 'Do not fill in this field',
+      'Images à venir': 'Images coming soon',
+      'Voir les détails de la référence': 'View reference details',
+      'Aquatis extension': 'Aquatis extension',
+      'Fontaine décorative': 'Decorative fountain',
+      'Hôpital ophtalmologique': 'Eye hospital',
+      'Traitement eau': 'Water treatment',
+      'Voir la fiche d’Alexandre Maleszewski': 'View Alexandre Maleszewski’s profile',
+      'Voir la fiche de Bruno Pacheco': 'View Bruno Pacheco’s profile',
+      'Voir la fiche de Jean-François Zapata': 'View Jean-François Zapata’s profile',
+      'Voir la fiche de Jonathan Uwimana': 'View Jonathan Uwimana’s profile',
+      'Voir la fiche de Michael Weiss': 'View Michael Weiss’s profile',
+      'Voir la fiche de Patrick Schwab': 'View Patrick Schwab’s profile',
+      'Voir la fiche de Rémy Schumacher': 'View Rémy Schumacher’s profile'
     }
   };
+
+  Object.assign(CONTENT.de, window.REFERENCE_TRANSLATIONS?.de || {});
+  Object.assign(CONTENT.en, window.REFERENCE_TRANSLATIONS?.en || {});
 
   const PAGE_TITLES = {
     de: {
